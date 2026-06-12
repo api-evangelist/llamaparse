@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-classifyjob-schema.json",
+  "title": "ClassifyJob",
+  "description": "A classify job.",
+  "properties": {
+    "status": {
+      "$ref": "#/components/schemas/StatusEnum",
+      "description": "The status of the classify job"
+    },
+    "effective_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Effective At"
+    },
+    "job_record_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Job Record Id",
+      "description": "The job record ID associated with this status, if any."
+    },
+    "error_message": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Error Message",
+      "description": "Error message for the latest job attempt, if any."
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Id",
+      "description": "Unique identifier"
+    },
+    "created_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Created At",
+      "description": "Creation datetime"
+    },
+    "updated_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Updated At",
+      "description": "Update datetime"
+    },
+    "rules": {
+      "items": {
+        "$ref": "#/components/schemas/ClassifierRule"
+      },
+      "type": "array",
+      "minItems": 1,
+      "title": "Rules",
+      "description": "The rules to classify the files"
+    },
+    "user_id": {
+      "type": "string",
+      "title": "User Id",
+      "description": "The ID of the user"
+    },
+    "project_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Project Id",
+      "description": "The ID of the project"
+    },
+    "mode": {
+      "$ref": "#/components/schemas/ClassifyMode",
+      "description": "The classification mode to use",
+      "default": "FAST"
+    },
+    "parsing_configuration": {
+      "$ref": "#/components/schemas/ClassifyParsingConfiguration",
+      "description": "The configuration for the parsing job",
+      "default": {
+        "lang": "en",
+        "max_pages": 5
+      }
+    }
+  },
+  "type": "object",
+  "required": [
+    "status",
+    "id",
+    "rules",
+    "user_id",
+    "project_id"
+  ]
+}

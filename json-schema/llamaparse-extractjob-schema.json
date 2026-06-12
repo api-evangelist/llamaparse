@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-extractjob-schema.json",
+  "title": "ExtractJob",
+  "description": "Schema for an extraction job.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Id",
+      "description": "The id of the extraction job"
+    },
+    "extraction_agent": {
+      "$ref": "#/components/schemas/ExtractAgent",
+      "description": "The agent that the job was run on."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "SUCCESS",
+        "ERROR",
+        "PARTIAL_SUCCESS",
+        "CANCELLED"
+      ],
+      "title": "Status",
+      "description": "The status of the extraction job"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Error",
+      "description": "The error that occurred during extraction"
+    },
+    "file_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "File Id",
+      "description": "The id of the file that the extract was extracted from"
+    },
+    "file": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/File"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "[DEPRECATED] The file that the extract was extracted from",
+      "deprecated": true
+    }
+  },
+  "type": "object",
+  "required": [
+    "id",
+    "extraction_agent",
+    "status"
+  ]
+}

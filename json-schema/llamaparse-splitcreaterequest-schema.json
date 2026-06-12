@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-splitcreaterequest-schema.json",
+  "title": "SplitCreateRequest",
+  "description": "Beta create request \u2014 accepts legacy document_input and flat formats.",
+  "properties": {
+    "document_input": {
+      "$ref": "#/components/schemas/SplitDocumentInput",
+      "description": "Document to be split."
+    },
+    "configuration": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/SplitConfiguration"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Inline split configuration."
+    },
+    "configuration_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Configuration Id",
+      "description": "Saved split configuration ID."
+    }
+  },
+  "type": "object",
+  "required": [
+    "document_input"
+  ]
+}

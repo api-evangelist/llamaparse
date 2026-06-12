@@ -1,0 +1,146 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "llamaparse": "https://developers.llamaindex.ai/llamaparse/vocab#",
+
+    "LlamaParseAPI": "llamaparse:LlamaParseAPI",
+    "ParseJob": "llamaparse:ParseJob",
+    "ExtractJob": "llamaparse:ExtractJob",
+    "ClassifyJob": "llamaparse:ClassifyJob",
+    "SplitJob": "llamaparse:SplitJob",
+    "BatchJob": "llamaparse:BatchJob",
+    "ExtractionAgent": "llamaparse:ExtractionAgent",
+    "Pipeline": "llamaparse:Pipeline",
+    "DataSource": "llamaparse:DataSource",
+    "DataSink": "llamaparse:DataSink",
+    "LlamaCloudIndex": "llamaparse:LlamaCloudIndex",
+    "Retriever": "llamaparse:Retriever",
+
+    "id": "@id",
+    "type": "@type",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "version": "schema:version",
+    "dateCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "dateModified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "status": "llamaparse:status",
+    "jobStatus": "llamaparse:jobStatus",
+    "jobId": "llamaparse:jobId",
+    "fileId": "llamaparse:fileId",
+    "jobRecordId": "llamaparse:jobRecordId",
+    "errorMessage": "llamaparse:errorMessage",
+    "effectiveAt": {
+      "@id": "llamaparse:effectiveAt",
+      "@type": "xsd:dateTime"
+    },
+
+    "parseJob": {
+      "@id": "llamaparse:parseJob",
+      "@type": "@id"
+    },
+    "extractJob": {
+      "@id": "llamaparse:extractJob",
+      "@type": "@id"
+    },
+    "classifyJob": {
+      "@id": "llamaparse:classifyJob",
+      "@type": "@id"
+    },
+    "splitJob": {
+      "@id": "llamaparse:splitJob",
+      "@type": "@id"
+    },
+    "batchJob": {
+      "@id": "llamaparse:batchJob",
+      "@type": "@id"
+    },
+    "extractionAgent": {
+      "@id": "llamaparse:extractionAgent",
+      "@type": "@id"
+    },
+    "pipeline": {
+      "@id": "llamaparse:pipeline",
+      "@type": "@id"
+    },
+    "index": {
+      "@id": "llamaparse:index",
+      "@type": "@id"
+    },
+    "retriever": {
+      "@id": "llamaparse:retriever",
+      "@type": "@id"
+    },
+
+    "parsingInstruction": "llamaparse:parsingInstruction",
+    "resultType": "llamaparse:resultType",
+    "premiumMode": "llamaparse:premiumMode",
+    "fastMode": "llamaparse:fastMode",
+    "invalidateCache": "llamaparse:invalidateCache",
+    "doNotCache": "llamaparse:doNotCache",
+    "language": "llamaparse:language",
+    "pageSeparator": "llamaparse:pageSeparator",
+    "numWorkers": "llamaparse:numWorkers",
+    "splitByPage": "llamaparse:splitByPage",
+    "disableOcr": "llamaparse:disableOcr",
+    "outputSchema": "llamaparse:outputSchema",
+    "classificationSchema": "llamaparse:classificationSchema",
+    "extractMode": "llamaparse:extractMode",
+    "classifyMode": "llamaparse:classifyMode",
+    "confidence": "llamaparse:confidence",
+    "documentClass": "llamaparse:documentClass",
+    "pageCount": "llamaparse:pageCount",
+    "credits": "llamaparse:credits",
+
+    "dataSource": {
+      "@id": "llamaparse:dataSource",
+      "@type": "@id"
+    },
+    "dataSink": {
+      "@id": "llamaparse:dataSink",
+      "@type": "@id"
+    },
+    "embeddingModelConfig": "llamaparse:embeddingModelConfig",
+    "pipelineStatus": "llamaparse:pipelineStatus",
+    "organization": {
+      "@id": "llamaparse:organization",
+      "@type": "@id"
+    },
+    "project": {
+      "@id": "llamaparse:project",
+      "@type": "@id"
+    },
+
+    "provider": {
+      "@id": "schema:provider",
+      "@type": "@id"
+    },
+    "hasAPI": {
+      "@id": "schema:hasOfferCatalog",
+      "@type": "@id"
+    },
+    "documentation": {
+      "@id": "schema:documentation",
+      "@type": "@id"
+    },
+    "softwareVersion": "schema:softwareVersion",
+    "programmingLanguage": "schema:programmingLanguage",
+    "codeRepository": {
+      "@id": "schema:codeRepository",
+      "@type": "@id"
+    },
+    "license": {
+      "@id": "schema:license",
+      "@type": "@id"
+    }
+  }
+}

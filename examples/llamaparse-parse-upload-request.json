@@ -1,0 +1,25 @@
+{
+  "description": "Example multipart/form-data upload request to parse a PDF document",
+  "endpoint": "POST /api/v1/parsing/upload",
+  "content_type": "multipart/form-data",
+  "fields": {
+    "file": "(binary PDF file content)",
+    "language": "en",
+    "parsing_instruction": "Extract all tables and figures with their captions.",
+    "invalidate_cache": false,
+    "do_not_cache": false,
+    "fast_mode": false,
+    "premium_mode": true,
+    "gpt4o_mode": false,
+    "page_separator": "\\n---\\n",
+    "result_type": "markdown",
+    "num_workers": 4,
+    "verbose": true,
+    "show_progress": true,
+    "split_by_page": false,
+    "disable_ocr": false,
+    "is_formatting_instruction": false,
+    "structured_output": false
+  },
+  "notes": "The 'file' field must be a binary file upload. The job_id in the response is used to poll for results."
+}

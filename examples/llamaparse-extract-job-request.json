@@ -1,0 +1,38 @@
+{
+  "description": "Example request body for creating an extraction job with a custom schema",
+  "endpoint": "POST /api/v1/extraction/jobs",
+  "request_body": {
+    "extraction_agent_id": "agent-uuid-abcd-1234",
+    "file_id": "file-uuid-efgh-5678",
+    "mode": "EXTRACT_MODE_AGENTIC",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "invoice_number": { "type": "string" },
+        "invoice_date": { "type": "string", "format": "date" },
+        "total_amount": { "type": "number" },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "quantity": { "type": "integer" },
+              "unit_price": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "response_body": {
+    "id": "job-uuid-1234-abcd",
+    "extraction_agent": {
+      "id": "agent-uuid-abcd-1234",
+      "name": "Invoice Extractor"
+    },
+    "status": "PENDING",
+    "error": null,
+    "file_id": "file-uuid-efgh-5678"
+  }
+}

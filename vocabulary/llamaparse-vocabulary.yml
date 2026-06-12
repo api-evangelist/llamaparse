@@ -1,0 +1,200 @@
+vocabulary:
+  - term: parse
+    label: Parse
+    definition: >
+      The core LlamaParse operation that converts documents (PDF, DOCX, PPTX, and 130+ formats)
+      into structured LLM-ready output such as markdown, text, or JSON. Supports tiered modes
+      including fast, cost-effective, agentic, and agentic-plus.
+    related:
+      - parsing_job
+      - result_type
+      - parsing_instruction
+
+  - term: parsing_job
+    label: Parsing Job
+    definition: >
+      An asynchronous processing unit created when a file is submitted for parsing. A job
+      has a unique ID used to poll for status and retrieve results once processing completes.
+    related:
+      - parse
+      - job_status
+
+  - term: job_status
+    label: Job Status
+    definition: >
+      The current state of an asynchronous job. Common values are PENDING (queued or in progress),
+      SUCCESS (completed successfully), ERROR (failed), PARTIAL_SUCCESS (some pages failed),
+      and CANCELLED.
+    related:
+      - parsing_job
+
+  - term: result_type
+    label: Result Type
+    definition: >
+      The output format requested for a parse job. Options include 'markdown', 'text', 'json',
+      'structured', and 'pdf'. Determines how the parsed content is returned via the result
+      retrieval endpoints.
+    related:
+      - parse
+
+  - term: parsing_instruction
+    label: Parsing Instruction
+    definition: >
+      A natural language prompt provided by the developer to guide how the document should be
+      parsed. Used to focus extraction on specific elements, tables, figures, or layout regions.
+    related:
+      - parse
+
+  - term: extract
+    label: Extract
+    definition: >
+      The LlamaParse structured data extraction operation that pulls typed JSON output from
+      documents using a developer-defined output schema. Composable with Parse to reduce costs
+      by re-extracting from previously parsed documents.
+    related:
+      - extract_job
+      - extraction_agent
+      - output_schema
+
+  - term: extract_job
+    label: Extract Job
+    definition: >
+      An asynchronous unit of work for structured data extraction from a document.
+      Created by submitting a file and an extraction agent; results retrieved via job ID.
+    related:
+      - extract
+      - extraction_agent
+
+  - term: extraction_agent
+    label: Extraction Agent
+    definition: >
+      A configured schema-based extraction definition that specifies what structured data to
+      extract from documents. Agents are reusable and can be applied to multiple files.
+    related:
+      - extract
+      - output_schema
+
+  - term: output_schema
+    label: Output Schema
+    definition: >
+      A JSON Schema document that defines the expected structure and types of extracted data
+      fields for an Extract or Classify operation.
+    related:
+      - extract
+      - extraction_agent
+
+  - term: classify
+    label: Classify
+    definition: >
+      The LlamaParse document classification operation that categorizes uploaded files by
+      document type or content class. Available in fast (1 credit/page) and multimodal
+      (2 credits/page) modes.
+    related:
+      - classify_job
+      - classification_schema
+
+  - term: classify_job
+    label: Classify Job
+    definition: >
+      An asynchronous unit of work for document classification. Returns a document class
+      label and confidence score once completed.
+    related:
+      - classify
+
+  - term: split
+    label: Split
+    definition: >
+      The LlamaParse operation that divides a multi-section document into logical segments
+      such as chapters, sections, or pages for downstream pipeline routing.
+    related:
+      - split_job
+
+  - term: split_job
+    label: Split Job
+    definition: >
+      An asynchronous unit of work for document splitting. Returns a list of segment
+      boundaries and associated metadata.
+    related:
+      - split
+
+  - term: pipeline
+    label: Pipeline
+    definition: >
+      A LlamaCloud managed ingestion pipeline that automates the flow of documents through
+      parse, extract, embed, and index steps. Pipelines have data sources, data sinks, and
+      embedding model configurations.
+    related:
+      - data_source
+      - data_sink
+      - pipeline_document
+
+  - term: data_source
+    label: Data Source
+    definition: >
+      A configured connector for a document ingestion pipeline, pointing to an upstream
+      storage system such as S3, Google Drive, SharePoint, or a custom webhook.
+    related:
+      - pipeline
+
+  - term: data_sink
+    label: Data Sink
+    definition: >
+      A configured connector for a pipeline's output, directing indexed or extracted
+      results to a downstream vector store or storage system.
+    related:
+      - pipeline
+
+  - term: index
+    label: Index
+    definition: >
+      A LlamaCloud managed vector index that stores parsed and embedded document chunks
+      for semantic retrieval. Supports standard, spreadsheet, and multi-modal indexing modes.
+    related:
+      - pipeline
+      - retriever
+
+  - term: retriever
+    label: Retriever
+    definition: >
+      A LlamaCloud query interface that performs semantic search over an index to return
+      relevant document chunks. Supports direct and composite retrieval strategies.
+    related:
+      - index
+
+  - term: credits
+    label: Credits
+    definition: >
+      The billing unit for LlamaParse operations. Each page processed consumes a fixed number
+      of credits depending on the operation tier (e.g., fast parse = 1 credit/page,
+      agentic parse = 10 credits/page).
+    related:
+      - parse
+      - classify
+      - extract
+
+  - term: premium_mode
+    label: Premium Mode
+    definition: >
+      A parsing configuration flag that activates advanced LLM-assisted parsing for
+      higher-fidelity output on complex documents. Consumes more credits than standard mode.
+    related:
+      - parse
+      - parsing_job
+
+  - term: invalidate_cache
+    label: Invalidate Cache
+    definition: >
+      A flag on parse upload requests that forces re-processing of a previously cached
+      document, bypassing the stored result and computing a fresh parse.
+    related:
+      - parse
+
+  - term: batch_job
+    label: Batch Job
+    definition: >
+      A grouped set of parse, extract, or classify operations submitted together for
+      asynchronous bulk processing. Supports status monitoring and bulk result retrieval.
+    related:
+      - parsing_job
+      - extract_job
+      - classify_job

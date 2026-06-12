@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-extractresultset-schema.json",
+  "title": "ExtractResultset",
+  "description": "Schema for an extraction resultset.",
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Run Id",
+      "description": "The id of the extraction run"
+    },
+    "extraction_agent_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Extraction Agent Id",
+      "description": "The id of the extraction agent"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": "object"
+        },
+        {
+          "items": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                {
+                  "items": {},
+                  "type": "array"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Data",
+      "description": "The data extracted from the file"
+    },
+    "extraction_metadata": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "items": {},
+            "type": "array"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "type": "object",
+      "title": "Extraction Metadata",
+      "description": "The metadata extracted from the file"
+    }
+  },
+  "type": "object",
+  "required": [
+    "run_id",
+    "extraction_agent_id",
+    "data",
+    "extraction_metadata"
+  ]
+}

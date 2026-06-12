@@ -1,0 +1,24 @@
+{
+  "description": "Example response for a classify job creation and status check",
+  "endpoint": "POST /api/v1/classification/upload then GET /api/v1/classification/{job_id}",
+  "job_create_response": {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "status": "PENDING",
+    "effective_at": "2026-06-12T10:00:00Z",
+    "job_record_id": null,
+    "error_message": null,
+    "classification_schema_id": "schema-uuid-1234"
+  },
+  "job_result_response": {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "status": "SUCCESS",
+    "effective_at": "2026-06-12T10:00:45Z",
+    "job_record_id": "rec-uuid-5678",
+    "error_message": null,
+    "result": {
+      "document_class": "invoice",
+      "confidence": 0.97,
+      "page_count": 3
+    }
+  }
+}

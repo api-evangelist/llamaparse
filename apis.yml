@@ -22,6 +22,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/llamaparse/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
+
 specificationVersion: '0.19'
 
 apis:
@@ -48,6 +49,8 @@ apis:
         url: https://developers.llamaindex.ai/llamaparse/parse/getting_started/
       - type: Tiers
         url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
+      - type: OpenAPI
+        url: openapi/llamaparse-llamacloud-openapi.yml
 
   - aid: llamaparse-extract-api
     name: LlamaParse Extract API
@@ -135,6 +138,12 @@ common:
     url: rate-limits/llamaparse-rate-limits.yml
   - type: FinOps
     url: finops/llamaparse-finops.yml
+  - type: OpenAPI
+    url: openapi/llamaparse-llamacloud-openapi.yml
+  - type: Vocabulary
+    url: vocabulary/llamaparse-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/llamaparse-context.jsonld
 
 maintainers:
   - FN: Kin Lane

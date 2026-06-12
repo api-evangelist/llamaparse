@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-classifyjobresults-schema.json",
+  "title": "ClassifyJobResults",
+  "description": "Response model for the classify endpoint following AIP-132 pagination standard.",
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/components/schemas/FileClassification"
+      },
+      "type": "array",
+      "title": "Items",
+      "description": "The list of items."
+    },
+    "next_page_token": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Next Page Token",
+      "description": "A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages."
+    },
+    "total_size": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Total Size",
+      "description": "The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only."
+    }
+  },
+  "type": "object",
+  "required": [
+    "items"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-batchjobcreaterequest-schema.json",
+  "title": "BatchJobCreateRequest",
+  "description": "Request to create a batch processing job.\n\nSupports two modes:\n1. Directory mode: Process all files in a directory (use directory_id)\n2. Item list mode: Process specific items (use item_ids). Project must be provided via validate_project dependency.",
+  "properties": {
+    "directory_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Directory Id",
+      "description": "ID of the directory containing files to process",
+      "examples": [
+        "dir-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+      ]
+    },
+    "item_ids": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Item Ids",
+      "description": "List of specific item IDs to process. Either this or directory_id must be provided.",
+      "examples": [
+        [
+          "dfl-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+          "dfl-11111111-2222-3333-4444-555555555555"
+        ]
+      ]
+    },
+    "job_config": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/BatchParseJobRecordCreate"
+        },
+        {
+          "$ref": "#/components/schemas/ClassifyJob"
+        }
+      ],
+      "title": "Job Config",
+      "description": "Job configuration \u2014 either a parse or classify config"
+    },
+    "page_size": {
+      "type": "integer",
+      "maximum": 1000.0,
+      "minimum": 1.0,
+      "title": "Page Size",
+      "description": "Number of files to process per batch when using directory mode",
+      "default": 100
+    },
+    "continue_as_new_threshold": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Continue As New Threshold",
+      "description": "Maximum files to process per execution cycle in directory mode. Defaults to page_size."
+    }
+  },
+  "type": "object",
+  "required": [
+    "job_config"
+  ]
+}

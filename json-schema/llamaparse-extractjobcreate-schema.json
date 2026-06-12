@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-extractjobcreate-schema.json",
+  "title": "ExtractJobCreate",
+  "description": "Schema for creating an extraction job.",
+  "properties": {
+    "priority": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Priority",
+      "description": "The priority for the request. This field may be ignored or overwritten depending on the organization tier."
+    },
+    "webhook_configurations": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/components/schemas/WebhookConfiguration"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Webhook Configurations",
+      "description": "Outbound webhook endpoints to notify on job status changes"
+    },
+    "extraction_agent_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Extraction Agent Id",
+      "description": "The id of the extraction agent"
+    },
+    "file_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "File Id",
+      "description": "The id of the file"
+    },
+    "data_schema_override": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": "object"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Data Schema Override",
+      "description": "The data schema to override the extraction agent's data schema with"
+    },
+    "config_override": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/ExtractConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The config to override the extraction agent's config with"
+    }
+  },
+  "type": "object",
+  "required": [
+    "extraction_agent_id",
+    "file_id"
+  ]
+}

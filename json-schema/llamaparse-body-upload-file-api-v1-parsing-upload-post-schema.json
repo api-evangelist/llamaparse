@@ -1,0 +1,572 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-body-upload-file-api-v1-parsing-upload-post-schema.json",
+  "title": "Body_upload_file_api_v1_parsing_upload_post",
+  "description": "LlamaParse Body_upload_file_api_v1_parsing_upload_post schema",
+  "properties": {
+    "file": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "binary"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "File"
+    },
+    "adaptive_long_table": {
+      "type": "boolean",
+      "title": "Adaptive Long Table",
+      "default": false
+    },
+    "annotate_links": {
+      "type": "boolean",
+      "title": "Annotate Links",
+      "default": false
+    },
+    "auto_mode": {
+      "type": "boolean",
+      "title": "Auto Mode",
+      "default": false
+    },
+    "auto_mode_trigger_on_image_in_page": {
+      "type": "boolean",
+      "title": "Auto Mode Trigger On Image In Page",
+      "default": false
+    },
+    "auto_mode_trigger_on_table_in_page": {
+      "type": "boolean",
+      "title": "Auto Mode Trigger On Table In Page",
+      "default": false
+    },
+    "auto_mode_trigger_on_text_in_page": {
+      "type": "string",
+      "title": "Auto Mode Trigger On Text In Page"
+    },
+    "auto_mode_trigger_on_regexp_in_page": {
+      "type": "string",
+      "title": "Auto Mode Trigger On Regexp In Page"
+    },
+    "auto_mode_configuration_json": {
+      "type": "string",
+      "title": "Auto Mode Configuration Json"
+    },
+    "azure_openai_api_version": {
+      "type": "string",
+      "title": "Azure Openai Api Version"
+    },
+    "azure_openai_deployment_name": {
+      "type": "string",
+      "title": "Azure Openai Deployment Name"
+    },
+    "azure_openai_endpoint": {
+      "type": "string",
+      "title": "Azure Openai Endpoint"
+    },
+    "azure_openai_key": {
+      "type": "string",
+      "title": "Azure Openai Key"
+    },
+    "bbox_bottom": {
+      "type": "number",
+      "title": "Bbox Bottom"
+    },
+    "bbox_left": {
+      "type": "number",
+      "title": "Bbox Left"
+    },
+    "bbox_right": {
+      "type": "number",
+      "title": "Bbox Right"
+    },
+    "bbox_top": {
+      "type": "number",
+      "title": "Bbox Top"
+    },
+    "compact_markdown_table": {
+      "type": "boolean",
+      "title": "Compact Markdown Table",
+      "default": false
+    },
+    "disable_ocr": {
+      "type": "boolean",
+      "title": "Disable Ocr",
+      "default": false
+    },
+    "disable_reconstruction": {
+      "type": "boolean",
+      "title": "Disable Reconstruction",
+      "default": false
+    },
+    "disable_image_extraction": {
+      "type": "boolean",
+      "title": "Disable Image Extraction",
+      "default": false
+    },
+    "do_not_cache": {
+      "type": "boolean",
+      "title": "Do Not Cache",
+      "default": false
+    },
+    "do_not_unroll_columns": {
+      "type": "boolean",
+      "title": "Do Not Unroll Columns",
+      "default": false
+    },
+    "extract_charts": {
+      "type": "boolean",
+      "title": "Extract Charts",
+      "default": false
+    },
+    "guess_xlsx_sheet_name": {
+      "type": "boolean",
+      "title": "Guess Xlsx Sheet Name",
+      "default": false
+    },
+    "high_res_ocr": {
+      "type": "boolean",
+      "title": "High Res Ocr",
+      "default": false
+    },
+    "html_make_all_elements_visible": {
+      "type": "boolean",
+      "title": "Html Make All Elements Visible",
+      "default": false
+    },
+    "layout_aware": {
+      "type": "boolean",
+      "title": "Layout Aware",
+      "default": false
+    },
+    "specialized_chart_parsing_agentic": {
+      "type": "boolean",
+      "title": "Specialized Chart Parsing Agentic",
+      "default": false
+    },
+    "specialized_chart_parsing_plus": {
+      "type": "boolean",
+      "title": "Specialized Chart Parsing Plus",
+      "default": false
+    },
+    "specialized_chart_parsing_efficient": {
+      "type": "boolean",
+      "title": "Specialized Chart Parsing Efficient",
+      "default": false
+    },
+    "specialized_image_parsing": {
+      "type": "boolean",
+      "title": "Specialized Image Parsing",
+      "default": false
+    },
+    "precise_bounding_box": {
+      "type": "boolean",
+      "title": "Precise Bounding Box",
+      "default": false
+    },
+    "line_level_bounding_box": {
+      "type": "boolean",
+      "title": "Line Level Bounding Box",
+      "default": false
+    },
+    "html_remove_fixed_elements": {
+      "type": "boolean",
+      "title": "Html Remove Fixed Elements",
+      "default": false
+    },
+    "html_remove_navigation_elements": {
+      "type": "boolean",
+      "title": "Html Remove Navigation Elements",
+      "default": false
+    },
+    "http_proxy": {
+      "type": "string",
+      "title": "Http Proxy"
+    },
+    "input_s3_path": {
+      "type": "string",
+      "title": "Input S3 Path",
+      "default": ""
+    },
+    "input_s3_region": {
+      "type": "string",
+      "title": "Input S3 Region",
+      "default": ""
+    },
+    "input_url": {
+      "type": "string",
+      "title": "Input Url"
+    },
+    "invalidate_cache": {
+      "type": "boolean",
+      "title": "Invalidate Cache",
+      "default": false
+    },
+    "language": {
+      "items": {
+        "$ref": "#/components/schemas/ParserLanguages"
+      },
+      "type": "array",
+      "title": "Language",
+      "default": [
+        "en"
+      ]
+    },
+    "extract_layout": {
+      "type": "boolean",
+      "title": "Extract Layout",
+      "default": false
+    },
+    "max_pages": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Max Pages"
+    },
+    "merge_tables_across_pages_in_markdown": {
+      "type": "boolean",
+      "title": "Merge Tables Across Pages In Markdown",
+      "default": false
+    },
+    "outlined_table_extraction": {
+      "type": "boolean",
+      "title": "Outlined Table Extraction",
+      "default": false
+    },
+    "aggressive_table_extraction": {
+      "type": "boolean",
+      "title": "Aggressive Table Extraction",
+      "default": false
+    },
+    "output_pdf_of_document": {
+      "type": "boolean",
+      "title": "Output Pdf Of Document",
+      "default": false
+    },
+    "output_s3_path_prefix": {
+      "type": "string",
+      "title": "Output S3 Path Prefix",
+      "default": ""
+    },
+    "output_s3_region": {
+      "type": "string",
+      "title": "Output S3 Region",
+      "default": ""
+    },
+    "page_prefix": {
+      "type": "string",
+      "title": "Page Prefix",
+      "default": ""
+    },
+    "page_separator": {
+      "type": "string",
+      "title": "Page Separator"
+    },
+    "page_suffix": {
+      "type": "string",
+      "title": "Page Suffix",
+      "default": ""
+    },
+    "preserve_layout_alignment_across_pages": {
+      "type": "boolean",
+      "title": "Preserve Layout Alignment Across Pages",
+      "default": false
+    },
+    "preserve_very_small_text": {
+      "type": "boolean",
+      "title": "Preserve Very Small Text",
+      "default": false
+    },
+    "skip_diagonal_text": {
+      "type": "boolean",
+      "title": "Skip Diagonal Text",
+      "default": false
+    },
+    "spreadsheet_extract_sub_tables": {
+      "type": "boolean",
+      "title": "Spreadsheet Extract Sub Tables",
+      "default": true
+    },
+    "spreadsheet_force_formula_computation": {
+      "type": "boolean",
+      "title": "Spreadsheet Force Formula Computation",
+      "default": false
+    },
+    "inline_images_in_markdown": {
+      "type": "boolean",
+      "title": "Inline Images In Markdown",
+      "default": false
+    },
+    "structured_output": {
+      "type": "boolean",
+      "title": "Structured Output",
+      "default": false
+    },
+    "structured_output_json_schema": {
+      "type": "string",
+      "title": "Structured Output Json Schema"
+    },
+    "structured_output_json_schema_name": {
+      "type": "string",
+      "title": "Structured Output Json Schema Name"
+    },
+    "take_screenshot": {
+      "type": "boolean",
+      "title": "Take Screenshot",
+      "default": false
+    },
+    "target_pages": {
+      "type": "string",
+      "title": "Target Pages",
+      "default": ""
+    },
+    "vendor_multimodal_api_key": {
+      "type": "string",
+      "title": "Vendor Multimodal Api Key",
+      "default": ""
+    },
+    "vendor_multimodal_model_name": {
+      "type": "string",
+      "title": "Vendor Multimodal Model Name"
+    },
+    "model": {
+      "type": "string",
+      "title": "Model"
+    },
+    "webhook_url": {
+      "type": "string",
+      "title": "Webhook Url",
+      "default": ""
+    },
+    "webhook_configurations": {
+      "type": "string",
+      "title": "Webhook Configurations",
+      "default": ""
+    },
+    "preset": {
+      "type": "string",
+      "title": "Preset",
+      "default": ""
+    },
+    "parse_mode": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/ParsingMode"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "page_error_tolerance": {
+      "type": "number",
+      "title": "Page Error Tolerance",
+      "default": 0.05
+    },
+    "replace_failed_page_mode": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/FailPageMode"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "replace_failed_page_with_error_message_prefix": {
+      "type": "string",
+      "title": "Replace Failed Page With Error Message Prefix",
+      "default": ""
+    },
+    "replace_failed_page_with_error_message_suffix": {
+      "type": "string",
+      "title": "Replace Failed Page With Error Message Suffix",
+      "default": ""
+    },
+    "system_prompt": {
+      "type": "string",
+      "title": "System Prompt",
+      "default": ""
+    },
+    "system_prompt_append": {
+      "type": "string",
+      "title": "System Prompt Append",
+      "default": ""
+    },
+    "user_prompt": {
+      "type": "string",
+      "title": "User Prompt",
+      "default": ""
+    },
+    "job_timeout_in_seconds": {
+      "type": "number",
+      "title": "Job Timeout In Seconds"
+    },
+    "job_timeout_extra_time_per_page_in_seconds": {
+      "type": "number",
+      "title": "Job Timeout Extra Time Per Page In Seconds"
+    },
+    "strict_mode_image_extraction": {
+      "type": "boolean",
+      "title": "Strict Mode Image Extraction",
+      "default": false
+    },
+    "strict_mode_image_ocr": {
+      "type": "boolean",
+      "title": "Strict Mode Image Ocr",
+      "default": false
+    },
+    "strict_mode_reconstruction": {
+      "type": "boolean",
+      "title": "Strict Mode Reconstruction",
+      "default": false
+    },
+    "strict_mode_buggy_font": {
+      "type": "boolean",
+      "title": "Strict Mode Buggy Font",
+      "default": false
+    },
+    "save_images": {
+      "type": "boolean",
+      "title": "Save Images",
+      "default": true
+    },
+    "ignore_document_elements_for_layout_detection": {
+      "type": "boolean",
+      "title": "Ignore Document Elements For Layout Detection",
+      "default": false
+    },
+    "keep_page_separator_when_merging_tables": {
+      "type": "boolean",
+      "title": "Keep Page Separator When Merging Tables",
+      "default": false
+    },
+    "output_tables_as_HTML": {
+      "type": "boolean",
+      "title": "Output Tables As Html",
+      "default": false
+    },
+    "markdown_table_multiline_header_separator": {
+      "type": "string",
+      "title": "Markdown Table Multiline Header Separator"
+    },
+    "use_vendor_multimodal_model": {
+      "type": "boolean",
+      "title": "Use Vendor Multimodal Model",
+      "default": false
+    },
+    "bounding_box": {
+      "type": "string",
+      "title": "Bounding Box",
+      "default": ""
+    },
+    "gpt4o_mode": {
+      "type": "boolean",
+      "title": "Gpt4O Mode",
+      "default": false
+    },
+    "gpt4o_api_key": {
+      "type": "string",
+      "title": "Gpt4O Api Key",
+      "default": ""
+    },
+    "complemental_formatting_instruction": {
+      "type": "string",
+      "title": "Complemental Formatting Instruction"
+    },
+    "content_guideline_instruction": {
+      "type": "string",
+      "title": "Content Guideline Instruction"
+    },
+    "premium_mode": {
+      "type": "boolean",
+      "title": "Premium Mode",
+      "default": false
+    },
+    "is_formatting_instruction": {
+      "type": "boolean",
+      "title": "Is Formatting Instruction",
+      "default": true
+    },
+    "continuous_mode": {
+      "type": "boolean",
+      "title": "Continuous Mode",
+      "default": false
+    },
+    "parsing_instruction": {
+      "type": "string",
+      "title": "Parsing Instruction",
+      "default": ""
+    },
+    "fast_mode": {
+      "type": "boolean",
+      "title": "Fast Mode",
+      "default": false
+    },
+    "formatting_instruction": {
+      "type": "string",
+      "title": "Formatting Instruction"
+    },
+    "hide_headers": {
+      "type": "boolean",
+      "title": "Hide Headers",
+      "default": false
+    },
+    "hide_footers": {
+      "type": "boolean",
+      "title": "Hide Footers",
+      "default": false
+    },
+    "page_header_prefix": {
+      "type": "string",
+      "title": "Page Header Prefix"
+    },
+    "page_header_suffix": {
+      "type": "string",
+      "title": "Page Header Suffix"
+    },
+    "page_footer_prefix": {
+      "type": "string",
+      "title": "Page Footer Prefix"
+    },
+    "page_footer_suffix": {
+      "type": "string",
+      "title": "Page Footer Suffix"
+    },
+    "remove_hidden_text": {
+      "type": "boolean",
+      "title": "Remove Hidden Text",
+      "default": false
+    },
+    "presentation_out_of_bounds_content": {
+      "type": "boolean",
+      "title": "Presentation Out Of Bounds Content",
+      "default": false
+    },
+    "presentation_skip_embedded_data": {
+      "type": "boolean",
+      "title": "Presentation Skip Embedded Data",
+      "default": false
+    },
+    "extract_printed_page_number": {
+      "type": "boolean",
+      "title": "Extract Printed Page Number",
+      "default": false
+    },
+    "tier": {
+      "type": "string",
+      "title": "Tier"
+    },
+    "version": {
+      "type": "string",
+      "title": "Version"
+    }
+  },
+  "type": "object"
+}

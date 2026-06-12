@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-classifyjobcreate-schema.json",
+  "title": "ClassifyJobCreate",
+  "description": "A classify job.",
+  "properties": {
+    "rules": {
+      "items": {
+        "$ref": "#/components/schemas/ClassifierRule"
+      },
+      "type": "array",
+      "minItems": 1,
+      "title": "Rules",
+      "description": "The rules to classify the files"
+    },
+    "mode": {
+      "$ref": "#/components/schemas/ClassifyMode",
+      "description": "The classification mode to use",
+      "default": "FAST"
+    },
+    "file_ids": {
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 500,
+      "minItems": 1,
+      "title": "File Ids",
+      "description": "The IDs of the files to classify"
+    },
+    "parsing_configuration": {
+      "$ref": "#/components/schemas/ClassifyParsingConfiguration",
+      "description": "The configuration for the parsing job",
+      "default": {
+        "lang": "en",
+        "max_pages": 5
+      }
+    },
+    "webhook_configurations": {
+      "items": {
+        "$ref": "#/components/schemas/LlamaParseWebhookConfiguration"
+      },
+      "type": "array",
+      "title": "Webhook Configurations",
+      "description": "List of webhook configurations for notifications"
+    }
+  },
+  "type": "object",
+  "required": [
+    "rules",
+    "file_ids"
+  ]
+}

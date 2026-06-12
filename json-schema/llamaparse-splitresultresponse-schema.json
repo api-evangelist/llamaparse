@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/llamaparse/main/json-schema/llamaparse-splitresultresponse-schema.json",
+  "title": "SplitResultResponse",
+  "description": "Result of a completed split job.",
+  "properties": {
+    "segments": {
+      "items": {
+        "$ref": "#/components/schemas/SplitSegmentResponse"
+      },
+      "type": "array",
+      "title": "Segments",
+      "description": "List of document segments."
+    }
+  },
+  "type": "object",
+  "required": [
+    "segments"
+  ]
+}
