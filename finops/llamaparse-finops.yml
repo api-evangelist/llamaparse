@@ -1,0 +1,170 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+provider: LlamaParse
+providerId: llamaparse
+created: '2026-06-12'
+modified: '2026-06-12'
+
+billingModel: credit-based
+description: >
+  LlamaParse uses a credit-based billing model where all platform products (Parse, Extract,
+  Classify, Split, Index, Sheets) are billed in credits. Credits are purchased via monthly
+  subscription plans or consumed pay-as-you-go at $1.25 per 1,000 credits. Credits vary by
+  product tier and page count, giving teams fine-grained cost control by selecting the
+  appropriate processing tier for each document type.
+
+focusColumns:
+  - ChargePeriodStart
+  - ChargePeriodEnd
+  - ServiceName
+  - ServiceCategory
+  - UsageType
+  - UsageUnit
+  - UsageQuantity
+  - BilledCurrency
+  - BilledCost
+  - EffectiveCost
+  - PricingUnit
+  - PricingQuantity
+
+meters:
+  - name: parse_credits_fast
+    description: Credits consumed by Parse API in fast tier
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 1
+    product: Parse
+    tier: fast
+
+  - name: parse_credits_cost_effective
+    description: Credits consumed by Parse API in cost-effective tier
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 3
+    product: Parse
+    tier: cost_effective
+
+  - name: parse_credits_agentic
+    description: Credits consumed by Parse API in agentic tier
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 10
+    product: Parse
+    tier: agentic
+
+  - name: parse_credits_agentic_plus
+    description: Credits consumed by Parse API in agentic-plus tier
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 45
+    product: Parse
+    tier: agentic_plus
+
+  - name: extract_credits_cost_effective
+    description: Credits consumed by Extract API in cost-effective tier
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 5
+    product: Extract
+    tier: cost_effective
+
+  - name: extract_credits_agentic
+    description: Credits consumed by Extract API in agentic tier
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 15
+    product: Extract
+    tier: agentic
+
+  - name: classify_credits_fast
+    description: Credits consumed by Classify API in fast mode
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 1
+    product: Classify
+    tier: fast
+
+  - name: classify_credits_multimodal
+    description: Credits consumed by Classify API in multimodal mode
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 2
+    product: Classify
+    tier: multimodal
+
+  - name: index_credits_standard
+    description: Credits consumed by Index API in standard mode
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 1
+    product: Index
+    mode: standard
+
+  - name: index_credits_multimodal
+    description: Credits consumed by Index API in multi-modal mode
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 2
+    product: Index
+    mode: multi_modal
+
+  - name: split_credits_standard
+    description: Credits consumed by Split API per page
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 4
+    product: Split
+
+  - name: split_credits_cached
+    description: Credits consumed by Split API per page when file is cached
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 3
+    product: Split
+
+  - name: addon_layout_extraction
+    description: Additional credits per page for layout extraction add-on
+    unit: credits
+    pricingUnit: credits_per_page
+    rate: 3
+    product: Parse
+    type: addon
+
+  - name: addon_audio
+    description: Credits per minute for audio processing add-on
+    unit: credits
+    pricingUnit: credits_per_minute
+    rate: 3
+    product: Parse
+    type: addon
+
+creditPricing:
+  regions:
+    - name: North America and Europe
+      pricePerCredit: 0.00125
+      currency: USD
+      description: $1.25 per 1,000 credits
+
+principles:
+  - name: Visibility
+    description: >
+      LlamaCloud exposes per-product, per-tier credit consumption in the dashboard and billing
+      portal, enabling teams to attribute costs to document types and processing modes.
+    capabilities:
+      - Credit usage tracking per organization and project
+      - Real-time billing and usage dashboard at cloud.llamaindex.ai
+      - Pricing documentation listing credits-per-page for all tiers
+
+  - name: Optimization
+    description: >
+      Cost optimization is built into the platform tier structure. Teams should select the
+      lowest tier sufficient for their accuracy requirements, use file caching to reduce
+      re-processing costs, and leverage classification before expensive parse/extract operations
+      to filter out irrelevant documents.
+    strategies:
+      - Use fast tier (1 credit/page) for simple text-heavy PDFs
+      - Use cost-effective tier (3 credits/page) for standard business documents
+      - Cache files to avoid re-upload costs
+      - Use Extract-only pricing on previously parsed documents
+      - Pre-filter with Classify before agentic Parse or Extract
+      - Use pay-as-you-go to avoid over-provisioning on variable workloads

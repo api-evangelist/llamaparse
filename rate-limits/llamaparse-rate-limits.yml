@@ -1,0 +1,62 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: LlamaParse
+providerId: llamaparse
+created: '2026-06-12'
+modified: '2026-06-12'
+url: https://developers.llamaindex.ai/llamaparse/general/rate_limits/
+
+throttled:
+  statusCode: 429
+  description: >
+    When a rate limit is exceeded the API returns HTTP 429 Too Many Requests. Clients should
+    implement exponential backoff or request batching. For persistent rate limit issues contact
+    support@runllama.ai.
+  retryAfter:
+    header: Retry-After
+    description: Standard HTTP Retry-After header may be returned; documentation does not guarantee its presence on all 429 responses.
+
+limits:
+  - scope: per_project
+    metric: file_upload_requests
+    limit: 50
+    timeFrame: 5s
+    description: File upload endpoint — 50 requests per 5-second window per project
+
+  - scope: per_organization
+    metric: parse_upload_requests
+    limit: 50
+    timeFrame: 10s
+    description: Parse upload endpoint — 50 requests per 10-second window per organization
+
+  - scope: per_organization
+    metric: classify_requests
+    limit: 40
+    timeFrame: 1s
+    description: Classify endpoint — 40 requests per second per organization
+
+  - scope: per_organization_free_tier
+    metric: requests_per_minute
+    limit: 20
+    timeFrame: 1m
+    description: Free-tier organizations are subject to a global 20 requests-per-minute cap
+
+tiers:
+  - plan: Free
+    requestsPerMinute: 20
+    concurrentJobs: 5
+    notes: Stricter rate limits apply to free-tier organizations across all endpoints
+
+  - plan: Starter
+    concurrentJobs: 5
+    notes: Standard rate limits; no explicit RPM cap documented beyond per-endpoint QPS limits
+
+  - plan: Pro
+    concurrentJobs: 20
+    notes: Standard rate limits with higher concurrency
+
+  - plan: Enterprise
+    concurrentJobs: 100
+    notes: Custom rate limits available; contact account manager
+
+contactForIncreases: support@runllama.ai

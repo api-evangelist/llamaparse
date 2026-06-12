@@ -1,0 +1,169 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+provider: LlamaParse
+providerId: llamaparse
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+url: https://www.llamaindex.ai/pricing
+type: freemium
+
+plans:
+  - name: Free
+    type: free
+    description: >
+      Entry-level plan for individual developers. Includes 10,000 credits per month, access to all
+      six LlamaCloud products, and community support.
+    price:
+      amount: 0
+      currency: USD
+      period: month
+    quotas:
+      - metric: credits_per_month
+        limit: 10000
+        type: quota
+      - metric: concurrent_jobs
+        limit: 5
+        type: quota
+      - metric: users
+        limit: 1
+        type: quota
+    features:
+      - All LlamaCloud products (Parse, Extract, Classify, Split, Sheets, Index)
+      - 130+ supported document formats
+      - 80+ languages
+      - Community support
+
+  - name: Starter
+    type: paid
+    description: >
+      Small-team plan with 40,000 included credits per month and pay-as-you-go overage up to
+      400,000 credits. Includes basic email support.
+    price:
+      amount: 50
+      currency: USD
+      period: month
+    quotas:
+      - metric: credits_included_per_month
+        limit: 40000
+        type: quota
+      - metric: credits_payg_max_per_month
+        limit: 400000
+        type: quota
+      - metric: concurrent_jobs
+        limit: 5
+        type: quota
+      - metric: users
+        limit: 5
+        type: quota
+    metered:
+      - metric: credits_overage
+        price_per_unit: 0.00125
+        unit: credit
+        description: $1.25 per 1,000 credits beyond included allotment
+    features:
+      - All LlamaCloud products
+      - Pay-as-you-go overage enabled by default
+      - Basic email support
+
+  - name: Pro
+    type: paid
+    description: >
+      Professional plan for larger teams with 400,000 included credits per month and pay-as-you-go
+      overage up to 4,000,000 credits. Includes priority support via Slack Connect.
+    price:
+      amount: 500
+      currency: USD
+      period: month
+    quotas:
+      - metric: credits_included_per_month
+        limit: 400000
+        type: quota
+      - metric: credits_payg_max_per_month
+        limit: 4000000
+        type: quota
+      - metric: concurrent_jobs
+        limit: 20
+        type: quota
+      - metric: users
+        limit: 10
+        type: quota
+    metered:
+      - metric: credits_overage
+        price_per_unit: 0.00125
+        unit: credit
+        description: $1.25 per 1,000 credits beyond included allotment
+    features:
+      - All LlamaCloud products
+      - Pay-as-you-go overage enabled by default
+      - Priority support via Slack Connect
+
+  - name: Enterprise
+    type: enterprise
+    description: >
+      Enterprise plan with custom pricing, volume discounts, unlimited users, 100 concurrent jobs,
+      VPC deployment, SSO/MFA, and a dedicated account manager.
+    price:
+      amount: null
+      currency: USD
+      period: month
+      custom: true
+    quotas:
+      - metric: concurrent_jobs
+        limit: 100
+        type: quota
+      - metric: users
+        limit: unlimited
+        type: quota
+    features:
+      - All LlamaCloud products
+      - Volume credit discounts
+      - VPC deployment
+      - SSO/MFA
+      - Custom BAA available
+      - Dedicated account manager
+
+creditRates:
+  description: Credits are the universal billing unit across all LlamaCloud products
+  regions:
+    - region: North America and Europe
+      price_per_1000_credits: 1.25
+      currency: USD
+  parseCreditsPerPage:
+    - tier: fast
+      credits: 1
+    - tier: cost_effective
+      credits: 3
+    - tier: agentic
+      credits: 10
+    - tier: agentic_plus
+      credits: 45
+  parseAddOns:
+    - feature: layout_extraction
+      credits_per_page: 3
+    - feature: spreadsheet
+      credits_per_sheet: 1
+    - feature: audio
+      credits_per_minute: 3
+  extractCreditsPerPage:
+    - tier: cost_effective
+      credits: 5
+    - tier: agentic
+      credits: 15
+  classifyCreditsPerPage:
+    - tier: fast
+      credits: 1
+    - tier: multimodal
+      credits: 2
+  indexCreditsPerPage:
+    - mode: standard
+      credits: 1
+    - mode: spreadsheet
+      credits: 2
+    - mode: multi_modal
+      credits: 2
+  splitCreditsPerPage:
+    - mode: standard
+      credits: 4
+    - mode: cached
+      credits: 3
