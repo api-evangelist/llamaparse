@@ -9,7 +9,7 @@ description: >
   layout for high-fidelity RAG and document AI workflows. Developers access the platform through Python
   and TypeScript SDKs or directly via the LlamaCloud REST API, with EU-region hosting available.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Document Parsing
   - OCR
