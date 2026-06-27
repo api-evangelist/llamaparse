@@ -122,7 +122,7 @@ common:
     url: https://twitter.com/llama_index
   - type: Blog
     url: https://www.llamaindex.ai/blog
-  - type: Changelog
+  - type: ChangeLog
     url: https://developers.llamaindex.ai/python/framework/changelog/
   - type: Pricing
     url: https://www.llamaindex.ai/pricing
