@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/llamaparse-llamacloud-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: HTTPBearer
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/llamaparse-llamacloud-openapi.yml
