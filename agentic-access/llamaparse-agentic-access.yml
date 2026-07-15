@@ -1,0 +1,2544 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/llamaparse-llamacloud-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 194
+  by_action_class:
+    connected: 96
+    acting: 98
+  by_consequence:
+    read: 96
+    write: 98
+  human_in_the_loop_required: 0
+operations:
+- path: /api/v1/data-sinks
+  method: get
+  operationId: list_data_sinks_api_v1_data_sinks_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/data-sinks
+  method: post
+  operationId: create_data_sink_api_v1_data_sinks_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/data-sinks/{data_sink_id}
+  method: get
+  operationId: get_data_sink_api_v1_data_sinks__data_sink_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/data-sinks/{data_sink_id}
+  method: put
+  operationId: update_data_sink_api_v1_data_sinks__data_sink_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/data-sinks/{data_sink_id}
+  method: delete
+  operationId: delete_data_sink_api_v1_data_sinks__data_sink_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/data-sources
+  method: get
+  operationId: list_data_sources_api_v1_data_sources_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/data-sources
+  method: post
+  operationId: create_data_source_api_v1_data_sources_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/data-sources/{data_source_id}
+  method: get
+  operationId: get_data_source_api_v1_data_sources__data_source_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/data-sources/{data_source_id}
+  method: put
+  operationId: update_data_source_api_v1_data_sources__data_source_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/data-sources/{data_source_id}
+  method: delete
+  operationId: delete_data_source_api_v1_data_sources__data_source_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/embedding-model-configs
+  method: get
+  operationId: list_embedding_model_configs_api_v1_embedding_model_configs_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/embedding-model-configs
+  method: post
+  operationId: create_embedding_model_config_api_v1_embedding_model_configs_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/embedding-model-configs/{embedding_model_config_id}
+  method: put
+  operationId: update_embedding_model_config_api_v1_embedding_model_configs__embedding_model_config_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/embedding-model-configs/{embedding_model_config_id}
+  method: delete
+  operationId: delete_embedding_model_config_api_v1_embedding_model_configs__embedding_model_config_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/organizations
+  method: get
+  operationId: list_organizations_api_v1_organizations_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/organizations/{organization_id}
+  method: get
+  operationId: get_organization_api_v1_organizations__organization_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/projects
+  method: get
+  operationId: list_projects_api_v1_projects_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/projects/{project_id}
+  method: get
+  operationId: get_project_api_v1_projects__project_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/job-data-points
+  method: get
+  operationId: list_project_job_data_points_api_v1_job_data_points_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/files/{id}/page_screenshots
+  method: get
+  operationId: list_file_page_screenshots_api_v1_files__id__page_screenshots_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/files/{id}/page_screenshots/{page_index}
+  method: get
+  operationId: get_file_page_screenshot_api_v1_files__id__page_screenshots__page_index__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/files/{id}/page_screenshots/{page_index}/presigned_url
+  method: post
+  operationId: generate_file_page_screenshot_presigned_url_api_v1_files__id__page_screenshots__page_index__presigned_url_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/files/{id}/page-figures
+  method: get
+  operationId: list_file_pages_figures_api_v1_files__id__page_figures_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/files/{id}/page-figures/{page_index}
+  method: get
+  operationId: list_file_page_figures_api_v1_files__id__page_figures__page_index__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/files/{id}/page-figures/{page_index}/{figure_name}
+  method: get
+  operationId: get_file_page_figure_api_v1_files__id__page_figures__page_index___figure_name__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/files/{id}/page-figures/{page_index}/{figure_name}/presigned_url
+  method: post
+  operationId: generate_file_page_figure_presigned_url_api_v1_files__id__page_figures__page_index___figure_name__presigned_url_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines
+  method: get
+  operationId: search_pipelines_api_v1_pipelines_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines
+  method: post
+  operationId: create_pipeline_api_v1_pipelines_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines
+  method: put
+  operationId: upsert_pipeline_api_v1_pipelines_put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}
+  method: get
+  operationId: get_pipeline_api_v1_pipelines__pipeline_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}
+  method: put
+  operationId: update_existing_pipeline_api_v1_pipelines__pipeline_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}
+  method: delete
+  operationId: delete_pipeline_api_v1_pipelines__pipeline_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/status
+  method: get
+  operationId: get_pipeline_status_api_v1_pipelines__pipeline_id__status_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/sync
+  method: post
+  operationId: sync_pipeline_api_v1_pipelines__pipeline_id__sync_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/sync/cancel
+  method: post
+  operationId: cancel_pipeline_sync_api_v1_pipelines__pipeline_id__sync_cancel_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/force-delete
+  method: post
+  operationId: force_delete_pipeline_api_v1_pipelines__pipeline_id__force_delete_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/copy
+  method: post
+  operationId: copy_pipeline_api_v1_pipelines__pipeline_id__copy_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/retrieve
+  method: post
+  operationId: run_search_api_v1_pipelines__pipeline_id__retrieve_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/playground-session
+  method: get
+  operationId: get_playground_session_api_v1_pipelines__pipeline_id__playground_session_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/chat
+  method: post
+  operationId: chat_api_v1_pipelines__pipeline_id__chat_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/data-sources
+  method: get
+  operationId: list_pipeline_data_sources_api_v1_pipelines__pipeline_id__data_sources_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/data-sources
+  method: put
+  operationId: add_data_sources_to_pipeline_api_v1_pipelines__pipeline_id__data_sources_put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/data-sources/{data_source_id}
+  method: put
+  operationId: update_pipeline_data_source_api_v1_pipelines__pipeline_id__data_sources__data_source_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/data-sources/{data_source_id}/sync
+  method: post
+  operationId: sync_pipeline_data_source_api_v1_pipelines__pipeline_id__data_sources__data_source_id__sync_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/data-sources/{data_source_id}/status
+  method: get
+  operationId: get_pipeline_data_source_status_api_v1_pipelines__pipeline_id__data_sources__data_source_id__status_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/files2
+  method: get
+  operationId: list_pipeline_files2_api_v1_pipelines__pipeline_id__files2_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/files/status-counts
+  method: get
+  operationId: get_pipeline_file_status_counts_api_v1_pipelines__pipeline_id__files_status_counts_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/files/{file_id}/status
+  method: get
+  operationId: get_pipeline_file_status_api_v1_pipelines__pipeline_id__files__file_id__status_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/files
+  method: put
+  operationId: add_files_to_pipeline_api_api_v1_pipelines__pipeline_id__files_put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/files/{file_id}
+  method: put
+  operationId: update_pipeline_file_api_v1_pipelines__pipeline_id__files__file_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/files/{file_id}
+  method: delete
+  operationId: delete_pipeline_file_api_v1_pipelines__pipeline_id__files__file_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/metadata
+  method: put
+  operationId: import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/metadata
+  method: delete
+  operationId: delete_pipeline_files_metadata_api_v1_pipelines__pipeline_id__metadata_delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/documents
+  method: post
+  operationId: create_batch_pipeline_documents_api_v1_pipelines__pipeline_id__documents_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/documents
+  method: get
+  operationId: list_pipeline_documents_api_v1_pipelines__pipeline_id__documents_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/documents
+  method: put
+  operationId: upsert_batch_pipeline_documents_api_v1_pipelines__pipeline_id__documents_put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/documents/paginated
+  method: get
+  operationId: paginated_list_pipeline_documents_api_v1_pipelines__pipeline_id__documents_paginated_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/documents/{document_id}
+  method: get
+  operationId: get_pipeline_document_api_v1_pipelines__pipeline_id__documents__document_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/documents/{document_id}
+  method: delete
+  operationId: delete_pipeline_document_api_v1_pipelines__pipeline_id__documents__document_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/documents/{document_id}/status
+  method: get
+  operationId: get_pipeline_document_status_api_v1_pipelines__pipeline_id__documents__document_id__status_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/pipelines/{pipeline_id}/documents/{document_id}/sync
+  method: post
+  operationId: sync_pipeline_document_api_v1_pipelines__pipeline_id__documents__document_id__sync_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/pipelines/{pipeline_id}/documents/{document_id}/chunks
+  method: get
+  operationId: list_pipeline_document_chunks_api_v1_pipelines__pipeline_id__documents__document_id__chunks_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/retrievers
+  method: post
+  operationId: create_retriever_api_v1_retrievers_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrievers
+  method: put
+  operationId: upsert_retriever_api_v1_retrievers_put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrievers
+  method: get
+  operationId: list_retrievers_api_v1_retrievers_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/retrievers/{retriever_id}
+  method: get
+  operationId: get_retriever_api_v1_retrievers__retriever_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/retrievers/{retriever_id}
+  method: put
+  operationId: update_retriever_api_v1_retrievers__retriever_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrievers/{retriever_id}
+  method: delete
+  operationId: delete_retriever_api_v1_retrievers__retriever_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrievers/{retriever_id}/retrieve
+  method: post
+  operationId: retrieve_api_v1_retrievers__retriever_id__retrieve_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrievers/retrieve
+  method: post
+  operationId: direct_retrieve_api_v1_retrievers_retrieve_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/parsing/job/{job_id}/result/image/{name}
+  method: get
+  operationId: get_job_image_result_api_v1_parsing_job__job_id__result_image__name__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/supported_file_extensions
+  method: get
+  operationId: get_supported_file_extensions_api_v1_parsing_supported_file_extensions_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/screenshot
+  method: post
+  operationId: screenshot_api_v1_parsing_screenshot_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/parsing/upload
+  method: post
+  operationId: upload_file_api_v1_parsing_upload_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/parsing/job/{job_id}
+  method: get
+  operationId: get_job_api_v1_parsing_job__job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/parameters
+  method: get
+  operationId: get_job_parameters_api_v1_parsing_job__job_id__parameters_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/details
+  method: get
+  operationId: get_parsing_job_details_api_v1_parsing_job__job_id__details_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/result/text
+  method: get
+  operationId: get_job_text_result_api_v1_parsing_job__job_id__result_text_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/result/pdf
+  method: get
+  operationId: get_job_raw_text_result_api_v1_parsing_job__job_id__result_pdf_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/result/structured
+  method: get
+  operationId: get_job_structured_result_api_v1_parsing_job__job_id__result_structured_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/result/xlsx
+  method: get
+  operationId: get_job_raw_xlsx_result_api_v1_parsing_job__job_id__result_xlsx_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/result/markdown
+  method: get
+  operationId: get_job_result_api_v1_parsing_job__job_id__result_markdown_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/result/json
+  method: get
+  operationId: get_job_json_result_api_v1_parsing_job__job_id__result_json_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/parsing/job/{job_id}/read/{filename}
+  method: get
+  operationId: generate_presigned_url_api_v1_parsing_job__job_id__read__filename__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/classifier/jobs
+  method: post
+  operationId: create_classify_job_api_v1_classifier_jobs_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/classifier/jobs
+  method: get
+  operationId: list_classify_jobs_api_v1_classifier_jobs_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/classifier/jobs/{classify_job_id}
+  method: get
+  operationId: get_classify_job_api_v1_classifier_jobs__classify_job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/classifier/jobs/{classify_job_id}/results
+  method: get
+  operationId: get_classification_job_results_api_v1_classifier_jobs__classify_job_id__results_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/jobs
+  method: get
+  operationId: list_jobs_api_v1_extraction_jobs_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/jobs
+  method: post
+  operationId: run_job_api_v1_extraction_jobs_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/jobs/{job_id}
+  method: get
+  operationId: get_job_api_v1_extraction_jobs__job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/jobs/file
+  method: post
+  operationId: run_job_on_file_api_v1_extraction_jobs_file_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/jobs/batch
+  method: post
+  operationId: run_batch_jobs_api_v1_extraction_jobs_batch_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/jobs/{job_id}/result
+  method: get
+  operationId: get_job_result_api_v1_extraction_jobs__job_id__result_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/runs
+  method: get
+  operationId: list_extract_runs_api_v1_extraction_runs_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/runs/latest-from-ui
+  method: get
+  operationId: get_latest_run_from_ui_api_v1_extraction_runs_latest_from_ui_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/runs/by-job/{job_id}
+  method: get
+  operationId: get_run_by_job_id_api_v1_extraction_runs_by_job__job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/runs/{run_id}
+  method: get
+  operationId: get_run_api_v1_extraction_runs__run_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/runs/{run_id}
+  method: delete
+  operationId: delete_extraction_run_api_v1_extraction_runs__run_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/run
+  method: post
+  operationId: extract_stateless_api_v1_extraction_run_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/extraction-agents
+  method: post
+  operationId: create_extraction_agent_api_v1_extraction_extraction_agents_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/extraction-agents
+  method: get
+  operationId: list_extraction_agents_api_v1_extraction_extraction_agents_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/extraction-agents/schema/validation
+  method: post
+  operationId: validate_extraction_schema_api_v1_extraction_extraction_agents_schema_validation_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/extraction-agents/schema/generate
+  method: post
+  operationId: generate_extraction_schema_api_v1_extraction_extraction_agents_schema_generate_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/extraction-agents/by-name/{name}
+  method: get
+  operationId: get_extraction_agent_by_name_api_v1_extraction_extraction_agents_by_name__name__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/extraction-agents/default
+  method: get
+  operationId: get_or_create_default_extraction_agent_api_v1_extraction_extraction_agents_default_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/extraction-agents/{extraction_agent_id}
+  method: get
+  operationId: get_extraction_agent_api_v1_extraction_extraction_agents__extraction_agent_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/extraction/extraction-agents/{extraction_agent_id}
+  method: delete
+  operationId: delete_extraction_agent_api_v1_extraction_extraction_agents__extraction_agent_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/extraction/extraction-agents/{extraction_agent_id}
+  method: put
+  operationId: update_extraction_agent_api_v1_extraction_extraction_agents__extraction_agent_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrieval/retrieve
+  method: post
+  operationId: retrieve_api_v1_retrieval_retrieve_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrieval/files/find
+  method: post
+  operationId: find_files_api_v1_retrieval_files_find_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrieval/files/grep
+  method: post
+  operationId: grep_file_api_v1_retrieval_files_grep_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/retrieval/files/read
+  method: post
+  operationId: read_file_api_v1_retrieval_files_read_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/chat
+  method: post
+  operationId: create_session_api_v1_chat_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/chat
+  method: get
+  operationId: list_sessions_api_v1_chat_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/chat/{session_id}
+  method: get
+  operationId: get_full_session_api_v1_chat__session_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/chat/{session_id}
+  method: delete
+  operationId: delete_session_api_v1_chat__session_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/chat/{session_id}/summary
+  method: get
+  operationId: get_session_summary_api_v1_chat__session_id__summary_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/chat/{session_id}/messages/stream
+  method: post
+  operationId: stream_messages_api_v1_chat__session_id__messages_stream_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/indexes
+  method: post
+  operationId: create_index_api_v1_indexes_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/indexes
+  method: get
+  operationId: list_indexes_api_v1_indexes_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/indexes/{index_id}
+  method: get
+  operationId: get_index_api_v1_indexes__index_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/indexes/{index_id}
+  method: delete
+  operationId: delete_index_api_v1_indexes__index_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/indexes/{index_id}/sync
+  method: post
+  operationId: sync_index_api_v1_indexes__index_id__sync_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/usage-metrics
+  method: get
+  operationId: list_usage_metrics_api_v1_beta_usage_metrics_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/agent-data/{item_id}
+  method: get
+  operationId: get_agent_data_api_v1_beta_agent_data__item_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/agent-data/{item_id}
+  method: put
+  operationId: update_agent_data_api_v1_beta_agent_data__item_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/agent-data/{item_id}
+  method: delete
+  operationId: delete_agent_data_api_v1_beta_agent_data__item_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/agent-data
+  method: post
+  operationId: create_agent_data_api_v1_beta_agent_data_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/agent-data/:search
+  method: post
+  operationId: search_agent_data_api_v1_beta_agent_data__search_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/agent-data/:aggregate
+  method: post
+  operationId: aggregate_agent_data_api_v1_beta_agent_data__aggregate_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/agent-data/:delete
+  method: post
+  operationId: delete_agent_data_by_query_api_v1_beta_agent_data__delete_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/files
+  method: get
+  operationId: list_files_api_v1_beta_files_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/files
+  method: post
+  operationId: upload_file_api_v1_beta_files_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/files/query
+  method: post
+  operationId: query_files_api_v1_beta_files_query_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/files/{file_id}
+  method: get
+  operationId: get_file_api_v1_beta_files__file_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/files/{file_id}
+  method: delete
+  operationId: delete_file_api_v1_beta_files__file_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/files/{file_id}/content
+  method: get
+  operationId: read_file_content_api_v1_beta_files__file_id__content_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/sheets/jobs
+  method: post
+  operationId: create_spreadsheet_job_api_v1_beta_sheets_jobs_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/sheets/jobs
+  method: get
+  operationId: list_spreadsheet_jobs_api_v1_beta_sheets_jobs_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/sheets/jobs/{spreadsheet_job_id}
+  method: get
+  operationId: get_spreadsheet_job_api_v1_beta_sheets_jobs__spreadsheet_job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/sheets/jobs/{spreadsheet_job_id}
+  method: delete
+  operationId: delete_spreadsheet_job_api_v1_beta_sheets_jobs__spreadsheet_job_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/sheets/jobs/{spreadsheet_job_id}/regions/{region_id}/result/{region_type}
+  method: get
+  operationId: get_result_region_api_v1_beta_sheets_jobs__spreadsheet_job_id__regions__region_id__result__region_type__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/directories
+  method: post
+  operationId: create_directory_api_v1_beta_directories_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/directories
+  method: get
+  operationId: list_directories_api_v1_beta_directories_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/directories/{directory_id}
+  method: get
+  operationId: get_directory_api_v1_beta_directories__directory_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/directories/{directory_id}
+  method: patch
+  operationId: update_directory_api_v1_beta_directories__directory_id__patch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/directories/{directory_id}
+  method: delete
+  operationId: delete_directory_api_v1_beta_directories__directory_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/directories/{directory_id}/files
+  method: post
+  operationId: add_directory_file_api_v1_beta_directories__directory_id__files_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/directories/{directory_id}/files
+  method: get
+  operationId: list_directory_files_api_v1_beta_directories__directory_id__files_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/directories/{directory_id}/files/upload
+  method: post
+  operationId: upload_file_to_directory_api_v1_beta_directories__directory_id__files_upload_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/directories/{directory_id}/files/{directory_file_id}
+  method: get
+  operationId: get_directory_file_api_v1_beta_directories__directory_id__files__directory_file_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/directories/{directory_id}/files/{directory_file_id}
+  method: patch
+  operationId: update_directory_file_api_v1_beta_directories__directory_id__files__directory_file_id__patch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/directories/{directory_id}/files/{directory_file_id}
+  method: delete
+  operationId: delete_directory_file_api_v1_beta_directories__directory_id__files__directory_file_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/directories/{directory_id}/files/bulk-delete
+  method: post
+  operationId: bulk_delete_directory_files_api_v1_beta_directories__directory_id__files_bulk_delete_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/configurations
+  method: post
+  operationId: create_configuration_api_v1_beta_configurations_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/configurations
+  method: get
+  operationId: list_configurations_api_v1_beta_configurations_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/configurations/{config_id}
+  method: get
+  operationId: get_configuration_api_v1_beta_configurations__config_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/configurations/{config_id}
+  method: put
+  operationId: update_configuration_api_v1_beta_configurations__config_id__put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/configurations/{config_id}
+  method: delete
+  operationId: delete_configuration_api_v1_beta_configurations__config_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/split/jobs
+  method: post
+  operationId: create_split_job_api_v1_beta_split_jobs_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/split/jobs
+  method: get
+  operationId: list_split_jobs_api_v1_beta_split_jobs_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/split/jobs/{split_job_id}
+  method: get
+  operationId: get_split_job_api_v1_beta_split_jobs__split_job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/batch-processing
+  method: post
+  operationId: create_batch_job_api_v1_beta_batch_processing_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/batch-processing
+  method: get
+  operationId: list_batch_jobs_api_v1_beta_batch_processing_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/batch-processing/{job_id}
+  method: get
+  operationId: get_batch_job_status_api_v1_beta_batch_processing__job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/batch-processing/{job_id}/items
+  method: get
+  operationId: list_batch_job_items_api_v1_beta_batch_processing__job_id__items_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/batch-processing/{job_id}/cancel
+  method: post
+  operationId: cancel_batch_job_api_v1_beta_batch_processing__job_id__cancel_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/beta/batch-processing/items/{item_id}/processing-results
+  method: get
+  operationId: get_item_processing_results_api_v1_beta_batch_processing_items__item_id__processing_results_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/beta/pipelines/{pipeline_id}/files
+  method: get
+  operationId: list_pipeline_files_api_v1_beta_pipelines__pipeline_id__files_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/parse/upload
+  method: post
+  operationId: upload_file_multipart_api_v2_parse_upload_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/parse
+  method: post
+  operationId: parse_file_api_v2_parse_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/parse
+  method: get
+  operationId: list_parse_jobs_api_v2_parse_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/parse/versions
+  method: get
+  operationId: list_parse_versions_api_v2_parse_versions_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/parse/{job_id}
+  method: get
+  operationId: get_parse_job_api_v2_parse__job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/parse/{job_id}/cancel
+  method: post
+  operationId: cancel_parse_job_api_v2_parse__job_id__cancel_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/classify
+  method: post
+  operationId: create_classify_job_api_v2_classify_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/classify
+  method: get
+  operationId: list_classify_jobs_api_v2_classify_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/classify/{job_id}
+  method: get
+  operationId: get_classify_job_api_v2_classify__job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/classify/{job_id}/cancel
+  method: post
+  operationId: cancel_classify_job_api_v2_classify__job_id__cancel_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/extract/schema/validation
+  method: post
+  operationId: validate_extraction_schema_api_v2_extract_schema_validation_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/extract/schema/generate
+  method: post
+  operationId: generate_extraction_schema_api_v2_extract_schema_generate_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/extract
+  method: post
+  operationId: create_extract_job_api_v2_extract_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/extract
+  method: get
+  operationId: list_extract_jobs_api_v2_extract_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/extract/{job_id}
+  method: get
+  operationId: get_extract_job_api_v2_extract__job_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/extract/{job_id}
+  method: delete
+  operationId: delete_extract_job_api_v2_extract__job_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/extract/{job_id}/cancel
+  method: post
+  operationId: cancel_extract_job_api_v2_extract__job_id__cancel_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/projects
+  method: get
+  operationId: list_projects_api_v2_projects_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/projects/{project_id}
+  method: get
+  operationId: get_project_api_v2_projects__project_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/organizations
+  method: get
+  operationId: list_organizations_api_v2_organizations_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/organizations/{organization_id}
+  method: get
+  operationId: get_organization_api_v2_organizations__organization_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/batches
+  method: post
+  operationId: create_batch_api_v2_batches_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/batches
+  method: get
+  operationId: list_batches_api_v2_batches_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/batches/{batch_id}
+  method: get
+  operationId: get_batch_api_v2_batches__batch_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

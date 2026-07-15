@@ -104,6 +104,8 @@ apis:
         url: https://developers.llamaindex.ai/llamaparse/cloud-index/guides/index_status_monitoring/
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/llamaparse-agentic-access.yml
   - type: DomainSecurity
     url: security/llamaparse-domain-security.yml
   - type: Authentication
