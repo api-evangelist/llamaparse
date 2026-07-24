@@ -1,0 +1,287 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Page Screenshots API
+  version: 0.1.0
+tags:
+- name: Page Screenshots
+paths:
+  /api/v1/files/{id}/page_screenshots:
+    get:
+      tags:
+      - Page Screenshots
+      summary: List File Page Screenshots
+      description: List metadata for all screenshots of pages from a file.
+      operationId: list_file_page_screenshots_api_v1_files__id__page_screenshots_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageScreenshotMetadata'
+                title: Response List File Page Screenshots Api V1 Files  Id  Page Screenshots Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/files/{id}/page_screenshots/{page_index}:
+    get:
+      tags:
+      - Page Screenshots
+      summary: Get File Page Screenshot
+      description: Get screenshot of a page from a file.
+      operationId: get_file_page_screenshot_api_v1_files__id__page_screenshots__page_index__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Id
+      - name: page_index
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Page Index
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/files/{id}/page_screenshots/{page_index}/presigned_url:
+    post:
+      tags:
+      - Page Screenshots
+      summary: Generate File Page Screenshot Presigned Url
+      description: Returns a short-lived presigned URL to read a page screenshot; treat the URL as sensitive while it is valid.
+      operationId: generate_file_page_screenshot_presigned_url_api_v1_files__id__page_screenshots__page_index__presigned_url_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Id
+      - name: page_index
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Page Index
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresignedUrl'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    PageScreenshotMetadata:
+      properties:
+        page_index:
+          type: integer
+          minimum: 0.0
+          title: Page Index
+          description: The index of the page for which the screenshot is taken (0-indexed)
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file that the page screenshot was taken from
+        image_size:
+          type: integer
+          minimum: 0.0
+          title: Image Size
+          description: The size of the image in bytes
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata for the screenshot
+      type: object
+      required:
+      - page_index
+      - file_id
+      - image_size
+      title: PageScreenshotMetadata
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

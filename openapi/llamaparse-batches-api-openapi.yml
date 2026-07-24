@@ -1,0 +1,460 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Batches API
+  version: 0.1.0
+tags:
+- name: Batches
+paths:
+  /api/v2/batches:
+    post:
+      tags:
+      - Batches
+      summary: Create Batch
+      description: Create a batch over a source directory and start processing asynchronously.
+      operationId: create_batch_api_v2_batches_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchCreateRequest'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Batches
+      summary: List Batches
+      description: List batches for the current project.
+      operationId: list_batches_api_v2_batches_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+      - name: created_at_on_or_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At On Or After
+      - name: created_at_on_or_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At On Or Before
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - enum:
+            - PENDING
+            - THROTTLED
+            - RUNNING
+            - COMPLETED
+            - FAILED
+            - CANCELLED
+            type: string
+          - type: 'null'
+          title: Status
+      - name: source_directory_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source Directory Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v2/batches/{batch_id}:
+    get:
+      tags:
+      - Batches
+      summary: Get Batch
+      description: Get a batch by ID.
+      operationId: get_batch_api_v2_batches__batch_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      - name: expand
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: 'Fields to expand. Supported value: results.'
+          title: Expand
+        description: 'Fields to expand. Supported value: results.'
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    BatchCreateRequest:
+      properties:
+        source_directory_id:
+          type: string
+          title: Source Directory Id
+          description: Directory whose files should be processed.
+          examples:
+          - dir-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        config:
+          $ref: '#/components/schemas/BatchConfiguration'
+          description: Batch configuration snapshot to apply to this source directory.
+      type: object
+      required:
+      - source_directory_id
+      - config
+      title: BatchCreateRequest
+      description: "Create a batch over a directory.\n\nExample:\n    {\n        \"source_directory_id\": \"dir-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\n        \"config\": {\n            \"job\": {\n                \"type\": \"parse_v2\",\n                \"configuration_id\": \"cfg-PARSE_AGENTIC\"\n            }\n        },\n    }\n\nThe source is always a directory. Callers upload or attach files to the\ndirectory first, then this API maps each source directory file to an\noutput job such as a parse job ID."
+    BatchJobReference:
+      properties:
+        type:
+          anyOf:
+          - type: string
+            const: parse_v2
+          - type: string
+            const: extract_v2
+          title: Type
+          description: Type of job produced for the file.
+        id:
+          type: string
+          title: Id
+          description: Job ID, such as a parse job ID.
+          examples:
+          - pjb-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+      type: object
+      required:
+      - type
+      - id
+      title: BatchJobReference
+      description: "Reference to a job produced by a batch.\n\nExample:\n    {\n        \"type\": \"parse_v2\",\n        \"id\": \"pjb-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\"\n    }"
+    BatchResponse:
+      properties:
+        id:
+          anyOf:
+          - type: string
+          - type: string
+            format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        project_id:
+          type: string
+          title: Project Id
+          description: Project this batch belongs to.
+        source_directory_id:
+          type: string
+          title: Source Directory Id
+          description: Directory being processed.
+        config:
+          $ref: '#/components/schemas/BatchConfiguration'
+          description: Batch configuration snapshot.
+        status:
+          type: string
+          enum:
+          - PENDING
+          - THROTTLED
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - CANCELLED
+          title: Status
+          description: Current batch status.
+        results:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BatchResult'
+            type: array
+          - type: 'null'
+          title: Results
+          description: Expanded per-file result mappings. Null unless requested with expand=results, or while the batch is still running.
+      type: object
+      required:
+      - id
+      - project_id
+      - source_directory_id
+      - config
+      - status
+      title: BatchResponse
+      description: "A top-level batch.\n\nExample:\n    {\n        \"id\": \"bat-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\n        \"project_id\": \"prj-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\n        \"source_directory_id\": \"dir-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\n        \"config\": {\n            \"job\": {\n                \"type\": \"parse_v2\",\n                \"configuration_id\": \"cfg-PARSE_AGENTIC\"\n            }\n        },\n        \"status\": \"COMPLETED\",\n        \"results\": [\n            {\n                \"source_directory_file_id\": \"dfl-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\n                \"job_reference\": {\n                    \"type\": \"parse_v2\",\n                    \"id\": \"pjb-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\"\n                },\n                \"error_message\": null\n            }\n        ]\n    }\n\nBatch-level ``FAILED`` means the orchestration failed and cannot provide a\nreliable per-file result set. ``results`` is only populated when explicitly\nrequested with ``expand=results`` and may be ``null`` while a batch is still\nrunning."
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    BatchJobConfig:
+      properties:
+        type:
+          anyOf:
+          - type: string
+            const: parse_v2
+          - type: string
+            const: extract_v2
+          title: Type
+          description: Product job type to run for each source directory file.
+          examples:
+          - parse_v2
+          - extract_v2
+        configuration_id:
+          type: string
+          title: Configuration Id
+          description: Product configuration ID or built-in preset ID matching the job type.
+          examples:
+          - cfg-PARSE_AGENTIC
+      type: object
+      required:
+      - type
+      - configuration_id
+      title: BatchJobConfig
+      description: "Job to run for each file in the source directory.\n\nExample:\n    {\n        \"type\": \"parse_v2\",\n        \"configuration_id\": \"cfg-PARSE_AGENTIC\"\n    }\n\nBatch V2 references product configuration IDs so the underlying\ndirectory-sync flow can resolve a stable config ID for every file-level job.\nIDs may refer to saved project configurations or built-in presets for the\nrequested product type."
+    BatchResult:
+      properties:
+        source_directory_file_id:
+          type: string
+          title: Source Directory File Id
+          description: Source directory file processed by this batch.
+          examples:
+          - dfl-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        job_reference:
+          anyOf:
+          - $ref: '#/components/schemas/BatchJobReference'
+          - type: 'null'
+          description: Job created for this file, once known.
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+          description: Batch-level mapping error if the system could not create or associate a job for this source file.
+      type: object
+      required:
+      - source_directory_file_id
+      title: BatchResult
+      description: "Result projection for one source directory file in a batch.\n\nExample:\n    {\n        \"source_directory_file_id\": \"dfl-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\n        \"job_reference\": {\n            \"type\": \"parse_v2\",\n            \"id\": \"pjb-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\"\n        },\n        \"error_message\": null\n    }\n\nThis is a projection of directory-sync state, not a separate child\nresource that callers need to create. The source directory file ID is the\nstable correlation key. Underlying job progress and failures should be\nresolved through the referenced product job endpoint."
+    BatchConfiguration:
+      properties:
+        job:
+          $ref: '#/components/schemas/BatchJobConfig'
+          description: Job to create for each file in the source directory.
+      type: object
+      required:
+      - job
+      title: BatchConfiguration
+      description: "Configuration for a batch.\n\nExample:\n    {\n        \"job\": {\n            \"type\": \"parse_v2\",\n            \"configuration_id\": \"cfg-PARSE_AGENTIC\"\n        }\n    }\n\nThis wraps the product configuration ID to run over the source directory.\nUse a built-in preset ID when available, or create/reuse a product\nconfiguration through the generic configurations API before creating the\nbatch."
+    BatchQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BatchResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: BatchQueryResponse
+      description: Paginated list of batches.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

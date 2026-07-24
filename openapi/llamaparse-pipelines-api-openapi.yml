@@ -1,0 +1,4925 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Pipelines API
+  version: 0.1.0
+tags:
+- name: Pipelines
+paths:
+  /api/v1/pipelines:
+    get:
+      tags:
+      - Pipelines
+      summary: Search Pipelines
+      description: Search for pipelines by name, type, or project.
+      operationId: search_pipelines_api_v1_pipelines_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: project_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Project Name
+      - name: pipeline_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pipeline Name
+      - name: pipeline_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/PipelineType'
+          - type: 'null'
+          title: Pipeline Type
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pipeline'
+                title: Response Search Pipelines Api V1 Pipelines Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - Pipelines
+      summary: Create Pipeline
+      description: 'Create a new managed ingestion pipeline.
+
+
+        A pipeline connects data sources to a vector store for RAG.
+
+        After creation, call `POST /pipelines/{id}/sync` to start
+
+        ingesting documents.'
+      operationId: create_pipeline_api_v1_pipelines_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineCreate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+      - Pipelines
+      summary: Upsert Pipeline
+      description: 'Upsert a pipeline.
+
+
+        Updates the pipeline if one with the same name and project
+
+        already exists, otherwise creates a new one.'
+      operationId: upsert_pipeline_api_v1_pipelines_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineCreate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}:
+    get:
+      tags:
+      - Pipelines
+      summary: Get Pipeline
+      description: Get a pipeline by ID.
+      operationId: get_pipeline_api_v1_pipelines__pipeline_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+      - Pipelines
+      summary: Update Existing Pipeline
+      description: Update an existing pipeline's configuration.
+      operationId: update_existing_pipeline_api_v1_pipelines__pipeline_id__put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineUpdate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Pipelines
+      summary: Delete Pipeline
+      description: 'Delete a pipeline and all associated resources.
+
+
+        Removes pipeline files, data sources, and vector store data.
+
+        This operation is irreversible.'
+      operationId: delete_pipeline_api_v1_pipelines__pipeline_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/status:
+    get:
+      tags:
+      - Pipelines
+      summary: Get Pipeline Status
+      description: 'Get the ingestion status of a managed pipeline.
+
+
+        Returns document counts, sync progress, and the last
+
+        effective timestamp. Only available for managed pipelines.'
+      operationId: get_pipeline_status_api_v1_pipelines__pipeline_id__status_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: full_details
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Full Details
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedIngestionStatusResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/sync:
+    post:
+      tags:
+      - Pipelines
+      summary: Sync Pipeline
+      description: 'Trigger an incremental sync for a managed pipeline.
+
+
+        Processes new and updated documents from data sources and
+
+        files, then updates the index for retrieval.'
+      operationId: sync_pipeline_api_v1_pipelines__pipeline_id__sync_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/sync/cancel:
+    post:
+      tags:
+      - Pipelines
+      summary: Cancel Pipeline Sync
+      description: Cancel all running sync jobs for a pipeline.
+      operationId: cancel_pipeline_sync_api_v1_pipelines__pipeline_id__sync_cancel_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/force-delete:
+    post:
+      tags:
+      - Pipelines
+      summary: Force Delete Pipeline
+      operationId: force_delete_pipeline_api_v1_pipelines__pipeline_id__force_delete_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/copy:
+    post:
+      tags:
+      - Pipelines
+      summary: Copy Pipeline
+      description: 'Copy a pipeline including its files and documents.
+
+
+        Creates a new pipeline with the same configuration and
+
+        triggers a sync to populate the new vector store.'
+      operationId: copy_pipeline_api_v1_pipelines__pipeline_id__copy_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/retrieve:
+    post:
+      tags:
+      - Pipelines
+      summary: Run Search
+      description: 'Run a retrieval query against a managed pipeline.
+
+
+        Searches the pipeline''s vector store using the provided query
+
+        and retrieval parameters. Supports dense, sparse, and hybrid
+
+        search modes with configurable top-k and reranking.'
+      operationId: run_search_api_v1_pipelines__pipeline_id__retrieve_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrievalParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrieveResults'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/playground-session:
+    get:
+      tags:
+      - Pipelines
+      summary: Get Playground Session
+      description: Get a playground session for a user and pipeline.
+      operationId: get_playground_session_api_v1_pipelines__pipeline_id__playground_session_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaygroundSession'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/chat:
+    post:
+      tags:
+      - Pipelines
+      summary: Chat
+      description: 'Chat with a managed pipeline using RAG.
+
+
+        Combines retrieval from the pipeline''s vector store with an
+
+        LLM chat completion. Returns a streaming response.'
+      operationId: chat_api_v1_pipelines__pipeline_id__chat_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatInputParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/documents:
+    post:
+      tags:
+      - Pipelines
+      summary: Create Batch Pipeline Documents
+      description: Batch create documents for a pipeline.
+      operationId: create_batch_pipeline_documents_api_v1_pipelines__pipeline_id__documents_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CloudDocumentCreate'
+              title: Documents
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CloudDocument'
+                title: Response Create Batch Pipeline Documents Api V1 Pipelines  Pipeline Id  Documents Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Pipelines
+      summary: List Pipeline Documents
+      description: Return a list of documents for a pipeline.
+      operationId: list_pipeline_documents_api_v1_pipelines__pipeline_id__documents_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Skip
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 10
+          title: Limit
+      - name: file_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+      - name: only_direct_upload
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          default: false
+          title: Only Direct Upload
+      - name: only_api_data_source_documents
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          default: false
+          title: Only Api Data Source Documents
+      - name: status_refresh_policy
+        in: query
+        required: false
+        schema:
+          enum:
+          - cached
+          - ttl
+          type: string
+          default: cached
+          title: Status Refresh Policy
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CloudDocument'
+                title: Response List Pipeline Documents Api V1 Pipelines  Pipeline Id  Documents Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+      - Pipelines
+      summary: Upsert Batch Pipeline Documents
+      description: Batch create or update a document for a pipeline.
+      operationId: upsert_batch_pipeline_documents_api_v1_pipelines__pipeline_id__documents_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CloudDocumentCreate'
+              title: Documents
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CloudDocument'
+                title: Response Upsert Batch Pipeline Documents Api V1 Pipelines  Pipeline Id  Documents Put
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/documents/paginated:
+    get:
+      tags:
+      - Pipelines
+      summary: Paginated List Pipeline Documents
+      description: Return a list of documents for a pipeline.
+      operationId: paginated_list_pipeline_documents_api_v1_pipelines__pipeline_id__documents_paginated_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Skip
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 10
+          title: Limit
+      - name: file_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+      - name: only_direct_upload
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          default: false
+          title: Only Direct Upload
+      - name: only_api_data_source_documents
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          default: false
+          title: Only Api Data Source Documents
+      - name: status_refresh_policy
+        in: query
+        required: false
+        schema:
+          enum:
+          - cached
+          - ttl
+          type: string
+          default: cached
+          title: Status Refresh Policy
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedListCloudDocumentsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/documents/{document_id}:
+    get:
+      tags:
+      - Pipelines
+      summary: Get Pipeline Document
+      description: Return a single document for a pipeline.
+      operationId: get_pipeline_document_api_v1_pipelines__pipeline_id__documents__document_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Document Id
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudDocument'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Pipelines
+      summary: Delete Pipeline Document
+      description: Delete a document from a pipeline; runs async (vectors first, then MongoDB record).
+      operationId: delete_pipeline_document_api_v1_pipelines__pipeline_id__documents__document_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Document Id
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/documents/{document_id}/status:
+    get:
+      tags:
+      - Pipelines
+      summary: Get Pipeline Document Status
+      description: Return a single document for a pipeline.
+      operationId: get_pipeline_document_status_api_v1_pipelines__pipeline_id__documents__document_id__status_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Document Id
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedIngestionStatusResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/documents/{document_id}/sync:
+    post:
+      tags:
+      - Pipelines
+      summary: Sync Pipeline Document
+      description: Sync a specific document for a pipeline.
+      operationId: sync_pipeline_document_api_v1_pipelines__pipeline_id__documents__document_id__sync_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Document Id
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/documents/{document_id}/chunks:
+    get:
+      tags:
+      - Pipelines
+      summary: List Pipeline Document Chunks
+      description: Return a list of chunks for a pipeline document.
+      operationId: list_pipeline_document_chunks_api_v1_pipelines__pipeline_id__documents__document_id__chunks_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Document Id
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TextNode'
+                title: Response List Pipeline Document Chunks Api V1 Pipelines  Pipeline Id  Documents  Document Id  Chunks Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ChatMessage:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        index:
+          type: integer
+          title: Index
+          description: The index of the message in the chat.
+        annotations:
+          items:
+            $ref: '#/components/schemas/MessageAnnotation'
+          type: array
+          title: Annotations
+          description: Retrieval annotations for the message.
+        role:
+          $ref: '#/components/schemas/MessageRole'
+          description: The role of the message.
+        content:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content
+          description: Text content of the generation
+        additional_kwargs:
+          additionalProperties:
+            type: string
+          type: object
+          title: Additional Kwargs
+          description: Additional arguments passed to the model
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      required:
+      - id
+      - index
+      - role
+      title: ChatMessage
+    CloudMilvusVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          title: Supports Nested Metadata Filters
+          default: false
+        uri:
+          type: string
+          title: Uri
+        collection_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Collection Name
+        token:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Token
+        embedding_dimension:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Embedding Dimension
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudMilvusVectorStore
+      type: object
+      required:
+      - uri
+      title: CloudMilvusVectorStore
+      description: Cloud Milvus Vector Store.
+    CloudPineconeVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          const: true
+          title: Supports Nested Metadata Filters
+          default: true
+        api_key:
+          type: string
+          format: password
+          title: Api Key
+          description: The API key for authenticating with Pinecone
+          writeOnly: true
+        index_name:
+          type: string
+          title: Index Name
+        namespace:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Namespace
+        insert_kwargs:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Insert Kwargs
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudPineconeVectorStore
+      type: object
+      required:
+      - api_key
+      - index_name
+      title: CloudPineconeVectorStore
+      description: "Cloud Pinecone Vector Store.\n\nThis class is used to store the configuration for a Pinecone vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    api_key (str): API key for authenticating with Pinecone\n    index_name (str): name of the Pinecone index\n    namespace (optional[str]): namespace to use in the Pinecone index\n    insert_kwargs (optional[dict]): additional kwargs to pass during insertion"
+    VertexAIEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: VERTEXAI_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: VERTEXAI_EMBEDDING
+        component:
+          $ref: '#/components/schemas/VertexTextEmbedding'
+          description: Configuration for the VertexAI embedding model.
+      type: object
+      title: VertexAIEmbeddingConfig
+    TokenChunkingConfig:
+      properties:
+        chunk_size:
+          type: integer
+          exclusiveMinimum: 0.0
+          title: Chunk Size
+          default: 1024
+        chunk_overlap:
+          type: integer
+          title: Chunk Overlap
+          default: 200
+          gte: 0
+        mode:
+          type: string
+          const: token
+          title: Mode
+          default: token
+        separator:
+          type: string
+          title: Separator
+          default: ' '
+      type: object
+      title: TokenChunkingConfig
+    HuggingFaceInferenceAPIEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: HUGGINGFACE_API_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: HUGGINGFACE_API_EMBEDDING
+        component:
+          $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbedding'
+          description: Configuration for the HuggingFace Inference API embedding model.
+      type: object
+      title: HuggingFaceInferenceAPIEmbeddingConfig
+    DataSinkCreate:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The name of the data sink.
+        sink_type:
+          $ref: '#/components/schemas/ConfigurableDataSinkNames'
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudPineconeVectorStore'
+          - $ref: '#/components/schemas/CloudPostgresVectorStore'
+          - $ref: '#/components/schemas/CloudQdrantVectorStore'
+          - $ref: '#/components/schemas/CloudAzureAISearchVectorStore'
+          - $ref: '#/components/schemas/CloudMongoDBAtlasVectorSearch'
+          - $ref: '#/components/schemas/CloudMilvusVectorStore'
+          - $ref: '#/components/schemas/CloudAstraDBVectorStore'
+          title: DataSinkCreateComponent
+          description: Component that implements the data sink
+      type: object
+      required:
+      - name
+      - sink_type
+      - component
+      title: DataSinkCreate
+      description: Schema for creating a data sink.
+    RetrievalParams:
+      properties:
+        dense_similarity_top_k:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Dense Similarity Top K
+          description: Number of nodes for dense retrieval.
+          default: 30
+        dense_similarity_cutoff:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Dense Similarity Cutoff
+          description: Minimum similarity score wrt query for retrieval
+          default: 0.0
+        sparse_similarity_top_k:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Sparse Similarity Top K
+          description: Number of nodes for sparse retrieval.
+          default: 30
+        enable_reranking:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable Reranking
+          description: Enable reranking for retrieval
+        rerank_top_n:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Rerank Top N
+          description: Number of reranked nodes for returning.
+          default: 6
+        alpha:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Alpha
+          description: Alpha value for hybrid retrieval to determine the weights between dense and sparse retrieval. 0 is sparse retrieval and 1 is dense retrieval.
+        search_filters:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataFilters'
+          - type: 'null'
+          description: Search filters for retrieval.
+        search_filters_inference_schema:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Search Filters Inference Schema
+          description: JSON Schema that will be used to infer search_filters. Omit or leave as null to skip inference.
+        files_top_k:
+          anyOf:
+          - type: integer
+            maximum: 5.0
+            minimum: 1.0
+          - type: 'null'
+          title: Files Top K
+          description: Number of files to retrieve (only for retrieval mode files_via_metadata and files_via_content).
+          default: 1
+        retrieval_mode:
+          $ref: '#/components/schemas/RetrievalMode'
+          description: The retrieval mode for the query.
+          default: chunks
+        retrieve_image_nodes:
+          type: boolean
+          title: Retrieve Image Nodes
+          description: Whether to retrieve image nodes.
+          default: false
+          deprecated: true
+        retrieve_page_screenshot_nodes:
+          type: boolean
+          title: Retrieve Page Screenshot Nodes
+          description: Whether to retrieve page screenshot nodes.
+          default: false
+        retrieve_page_figure_nodes:
+          type: boolean
+          title: Retrieve Page Figure Nodes
+          description: Whether to retrieve page figure nodes.
+          default: false
+        query:
+          type: string
+          minLength: 1
+          title: Query
+          description: The query to retrieve against.
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      required:
+      - query
+      title: RetrievalParams
+      description: Schema for the search params for an retrieval execution.
+    MessageAnnotation:
+      properties:
+        type:
+          type: string
+          title: Type
+        data:
+          type: string
+          contentMediaType: application/json
+          contentSchema: {}
+          title: Data
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      required:
+      - type
+      - data
+      title: MessageAnnotation
+    CohereEmbedding:
+      properties:
+        model_name:
+          type: string
+          title: Model Name
+          description: The modelId of the Cohere model to use.
+          default: embed-english-v3.0
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Key
+          description: The Cohere API key.
+        truncate:
+          type: string
+          title: Truncate
+          description: Truncation type - START/ END/ NONE
+          default: END
+        input_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input Type
+          description: Model Input type. If not provided, search_document and search_query are used when needed.
+        embedding_type:
+          type: string
+          title: Embedding Type
+          description: Embedding type. If not provided float embedding_type is used when needed.
+          default: float
+        class_name:
+          type: string
+          title: Class Name
+          default: CohereEmbedding
+      type: object
+      required:
+      - api_key
+      title: CohereEmbedding
+    CloudDocumentCreate:
+      properties:
+        text:
+          type: string
+          title: Text
+        metadata:
+          additionalProperties: true
+          type: object
+          title: Metadata
+        excluded_embed_metadata_keys:
+          items:
+            type: string
+          type: array
+          title: Excluded Embed Metadata Keys
+          default: []
+        excluded_llm_metadata_keys:
+          items:
+            type: string
+          type: array
+          title: Excluded Llm Metadata Keys
+          default: []
+        page_positions:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Page Positions
+          description: indices in the CloudDocument.text where a new page begins. e.g. Second page starts at index specified by page_positions[1].
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+      type: object
+      required:
+      - text
+      - metadata
+      title: CloudDocumentCreate
+      description: Create a new cloud document.
+    PageSegmentationConfig:
+      properties:
+        mode:
+          type: string
+          const: page
+          title: Mode
+          default: page
+        page_separator:
+          type: string
+          title: Page Separator
+          default: '
+
+            ---
+
+            '
+      type: object
+      title: PageSegmentationConfig
+    ElementSegmentationConfig:
+      properties:
+        mode:
+          type: string
+          const: element
+          title: Mode
+          default: element
+      type: object
+      title: ElementSegmentationConfig
+    SupportedLLMModelNames:
+      type: string
+      enum:
+      - GPT_4O
+      - GPT_4O_MINI
+      - GPT_4_1
+      - GPT_4_1_NANO
+      - GPT_4_1_MINI
+      - AZURE_OPENAI_GPT_4O
+      - AZURE_OPENAI_GPT_4O_MINI
+      - AZURE_OPENAI_GPT_4_1
+      - AZURE_OPENAI_GPT_4_1_MINI
+      - AZURE_OPENAI_GPT_4_1_NANO
+      - CLAUDE_4_5_SONNET
+      - BEDROCK_CLAUDE_3_5_SONNET_V1
+      - BEDROCK_CLAUDE_3_5_SONNET_V2
+      title: SupportedLLMModelNames
+    PageFigureMetadata:
+      properties:
+        figure_name:
+          type: string
+          title: Figure Name
+          description: The name of the figure
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file that the figure was taken from
+        page_index:
+          type: integer
+          minimum: 0.0
+          title: Page Index
+          description: The index of the page for which the figure is taken (0-indexed)
+        figure_size:
+          type: integer
+          minimum: 0.0
+          title: Figure Size
+          description: The size of the figure in bytes
+        is_likely_noise:
+          type: boolean
+          title: Is Likely Noise
+          description: Whether the figure is likely to be noise
+          default: false
+        confidence:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Confidence
+          description: The confidence of the figure
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata for the figure
+      type: object
+      required:
+      - figure_name
+      - file_id
+      - page_index
+      - figure_size
+      - confidence
+      title: PageFigureMetadata
+    SparseModelConfig:
+      properties:
+        model_type:
+          $ref: '#/components/schemas/SparseModelType'
+          description: The sparse model type to use. 'bm25' uses Qdrant's FastEmbed BM25 model (default for new pipelines), 'splade' uses HuggingFace Splade model, 'auto' selects based on deployment mode (BYOC uses term frequency, Cloud uses Splade).
+          default: bm25
+        class_name:
+          type: string
+          title: Class Name
+          default: SparseModelConfig
+      type: object
+      title: SparseModelConfig
+      description: 'Configuration for sparse embedding models used in hybrid search.
+
+
+        This allows users to choose between Splade and BM25 models for
+
+        sparse retrieval in managed data sinks.'
+    ManagedOpenAIEmbedding:
+      properties:
+        model_name:
+          type: string
+          const: openai-text-embedding-3-small
+          title: Model Name
+          description: The name of the OpenAI embedding model.
+          default: openai-text-embedding-3-small
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        class_name:
+          type: string
+          title: Class Name
+          default: ManagedOpenAIEmbedding
+      type: object
+      title: ManagedOpenAIEmbedding
+    ManagedIngestionStatusResponse:
+      properties:
+        job_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Job Id
+          description: ID of the latest job.
+        deployment_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Deployment Date
+          description: Date of the deployment.
+        status:
+          $ref: '#/components/schemas/ManagedIngestionStatus'
+          description: Status of the ingestion.
+        error:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IngestionErrorResponse'
+            type: array
+          - type: 'null'
+          title: Error
+          description: List of errors that occurred during ingestion.
+        effective_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Effective At
+          description: When the status is effective
+      type: object
+      required:
+      - status
+      title: ManagedIngestionStatusResponse
+    GeminiEmbedding:
+      properties:
+        model_name:
+          type: string
+          title: Model Name
+          description: The modelId of the Gemini model to use.
+          default: models/embedding-001
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+          description: Title is only applicable for retrieval_document tasks, and is used to represent a document title. For other tasks, title is invalid.
+          default: ''
+        task_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Type
+          description: The task for embedding model.
+          default: retrieval_document
+        api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Key
+          description: API key to access the model. Defaults to None.
+        api_base:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Base
+          description: API base to access the model. Defaults to None.
+        transport:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Transport
+          description: Transport to access the model. Defaults to None.
+        output_dimensionality:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Output Dimensionality
+          description: Optional reduced dimension for output embeddings. Supported by models/text-embedding-004 and newer (e.g. gemini-embedding-001). Not supported by models/embedding-001.
+        class_name:
+          type: string
+          title: Class Name
+          default: GeminiEmbedding
+      type: object
+      title: GeminiEmbedding
+    CloudAstraDBVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          const: true
+          title: Supports Nested Metadata Filters
+          default: true
+        token:
+          type: string
+          format: password
+          title: Token
+          description: The Astra DB Application Token to use
+          writeOnly: true
+        api_endpoint:
+          type: string
+          title: Api Endpoint
+          description: The Astra DB JSON API endpoint for your database
+        collection_name:
+          type: string
+          title: Collection Name
+          description: Collection name to use. If not existing, it will be created
+        embedding_dimension:
+          type: integer
+          title: Embedding Dimension
+          description: Length of the embedding vectors in use
+        keyspace:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Keyspace
+          description: The keyspace to use. If not provided, 'default_keyspace'
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudAstraDBVectorStore
+      type: object
+      required:
+      - token
+      - api_endpoint
+      - collection_name
+      - embedding_dimension
+      title: CloudAstraDBVectorStore
+      description: "Cloud AstraDB Vector Store.\n\nThis class is used to store the configuration for an AstraDB vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    token (str): The Astra DB Application Token to use.\n    api_endpoint (str): The Astra DB JSON API endpoint for your database.\n    collection_name (str): Collection name to use. If not existing, it will be created.\n    embedding_dimension (int): Length of the embedding vectors in use.\n    keyspace (optional[str]): The keyspace to use. If not provided, 'default_keyspace'"
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    OpenAIEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: OPENAI_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: OPENAI_EMBEDDING
+        component:
+          $ref: '#/components/schemas/OpenAIEmbedding'
+          description: Configuration for the OpenAI embedding model.
+      type: object
+      title: OpenAIEmbeddingConfig
+    AdvancedModeTransformConfig:
+      properties:
+        mode:
+          type: string
+          const: advanced
+          title: Mode
+          default: advanced
+        segmentation_config:
+          anyOf:
+          - $ref: '#/components/schemas/NoneSegmentationConfig'
+          - $ref: '#/components/schemas/PageSegmentationConfig'
+          - $ref: '#/components/schemas/ElementSegmentationConfig'
+          title: Segmentation Config
+          description: Configuration for the segmentation.
+        chunking_config:
+          anyOf:
+          - $ref: '#/components/schemas/NoneChunkingConfig'
+          - $ref: '#/components/schemas/CharacterChunkingConfig'
+          - $ref: '#/components/schemas/TokenChunkingConfig'
+          - $ref: '#/components/schemas/SentenceChunkingConfig'
+          - $ref: '#/components/schemas/SemanticChunkingConfig'
+          title: Chunking Config
+          description: Configuration for the chunking.
+      type: object
+      title: AdvancedModeTransformConfig
+    NoneChunkingConfig:
+      properties:
+        mode:
+          type: string
+          const: none
+          title: Mode
+          default: none
+      type: object
+      title: NoneChunkingConfig
+    FilterOperator:
+      type: string
+      enum:
+      - ==
+      - '>'
+      - <
+      - '!='
+      - '>='
+      - <=
+      - in
+      - nin
+      - any
+      - all
+      - text_match
+      - text_match_insensitive
+      - contains
+      - is_empty
+      title: FilterOperator
+      description: Vector store filter operator.
+    CohereEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: COHERE_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: COHERE_EMBEDDING
+        component:
+          $ref: '#/components/schemas/CohereEmbedding'
+          description: Configuration for the Cohere embedding model.
+      type: object
+      title: CohereEmbeddingConfig
+    FilterCondition:
+      type: string
+      enum:
+      - and
+      - or
+      - not
+      title: FilterCondition
+      description: Vector store filter conditions to combine different filters.
+    TextNode:
+      properties:
+        id_:
+          type: string
+          title: Id
+          description: Unique ID of the node.
+        embedding:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Embedding
+          description: Embedding of the node.
+        extra_info:
+          additionalProperties: true
+          type: object
+          title: Extra Info
+          description: A flat dictionary of metadata fields
+        excluded_embed_metadata_keys:
+          items:
+            type: string
+          type: array
+          title: Excluded Embed Metadata Keys
+          description: Metadata keys that are excluded from text for the embed model.
+        excluded_llm_metadata_keys:
+          items:
+            type: string
+          type: array
+          title: Excluded Llm Metadata Keys
+          description: Metadata keys that are excluded from text for the LLM.
+        relationships:
+          additionalProperties:
+            anyOf:
+            - $ref: '#/components/schemas/RelatedNodeInfo'
+            - items:
+                $ref: '#/components/schemas/RelatedNodeInfo'
+              type: array
+          propertyNames:
+            $ref: '#/components/schemas/NodeRelationship'
+          type: object
+          title: Relationships
+          description: A mapping of relationships to other node information.
+        metadata_template:
+          type: string
+          title: Metadata Template
+          description: Template for how metadata is formatted, with {key} and {value} placeholders.
+          default: '{key}: {value}'
+        metadata_seperator:
+          type: string
+          title: Metadata Seperator
+          description: Separator between metadata fields when converting to string.
+          default: '
+
+            '
+        text:
+          type: string
+          title: Text
+          description: Text content of the node.
+          default: ''
+        mimetype:
+          type: string
+          title: Mimetype
+          description: MIME type of the node content.
+          default: text/plain
+        start_char_idx:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Start Char Idx
+          description: Start char index of the node.
+        end_char_idx:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: End Char Idx
+          description: End char index of the node.
+        text_template:
+          type: string
+          title: Text Template
+          description: Template for how text is formatted, with {content} and {metadata_str} placeholders.
+          default: '{metadata_str}
+
+
+            {content}'
+        class_name:
+          type: string
+          title: Class Name
+          default: TextNode
+      type: object
+      title: TextNode
+      description: Provided for backward compatibility.
+    PGVectorDistanceMethod:
+      type: string
+      enum:
+      - l2
+      - ip
+      - cosine
+      - l1
+      - hamming
+      - jaccard
+      title: PGVectorDistanceMethod
+      description: 'Distance methods for PGVector.
+
+        Docs:
+
+        https://github.com/pgvector/pgvector?tab=readme-ov-file#query-options'
+    Pooling:
+      type: string
+      enum:
+      - cls
+      - mean
+      - last
+      title: Pooling
+      description: Enum of possible pooling choices with pooling behaviors.
+    ChatData:
+      properties:
+        retrieval_parameters:
+          $ref: '#/components/schemas/PresetRetrievalParams'
+        llm_parameters:
+          anyOf:
+          - $ref: '#/components/schemas/LLMParameters'
+          - type: 'null'
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      title: ChatData
+    CloudDocument:
+      properties:
+        text:
+          type: string
+          title: Text
+        metadata:
+          additionalProperties: true
+          type: object
+          title: Metadata
+        excluded_embed_metadata_keys:
+          items:
+            type: string
+          type: array
+          title: Excluded Embed Metadata Keys
+          default: []
+        excluded_llm_metadata_keys:
+          items:
+            type: string
+          type: array
+          title: Excluded Llm Metadata Keys
+          default: []
+        page_positions:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Page Positions
+          description: indices in the CloudDocument.text where a new page begins. e.g. Second page starts at index specified by page_positions[1].
+        id:
+          type: string
+          title: Id
+        status_metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Status Metadata
+      type: object
+      required:
+      - text
+      - metadata
+      - id
+      title: CloudDocument
+      description: Cloud document stored in S3.
+    MetadataFilter:
+      properties:
+        key:
+          type: string
+          title: Key
+        value:
+          anyOf:
+          - type: integer
+          - type: number
+          - type: string
+          - items:
+              type: string
+            type: array
+          - items:
+              type: number
+            type: array
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Value
+        operator:
+          $ref: '#/components/schemas/FilterOperator'
+          default: ==
+      type: object
+      required:
+      - key
+      - value
+      title: MetadataFilter
+      description: 'Comprehensive metadata filter for vector stores to support more operators.
+
+
+        Value uses Strict types, as int, float and str are compatible types and were all
+
+        converted to string before.
+
+
+        See: https://docs.pydantic.dev/latest/usage/types/#strict-types'
+    TextNodeWithScore:
+      properties:
+        node:
+          $ref: '#/components/schemas/TextNode'
+        score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Score
+        class_name:
+          type: string
+          title: Class Name
+          default: TextNodeWithScore
+      type: object
+      required:
+      - node
+      title: TextNodeWithScore
+      description: 'Same as NodeWithScore but type for node is a TextNode instead of BaseNode.
+
+        FastAPI doesn''t accept abstract classes like BaseNode.'
+    PageScreenshotNodeWithScore:
+      properties:
+        node:
+          $ref: '#/components/schemas/PageScreenshotMetadata'
+        score:
+          type: number
+          title: Score
+          description: The score of the screenshot node
+        class_name:
+          type: string
+          title: Class Name
+          default: NodeWithScore
+      type: object
+      required:
+      - node
+      - score
+      title: PageScreenshotNodeWithScore
+      description: Page screenshot metadata with score
+    SparseModelType:
+      type: string
+      enum:
+      - splade
+      - bm25
+      - auto
+      title: SparseModelType
+      description: 'Enum for sparse model types supported in LlamaCloud.
+
+
+        SPLADE: Uses HuggingFace Splade model for sparse embeddings
+
+        BM25: Uses Qdrant''s FastEmbed BM25 model for sparse embeddings
+
+        AUTO: Automatically selects based on deployment mode (BYOC uses term frequency, Cloud uses Splade)'
+    Pipeline:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+        embedding_model_config_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Embedding Model Config Id
+          description: The ID of the EmbeddingModelConfig this pipeline is using.
+        embedding_model_config:
+          anyOf:
+          - $ref: '#/components/schemas/EmbeddingModelConfig'
+          - type: 'null'
+          description: The embedding model configuration for this pipeline.
+        pipeline_type:
+          $ref: '#/components/schemas/PipelineType'
+          description: Type of pipeline. Either PLAYGROUND or MANAGED.
+          default: MANAGED
+        managed_pipeline_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Managed Pipeline Id
+          description: The ID of the ManagedPipeline this playground pipeline is linked to.
+        embedding_config:
+          oneOf:
+          - $ref: '#/components/schemas/ManagedOpenAIEmbeddingConfig'
+          - $ref: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+          - $ref: '#/components/schemas/CohereEmbeddingConfig'
+          - $ref: '#/components/schemas/GeminiEmbeddingConfig'
+          - $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+          - $ref: '#/components/schemas/OpenAIEmbeddingConfig'
+          - $ref: '#/components/schemas/VertexAIEmbeddingConfig'
+          - $ref: '#/components/schemas/BedrockEmbeddingConfig'
+          title: Embedding Config
+          discriminator:
+            propertyName: type
+            mapping:
+              AZURE_EMBEDDING: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+              BEDROCK_EMBEDDING: '#/components/schemas/BedrockEmbeddingConfig'
+              COHERE_EMBEDDING: '#/components/schemas/CohereEmbeddingConfig'
+              GEMINI_EMBEDDING: '#/components/schemas/GeminiEmbeddingConfig'
+              HUGGINGFACE_API_EMBEDDING: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+              MANAGED_OPENAI_EMBEDDING: '#/components/schemas/ManagedOpenAIEmbeddingConfig'
+              OPENAI_EMBEDDING: '#/components/schemas/OpenAIEmbeddingConfig'
+              VERTEXAI_EMBEDDING: '#/components/schemas/VertexAIEmbeddingConfig'
+        sparse_model_config:
+          anyOf:
+          - $ref: '#/components/schemas/SparseModelConfig'
+          - type: 'null'
+          description: Configuration for the sparse model used in hybrid search.
+        config_hash:
+          anyOf:
+          - $ref: '#/components/schemas/PipelineConfigurationHashes'
+          - type: 'null'
+          description: Hashes for the configuration of the pipeline.
+        transform_config:
+          anyOf:
+          - $ref: '#/components/schemas/AutoTransformConfig'
+          - $ref: '#/components/schemas/AdvancedModeTransformConfig'
+          title: Transform Config
+          description: Configuration for the transformation.
+        preset_retrieval_parameters:
+          $ref: '#/components/schemas/PresetRetrievalParams'
+          description: Preset retrieval parameters for the pipeline.
+        llama_parse_parameters:
+          anyOf:
+          - $ref: '#/components/schemas/LlamaParseParameters'
+          - type: 'null'
+          description: Settings that can be configured for how to use LlamaParse to parse files within a LlamaCloud pipeline.
+        data_sink:
+          anyOf:
+          - $ref: '#/components/schemas/DataSink'
+          - type: 'null'
+          description: The data sink for the pipeline. If None, the pipeline will use the fully managed data sink.
+        status:
+          anyOf:
+          - type: string
+            enum:
+            - CREATED
+            - DELETING
+          - type: 'null'
+          title: Status
+          description: Status of the pipeline.
+        metadata_config:
+          anyOf:
+          - $ref: '#/components/schemas/PipelineMetadataConfig'
+          - type: 'null'
+          description: Metadata configuration for the pipeline.
+      type: object
+      required:
+      - id
+      - name
+      - project_id
+      - embedding_config
+      title: Pipeline
+      description: Schema for a pipeline.
+    AzureOpenAIEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: AZURE_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: AZURE_EMBEDDING
+        component:
+          $ref: '#/components/schemas/AzureOpenAIEmbedding'
+          description: Configuration for the Azure OpenAI embedding model.
+      type: object
+      title: AzureOpenAIEmbeddingConfig
+    PageFigureNodeWithScore:
+      properties:
+        node:
+          $ref: '#/components/schemas/PageFigureMetadata'
+        score:
+          type: number
+          title: Score
+          description: The score of the figure node
+        class_name:
+          type: string
+          title: Class Name
+          default: PageFigureNodeWithScore
+      type: object
+      required:
+      - node
+      - score
+      title: PageFigureNodeWithScore
+      description: Page figure metadata with score
+    SemanticChunkingConfig:
+      properties:
+        mode:
+          type: string
+          const: semantic
+          title: Mode
+          default: semantic
+        buffer_size:
+          type: integer
+          title: Buffer Size
+          default: 1
+        breakpoint_percentile_threshold:
+          type: integer
+          title: Breakpoint Percentile Threshold
+          default: 95
+      type: object
+      title: SemanticChunkingConfig
+    AutoTransformConfig:
+      properties:
+        mode:
+          type: string
+          const: auto
+          title: Mode
+          default: auto
+        chunk_size:
+          type: integer
+          exclusiveMinimum: 0.0
+          title: Chunk Size
+          description: Chunk size for the transformation.
+          default: 1024
+        chunk_overlap:
+          type: integer
+          title: Chunk Overlap
+          description: Chunk overlap for the transformation.
+          default: 200
+          gte: 0
+      type: object
+      title: AutoTransformConfig
+    FailPageMode:
+      type: string
+      enum:
+      - raw_text
+      - blank_page
+      - error_message
+      title: FailPageMode
+      description: Enum for representing the different available page error handling modes.
+    PipelineMetadataConfig:
+      properties:
+        excluded_embed_metadata_keys:
+          items:
+            type: string
+          type: array
+          title: Excluded Embed Metadata Keys
+          description: List of metadata keys to exclude from embeddings
+        excluded_llm_metadata_keys:
+          items:
+            type: string
+          type: array
+          title: Excluded Llm Metadata Keys
+          description: List of metadata keys to exclude from LLM during retrieval
+      type: object
+      title: PipelineMetadataConfig
+    IngestionErrorResponse:
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          title: Job Id
+          description: ID of the job that failed.
+        message:
+          type: string
+          title: Message
+          description: List of errors that occurred during ingestion.
+        step:
+          $ref: '#/components/schemas/JobNameMapping'
+          description: Name of the job that failed.
+      type: object
+      required:
+      - job_id
+      - message
+      - step
+      title: IngestionErrorResponse
+    CloudPostgresVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          title: Supports Nested Metadata Filters
+          default: true
+        database:
+          type: string
+          title: Database
+        host:
+          type: string
+          title: Host
+        password:
+          type: string
+          format: password
+          title: Password
+          writeOnly: true
+        port:
+          type: integer
+          title: Port
+        user:
+          type: string
+          title: User
+        table_name:
+          type: string
+          title: Table Name
+        schema_name:
+          type: string
+          title: Schema Name
+        embed_dim:
+          type: integer
+          title: Embed Dim
+        hybrid_search:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hybrid Search
+          default: true
+        perform_setup:
+          type: boolean
+          title: Perform Setup
+          default: true
+        hnsw_settings:
+          anyOf:
+          - $ref: '#/components/schemas/PGVectorHNSWSettings'
+          - type: 'null'
+          description: HNSW settings for PGVector index. Set to null to disable HNSW indexing in favor of a brute force indexing/exact search strategy instead.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudPostgresVectorStore
+      type: object
+      required:
+      - database
+      - host
+      - password
+      - port
+      - user
+      - table_name
+      - schema_name
+      - embed_dim
+      title: CloudPostgresVectorStore
+    PresetRetrievalParams:
+      properties:
+        dense_similarity_top_k:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Dense Similarity Top K
+          description: Number of nodes for dense retrieval.
+          default: 30
+        dense_similarity_cutoff:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Dense Similarity Cutoff
+          description: Minimum similarity score wrt query for retrieval
+          default: 0.0
+        sparse_similarity_top_k:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Sparse Similarity Top K
+          description: Number of nodes for sparse retrieval.
+          default: 30
+        enable_reranking:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable Reranking
+          description: Enable reranking for retrieval
+        rerank_top_n:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Rerank Top N
+          description: Number of reranked nodes for returning.
+          default: 6
+        alpha:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Alpha
+          description: Alpha value for hybrid retrieval to determine the weights between dense and sparse retrieval. 0 is sparse retrieval and 1 is dense retrieval.
+        search_filters:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataFilters'
+          - type: 'null'
+          description: Search filters for retrieval.
+        search_filters_inference_schema:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Search Filters Inference Schema
+          description: JSON Schema that will be used to infer search_filters. Omit or leave as null to skip inference.
+        files_top_k:
+          anyOf:
+          - type: integer
+            maximum: 5.0
+            minimum: 1.0
+          - type: 'null'
+          title: Files Top K
+          description: Number of files to retrieve (only for retrieval mode files_via_metadata and files_via_content).
+          default: 1
+        retrieval_mode:
+          $ref: '#/components/schemas/RetrievalMode'
+          description: The retrieval mode for the query.
+          default: chunks
+        retrieve_image_nodes:
+          type: boolean
+          title: Retrieve Image Nodes
+          description: Whether to retrieve image nodes.
+          default: false
+          deprecated: true
+        retrieve_page_screenshot_nodes:
+          type: boolean
+          title: Retrieve Page Screenshot Nodes
+          description: Whether to retrieve page screenshot nodes.
+          default: false
+        retrieve_page_figure_nodes:
+          type: boolean
+          title: Retrieve Page Figure Nodes
+          description: Whether to retrieve page figure nodes.
+          default: false
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      title: PresetRetrievalParams
+      description: Schema for the search params for an retrieval execution that can be preset for a pipeline.
+    PipelineType:
+      type: string
+      enum:
+      - PLAYGROUND
+      - MANAGED
+      title: PipelineType
+      description: Enum for representing the type of a pipeline
+    OpenAIEmbedding:
+      properties:
+        model_name:
+          type: string
+          title: Model Name
+          description: The name of the OpenAI embedding model.
+          default: text-embedding-ada-002
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        additional_kwargs:
+          additionalProperties: true
+          type: object
+          title: Additional Kwargs
+          description: Additional kwargs for the OpenAI API.
+        api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Key
+          description: The OpenAI API key.
+        api_base:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Base
+          description: The base URL for OpenAI API.
+          default: https://api.openai.com/v1
+        api_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Version
+          description: The version for OpenAI API.
+          default: ''
+        max_retries:
+          type: integer
+          minimum: 0.0
+          title: Max Retries
+          description: Maximum number of retries.
+          default: 10
+        timeout:
+          type: number
+          minimum: 0.0
+          title: Timeout
+          description: Timeout for each request.
+          default: 60.0
+        default_headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Default Headers
+          description: The default headers for API requests.
+        reuse_client:
+          type: boolean
+          title: Reuse Client
+          description: Reuse the OpenAI client between requests. When doing anything with large volumes of async API calls, setting this to false can improve stability.
+          default: true
+        dimensions:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Dimensions
+          description: The number of dimensions on the output embedding vectors. Works only with v3 embedding models.
+        class_name:
+          type: string
+          title: Class Name
+          default: OpenAIEmbedding
+      type: object
+      title: OpenAIEmbedding
+    PageScreenshotMetadata:
+      properties:
+        page_index:
+          type: integer
+          minimum: 0.0
+          title: Page Index
+          description: The index of the page for which the screenshot is taken (0-indexed)
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file that the page screenshot was taken from
+        image_size:
+          type: integer
+          minimum: 0.0
+          title: Image Size
+          description: The size of the image in bytes
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata for the screenshot
+      type: object
+      required:
+      - page_index
+      - file_id
+      - image_size
+      title: PageScreenshotMetadata
+    ObjectType:
+      type: string
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      title: ObjectType
+    JobNameMapping:
+      type: string
+      enum:
+      - MANAGED_INGESTION
+      - DATA_SOURCE
+      - FILE_UPDATER
+      - PARSE
+      - TRANSFORM
+      - INGESTION
+      - METADATA_UPDATE
+      title: JobNameMapping
+      description: Enum for mapping original job names to readable names.
+    LLMParameters:
+      properties:
+        model_name:
+          $ref: '#/components/schemas/SupportedLLMModelNames'
+          description: The name of the model to use for LLM completions.
+          default: GPT_4_1_MINI
+        system_prompt:
+          anyOf:
+          - type: string
+            maxLength: 3000
+          - type: 'null'
+          title: System Prompt
+          description: The system prompt to use for the completion.
+        temperature:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Temperature
+          description: The temperature value for the model.
+          default: 0.1
+        use_chain_of_thought_reasoning:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Use Chain Of Thought Reasoning
+          description: Whether to use chain of thought reasoning.
+        use_citation:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Use Citation
+          description: Whether to show citations in the response.
+          default: true
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      title: LLMParameters
+    ManagedOpenAIEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: MANAGED_OPENAI_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: MANAGED_OPENAI_EMBEDDING
+        component:
+          $ref: '#/components/schemas/ManagedOpenAIEmbedding'
+          description: Configuration for the Managed OpenAI embedding model.
+      type: object
+      title: ManagedOpenAIEmbeddingConfig
+    SentenceChunkingConfig:
+      properties:
+        chunk_size:
+          type: integer
+          exclusiveMinimum: 0.0
+          title: Chunk Size
+          default: 1024
+        chunk_overlap:
+          type: integer
+          title: Chunk Overlap
+          default: 200
+          gte: 0
+        mode:
+          type: string
+          const: sentence
+          title: Mode
+          default: sentence
+        separator:
+          type: string
+          title: Separator
+          default: ' '
+        paragraph_separator:
+          type: string
+          title: Paragraph Separator
+          default: '
+
+
+
+            '
+      type: object
+      title: SentenceChunkingConfig
+    NoneSegmentationConfig:
+      properties:
+        mode:
+          type: string
+          const: none
+          title: Mode
+          default: none
+      type: object
+      title: NoneSegmentationConfig
+    CloudAzureAISearchVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          const: true
+          title: Supports Nested Metadata Filters
+          default: true
+        search_service_api_key:
+          type: string
+          format: password
+          title: Search Service Api Key
+          writeOnly: true
+        search_service_endpoint:
+          type: string
+          title: Search Service Endpoint
+        search_service_api_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search Service Api Version
+        index_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Index Name
+        filterable_metadata_field_keys:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Filterable Metadata Field Keys
+        embedding_dimension:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Embedding Dimension
+        client_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Id
+        client_secret:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Client Secret
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudAzureAISearchVectorStore
+      type: object
+      required:
+      - search_service_api_key
+      - search_service_endpoint
+      title: CloudAzureAISearchVectorStore
+      description: Cloud Azure AI Search Vector Store.
+    RetrievalMode:
+      type: string
+      enum:
+      - chunks
+      - files_via_metadata
+      - files_via_content
+      - auto_routed
+      title: RetrievalMode
+    MetadataFilters:
+      properties:
+        filters:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/MetadataFilter'
+            - $ref: '#/components/schemas/MetadataFilters'
+          type: array
+          title: Filters
+        condition:
+          anyOf:
+          - $ref: '#/components/schemas/FilterCondition'
+          - type: 'null'
+          default: and
+      type: object
+      required:
+      - filters
+      title: MetadataFilters
+      description: Metadata filters for vector stores.
+    PlaygroundSession:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        pipeline_id:
+          type: string
+          format: uuid
+          title: Pipeline Id
+        user_id:
+          type: string
+          title: User Id
+        llm_params_id:
+          type: string
+          format: uuid
+          title: Llm Params Id
+        llm_params:
+          $ref: '#/components/schemas/LLMParameters'
+          description: LLM parameters last used in this session.
+        retrieval_params_id:
+          type: string
+          format: uuid
+          title: Retrieval Params Id
+        retrieval_params:
+          $ref: '#/components/schemas/PresetRetrievalParams'
+          description: Preset retrieval parameters last used in this session.
+        chat_messages:
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+          type: array
+          title: Chat Messages
+          description: Chat message history for this session.
+      type: object
+      required:
+      - id
+      - pipeline_id
+      - user_id
+      - llm_params_id
+      - retrieval_params_id
+      title: PlaygroundSession
+      description: A playground session for a user.
+    PGVectorHNSWSettings:
+      properties:
+        ef_construction:
+          type: integer
+          minimum: 1.0
+          title: Ef Construction
+          description: The number of edges to use during the construction phase.
+          default: 64
+        ef_search:
+          type: integer
+          minimum: 1.0
+          title: Ef Search
+          description: The number of edges to use during the search phase.
+          default: 40
+        m:
+          type: integer
+          minimum: 1.0
+          title: M
+          description: The number of bi-directional links created for each new element.
+          default: 16
+        vector_type:
+          $ref: '#/components/schemas/PGVectorVectorType'
+          description: The type of vector to use.
+          default: vector
+        distance_method:
+          $ref: '#/components/schemas/PGVectorDistanceMethod'
+          description: The distance method to use.
+          default: cosine
+      type: object
+      title: PGVectorHNSWSettings
+      description: HNSW settings for PGVector.
+    GeminiEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: GEMINI_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: GEMINI_EMBEDDING
+        component:
+          $ref: '#/components/schemas/GeminiEmbedding'
+          description: Configuration for the Gemini embedding model.
+      type: object
+      title: GeminiEmbeddingConfig
+    ParsingMode:
+      type: string
+      enum:
+      - parse_page_without_llm
+      - parse_page_with_llm
+      - parse_page_with_lvm
+      - parse_page_with_agent
+      - parse_page_with_layout_agent
+      - parse_document_with_llm
+      - parse_document_with_lvm
+      - parse_document_with_agent
+      title: ParsingMode
+      description: Enum for representing the mode of parsing to be used.
+    CharacterChunkingConfig:
+      properties:
+        chunk_size:
+          type: integer
+          exclusiveMinimum: 0.0
+          title: Chunk Size
+          default: 1024
+        chunk_overlap:
+          type: integer
+          title: Chunk Overlap
+          default: 200
+          gte: 0
+        mode:
+          type: string
+          const: character
+          title: Mode
+          default: character
+      type: object
+      title: CharacterChunkingConfig
+    NodeRelationship:
+      type: string
+      enum:
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      - '5'
+      title: NodeRelationship
+      description: "Node relationships used in `BaseNode` class.\n\nAttributes:\n    SOURCE: The node is the source document.\n    PREVIOUS: The node is the previous node in the document.\n    NEXT: The node is the next node in the document.\n    PARENT: The node is the parent node in the document.\n    CHILD: The node is a child node in the document."
+    VertexTextEmbedding:
+      properties:
+        model_name:
+          type: string
+          title: Model Name
+          description: The modelId of the VertexAI model to use.
+          default: textembedding-gecko@003
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        location:
+          type: string
+          title: Location
+          description: The default location to use when making API calls.
+        project:
+          type: string
+          title: Project
+          description: The default GCP project to use when making Vertex API calls.
+        embed_mode:
+          $ref: '#/components/schemas/VertexEmbeddingMode'
+          description: The embedding mode to use.
+          default: retrieval
+        additional_kwargs:
+          additionalProperties: true
+          type: object
+          title: Additional Kwargs
+          description: Additional kwargs for the Vertex.
+        client_email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Email
+          description: The client email for the VertexAI credentials.
+        token_uri:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Token Uri
+          description: The token URI for the VertexAI credentials.
+        private_key_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Private Key Id
+          description: The private key ID for the VertexAI credentials.
+        private_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Private Key
+          description: The private key for the VertexAI credentials.
+        class_name:
+          type: string
+          title: Class Name
+          default: VertexTextEmbedding
+      type: object
+      required:
+      - location
+      - project
+      - client_email
+      - token_uri
+      - private_key_id
+      - private_key
+      title: VertexTextEmbedding
+    ChatInputParams:
+      properties:
+        messages:
+          items:
+            $ref: '#/components/schemas/InputMessage'
+          type: array
+          minItems: 1
+          title: Messages
+        data:
+          $ref: '#/components/schemas/ChatData'
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      title: ChatInputParams
+    VertexEmbeddingMode:
+      type: string
+      enum:
+      - default
+      - classification
+      - clustering
+      - similarity
+      - retrieval
+      title: VertexEmbeddingMode
+      description: 'Copied from llama_index.embeddings.vertex.base.VertexEmbeddingMode
+
+        since importing llama_index.embeddings.vertex.base incurs a lot of memory usage.'
+    ParserLanguages:
+      type: string
+      enum:
+      - af
+      - az
+      - bs
+      - cs
+      - cy
+      - da
+      - de
+      - en
+      - es
+      - et
+      - fr
+      - ga
+      - hr
+      - hu
+      - id
+      - is
+      - it
+      - ku
+      - la
+      - lt
+      - lv
+      - mi
+      - ms
+      - mt
+      - nl
+      - 'no'
+      - oc
+      - pi
+      - pl
+      - pt
+      - ro
+      - rs_latin
+      - sk
+      - sl
+      - sq
+      - sv
+      - sw
+      - tl
+      - tr
+      - uz
+      - vi
+      - ar
+      - fa
+      - ug
+      - ur
+      - bn
+      - as
+      - mni
+      - ru
+      - rs_cyrillic
+      - be
+      - bg
+      - uk
+      - mn
+      - abq
+      - ady
+      - kbd
+      - ava
+      - dar
+      - inh
+      - che
+      - lbe
+      - lez
+      - tab
+      - tjk
+      - hi
+      - mr
+      - ne
+      - bh
+      - mai
+      - ang
+      - bho
+      - mah
+      - sck
+      - new
+      - gom
+      - sa
+      - bgc
+      - th
+      - ch_sim
+      - ch_tra
+      - ja
+      - ko
+      - ta
+      - te
+      - kn
+      title: ParserLanguages
+      description: Enum for representing the languages supported by the parser.
+    CloudMongoDBAtlasVectorSearch:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          title: Supports Nested Metadata Filters
+          default: false
+        mongodb_uri:
+          type: string
+          format: password
+          title: Mongodb Uri
+          writeOnly: true
+        db_name:
+          type: string
+          title: Db Name
+        collection_name:
+          type: string
+          title: Collection Name
+        vector_index_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vector Index Name
+        fulltext_index_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fulltext Index Name
+        embedding_dimension:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Embedding Dimension
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudMongoDBAtlasVectorSearch
+      type: object
+      required:
+      - mongodb_uri
+      - db_name
+      - collection_name
+      title: CloudMongoDBAtlasVectorSearch
+      description: "Cloud MongoDB Atlas Vector Store.\n\nThis class is used to store the configuration for a MongoDB Atlas vector store,\nso that it can be created and used in LlamaCloud.\n\nArgs:\n    mongodb_uri (str): URI for connecting to MongoDB Atlas\n    db_name (str): name of the MongoDB database\n    collection_name (str): name of the MongoDB collection\n    vector_index_name (str): name of the MongoDB Atlas vector index\n    fulltext_index_name (str): name of the MongoDB Atlas full-text index"
+    PaginatedListCloudDocumentsResponse:
+      properties:
+        documents:
+          items:
+            $ref: '#/components/schemas/CloudDocument'
+          type: array
+          title: Documents
+          description: The documents to list
+        limit:
+          type: integer
+          title: Limit
+          description: The limit of the documents
+        offset:
+          type: integer
+          title: Offset
+          description: The offset of the documents
+        total_count:
+          type: integer
+          title: Total Count
+          description: The total number of documents
+      type: object
+      required:
+      - documents
+      - limit
+      - offset
+      - total_count
+      title: PaginatedListCloudDocumentsResponse
+    WebhookConfiguration:
+      properties:
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+          description: URL to receive webhook POST notifications
+          examples:
+          - https://example.com/webhooks/llamacloud
+        webhook_headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Webhook Headers
+          description: Custom HTTP headers sent with each webhook request (e.g. auth tokens)
+          examples:
+          - Authorization: Bearer sk-...
+        webhook_events:
+          anyOf:
+          - items:
+              type: string
+              enum:
+              - extract.pending
+              - extract.success
+              - extract.error
+              - extract.partial_success
+              - extract.cancelled
+              - parse.pending
+              - parse.running
+              - parse.success
+              - parse.error
+              - parse.partial_success
+              - parse.cancelled
+              - classify.pending
+              - classify.running
+              - classify.success
+              - classify.error
+              - classify.partial_success
+              - classify.cancelled
+              - sheets.pending
+              - sheets.success
+              - sheets.error
+              - sheets.partial_success
+              - sheets.cancelled
+              - unmapped_event
+            type: array
+          - type: 'null'
+          title: Webhook Events
+          description: Events to subscribe to (e.g. 'parse.success', 'extract.error'). If null, all events are delivered.
+          examples:
+          - - parse.success
+            - parse.error
+        webhook_output_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Output Format
+          description: 'Response format sent to the webhook: ''string'' (default) or ''json'''
+          examples:
+          - json
+      type: object
+      title: WebhookConfiguration
+      description: Configuration for a single outbound webhook endpoint.
+    CloudQdrantVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          const: true
+          title: Supports Nested Metadata Filters
+          default: true
+        collection_name:
+          type: string
+          title: Collection Name
+        url:
+          type: string
+          title: Url
+        api_key:
+          type: string
+          format: password
+          title: Api Key
+          writeOnly: true
+        max_retries:
+          type: integer
+          title: Max Retries
+          default: 3
+        client_kwargs:
+          additionalProperties: true
+          type: object
+          title: Client Kwargs
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudQdrantVectorStore
+      type: object
+      required:
+      - collection_name
+      - url
+      - api_key
+      title: CloudQdrantVectorStore
+      description: "Cloud Qdrant Vector Store.\n\nThis class is used to store the configuration for a Qdrant vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    collection_name (str): name of the Qdrant collection\n    url (str): url of the Qdrant instance\n    api_key (str): API key for authenticating with Qdrant\n    max_retries (int): maximum number of retries in case of a failure. Defaults to 3\n    client_kwargs (dict): additional kwargs to pass to the Qdrant client"
+    RetrieveResults:
+      properties:
+        pipeline_id:
+          type: string
+          format: uuid
+          title: Pipeline Id
+          description: The ID of the pipeline that the query was retrieved against.
+        retrieval_nodes:
+          items:
+            $ref: '#/components/schemas/TextNodeWithScore'
+          type: array
+          title: Retrieval Nodes
+          description: The nodes retrieved by the pipeline for the given query.
+        image_nodes:
+          items:
+            $ref: '#/components/schemas/PageScreenshotNodeWithScore'
+          type: array
+          title: Image Nodes
+          description: The image nodes retrieved by the pipeline for the given query. Deprecated - will soon be replaced with 'page_screenshot_nodes'.
+          deprecated: true
+        page_figure_nodes:
+          items:
+            $ref: '#/components/schemas/PageFigureNodeWithScore'
+          type: array
+          title: Page Figure Nodes
+          description: The page figure nodes retrieved by the pipeline for the given query.
+        retrieval_latency:
+          additionalProperties:
+            type: number
+          type: object
+          title: Retrieval Latency
+          description: The end-to-end latency for retrieval and reranking.
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+          title: Metadata
+          description: Metadata associated with the retrieval execution
+        inferred_search_filters:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataFilters'
+          - type: 'null'
+          description: The inferred search filters for the query.
+        class_name:
+          type: string
+          title: Class Name
+          default: RetrieveResults
+      type: object
+      required:
+      - pipeline_id
+      - retrieval_nodes
+      title: RetrieveResults
+      description: Schema for the result of an retrieval execution.
+    MessageRole:
+      type: string
+      enum:
+      - system
+      - developer
+      - user
+      - assistant
+      - function
+      - tool
+      - chatbot
+      - model
+      title: MessageRole
+      description: Message role.
+    BedrockEmbedding:
+      properties:
+        model_name:
+          type: string
+          title: Model Name
+          description: The modelId of the Bedrock model to use.
+          default: amazon.titan-embed-text-v1
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        profile_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Profile Name
+          description: The name of aws profile to use. If not given, then the default profile is used.
+        aws_access_key_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Aws Access Key Id
+          description: AWS Access Key ID to use
+        aws_secret_access_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Aws Secret Access Key
+          description: AWS Secret Access Key to use
+        aws_session_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Aws Session Token
+          description: AWS Session Token to use
+        region_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Region Name
+          description: AWS region name to use. Uses region configured in AWS CLI if not passed
+        max_retries:
+          type: integer
+          exclusiveMinimum: 0.0
+          title: Max Retries
+          description: The maximum number of API retries.
+          default: 10
+        timeout:
+          type: number
+          title: Timeout
+          description: The timeout for the Bedrock API request in seconds. It will be used for both connect and read timeouts.
+          default: 60.0
+        additional_kwargs:
+          additionalProperties: true
+          type: object
+          title: Additional Kwargs
+          description: Additional kwargs for the bedrock client.
+        class_name:
+          type: string
+          title: Class Name
+          default: BedrockEmbedding
+      type: object
+      title: BedrockEmbedding
+    RelatedNodeInfo:
+      properties:
+        node_id:
+          type: string
+          title: Node Id
+        node_type:
+          anyOf:
+          - $ref: '#/components/schemas/ObjectType'
+          - type: string
+          - type: 'null'
+          title: Node Type
+        metadata:
+          additionalProperties: true
+          type: object
+          title: Metadata
+        hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hash
+        class_name:
+          type: string
+          title: Class Name
+          default: RelatedNodeInfo
+      type: object
+      required:
+      - node_id
+      title: RelatedNodeInfo
+    HuggingFaceInferenceAPIEmbedding:
+      properties:
+        model_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Model Name
+          description: Hugging Face model name. If None, the task will be used.
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        pooling:
+          anyOf:
+          - $ref: '#/components/schemas/Pooling'
+          - type: 'null'
+          description: Pooling strategy. If None, the model's default pooling is used.
+          default: cls
+        query_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query Instruction
+          description: Instruction to prepend during query embedding.
+        text_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text Instruction
+          description: Instruction to prepend during text embedding.
+        token:
+          anyOf:
+          - type: string
+          - type: boolean
+          - type: 'null'
+          title: Token
+          description: Hugging Face token. Will default to the locally saved token. Pass token=False if you don’t want to send your token to the server.
+        timeout:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Timeout
+          description: The maximum number of seconds to wait for a response from the server. Loading a new model in Inference API can take up to several minutes. Defaults to None, meaning it will loop until the server is available.
+        headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Headers
+          description: Additional headers to send to the server. By default only the authorization and user-agent headers are sent. Values in this dictionary will override the default values.
+        cookies:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Cookies
+          description: Additional cookies to send to the server.
+        task:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task
+          description: Optional task to pick Hugging Face's recommended model, used when model_name is left as default of None.
+        class_name:
+          type: string
+          title: Class Name
+          default: HuggingFaceInferenceAPIEmbedding
+      type: object
+      title: HuggingFaceInferenceAPIEmbedding
+    InputMessage:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: ID of the message, if any. a UUID.
+        role:
+          $ref: '#/components/schemas/MessageRole'
+        content:
+          type: string
+          title: Content
+        data:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Data
+          description: Additional data to be stored with the message.
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      required:
+      - role
+      - content
+      title: InputMessage
+      description: This is distinct from a ChatMessage because this schema is enforced by the AI Chat library used in the frontend
+    EmbeddingModelConfig:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: The name of the embedding model config.
+        embedding_config:
+          oneOf:
+          - $ref: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+          - $ref: '#/components/schemas/CohereEmbeddingConfig'
+          - $ref: '#/components/schemas/GeminiEmbeddingConfig'
+          - $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+          - $ref: '#/components/schemas/OpenAIEmbeddingConfig'
+          - $ref: '#/components/schemas/VertexAIEmbeddingConfig'
+          - $ref: '#/components/schemas/BedrockEmbeddingConfig'
+          title: Embedding Config
+          description: The embedding configuration for the embedding model config.
+          discriminator:
+            propertyName: type
+            mapping:
+              AZURE_EMBEDDING: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+              BEDROCK_EMBEDDING: '#/components/schemas/BedrockEmbeddingConfig'
+              COHERE_EMBEDDING: '#/components/schemas/CohereEmbeddingConfig'
+              GEMINI_EMBEDDING: '#/components/schemas/GeminiEmbeddingConfig'
+              HUGGINGFACE_API_EMBEDDING: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+              OPENAI_EMBEDDING: '#/components/schemas/OpenAIEmbeddingConfig'
+              VERTEXAI_EMBEDDING: '#/components/schemas/VertexAIEmbeddingConfig'
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+      type: object
+      required:
+      - id
+      - name
+      - embedding_config
+      - project_id
+      title: EmbeddingModelConfig
+      description: Schema for an embedding model config.
+    PGVectorVectorType:
+      type: string
+      enum:
+      - vector
+      - half_vec
+      - bit
+      - sparse_vec
+      title: PGVectorVectorType
+      description: 'Vector storage formats for PGVector.
+
+        Docs:
+
+        https://github.com/pgvector/pgvector?tab=readme-ov-file#query-options'
+    ManagedIngestionStatus:
+      type: string
+      enum:
+      - NOT_STARTED
+      - IN_PROGRESS
+      - SUCCESS
+      - ERROR
+      - PARTIAL_SUCCESS
+      - CANCELLED
+      title: ManagedIngestionStatus
+      description: Status of managed ingestion with partial Updates.
+    PipelineConfigurationHashes:
+      properties:
+        embedding_config_hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Embedding Config Hash
+          description: Hash of the embedding config.
+          default: ''
+        parsing_config_hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parsing Config Hash
+          description: Hash of the llama parse parameters.
+          default: ''
+        transform_config_hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Transform Config Hash
+          description: Hash of the transform config.
+          default: ''
+      type: object
+      title: PipelineConfigurationHashes
+      description: Hashes for the configuration of a pipeline.
+    ConfigurableDataSinkNames:
+      type: string
+      enum:
+      - PINECONE
+      - POSTGRES
+      - QDRANT
+      - AZUREAI_SEARCH
+      - MONGODB_ATLAS
+      - MILVUS
+      - ASTRA_DB
+      title: ConfigurableDataSinkNames
+    DataSink:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: The name of the data sink.
+        sink_type:
+          $ref: '#/components/schemas/ConfigurableDataSinkNames'
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudPineconeVectorStore'
+          - $ref: '#/components/schemas/CloudPostgresVectorStore'
+          - $ref: '#/components/schemas/CloudQdrantVectorStore'
+          - $ref: '#/components/schemas/CloudAzureAISearchVectorStore'
+          - $ref: '#/components/schemas/CloudMongoDBAtlasVectorSearch'
+          - $ref: '#/components/schemas/CloudMilvusVectorStore'
+          - $ref: '#/components/schemas/CloudAstraDBVectorStore'
+          title: DataSinkCreateComponent
+          description: Component that implements the data sink
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+      type: object
+      required:
+      - id
+      - name
+      - sink_type
+      - component
+      - project_id
+      title: DataSink
+      description: Schema for a data sink.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    LlamaParseParameters:
+      properties:
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Outbound webhook endpoints to notify on job status changes
+        priority:
+          anyOf:
+          - type: string
+            enum:
+            - low
+            - medium
+            - high
+            - critical
+          - type: 'null'
+          title: Priority
+          description: The priority for the request. This field may be ignored or overwritten depending on the organization tier.
+        languages:
+          items:
+            $ref: '#/components/schemas/ParserLanguages'
+          type: array
+          minItems: 1
+          title: Languages
+        parsing_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parsing Instruction
+          default: ''
+        disable_ocr:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Ocr
+          default: false
+        annotate_links:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Annotate Links
+          default: false
+        adaptive_long_table:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Adaptive Long Table
+          default: false
+        compact_markdown_table:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Compact Markdown Table
+          default: false
+        disable_reconstruction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Reconstruction
+          default: false
+        disable_image_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Image Extraction
+          default: false
+        invalidate_cache:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Invalidate Cache
+          default: false
+        outlined_table_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Outlined Table Extraction
+          default: false
+        aggressive_table_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Aggressive Table Extraction
+          default: false
+        merge_tables_across_pages_in_markdown:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Merge Tables Across Pages In Markdown
+          default: false
+        output_pdf_of_document:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Output Pdf Of Document
+          default: false
+        do_not_cache:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Do Not Cache
+          default: false
+        fast_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fast Mode
+          default: false
+        skip_diagonal_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Skip Diagonal Text
+          default: false
+        preserve_layout_alignment_across_pages:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Preserve Layout Alignment Across Pages
+          default: false
+        preserve_very_small_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Preserve Very Small Text
+          default: false
+        gpt4o_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Gpt4O Mode
+          default: false
+        gpt4o_api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Gpt4O Api Key
+        do_not_unroll_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Do Not Unroll Columns
+          default: false
+        extract_layout:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Layout
+          default: false
+        high_res_ocr:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: High Res Ocr
+          default: false
+        html_make_all_elements_visible:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Html Make All Elements Visible
+          default: false
+        layout_aware:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Layout Aware
+          default: false
+        specialized_chart_parsing_agentic:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Specialized Chart Parsing Agentic
+          default: false
+        specialized_chart_parsing_plus:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Specialized Chart Parsing Plus
+          default: false
+        specialized_chart_parsing_efficient:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Specialized Chart Parsing Efficient
+          default: false
+        specialized_image_parsing:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Specialized Image Parsing
+          default: false
+        precise_bounding_box:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Precise Bounding Box
+          default: false
+        line_level_bounding_box:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Line Level Bounding Box
+          default: false
+        html_remove_navigation_elements:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Html Remove Navigation Elements
+          default: false
+        html_remove_fixed_elements:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Html Remove Fixed Elements
+          default: false
+        guess_xlsx_sheet_name:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Guess Xlsx Sheet Name
+          default: false
+        page_separator:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Separator
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+        bbox_top:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bbox Top
+        bbox_right:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bbox Right
+        bbox_bottom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bbox Bottom
+        bbox_left:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bbox Left
+        target_pages:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Pages
+        use_vendor_multimodal_model:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Use Vendor Multimodal Model
+          default: false
+        vendor_multimodal_model_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vendor Multimodal Model Name
+        model:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Model
+        vendor_multimodal_api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vendor Multimodal Api Key
+        page_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Prefix
+        page_suffix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Suffix
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+        preset:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preset
+        take_screenshot:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Take Screenshot
+          default: false
+        is_formatting_instruction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Formatting Instruction
+          default: true
+        premium_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Premium Mode
+          default: false
+        continuous_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Continuous Mode
+          default: false
+        input_s3_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input S3 Path
+        input_s3_region:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input S3 Region
+        output_s3_path_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Output S3 Path Prefix
+        output_s3_region:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Output S3 Region
+        project_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Project Id
+        azure_openai_deployment_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Openai Deployment Name
+        azure_openai_endpoint:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Openai Endpoint
+        azure_openai_api_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Openai Api Version
+        azure_openai_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Openai Key
+        input_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input Url
+        http_proxy:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Http Proxy
+        auto_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Auto Mode
+          default: false
+        auto_mode_trigger_on_regexp_in_page:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Auto Mode Trigger On Regexp In Page
+        auto_mode_trigger_on_text_in_page:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Auto Mode Trigger On Text In Page
+        auto_mode_trigger_on_table_in_page:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Auto Mode Trigger On Table In Page
+          default: false
+        auto_mode_trigger_on_image_in_page:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Auto Mode Trigger On Image In Page
+          default: false
+        auto_mode_configuration_json:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Auto Mode Configuration Json
+        structured_output:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Structured Output
+          default: false
+        structured_output_json_schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Structured Output Json Schema
+        structured_output_json_schema_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Structured Output Json Schema Name
+        max_pages:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Pages
+        max_pages_enforced:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Pages Enforced
+        extract_charts:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Charts
+          default: false
+        formatting_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Formatting Instruction
+        complemental_formatting_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Complemental Formatting Instruction
+        content_guideline_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content Guideline Instruction
+        spreadsheet_extract_sub_tables:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Spreadsheet Extract Sub Tables
+          default: false
+        spreadsheet_force_formula_computation:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Spreadsheet Force Formula Computation
+          default: false
+        spreadsheet_include_hidden_sheets:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Spreadsheet Include Hidden Sheets
+          default: false
+        inline_images_in_markdown:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Inline Images In Markdown
+          default: false
+        job_timeout_in_seconds:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Job Timeout In Seconds
+        job_timeout_extra_time_per_page_in_seconds:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Job Timeout Extra Time Per Page In Seconds
+        strict_mode_image_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict Mode Image Extraction
+          default: false
+        strict_mode_image_ocr:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict Mode Image Ocr
+          default: false
+        strict_mode_reconstruction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict Mode Reconstruction
+          default: false
+        strict_mode_buggy_font:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict Mode Buggy Font
+          default: false
+        save_images:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Save Images
+          default: true
+        images_to_save:
+          anyOf:
+          - items:
+              type: string
+              enum:
+              - screenshot
+              - embedded
+              - layout
+            type: array
+          - type: 'null'
+          title: Images To Save
+        hide_headers:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hide Headers
+          default: false
+        hide_footers:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hide Footers
+          default: false
+        page_header_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Header Prefix
+        page_header_suffix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Header Suffix
+        page_footer_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Footer Prefix
+        page_footer_suffix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Footer Suffix
+        remove_hidden_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Remove Hidden Text
+          default: false
+        keep_page_separator_when_merging_tables:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Keep Page Separator When Merging Tables
+          default: false
+        ignore_document_elements_for_layout_detection:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Document Elements For Layout Detection
+          default: false
+        output_tables_as_HTML:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Output Tables As Html
+          default: false
+        internal_is_screenshot_job:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Internal Is Screenshot Job
+          default: false
+        parse_mode:
+          anyOf:
+          - $ref: '#/components/schemas/ParsingMode'
+          - type: 'null'
+        system_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: System Prompt
+        system_prompt_append:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: System Prompt Append
+        user_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Prompt
+        page_error_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Page Error Tolerance
+          default: 0.05
+        replace_failed_page_mode:
+          anyOf:
+          - $ref: '#/components/schemas/FailPageMode'
+          - type: 'null'
+          default: raw_text
+        replace_failed_page_with_error_message_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Replace Failed Page With Error Message Prefix
+        replace_failed_page_with_error_message_suffix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Replace Failed Page With Error Message Suffix
+        markdown_table_multiline_header_separator:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Markdown Table Multiline Header Separator
+        presentation_out_of_bounds_content:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Presentation Out Of Bounds Content
+          default: false
+        presentation_skip_embedded_data:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Presentation Skip Embedded Data
+          default: false
+        tier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tier
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Version
+        extract_printed_page_number:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Printed Page Number
+          default: false
+        enable_cost_optimizer:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable Cost Optimizer
+      type: object
+      title: LlamaParseParameters
+    BedrockEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: BEDROCK_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: BEDROCK_EMBEDDING
+        component:
+          $ref: '#/components/schemas/BedrockEmbedding'
+          description: Configuration for the Bedrock embedding model.
+      type: object
+      title: BedrockEmbeddingConfig
+    PipelineCreate:
+      properties:
+        embedding_config:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+            - $ref: '#/components/schemas/CohereEmbeddingConfig'
+            - $ref: '#/components/schemas/GeminiEmbeddingConfig'
+            - $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+            - $ref: '#/components/schemas/OpenAIEmbeddingConfig'
+            - $ref: '#/components/schemas/VertexAIEmbeddingConfig'
+            - $ref: '#/components/schemas/BedrockEmbeddingConfig'
+            discriminator:
+              propertyName: type
+              mapping:
+                AZURE_EMBEDDING: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+                BEDROCK_EMBEDDING: '#/components/schemas/BedrockEmbeddingConfig'
+                COHERE_EMBEDDING: '#/components/schemas/CohereEmbeddingConfig'
+                GEMINI_EMBEDDING: '#/components/schemas/GeminiEmbeddingConfig'
+                HUGGINGFACE_API_EMBEDDING: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+                OPENAI_EMBEDDING: '#/components/schemas/OpenAIEmbeddingConfig'
+                VERTEXAI_EMBEDDING: '#/components/schemas/VertexAIEmbeddingConfig'
+          - type: 'null'
+          title: Embedding Config
+        transform_config:
+          anyOf:
+          - $ref: '#/components/schemas/AutoTransformConfig'
+          - $ref: '#/components/schemas/AdvancedModeTransformConfig'
+          - type: 'null'
+          title: Transform Config
+          description: Configuration for the transformation.
+        sparse_model_config:
+          anyOf:
+          - $ref: '#/components/schemas/SparseModelConfig'
+          - type: 'null'
+          description: Configuration for the sparse model used in hybrid search.
+        data_sink_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Sink Id
+          description: Data sink ID. When provided instead of data_sink, the data sink will be looked up by ID.
+        embedding_model_config_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Embedding Model Config Id
+          description: Embedding model config ID. When provided instead of embedding_config, the embedding model config will be looked up by ID.
+        data_sink:
+          anyOf:
+          - $ref: '#/components/schemas/DataSinkCreate'
+          - type: 'null'
+          description: Data sink. When provided instead of data_sink_id, the data sink will be created.
+        preset_retrieval_parameters:
+          $ref: '#/components/schemas/PresetRetrievalParams'
+          description: Preset retrieval parameters for the pipeline.
+        llama_parse_parameters:
+          $ref: '#/components/schemas/LlamaParseParameters'
+          description: Settings that can be configured for how to use LlamaParse to parse files within a LlamaCloud pipeline.
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+          description: Status of the pipeline deployment.
+        metadata_config:
+          anyOf:
+          - $ref: '#/components/schemas/PipelineMetadataConfig'
+          - type: 'null'
+          description: Metadata configuration for the pipeline.
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+        pipeline_type:
+          $ref: '#/components/schemas/PipelineType'
+          description: Type of pipeline. Either PLAYGROUND or MANAGED.
+          default: MANAGED
+        managed_pipeline_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Managed Pipeline Id
+          description: The ID of the ManagedPipeline this playground pipeline is linked to.
+      type: object
+      required:
+      - name
+      title: PipelineCreate
+      description: Schema for creating a pipeline.
+    PipelineUpdate:
+      properties:
+        embedding_config:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+            - $ref: '#/components/schemas/CohereEmbeddingConfig'
+            - $ref: '#/components/schemas/GeminiEmbeddingConfig'
+            - $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+            - $ref: '#/components/schemas/OpenAIEmbeddingConfig'
+            - $ref: '#/components/schemas/VertexAIEmbeddingConfig'
+            - $ref: '#/components/schemas/BedrockEmbeddingConfig'
+            discriminator:
+              propertyName: type
+              mapping:
+                AZURE_EMBEDDING: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+                BEDROCK_EMBEDDING: '#/components/schemas/BedrockEmbeddingConfig'
+                COHERE_EMBEDDING: '#/components/schemas/CohereEmbeddingConfig'
+                GEMINI_EMBEDDING: '#/components/schemas/GeminiEmbeddingConfig'
+                HUGGINGFACE_API_EMBEDDING: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+                OPENAI_EMBEDDING: '#/components/schemas/OpenAIEmbeddingConfig'
+                VERTEXAI_EMBEDDING: '#/components/schemas/VertexAIEmbeddingConfig'
+          - type: 'null'
+          title: Embedding Config
+        transform_config:
+          anyOf:
+          - $ref: '#/components/schemas/AutoTransformConfig'
+          - $ref: '#/components/schemas/AdvancedModeTransformConfig'
+          - type: 'null'
+          title: Transform Config
+          description: Configuration for the transformation.
+        sparse_model_config:
+          anyOf:
+          - $ref: '#/components/schemas/SparseModelConfig'
+          - type: 'null'
+          description: Configuration for the sparse model used in hybrid search.
+        data_sink_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Sink Id
+          description: Data sink ID. When provided instead of data_sink, the data sink will be looked up by ID.
+        embedding_model_config_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Embedding Model Config Id
+          description: Embedding model config ID. When provided instead of embedding_config, the embedding model config will be looked up by ID.
+        data_sink:
+          anyOf:
+          - $ref: '#/components/schemas/DataSinkCreate'
+          - type: 'null'
+          description: Data sink. When provided instead of data_sink_id, the data sink will be created.
+        preset_retrieval_parameters:
+          anyOf:
+          - $ref: '#/components/schemas/PresetRetrievalParams'
+          - type: 'null'
+          description: Preset retrieval parameters for the pipeline.
+        llama_parse_parameters:
+          anyOf:
+          - $ref: '#/components/schemas/LlamaParseParameters'
+          - type: 'null'
+          description: Settings that can be configured for how to use LlamaParse to parse files within a LlamaCloud pipeline.
+          deprecated: true
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+          description: Status of the pipeline deployment.
+        metadata_config:
+          anyOf:
+          - $ref: '#/components/schemas/PipelineMetadataConfig'
+          - type: 'null'
+          description: Metadata configuration for the pipeline.
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        managed_pipeline_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Managed Pipeline Id
+          description: The ID of the ManagedPipeline this playground pipeline is linked to.
+      type: object
+      title: PipelineUpdate
+      description: Schema for updating a pipeline.
+    AzureOpenAIEmbedding:
+      properties:
+        model_name:
+          type: string
+          title: Model Name
+          description: The name of the OpenAI embedding model.
+          default: text-embedding-ada-002
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        additional_kwargs:
+          additionalProperties: true
+          type: object
+          title: Additional Kwargs
+          description: Additional kwargs for the OpenAI API.
+        api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Key
+          description: The OpenAI API key.
+        api_base:
+          type: string
+          title: Api Base
+          description: The base URL for Azure deployment.
+          default: ''
+        api_version:
+          type: string
+          title: Api Version
+          description: The version for Azure OpenAI API.
+          default: ''
+        max_retries:
+          type: integer
+          minimum: 0.0
+          title: Max Retries
+          description: Maximum number of retries.
+          default: 10
+        timeout:
+          type: number
+          minimum: 0.0
+          title: Timeout
+          description: Timeout for each request.
+          default: 60.0
+        default_headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Default Headers
+          description: The default headers for API requests.
+        reuse_client:
+          type: boolean
+          title: Reuse Client
+          description: Reuse the OpenAI client between requests. When doing anything with large volumes of async API calls, setting this to false can improve stability.
+          default: true
+        dimensions:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Dimensions
+          description: The number of dimensions on the output embedding vectors. Works only with v3 embedding models.
+        azure_endpoint:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Endpoint
+          description: The Azure endpoint to use.
+        azure_deployment:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Deployment
+          description: The Azure deployment to use.
+        class_name:
+          type: string
+          title: Class Name
+          default: AzureOpenAIEmbedding
+      type: object
+      title: AzureOpenAIEmbedding
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

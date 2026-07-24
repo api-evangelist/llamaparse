@@ -1,0 +1,491 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Split API
+  version: 0.1.0
+tags:
+- name: Split
+paths:
+  /api/v1/beta/split/jobs:
+    post:
+      tags:
+      - Split
+      summary: Create Split Job
+      description: Create a document split job.
+      operationId: create_split_job_api_v1_beta_split_jobs_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SplitCreateRequest'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Split
+      summary: List Split Jobs
+      description: List document split jobs.
+      operationId: list_split_jobs_api_v1_beta_split_jobs_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - enum:
+            - pending
+            - processing
+            - completed
+            - failed
+            - cancelled
+            type: string
+          - type: 'null'
+          description: Filter by job status (pending, processing, completed, failed, cancelled)
+          title: Status
+        description: Filter by job status (pending, processing, completed, failed, cancelled)
+      - name: job_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by specific job IDs
+          title: Job Ids
+        description: Filter by specific job IDs
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+      - name: created_at_on_or_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Include items created at or after this timestamp (inclusive)
+          title: Created At On Or After
+        description: Include items created at or after this timestamp (inclusive)
+      - name: created_at_on_or_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Include items created at or before this timestamp (inclusive)
+          title: Created At On Or Before
+        description: Include items created at or before this timestamp (inclusive)
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitJobQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/split/jobs/{split_job_id}:
+    get:
+      tags:
+      - Split
+      summary: Get Split Job
+      description: Get a document split job.
+      operationId: get_split_job_api_v1_beta_split_jobs__split_job_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: split_job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Split Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    SplitCategory:
+      properties:
+        name:
+          type: string
+          maxLength: 200
+          minLength: 1
+          title: Name
+          description: Name of the category.
+        description:
+          anyOf:
+          - type: string
+            maxLength: 2000
+            minLength: 1
+          - type: 'null'
+          title: Description
+          description: Optional description of what content belongs in this category.
+      type: object
+      required:
+      - name
+      title: SplitCategory
+      description: Category definition for document splitting.
+    SplitResultResponse:
+      properties:
+        segments:
+          items:
+            $ref: '#/components/schemas/SplitSegmentResponse'
+          type: array
+          title: Segments
+          description: List of document segments.
+      type: object
+      required:
+      - segments
+      title: SplitResultResponse
+      description: Result of a completed split job.
+    SplitSegmentResponse:
+      properties:
+        category:
+          type: string
+          title: Category
+          description: Category name this split belongs to.
+        pages:
+          items:
+            type: integer
+          type: array
+          title: Pages
+          description: 1-indexed page numbers in this split.
+        confidence_category:
+          type: string
+          title: Confidence Category
+          description: 'Categorical confidence level. Valid values are: high, medium, low.'
+      type: object
+      required:
+      - category
+      - pages
+      - confidence_category
+      title: SplitSegmentResponse
+      description: A segment of the split document.
+    SplitStrategy:
+      properties:
+        allow_uncategorized:
+          type: string
+          enum:
+          - include
+          - forbid
+          - omit
+          title: Allow Uncategorized
+          description: 'Controls handling of pages that don''t match any category. ''include'': pages can be grouped as ''uncategorized'' and included in results. ''forbid'': all pages must be assigned to a defined category. ''omit'': pages can be classified as ''uncategorized'' but are excluded from results.'
+          default: include
+      type: object
+      title: SplitStrategy
+      description: Configuration for how to split the document.
+    SplitDocumentInput:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: 'Type of document input. Valid values are: file_id'
+        value:
+          type: string
+          title: Value
+          description: Document identifier.
+      type: object
+      required:
+      - type
+      - value
+      title: SplitDocumentInput
+      description: Document input specification for beta API.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SplitConfiguration:
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/SplitCategory'
+          type: array
+          maxItems: 50
+          minItems: 1
+          title: Categories
+          description: Categories to split documents into.
+        splitting_strategy:
+          $ref: '#/components/schemas/SplitStrategy'
+          description: Strategy for splitting documents.
+      type: object
+      required:
+      - categories
+      title: SplitConfiguration
+      description: Split configuration with categories and splitting strategy.
+    SplitJobQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SplitJobResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: SplitJobQueryResponse
+      description: Beta paginated list of split jobs.
+    SplitCreateRequest:
+      properties:
+        document_input:
+          $ref: '#/components/schemas/SplitDocumentInput'
+          description: Document to be split.
+        configuration:
+          anyOf:
+          - $ref: '#/components/schemas/SplitConfiguration'
+          - type: 'null'
+          description: Inline split configuration.
+        configuration_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Configuration Id
+          description: Saved split configuration ID.
+      type: object
+      required:
+      - document_input
+      title: SplitCreateRequest
+      description: Beta create request — accepts legacy document_input and flat formats.
+    SplitJobResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique identifier for the split job.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        project_id:
+          type: string
+          title: Project Id
+          description: Project ID this job belongs to.
+        user_id:
+          type: string
+          title: User Id
+          description: User ID who created this job.
+        configuration_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Configuration Id
+          description: Split configuration ID used for this job.
+        document_input:
+          $ref: '#/components/schemas/SplitDocumentInput'
+          description: Document that was split.
+        categories:
+          items:
+            $ref: '#/components/schemas/SplitCategory'
+          type: array
+          title: Categories
+          description: Categories used for splitting.
+        status:
+          type: string
+          title: Status
+          description: 'Current status of the job. Valid values are: pending, processing, completed, failed, cancelled.'
+        result:
+          anyOf:
+          - $ref: '#/components/schemas/SplitResultResponse'
+          - type: 'null'
+          description: Split result (available when status is COMPLETED).
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+          description: Error message if the job failed.
+      type: object
+      required:
+      - id
+      - project_id
+      - user_id
+      - document_input
+      - categories
+      - status
+      title: SplitJobResponse
+      description: Beta response — uses nested document_input object.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

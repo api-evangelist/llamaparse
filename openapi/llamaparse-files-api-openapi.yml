@@ -1,0 +1,711 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Files API
+  version: 0.1.0
+tags:
+- name: Files
+paths:
+  /api/v1/beta/files:
+    get:
+      tags:
+      - Files
+      summary: List Files
+      description: 'List files with optional filtering and pagination.
+
+
+        Filter by `file_name`, `file_ids`, or `external_file_id`.
+
+        Supports cursor-based pagination and custom ordering.'
+      operationId: list_files_api_v1_beta_files_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 1000
+            minimum: 1
+          - type: 'null'
+          description: The maximum number of items to return. Defaults to 50, maximum is 1000.
+          title: Page Size
+        description: The maximum number of items to return. Defaults to 50, maximum is 1000.
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: A page token received from a previous list call. Provide this to retrieve the subsequent page.
+          title: Page Token
+        description: A page token received from a previous list call. Provide this to retrieve the subsequent page.
+      - name: file_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+              format: uuid
+          - type: 'null'
+          description: Filter by specific file IDs.
+          title: File Ids
+        description: Filter by specific file IDs.
+      - name: file_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by file name (exact match).
+          title: File Name
+        description: Filter by file name (exact match).
+      - name: external_file_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by external file ID.
+          title: External File Id
+        description: Filter by external file ID.
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: A comma-separated list of fields to order by, sorted in ascending order. Use 'field_name desc' to specify descending order.
+          title: Order By
+        description: A comma-separated list of fields to order by, sorted in ascending order. Use 'field_name desc' to specify descending order.
+      - name: expand
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Fields to expand on each file.
+          examples:
+          - download_url
+          title: Expand
+        description: Fields to expand on each file.
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileQueryResponseV2'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - Files
+      summary: Upload File
+      description: 'Upload a file using multipart/form-data.
+
+
+        Set `purpose` to indicate how the file will be used:
+
+        `user_data`, `parse`, `extract`, `classify`, `split`,
+
+        `sheet`, or `agent_app`.
+
+
+        Returns the created file metadata including its ID for use
+
+        in subsequent parse, extract, or classify operations.'
+      operationId: upload_file_api_v1_beta_files_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_file_api_v1_beta_files_post'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileV2'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/files/query:
+    post:
+      tags:
+      - Files
+      summary: Query Files
+      description: 'Query files with filtering and pagination. Deprecated: use `GET /files`.'
+      operationId: query_files_api_v1_beta_files_query_post
+      deprecated: true
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileQueryRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileQueryResponseV2'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/files/{file_id}:
+    get:
+      tags:
+      - Files
+      summary: Get File
+      description: Get file metadata by ID.
+      operationId: get_file_api_v1_beta_files__file_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: File Id
+      - name: expand
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Fields to expand.
+          examples:
+          - download_url
+          title: Expand
+        description: Fields to expand.
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileV2'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Files
+      summary: Delete File
+      description: Delete a file from the project.
+      operationId: delete_file_api_v1_beta_files__file_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: File Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/files/{file_id}/content:
+    get:
+      tags:
+      - Files
+      summary: Read File Content
+      description: Get a presigned URL to download the file content.
+      operationId: read_file_content_api_v1_beta_files__file_id__content_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: File Id
+      - name: expires_at_seconds
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Expires At Seconds
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresignedUrl'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    FileFilter:
+      properties:
+        project_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+          description: Filter by project ID
+        file_ids:
+          anyOf:
+          - items:
+              type: string
+              format: uuid
+            type: array
+          - type: 'null'
+          title: File Ids
+          description: Filter by specific file IDs
+        file_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name
+          description: Filter by file name
+        data_source_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+          description: Filter by data source ID
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: Filter by external file ID
+        only_manually_uploaded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Only Manually Uploaded
+          description: Filter only manually uploaded files (data_source_id is null)
+      type: object
+      title: FileFilter
+      description: Filter parameters for file queries.
+    FileQueryRequest:
+      properties:
+        page_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
+        page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
+        filter:
+          anyOf:
+          - $ref: '#/components/schemas/FileFilter'
+          - type: 'null'
+          description: A filter object or expression that filters resources listed in the response.
+        order_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Order By
+          description: A comma-separated list of fields to order by, sorted in ascending order. Use 'field_name desc' to specify descending order.
+      type: object
+      title: FileQueryRequest
+      description: Request schema for querying files with pagination and filtering.
+    FileV2:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique file identifier
+          examples:
+          - dfl-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+          description: File name including extension
+          examples:
+          - invoice.pdf
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: Optional ID for correlating with an external system
+          examples:
+          - ext-12345
+        file_type:
+          anyOf:
+          - type: string
+            maxLength: 3000
+            minLength: 1
+          - type: 'null'
+          title: File Type
+          description: File extension (pdf, docx, png, etc.)
+          examples:
+          - pdf
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+          description: Project this file belongs to
+          examples:
+          - 123e4567-e89b-12d3-a456-426614174000
+        last_modified_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Modified At
+          description: When the file was last modified (ISO 8601)
+        expires_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expires At
+          description: When the file expires and may be automatically removed. Null means no expiration.
+        purpose:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Purpose
+          description: 'How the file will be used: user_data, parse, extract, classify, split, sheet, or agent_app'
+          examples:
+          - parse
+        download_url:
+          anyOf:
+          - $ref: '#/components/schemas/PresignedUrl'
+          - type: 'null'
+          description: Presigned URL to download the file content.
+      type: object
+      required:
+      - id
+      - name
+      - project_id
+      title: FileV2
+      description: An uploaded file.
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    FileQueryResponseV2:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FileV2'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: FileQueryResponseV2
+      description: Paginated list of files.
+    Body_upload_file_api_v1_beta_files_post:
+      properties:
+        purpose:
+          type: string
+          title: Purpose
+          description: 'The intended purpose of the file. Valid values: ''user_data'', ''parse'', ''extract'', ''split'', ''classify'', ''sheet'', ''agent_app''. This determines the storage and retention policy for the file.'
+        file:
+          type: string
+          format: binary
+          title: File
+          description: The file to upload
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: The ID of the file in the external system
+      type: object
+      required:
+      - purpose
+      - file
+      title: Body_upload_file_api_v1_beta_files_post
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

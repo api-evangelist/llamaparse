@@ -1,0 +1,798 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Retrieval API
+  version: 0.1.0
+tags:
+- name: Retrieval
+paths:
+  /api/v1/retrieval/retrieve:
+    post:
+      tags:
+      - Retrieval
+      summary: Retrieve
+      description: Retrieve relevant chunks via hybrid search (vector + full-text), with filtering on built-in or user-defined metadata.
+      operationId: retrieve_api_v1_retrieval_retrieve_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrieveParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrieveResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/retrieval/files/find:
+    post:
+      tags:
+      - Retrieval
+      summary: Find Files
+      description: Search for files by name.
+      operationId: find_files_api_v1_retrieval_files_find_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileFindParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileFindResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/retrieval/files/grep:
+    post:
+      tags:
+      - Retrieval
+      summary: Grep File
+      description: Grep within a file's parsed content using a regex pattern.
+      operationId: grep_file_api_v1_retrieval_files_grep_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileGrepParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileGrepResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/retrieval/files/read:
+    post:
+      tags:
+      - Retrieval
+      summary: Read File
+      description: Read the parsed text content of a specific file.
+      operationId: read_file_api_v1_retrieval_files_read_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileReadParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileReadResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    MetadataDict:
+      additionalProperties:
+        $ref: '#/components/schemas/MetadataValue'
+      type: object
+    MetadataListValue:
+      items:
+        type: string
+      type: array
+    FilterType_str_:
+      properties:
+        operator:
+          type: string
+          enum:
+          - eq
+          - ne
+          - gt
+          - lt
+          - gte
+          - lte
+          - in
+          - nin
+          title: Operator
+        value:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          title: Value
+      type: object
+      required:
+      - operator
+      - value
+      title: FilterType[str]
+    MetadataScalarValue:
+      anyOf:
+      - type: string
+      - type: integer
+      - type: number
+      - type: boolean
+      - type: 'null'
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    MetadataValue:
+      anyOf:
+      - $ref: '#/components/schemas/MetadataScalarValue'
+      - $ref: '#/components/schemas/MetadataListValue'
+    RerankConfig:
+      properties:
+        enabled:
+          type: boolean
+          title: Enabled
+          description: Set to false to disable reranking.
+          default: true
+        top_n:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Top N
+          description: Number of results to return after reranking.
+          examples:
+          - 5
+      type: object
+      title: RerankConfig
+      description: Reranking configuration to apply after hybrid search.
+    RetrieveResult:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/RetrievalResult'
+          type: array
+          title: Results
+          description: Ordered list of retrieved chunks.
+      type: object
+      required:
+      - results
+      title: RetrieveResult
+      description: Response containing retrieval results.
+    FileGrepMatch:
+      properties:
+        start_char:
+          type: integer
+          title: Start Char
+          description: Start character offset of the match.
+        end_char:
+          type: integer
+          title: End Char
+          description: End character offset of the match.
+        content:
+          type: string
+          title: Content
+          description: Matched text content.
+      type: object
+      required:
+      - start_char
+      - end_char
+      - content
+      title: FileGrepMatch
+      description: A single grep match within a file.
+    AttachmentRef:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: Attachment kind, e.g. 'screenshot', 'items'.
+        attachment_name:
+          type: string
+          title: Attachment Name
+          description: Attachment-relative path, e.g. 'screenshots/page_7.jpg'.
+        source_id:
+          type: string
+          title: Source Id
+          description: File ID to pass as source_id when fetching the attachment.
+      type: object
+      required:
+      - type
+      - attachment_name
+      - source_id
+      title: AttachmentRef
+      description: Reference to a file attachment, retrievable via ``GET /api/v1/beta/attachments/{attachment_name}?source_id=...``.
+    FileReadParams:
+      properties:
+        index_id:
+          type: string
+          title: Index Id
+          description: ID of the index the file belongs to.
+          examples:
+          - idx-abc123
+        file_id:
+          type: string
+          title: File Id
+          description: ID of the file to read.
+        offset:
+          type: integer
+          title: Offset
+          description: Starting character offset.
+          default: 0
+        max_length:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Length
+          description: Maximum number of characters to read from the offset.
+      type: object
+      required:
+      - index_id
+      - file_id
+      title: FileReadParams
+      description: Read parsed content of a specific file.
+    RetrieveParams:
+      properties:
+        index_id:
+          type: string
+          title: Index Id
+          description: ID of the index to retrieve against.
+          examples:
+          - idx-abc123
+        query:
+          type: string
+          title: Query
+          description: Natural-language query to retrieve relevant chunks.
+          examples:
+          - What are the key findings?
+        top_k:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Top K
+          description: Maximum number of results to return.
+          examples:
+          - 10
+        num_candidates:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Candidates
+          description: Number of candidates for approximate nearest neighbor search.
+        vector_pipeline_weight:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Vector Pipeline Weight
+          description: Weight of the vector search pipeline (0-1).
+        full_text_pipeline_weight:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Full Text Pipeline Weight
+          description: Weight of the full-text search pipeline (0-1).
+        score_threshold:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Score Threshold
+          description: Minimum score threshold for returned results.
+        static_filters:
+          anyOf:
+          - $ref: '#/components/schemas/MongoStaticFilters'
+          - type: 'null'
+          description: Filters on built-in document fields (page range, chunk index, etc.).
+        custom_filters:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - $ref: '#/components/schemas/FilterType_Union_str__int__bool__float__'
+              - items:
+                  $ref: '#/components/schemas/FilterType_Union_int__float__'
+                type: array
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Filters
+          description: Filters on user-defined metadata fields.
+        rerank:
+          $ref: '#/components/schemas/RerankConfig'
+          description: Reranking configuration applied after hybrid search. Enabled by default.
+      type: object
+      required:
+      - index_id
+      - query
+      title: RetrieveParams
+      description: Hybrid retrieval request combining vector and full-text search.
+    RetrievalResult:
+      properties:
+        content:
+          type: string
+          title: Content
+          description: Text content of the retrieved chunk.
+        score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Score
+          description: Hybrid search relevance score.
+        rerank_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rerank Score
+          description: Relevance score from the reranker, if reranking was applied.
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataDict'
+          - type: 'null'
+          description: User-defined metadata associated with the chunk.
+        static_fields:
+          $ref: '#/components/schemas/StaticFields'
+      type: object
+      required:
+      - content
+      title: RetrievalResult
+      description: A single retrieval result.
+    FileFindEntry:
+      properties:
+        file_id:
+          type: string
+          title: File Id
+          description: ID of the file.
+        file_name:
+          type: string
+          title: File Name
+          description: Display name of the file.
+      type: object
+      required:
+      - file_id
+      - file_name
+      title: FileFindEntry
+      description: A file returned by find.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    FileFindParams:
+      properties:
+        page_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
+        page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
+        index_id:
+          type: string
+          title: Index Id
+          description: ID of the index to search within.
+          examples:
+          - idx-abc123
+        file_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name
+          description: Exact file name to match.
+        file_name_contains:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name Contains
+          description: Substring match on file name (case-insensitive).
+      type: object
+      required:
+      - index_id
+      title: FileFindParams
+      description: Search for files by name.
+    FileFindResult:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FileFindEntry'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: FileFindResult
+      description: Paginated file find results.
+    FileGrepParams:
+      properties:
+        page_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
+        page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
+        index_id:
+          type: string
+          title: Index Id
+          description: ID of the index the file belongs to.
+          examples:
+          - idx-abc123
+        file_id:
+          type: string
+          title: File Id
+          description: ID of the file to grep.
+        pattern:
+          type: string
+          title: Pattern
+          description: Regex pattern to search for.
+          examples:
+          - revenue|profit
+        context_chars:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Context Chars
+          description: Number of characters of context to include before and after the matched pattern in the content field of the response
+      type: object
+      required:
+      - index_id
+      - file_id
+      - pattern
+      title: FileGrepParams
+      description: Grep within a specific file's parsed content.
+    FilterType_Union_str__int__bool__float__:
+      properties:
+        operator:
+          type: string
+          enum:
+          - eq
+          - ne
+          - gt
+          - lt
+          - gte
+          - lte
+          - in
+          - nin
+          title: Operator
+        value:
+          anyOf:
+          - type: string
+          - type: integer
+          - type: boolean
+          - type: number
+          - items:
+              anyOf:
+              - type: string
+              - type: integer
+              - type: boolean
+              - type: number
+            type: array
+          title: Value
+      type: object
+      required:
+      - operator
+      - value
+      title: FilterType[Union[str, int, bool, float]]
+    MongoStaticFilters:
+      properties:
+        parsed_directory_file_id:
+          anyOf:
+          - $ref: '#/components/schemas/FilterType_str_'
+          - type: 'null'
+      type: object
+      title: MongoStaticFilters
+    StaticFields:
+      properties:
+        parsed_directory_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parsed Directory File Id
+          description: ID of the parsed file.
+        page_range_start:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Range Start
+          description: First page number covered by this chunk.
+        page_range_end:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Range End
+          description: Last page number covered by this chunk.
+        chunk_start_char:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk Start Char
+          description: Start character offset of the chunk.
+        chunk_end_char:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk End Char
+          description: End character offset of the chunk.
+        chunk_index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk Index
+          description: Index of the chunk within the file.
+        chunk_token_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk Token Count
+          description: Token count of the chunk.
+        attachments:
+          items:
+            $ref: '#/components/schemas/AttachmentRef'
+          type: array
+          title: Attachments
+          description: Attachments associated with the chunk
+      type: object
+      title: StaticFields
+      description: Built-in fields stored for every exported chunk.
+    FileGrepResult:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FileGrepMatch'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: FileGrepResult
+      description: Paginated grep results for a file.
+    FilterType_Union_int__float__:
+      properties:
+        operator:
+          type: string
+          enum:
+          - eq
+          - ne
+          - gt
+          - lt
+          - gte
+          - lte
+          - in
+          - nin
+          title: Operator
+        value:
+          anyOf:
+          - type: integer
+          - type: number
+          - items:
+              anyOf:
+              - type: integer
+              - type: number
+            type: array
+          title: Value
+      type: object
+      required:
+      - operator
+      - value
+      title: FilterType[Union[int, float]]
+    FileReadResult:
+      properties:
+        content:
+          type: string
+          title: Content
+          description: Parsed text content of the file.
+      type: object
+      required:
+      - content
+      title: FileReadResult
+      description: File read result.
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

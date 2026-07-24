@@ -1,0 +1,1152 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Pipeline Files API
+  version: 0.1.0
+tags:
+- name: Pipeline Files
+paths:
+  /api/v1/pipelines/{pipeline_id}/files2:
+    get:
+      tags:
+      - Pipeline Files
+      summary: List Pipeline Files2
+      description: List files for a pipeline with optional filtering, sorting, and pagination.
+      operationId: list_pipeline_files2_api_v1_pipelines__pipeline_id__files2_get
+      deprecated: true
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: data_source_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+      - name: only_manually_uploaded
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Only Manually Uploaded
+      - name: file_name_contains
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name Contains
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              enum:
+              - NOT_STARTED
+              - IN_PROGRESS
+              - SUCCESS
+              - ERROR
+              - CANCELLED
+              type: string
+          - type: 'null'
+          description: Filter by file statuses
+          title: Statuses
+        description: Filter by file statuses
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Limit
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Offset
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Order By
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedListPipelineFilesResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/files/status-counts:
+    get:
+      tags:
+      - Pipeline Files
+      summary: Get Pipeline File Status Counts
+      description: Get files for a pipeline.
+      operationId: get_pipeline_file_status_counts_api_v1_pipelines__pipeline_id__files_status_counts_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: data_source_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+      - name: only_manually_uploaded
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Only Manually Uploaded
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileCountByStatusResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/files/{file_id}/status:
+    get:
+      tags:
+      - Pipeline Files
+      summary: Get Pipeline File Status
+      description: Get status of a file for a pipeline.
+      operationId: get_pipeline_file_status_api_v1_pipelines__pipeline_id__files__file_id__status_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: File Id
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedIngestionStatusResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/files:
+    put:
+      tags:
+      - Pipeline Files
+      summary: Add Files To Pipeline Api
+      description: Add files to a pipeline.
+      operationId: add_files_to_pipeline_api_api_v1_pipelines__pipeline_id__files_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PipelineFileCreate'
+              title: Pipeline File Creates
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PipelineFile'
+                title: Response Add Files To Pipeline Api Api V1 Pipelines  Pipeline Id  Files Put
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/files/{file_id}:
+    put:
+      tags:
+      - Pipeline Files
+      summary: Update Pipeline File
+      description: Update a file for a pipeline.
+      operationId: update_pipeline_file_api_v1_pipelines__pipeline_id__files__file_id__put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: File Id
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineFileUpdate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineFile'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Pipeline Files
+      summary: Delete Pipeline File
+      description: Delete a file from a pipeline.
+      operationId: delete_pipeline_file_api_v1_pipelines__pipeline_id__files__file_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: File Id
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/pipelines/{pipeline_id}/metadata:
+    put:
+      tags:
+      - Pipeline Files
+      summary: Import Pipeline Metadata
+      description: Import metadata for a pipeline.
+      operationId: import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+                title: Response Import Pipeline Metadata Api V1 Pipelines  Pipeline Id  Metadata Put
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Pipeline Files
+      summary: Delete Pipeline Files Metadata
+      description: Delete metadata for all files in a pipeline.
+      operationId: delete_pipeline_files_metadata_api_v1_pipelines__pipeline_id__metadata_delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/pipelines/{pipeline_id}/files:
+    get:
+      tags:
+      - Pipeline Files
+      summary: List Pipeline Files
+      description: List files for a pipeline with pagination and filtering.
+      operationId: list_pipeline_files_api_v1_beta_pipelines__pipeline_id__files_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: pipeline_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pipeline Id
+      - name: data_source_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          description: Filter by data source ID.
+          title: Data Source Id
+        description: Filter by data source ID.
+      - name: file_name_contains
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by files whose names contain this substring (case-insensitive).
+          title: File Name Contains
+        description: Filter by files whose names contain this substring (case-insensitive).
+      - name: statuses
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              enum:
+              - NOT_STARTED
+              - IN_PROGRESS
+              - SUCCESS
+              - ERROR
+              - CANCELLED
+              type: string
+          - type: 'null'
+          description: Filter by pipeline file statuses.
+          title: Statuses
+        description: Filter by pipeline file statuses.
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 1000
+            minimum: 1
+          - type: 'null'
+          description: Maximum number of items to return. Defaults to 50, max 1000.
+          title: Page Size
+        description: Maximum number of items to return. Defaults to 50, max 1000.
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Page token for pagination, from a previous response.
+          title: Page Token
+        description: Page token for pagination, from a previous response.
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineFileListResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    FileCountByStatusResponse:
+      properties:
+        counts:
+          additionalProperties:
+            type: integer
+          type: object
+          title: Counts
+          description: The counts of files by status
+        total_count:
+          type: integer
+          title: Total Count
+          description: The total number of files
+        pipeline_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Pipeline Id
+          description: The ID of the pipeline that the files belong to
+        data_source_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+          description: The ID of the data source that the files belong to
+        only_manually_uploaded:
+          type: boolean
+          title: Only Manually Uploaded
+          description: Whether to only count manually uploaded files
+          default: false
+      type: object
+      required:
+      - counts
+      - total_count
+      title: FileCountByStatusResponse
+    ManagedIngestionStatusResponse:
+      properties:
+        job_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Job Id
+          description: ID of the latest job.
+        deployment_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Deployment Date
+          description: Date of the deployment.
+        status:
+          $ref: '#/components/schemas/ManagedIngestionStatus'
+          description: Status of the ingestion.
+        error:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IngestionErrorResponse'
+            type: array
+          - type: 'null'
+          title: Error
+          description: List of errors that occurred during ingestion.
+        effective_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Effective At
+          description: When the status is effective
+      type: object
+      required:
+      - status
+      title: ManagedIngestionStatusResponse
+    PipelineFileUpdate:
+      properties:
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata for the file
+      type: object
+      title: PipelineFileUpdate
+      description: Request to update a pipeline file.
+    PaginatedListPipelineFilesResponse:
+      properties:
+        files:
+          items:
+            $ref: '#/components/schemas/PipelineFile'
+          type: array
+          title: Files
+          description: The files to list
+        limit:
+          type: integer
+          title: Limit
+          description: The limit of the files
+        offset:
+          type: integer
+          title: Offset
+          description: The offset of the files
+        total_count:
+          type: integer
+          title: Total Count
+          description: The total number of files
+      type: object
+      required:
+      - files
+      - limit
+      - offset
+      - total_count
+      title: PaginatedListPipelineFilesResponse
+      description: Paginated list of pipeline files.
+    PipelineFileCreate:
+      properties:
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata for the file
+      type: object
+      required:
+      - file_id
+      title: PipelineFileCreate
+      description: Schema for creating a file that is associated with a pipeline.
+    PipelineFileResponse:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier for the pipeline file.
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: Name of the file.
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: The ID of the file in the external system.
+        file_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: File Size
+          description: Size of the file in bytes.
+        file_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Type
+          description: File type (e.g. pdf, docx, etc.).
+        project_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+          description: The ID of the project that the file belongs to.
+        last_modified_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Modified At
+          description: The last modified time of the file.
+        file_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+          description: The ID of the file.
+        pipeline_id:
+          type: string
+          format: uuid
+          title: Pipeline Id
+          description: The ID of the pipeline that the file is associated with.
+        resource_info:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Resource Info
+          description: Resource information for the file.
+        permission_info:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Permission Info
+          description: Permission information for the file.
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata for the file.
+        data_source_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+          description: The ID of the data source that the file belongs to.
+        status:
+          anyOf:
+          - type: string
+            enum:
+            - NOT_STARTED
+            - IN_PROGRESS
+            - SUCCESS
+            - ERROR
+            - CANCELLED
+          - type: 'null'
+          title: Status
+          description: Status of the pipeline file.
+        status_updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Status Updated At
+          description: The last time the status was updated.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: When the pipeline file was created.
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: When the pipeline file was last updated.
+      type: object
+      required:
+      - id
+      - pipeline_id
+      title: PipelineFileResponse
+      description: Beta API response schema for a pipeline file.
+    PipelineFileListResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PipelineFileResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: PipelineFileListResponse
+      description: Beta API query response schema for pipeline files.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    JobNameMapping:
+      type: string
+      enum:
+      - MANAGED_INGESTION
+      - DATA_SOURCE
+      - FILE_UPDATER
+      - PARSE
+      - TRANSFORM
+      - INGESTION
+      - METADATA_UPDATE
+      title: JobNameMapping
+      description: Enum for mapping original job names to readable names.
+    IngestionErrorResponse:
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          title: Job Id
+          description: ID of the job that failed.
+        message:
+          type: string
+          title: Message
+          description: List of errors that occurred during ingestion.
+        step:
+          $ref: '#/components/schemas/JobNameMapping'
+          description: Name of the job that failed.
+      type: object
+      required:
+      - job_id
+      - message
+      - step
+      title: IngestionErrorResponse
+    ManagedIngestionStatus:
+      type: string
+      enum:
+      - NOT_STARTED
+      - IN_PROGRESS
+      - SUCCESS
+      - ERROR
+      - PARTIAL_SUCCESS
+      - CANCELLED
+      title: ManagedIngestionStatus
+      description: Status of managed ingestion with partial Updates.
+    PipelineFile:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier for the pipeline file.
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: Name of the file.
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: The ID of the file in the external system.
+        file_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: File Size
+          description: Size of the file in bytes.
+        file_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Type
+          description: File type (e.g. pdf, docx, etc.).
+        project_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+          description: The ID of the project that the file belongs to.
+        last_modified_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Modified At
+          description: The last modified time of the file.
+        file_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+          description: The ID of the file.
+        pipeline_id:
+          type: string
+          format: uuid
+          title: Pipeline Id
+          description: The ID of the pipeline that the file is associated with.
+        resource_info:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Resource Info
+          description: Resource information for the file.
+        permission_info:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Permission Info
+          description: Permission information for the file.
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata for the file.
+        data_source_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+          description: The ID of the data source that the file belongs to.
+        config_hash:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Config Hash
+          description: Hashes for the configuration of the pipeline.
+        indexed_page_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Indexed Page Count
+          description: The number of pages that have been indexed for this file.
+        status:
+          anyOf:
+          - type: string
+            enum:
+            - NOT_STARTED
+            - IN_PROGRESS
+            - SUCCESS
+            - ERROR
+            - CANCELLED
+          - type: 'null'
+          title: Status
+          description: Status of the pipeline file.
+        status_updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Status Updated At
+          description: The last time the status was updated.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: When the pipeline file was created.
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: When the pipeline file was last updated.
+      type: object
+      required:
+      - id
+      - pipeline_id
+      title: PipelineFile
+      description: A file associated with a pipeline.
+    Body_import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put:
+      properties:
+        upload_file:
+          type: string
+          format: binary
+          title: Upload File
+      type: object
+      required:
+      - upload_file
+      title: Body_import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

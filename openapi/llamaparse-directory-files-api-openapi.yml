@@ -1,0 +1,824 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Directory Files API
+  version: 0.1.0
+tags:
+- name: Directory Files
+paths:
+  /api/v1/beta/directories/{directory_id}/files:
+    post:
+      tags:
+      - Directory Files
+      summary: Add Directory File
+      description: Create a new file within the specified directory; the directory must exist in the project and `file_id` must reference an existing file.
+      operationId: add_directory_file_api_v1_beta_directories__directory_id__files_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryFileCreateRequest'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryFileResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Directory Files
+      summary: List Directory Files
+      description: List all files within the specified directory with optional filtering and pagination.
+      operationId: list_directory_files_api_v1_beta_directories__directory_id__files_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: expand
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Fields to expand on each directory file.
+          examples:
+          - download_url
+          title: Expand
+        description: Fields to expand on each directory file.
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: display_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display Name
+      - name: display_name_contains
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display Name Contains
+      - name: unique_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unique Id
+      - name: file_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Id
+      - name: include_deleted
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Include Deleted
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+      - name: updated_at_on_or_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Include items updated at or after this timestamp (inclusive)
+          title: Updated At On Or After
+        description: Include items updated at or after this timestamp (inclusive)
+      - name: updated_at_on_or_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Include items updated at or before this timestamp (inclusive)
+          title: Updated At On Or Before
+        description: Include items updated at or before this timestamp (inclusive)
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: array
+                items:
+                  type: string
+                maxItems: 200
+              - type: 'null'
+              title: Directory File Ids
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryFileQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/directories/{directory_id}/files/upload:
+    post:
+      tags:
+      - Directory Files
+      summary: Upload File To Directory
+      description: Upload a file and create its directory entry in one call; `unique_id` / `display_name` default to values derived from file metadata.
+      operationId: upload_file_to_directory_api_v1_beta_directories__directory_id__files_upload_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_file_to_directory_api_v1_beta_directories__directory_id__files_upload_post'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryFileResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/directories/{directory_id}/files/{directory_file_id}:
+    get:
+      tags:
+      - Directory Files
+      summary: Get Directory File
+      description: Get a directory file by `directory_file_id`; to look up by `unique_id`, use the list endpoint with a filter.
+      operationId: get_directory_file_api_v1_beta_directories__directory_id__files__directory_file_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: directory_file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory File Id
+      - name: expand
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Fields to expand.
+          examples:
+          - download_url
+          title: Expand
+        description: Fields to expand.
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryFileResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    patch:
+      tags:
+      - Directory Files
+      summary: Update Directory File
+      description: Update directory-file metadata by `directory_file_id`; set `directory_id` to move the file to a different directory. To resolve from `unique_id`, list with a filter first.
+      operationId: update_directory_file_api_v1_beta_directories__directory_id__files__directory_file_id__patch
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: directory_file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory File Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryFileUpdateRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryFileResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Directory Files
+      summary: Delete Directory File
+      description: Delete a directory file by `directory_file_id`; to resolve from `unique_id`, list with a filter first.
+      operationId: delete_directory_file_api_v1_beta_directories__directory_id__files__directory_file_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: directory_file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory File Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/directories/{directory_id}/files/bulk-delete:
+    post:
+      tags:
+      - Directory Files
+      summary: Bulk Delete Directory Files
+      description: Delete up to 100 files from the specified directory; all must belong to it.
+      operationId: bulk_delete_directory_files_api_v1_beta_directories__directory_id__files_bulk_delete_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryFileBulkDeleteRequest'
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    MetadataValue:
+      anyOf:
+      - $ref: '#/components/schemas/MetadataScalarValue'
+      - $ref: '#/components/schemas/MetadataListValue'
+    MetadataScalarValue:
+      anyOf:
+      - type: string
+      - type: integer
+      - type: number
+      - type: boolean
+      - type: 'null'
+    MetadataDict:
+      additionalProperties:
+        $ref: '#/components/schemas/MetadataValue'
+      type: object
+    DirectoryFileUpdateRequest:
+      properties:
+        unique_id:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Unique Id
+          description: Updated unique identifier.
+        display_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display Name
+          description: Updated display name.
+        target_directory_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Directory Id
+          description: Move file to a different directory.
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataDict'
+          - type: 'null'
+          description: User-defined metadata key-value pairs. Replaces the user metadata layer.
+      type: object
+      title: DirectoryFileUpdateRequest
+      description: API request schema for updating a directory file.
+    DirectoryFileBulkDeleteRequest:
+      properties:
+        directory_file_ids:
+          items:
+            type: string
+          type: array
+          maxItems: 100
+          minItems: 1
+          title: Directory File Ids
+          description: List of directory file IDs to delete (max 100).
+      type: object
+      required:
+      - directory_file_ids
+      title: DirectoryFileBulkDeleteRequest
+      description: API request schema for bulk deleting directory files.
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    DirectoryFileResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique identifier for the directory file.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        project_id:
+          type: string
+          title: Project Id
+          description: Project the directory file belongs to.
+        directory_id:
+          type: string
+          title: Directory Id
+          description: Directory the file belongs to.
+        unique_id:
+          type: string
+          minLength: 1
+          title: Unique Id
+          description: Unique identifier for the file in the directory
+        display_name:
+          type: string
+          minLength: 1
+          title: Display Name
+          description: Display name for the file.
+        file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Id
+          description: File ID for the storage location.
+        metadata:
+          $ref: '#/components/schemas/MetadataDict'
+          description: Merged metadata from all sources. Higher-priority sources override lower.
+        deleted_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Deleted At
+          description: Soft delete marker when the file is removed upstream or by user action.
+        download_url:
+          anyOf:
+          - $ref: '#/components/schemas/PresignedUrl'
+          - type: 'null'
+          description: Presigned URL to download the underlying file content.
+      type: object
+      required:
+      - id
+      - project_id
+      - directory_id
+      - unique_id
+      - display_name
+      title: DirectoryFileResponse
+      description: API response schema for a directory file.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    MetadataListValue:
+      items:
+        type: string
+      type: array
+    DirectoryFileQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DirectoryFileResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: DirectoryFileQueryResponse
+      description: API query response schema for directory files.
+    DirectoryFileCreateRequest:
+      properties:
+        file_id:
+          type: string
+          title: File Id
+          description: File ID for the storage location (required).
+        unique_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unique Id
+          description: Unique identifier for the file in the directory. If not provided, will use the file's external_file_id or name.
+        display_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display Name
+          description: Display name for the file. If not provided, will use the file's name.
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataDict'
+          - type: 'null'
+          description: User-defined metadata key-value pairs to associate with the file.
+      type: object
+      required:
+      - file_id
+      title: DirectoryFileCreateRequest
+      description: API request schema for creating a directory file.
+    Body_upload_file_to_directory_api_v1_beta_directories__directory_id__files_upload_post:
+      properties:
+        upload_file:
+          type: string
+          format: binary
+          title: Upload File
+        unique_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unique Id
+        display_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display Name
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+        metadata:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Metadata
+          description: User metadata as a JSON object string.
+          examples:
+          - '{"source": "web", "priority": 1}'
+      type: object
+      required:
+      - upload_file
+      title: Body_upload_file_to_directory_api_v1_beta_directories__directory_id__files_upload_post
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

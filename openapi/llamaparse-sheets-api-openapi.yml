@@ -1,0 +1,962 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Sheets API
+  version: 0.1.0
+tags:
+- name: Sheets
+paths:
+  /api/v1/beta/sheets/jobs:
+    post:
+      tags:
+      - Sheets
+      summary: Create Spreadsheet Job
+      description: 'Create a spreadsheet parsing job.
+
+
+        Provide at most one of `configuration` (an inline parsing configuration) or `configuration_id` (a saved configuration preset). If neither is provided, a default configuration is used. Optionally include `webhook_configurations` to receive `sheets.*` status notifications.
+
+
+        Experimental: not production-ready and subject to change.'
+      operationId: create_spreadsheet_job_api_v1_beta_sheets_jobs_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpreadsheetJobCreate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpreadsheetJob'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Sheets
+      summary: List Spreadsheet Jobs
+      description: 'List spreadsheet parsing jobs. Experimental: not production-ready and subject to change.'
+      operationId: list_spreadsheet_jobs_api_v1_beta_sheets_jobs_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: include_results
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Include Results
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - enum:
+            - PENDING
+            - SUCCESS
+            - ERROR
+            - PARTIAL_SUCCESS
+            - CANCELLED
+            type: string
+          - type: 'null'
+          description: Filter by job status
+          title: Status
+        description: Filter by job status
+      - name: job_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by specific job IDs
+          title: Job Ids
+        description: Filter by specific job IDs
+      - name: configuration_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by saved configuration ID
+          title: Configuration Id
+        description: Filter by saved configuration ID
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+      - name: created_at_on_or_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Include items created at or after this timestamp (inclusive)
+          title: Created At On Or After
+        description: Include items created at or after this timestamp (inclusive)
+      - name: created_at_on_or_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Include items created at or before this timestamp (inclusive)
+          title: Created At On Or Before
+        description: Include items created at or before this timestamp (inclusive)
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_SpreadsheetJob_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/sheets/jobs/{spreadsheet_job_id}:
+    get:
+      tags:
+      - Sheets
+      summary: Get Spreadsheet Job
+      description: 'Get a spreadsheet parsing job. When `include_results=True` (default), embeds extracted regions and results if complete, skipping the separate `/results` call. Experimental: not production-ready and subject to change.'
+      operationId: get_spreadsheet_job_api_v1_beta_sheets_jobs__spreadsheet_job_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: spreadsheet_job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Spreadsheet Job Id
+      - name: include_results
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+          title: Include Results
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+          description: 'Optional fields to populate on the response. Valid values: metadata_state_transitions.'
+          title: Expand
+        description: 'Optional fields to populate on the response. Valid values: metadata_state_transitions.'
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpreadsheetJob'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Sheets
+      summary: Delete Spreadsheet Job
+      description: 'Delete a spreadsheet parsing job and its associated data. Experimental: not production-ready and subject to change.'
+      operationId: delete_spreadsheet_job_api_v1_beta_sheets_jobs__spreadsheet_job_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: spreadsheet_job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Spreadsheet Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/sheets/jobs/{spreadsheet_job_id}/regions/{region_id}/result/{region_type}:
+    get:
+      tags:
+      - Sheets
+      summary: Get Result Region
+      description: 'Generate a presigned URL to download a specific extracted region. Experimental: not production-ready and subject to change.'
+      operationId: get_result_region_api_v1_beta_sheets_jobs__spreadsheet_job_id__regions__region_id__result__region_type__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: spreadsheet_job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Spreadsheet Job Id
+      - name: region_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Region Id
+      - name: region_type
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/SpreadsheetResultType'
+      - name: expires_at_seconds
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Expires At Seconds
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresignedUrl'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    SpreadsheetJob:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: The ID of the job
+        user_id:
+          type: string
+          title: User Id
+          description: The ID of the user
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+          description: The ID of the project
+        configuration:
+          $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          description: Configuration applied to the parsing job (inline or resolved from a saved preset).
+        config:
+          anyOf:
+          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          - type: 'null'
+          description: 'Deprecated: use `configuration` instead.'
+          deprecated: true
+        status:
+          type: string
+          enum:
+          - PENDING
+          - SUCCESS
+          - ERROR
+          - PARTIAL_SUCCESS
+          - CANCELLED
+          title: Status
+          description: The status of the parsing job
+        parameters:
+          $ref: '#/components/schemas/SpreadsheetJobParameters'
+          description: Job-time parameters such as webhook configurations.
+        configuration_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Configuration Id
+          description: The saved product configuration ID used at create time, if any.
+        metadata_state_transitions:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata State Transitions
+          description: Per-status entry timestamps. Returned only when requested via `?expand=metadata_state_transitions`.
+        created_at:
+          type: string
+          title: Created At
+          description: When the job was created
+        updated_at:
+          type: string
+          title: Updated At
+          description: When the job was last updated
+        success:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Success
+          description: Whether the job completed successfully
+        regions:
+          items:
+            $ref: '#/components/schemas/ExtractedRegionSummary'
+          type: array
+          title: Regions
+          description: All extracted regions (populated when job is complete)
+        worksheet_metadata:
+          items:
+            $ref: '#/components/schemas/WorksheetMetadata'
+          type: array
+          title: Worksheet Metadata
+          description: Metadata for each processed worksheet (populated when job is complete)
+        errors:
+          items:
+            type: string
+          type: array
+          title: Errors
+          description: Any errors encountered
+        file_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+          description: The ID of the input file
+        file:
+          anyOf:
+          - $ref: '#/components/schemas/File'
+          - type: 'null'
+          description: '[DEPRECATED] The file that was parsed. Use file_id instead.'
+          deprecated: true
+      type: object
+      required:
+      - id
+      - user_id
+      - project_id
+      - configuration
+      - status
+      - created_at
+      - updated_at
+      - file_id
+      title: SpreadsheetJob
+      description: A spreadsheet parsing job.
+    SpreadsheetParsingConfig:
+      properties:
+        sheet_names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Sheet Names
+          description: The names of the sheets to extract regions from. If empty, all sheets will be processed.
+        include_hidden_cells:
+          type: boolean
+          title: Include Hidden Cells
+          description: Whether to include hidden cells when extracting regions from the spreadsheet.
+          default: true
+        extraction_range:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Extraction Range
+          description: A1 notation of the range to extract a single region from. If None, the entire sheet is used.
+        generate_additional_metadata:
+          type: boolean
+          title: Generate Additional Metadata
+          description: Whether to generate additional metadata (title, description) for each extracted region.
+          default: true
+        use_experimental_processing:
+          type: boolean
+          title: Use Experimental Processing
+          description: Enables experimental processing. Accuracy may be impacted.
+          default: false
+        flatten_hierarchical_tables:
+          type: boolean
+          title: Flatten Hierarchical Tables
+          description: Return a flattened dataframe when a detected table is recognized as hierarchical.
+          default: false
+        table_merge_sensitivity:
+          type: string
+          enum:
+          - strong
+          - weak
+          title: Table Merge Sensitivity
+          description: Influences how likely similar-looking regions are merged into a single table. Useful for spreadsheets that either have sparse tables (strong merging) or many distinct tables close together (weak merging).
+          default: strong
+        specialization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specialization
+          description: 'Optional specialization mode for domain-specific extraction. Supported values: ''financial-standard'', ''financial-enhanced'', ''financial-precise''. Default None uses the general-purpose pipeline.'
+      type: object
+      title: SpreadsheetParsingConfig
+      description: Configuration for spreadsheet parsing and region extraction
+    File:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: The ID of the file in the external system
+        file_size:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: File Size
+          description: Size of the file in bytes
+        file_type:
+          anyOf:
+          - type: string
+            maxLength: 3000
+            minLength: 1
+          - type: 'null'
+          title: File Type
+          description: File type (e.g. pdf, docx, etc.)
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+          description: The ID of the project that the file belongs to
+        last_modified_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Modified At
+          description: The last modified time of the file
+        resource_info:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Resource Info
+          description: Resource information for the file
+        permission_info:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Permission Info
+          description: Permission information for the file
+        data_source_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+          description: The ID of the data source that the file belongs to
+        expires_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expires At
+          description: The expiration date for the file. Files past this date can be deleted.
+        purpose:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Purpose
+          description: The intended purpose of the file (e.g., 'user_data', 'parse', 'extract', 'split', 'classify')
+      type: object
+      required:
+      - id
+      - name
+      - project_id
+      title: File
+      description: Schema for a file.
+    SpreadsheetJobParameters:
+      properties:
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Webhook configurations for job status notifications.
+      type: object
+      title: SpreadsheetJobParameters
+      description: Job-time parameters returned on a spreadsheet job response.
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    WebhookConfiguration:
+      properties:
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+          description: URL to receive webhook POST notifications
+          examples:
+          - https://example.com/webhooks/llamacloud
+        webhook_headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Webhook Headers
+          description: Custom HTTP headers sent with each webhook request (e.g. auth tokens)
+          examples:
+          - Authorization: Bearer sk-...
+        webhook_events:
+          anyOf:
+          - items:
+              type: string
+              enum:
+              - extract.pending
+              - extract.success
+              - extract.error
+              - extract.partial_success
+              - extract.cancelled
+              - parse.pending
+              - parse.running
+              - parse.success
+              - parse.error
+              - parse.partial_success
+              - parse.cancelled
+              - classify.pending
+              - classify.running
+              - classify.success
+              - classify.error
+              - classify.partial_success
+              - classify.cancelled
+              - sheets.pending
+              - sheets.success
+              - sheets.error
+              - sheets.partial_success
+              - sheets.cancelled
+              - unmapped_event
+            type: array
+          - type: 'null'
+          title: Webhook Events
+          description: Events to subscribe to (e.g. 'parse.success', 'extract.error'). If null, all events are delivered.
+          examples:
+          - - parse.success
+            - parse.error
+        webhook_output_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Output Format
+          description: 'Response format sent to the webhook: ''string'' (default) or ''json'''
+          examples:
+          - json
+      type: object
+      title: WebhookConfiguration
+      description: Configuration for a single outbound webhook endpoint.
+    SpreadsheetJobCreate:
+      properties:
+        configuration_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Configuration Id
+          description: Saved configuration ID
+          examples:
+          - cfg-11111111-2222-3333-4444-555555555555
+        configuration:
+          anyOf:
+          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          - type: 'null'
+          description: Inline configuration
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Outbound webhook endpoints to notify on job status changes
+        config:
+          anyOf:
+          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          - type: 'null'
+          description: 'Deprecated: use `configuration` instead.'
+          deprecated: true
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file to parse
+      type: object
+      required:
+      - file_id
+      title: SpreadsheetJobCreate
+      description: 'Request to create a spreadsheet parsing job.
+
+
+        Provide at most one of `configuration` (inline) or `configuration_id`
+
+        (saved preset). If neither is provided, a default inline configuration is
+
+        used.'
+    PaginatedResponse_SpreadsheetJob_:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SpreadsheetJob'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: PaginatedResponse[SpreadsheetJob]
+    SpreadsheetResultType:
+      type: string
+      enum:
+      - table
+      - extra
+      - cell_metadata
+      title: SpreadsheetResultType
+    ExtractedRegionSummary:
+      properties:
+        region_id:
+          type: string
+          title: Region Id
+          description: Unique identifier for this region within the file
+        sheet_name:
+          type: string
+          title: Sheet Name
+          description: Worksheet name where region was found
+        location:
+          type: string
+          title: Location
+          description: Location of the region in the spreadsheet
+        region_type:
+          type: string
+          title: Region Type
+          description: Type of the extracted region
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+          description: Generated title for the region
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Generated description for the region
+      type: object
+      required:
+      - sheet_name
+      - location
+      - region_type
+      title: ExtractedRegionSummary
+      description: A summary of a single extracted region from a spreadsheet
+    WorksheetMetadata:
+      properties:
+        sheet_name:
+          type: string
+          title: Sheet Name
+          description: Name of the worksheet
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+          description: Generated title for the worksheet
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Generated description of the worksheet
+      type: object
+      required:
+      - sheet_name
+      title: WorksheetMetadata
+      description: Metadata about a worksheet in a spreadsheet
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

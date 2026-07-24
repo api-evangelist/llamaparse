@@ -1,0 +1,544 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Indexes API
+  version: 0.1.0
+tags:
+- name: Indexes
+paths:
+  /api/v1/indexes:
+    post:
+      tags:
+      - Indexes
+      summary: Create Index
+      description: Create a searchable index over a source directory.
+      operationId: create_index_api_v1_indexes_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndexCreateRequest'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Indexes
+      summary: List Indexes
+      description: List indexes for the current project.
+      operationId: list_indexes_api_v1_indexes_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: source_directory_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source Directory Id
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/indexes/{index_id}:
+    get:
+      tags:
+      - Indexes
+      summary: Get Index
+      description: Get an index by ID.
+      operationId: get_index_api_v1_indexes__index_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: index_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Index Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Indexes
+      summary: Delete Index
+      description: Delete an index.
+      operationId: delete_index_api_v1_indexes__index_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: index_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Index Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/indexes/{index_id}/sync:
+    post:
+      tags:
+      - Indexes
+      summary: Sync Index
+      description: Trigger a sync and export for an existing index, re-parsing changed files and exporting updated chunks.
+      operationId: sync_index_api_v1_indexes__index_id__sync_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: index_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Index Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    IndexMetadata:
+      properties: {}
+      additionalProperties: true
+      type: object
+      title: IndexMetadata
+      description: Build state and diagnostic info about an index. Schema is open; only `status` of `ready` or `failed` is stable.
+    IndexProductEntry:
+      properties:
+        product_type:
+          type: string
+          title: Product Type
+          description: 'Product type. One of: parse, extract.'
+          examples:
+          - parse
+        product_config_id:
+          type: string
+          title: Product Config Id
+          description: ID of the product configuration.
+      type: object
+      required:
+      - product_type
+      - product_config_id
+      title: IndexProductEntry
+      description: 'A product configuration to include in an index''s sync.
+
+
+        Structurally mirrors ``directory_sync.SyncProductEntryRequest`` but is a
+
+        distinct class so the Index API surface stays SDK-gen-isolated from
+
+        directory-sync internals. Translation between the two happens in
+
+        ``index/api_utils.py``.'
+    IndexResponse:
+      properties:
+        id:
+          anyOf:
+          - type: string
+          - type: string
+            format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: Index name.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Index description.
+        project_id:
+          type: string
+          title: Project Id
+          description: Project this index belongs to.
+        source_directory_id:
+          type: string
+          title: Source Directory Id
+          description: ID of the source directory.
+        sync_config_id:
+          type: string
+          title: Sync Config Id
+          description: ID of the sync configuration.
+        export_config_id:
+          type: string
+          title: Export Config Id
+          description: ID of the export configuration.
+        last_synced_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Synced At
+          description: Last sync time.
+        last_exported_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Exported At
+          description: Last export time.
+        metadata:
+          $ref: '#/components/schemas/IndexMetadata'
+          description: Build state and diagnostic info.
+      type: object
+      required:
+      - id
+      - name
+      - project_id
+      - source_directory_id
+      - sync_config_id
+      - export_config_id
+      title: IndexResponse
+      description: A searchable index over a directory of documents.
+    IndexQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/IndexResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: IndexQueryResponse
+      description: Paginated list of indexes.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    IndexCreateRequest:
+      properties:
+        source_directory_id:
+          type: string
+          title: Source Directory Id
+          description: ID of the source directory containing your documents.
+          examples:
+          - dir-abc123
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: Optional display name for the index. If omitted, the index is named after the source directory.
+        products:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IndexProductEntry'
+            type: array
+          - type: 'null'
+          title: Products
+          description: Product configurations for syncing. Omit to use a default parse configuration. Include an explicit entry per product type (e.g. parse, extract) to override the default.
+          examples:
+          - - product_config_id: cfg-abc123
+              product_type: parse
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Optional description of the index.
+        sync_frequency:
+          type: string
+          title: Sync Frequency
+          description: 'How often to re-run the sync. One of: manual, daily, on_source_change. Defaults to manual.'
+          default: manual
+          examples:
+          - manual
+        store_attachments:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Store Attachments
+          description: 'Attachment kinds to store alongside parsed output. Each entry must be one of: screenshots, items. For example, [''screenshots''] renders and stores per-page screenshots; [''items''] stores structured items with bounding boxes. Omit or pass an empty list to skip attachments.'
+          examples:
+          - - screenshots
+        vector_target:
+          type: string
+          enum:
+          - DEFAULT
+          - DISABLED
+          title: Vector Target
+          description: Vector export destination for the index. 'DEFAULT' exports to the managed vector DB destination resolved from configuration. 'DISABLED' skips vector export — the export destination falls back to 'Download'.
+          default: DEFAULT
+          examples:
+          - DEFAULT
+          - DISABLED
+      type: object
+      required:
+      - source_directory_id
+      title: IndexCreateRequest
+      description: 'Create a searchable index over a source directory.
+
+
+        Sets up the full pipeline — parsing, chunking, embedding, and vector
+
+        store indexing — in a single call. An initial sync is triggered
+
+        automatically.
+
+
+        Omit ``products`` to use a default parse configuration (cost-effective
+
+        tier). Pass it explicitly to control parsing or to include extraction.'
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

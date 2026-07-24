@@ -1,0 +1,1135 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Data Sources API
+  version: 0.1.0
+tags:
+- name: Data Sources
+paths:
+  /api/v1/data-sources:
+    get:
+      tags:
+      - Data Sources
+      summary: List Data Sources
+      description: 'List data sources for a given project.
+
+        If project_id is not provided, uses the default project.'
+      operationId: list_data_sources_api_v1_data_sources_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSource'
+                title: Response List Data Sources Api V1 Data Sources Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - Data Sources
+      summary: Create Data Source
+      description: Create a new data source.
+      operationId: create_data_source_api_v1_data_sources_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSourceCreate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/data-sources/{data_source_id}:
+    get:
+      tags:
+      - Data Sources
+      summary: Get Data Source
+      description: Get a data source by ID.
+      operationId: get_data_source_api_v1_data_sources__data_source_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: data_source_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Data Source Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+      - Data Sources
+      summary: Update Data Source
+      description: Update a data source by ID.
+      operationId: update_data_source_api_v1_data_sources__data_source_id__put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: data_source_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Data Source Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSourceUpdate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Data Sources
+      summary: Delete Data Source
+      description: Delete a data source by ID.
+      operationId: delete_data_source_api_v1_data_sources__data_source_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: data_source_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Data Source Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ConfigurableDataSourceNames:
+      type: string
+      enum:
+      - S3
+      - AZURE_STORAGE_BLOB
+      - GOOGLE_DRIVE
+      - MICROSOFT_ONEDRIVE
+      - MICROSOFT_SHAREPOINT
+      - SLACK
+      - NOTION_PAGE
+      - CONFLUENCE
+      - JIRA
+      - JIRA_V2
+      - BOX
+      title: ConfigurableDataSourceNames
+    CloudGoogleDriveDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        folder_id:
+          type: string
+          title: Folder Id
+          description: The ID of the Google Drive folder to read from.
+        service_account_key:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+            description: A dictionary containing secret values
+          - type: 'null'
+          title: Service Account Key
+          description: The service account key JSON to use for authentication.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudGoogleDriveDataSource
+      type: object
+      required:
+      - folder_id
+      title: CloudGoogleDriveDataSource
+    DataSource:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: The name of the data source.
+        source_type:
+          $ref: '#/components/schemas/ConfigurableDataSourceNames'
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata that will be present on all data loaded from the data source
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudS3DataSource'
+          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
+          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
+          - $ref: '#/components/schemas/CloudOneDriveDataSource'
+          - $ref: '#/components/schemas/CloudSharepointDataSource'
+          - $ref: '#/components/schemas/CloudSlackDataSource'
+          - $ref: '#/components/schemas/CloudNotionPageDataSource'
+          - $ref: '#/components/schemas/CloudConfluenceDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
+          - $ref: '#/components/schemas/CloudBoxDataSource'
+          title: DataSourceCreateComponent
+          description: Component that implements the data source
+        version_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/DataSourceReaderVersionMetadata'
+          - type: 'null'
+          description: Version metadata for the data source
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+      type: object
+      required:
+      - id
+      - name
+      - source_type
+      - component
+      - project_id
+      title: DataSource
+      description: Schema for a data source.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CloudJiraDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+          description: The email address to use for authentication.
+        api_token:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Api Token
+          description: The API/ Access Token used for Basic, PAT and OAuth2 authentication.
+        server_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Server Url
+          description: The server url for Jira Cloud.
+        cloud_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cloud Id
+          description: The cloud ID, used in case of OAuth2.
+        authentication_mechanism:
+          type: string
+          title: Authentication Mechanism
+          description: Type of Authentication for connecting to Jira APIs.
+        query:
+          type: string
+          title: Query
+          description: JQL (Jira Query Language) query to search.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudJiraDataSource
+      type: object
+      required:
+      - authentication_mechanism
+      - query
+      title: CloudJiraDataSource
+      description: Cloud Jira Data Source integrating JiraReader.
+    BoxAuthMechanism:
+      type: string
+      enum:
+      - developer_token
+      - ccg
+      title: BoxAuthMechanism
+    FailureHandlingConfig:
+      properties:
+        skip_list_failures:
+          type: boolean
+          title: Skip List Failures
+          description: Whether to skip failed batches/lists and continue processing
+          default: false
+      type: object
+      title: FailureHandlingConfig
+      description: Configuration for handling different types of failures during data source processing.
+    CloudAzStorageBlobDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        container_name:
+          type: string
+          title: Container Name
+          description: The name of the Azure Storage Blob container to read from.
+        account_url:
+          type: string
+          title: Account Url
+          description: The Azure Storage Blob account URL to use for authentication.
+        blob:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Blob
+          description: The blob name to read from.
+        prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Prefix
+          description: The prefix of the Azure Storage Blob objects to read from.
+        account_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Account Name
+          description: The Azure Storage Blob account name to use for authentication.
+        account_key:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Account Key
+          description: The Azure Storage Blob account key to use for authentication.
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+          description: The Azure AD tenant ID to use for authentication.
+        client_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Id
+          description: The Azure AD client ID to use for authentication.
+        client_secret:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Client Secret
+          description: The Azure AD client secret to use for authentication.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudAzStorageBlobDataSource
+      type: object
+      required:
+      - container_name
+      - account_url
+      title: CloudAzStorageBlobDataSource
+    CloudConfluenceDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        server_url:
+          type: string
+          title: Server Url
+          description: The server URL of the Confluence instance.
+        authentication_mechanism:
+          type: string
+          title: Authentication Mechanism
+          description: Type of Authentication for connecting to Confluence APIs.
+        user_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Name
+          description: The username to use for authentication.
+        api_token:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Api Token
+          description: The API token to use for authentication.
+        space_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Space Key
+          description: The space key to read from.
+        page_ids:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Ids
+          description: The page IDs of the Confluence to read from.
+        cql:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cql
+          description: The CQL query to use for fetching pages.
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+          description: The label to use for fetching pages.
+        index_restricted_pages:
+          type: boolean
+          title: Index Restricted Pages
+          description: Whether to index restricted pages.
+          default: false
+        keep_markdown_format:
+          type: boolean
+          title: Keep Markdown Format
+          description: Whether to keep the markdown format.
+        failure_handling:
+          $ref: '#/components/schemas/FailureHandlingConfig'
+          description: "Configuration for handling failures during processing. Key-value object controlling failure handling behaviors.\n\nExample:\n{\n  \"skip_list_failures\": true\n}\n\nCurrently supports:\n- skip_list_failures: Skip failed batches/lists and continue processing"
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudConfluenceDataSource
+      type: object
+      required:
+      - authentication_mechanism
+      - server_url
+      title: CloudConfluenceDataSource
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CloudOneDriveDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          const: true
+          title: Supports Access Control
+          default: true
+        user_principal_name:
+          type: string
+          title: User Principal Name
+          description: The user principal name to use for authentication.
+        folder_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Folder Path
+          description: The path of the OneDrive folder to read from.
+        folder_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Folder Id
+          description: The ID of the OneDrive folder to read from.
+        client_id:
+          type: string
+          title: Client Id
+          description: The client ID to use for authentication.
+        client_secret:
+          type: string
+          format: password
+          title: Client Secret
+          description: The client secret to use for authentication.
+          writeOnly: true
+        tenant_id:
+          type: string
+          title: Tenant Id
+          description: The tenant ID to use for authentication.
+        required_exts:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Required Exts
+          description: The list of required file extensions.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudOneDriveDataSource
+      type: object
+      required:
+      - user_principal_name
+      - client_id
+      - client_secret
+      - tenant_id
+      title: CloudOneDriveDataSource
+    CloudS3DataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        bucket:
+          type: string
+          title: Bucket
+          description: The name of the S3 bucket to read from.
+        prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Prefix
+          description: The prefix of the S3 objects to read from.
+        regex_pattern:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Regex Pattern
+          description: The regex pattern to filter S3 objects. Must be a valid regex pattern.
+        aws_access_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Aws Access Id
+          description: The AWS access ID to use for authentication.
+        aws_access_secret:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Aws Access Secret
+          description: The AWS access secret to use for authentication.
+        s3_endpoint_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: S3 Endpoint Url
+          description: The S3 endpoint URL to use for authentication.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudS3DataSource
+      type: object
+      required:
+      - bucket
+      title: CloudS3DataSource
+    DataSourceUpdate:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: The name of the data source.
+        source_type:
+          $ref: '#/components/schemas/ConfigurableDataSourceNames'
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata that will be present on all data loaded from the data source
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudS3DataSource'
+          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
+          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
+          - $ref: '#/components/schemas/CloudOneDriveDataSource'
+          - $ref: '#/components/schemas/CloudSharepointDataSource'
+          - $ref: '#/components/schemas/CloudSlackDataSource'
+          - $ref: '#/components/schemas/CloudNotionPageDataSource'
+          - $ref: '#/components/schemas/CloudConfluenceDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
+          - $ref: '#/components/schemas/CloudBoxDataSource'
+          - type: 'null'
+          title: DataSourceUpdateComponent
+          description: Component that implements the data source
+      type: object
+      required:
+      - source_type
+      title: DataSourceUpdate
+      description: Schema for updating a data source.
+    DataSourceReaderVersionMetadata:
+      properties:
+        reader_version:
+          anyOf:
+          - type: string
+            enum:
+            - '1.0'
+            - '2.0'
+            - '2.1'
+          - type: 'null'
+          title: Reader Version
+          description: The version of the reader to use for this data source.
+      type: object
+      title: DataSourceReaderVersionMetadata
+    DataSourceCreate:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The name of the data source.
+        source_type:
+          $ref: '#/components/schemas/ConfigurableDataSourceNames'
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata that will be present on all data loaded from the data source
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudS3DataSource'
+          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
+          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
+          - $ref: '#/components/schemas/CloudOneDriveDataSource'
+          - $ref: '#/components/schemas/CloudSharepointDataSource'
+          - $ref: '#/components/schemas/CloudSlackDataSource'
+          - $ref: '#/components/schemas/CloudNotionPageDataSource'
+          - $ref: '#/components/schemas/CloudConfluenceDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
+          - $ref: '#/components/schemas/CloudBoxDataSource'
+          title: DataSourceCreateComponent
+          description: Component that implements the data source
+      type: object
+      required:
+      - name
+      - source_type
+      - component
+      title: DataSourceCreate
+      description: Schema for creating a data source.
+    CloudBoxDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        folder_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Folder Id
+          description: The ID of the Box folder to read from.
+        authentication_mechanism:
+          $ref: '#/components/schemas/BoxAuthMechanism'
+          description: The type of authentication to use (Developer Token or CCG)
+        developer_token:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Developer Token
+          description: Developer token for authentication if authentication_mechanism is 'developer_token'.
+        client_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Id
+          description: Box API key used for identifying the application the user is authenticating with
+        client_secret:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Client Secret
+          description: Box API secret used for making auth requests.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: Box User ID, if provided authenticates as user.
+        enterprise_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Enterprise Id
+          description: Box Enterprise ID, if provided authenticates as service.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudBoxDataSource
+      type: object
+      required:
+      - authentication_mechanism
+      title: CloudBoxDataSource
+    CloudNotionPageDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        integration_token:
+          type: string
+          format: password
+          title: Integration Token
+          description: The integration token to use for authentication.
+          writeOnly: true
+        database_ids:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Database Ids
+          description: The Notion Database Id to read content from.
+        page_ids:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Ids
+          description: The Page ID's of the Notion to read from.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudNotionPageDataSource
+      type: object
+      required:
+      - integration_token
+      title: CloudNotionPageDataSource
+    CloudSharepointDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          const: true
+          title: Supports Access Control
+          default: true
+        site_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Name
+          description: The name of the SharePoint site to download from.
+        site_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Id
+          description: The ID of the SharePoint site to download from.
+        folder_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Folder Path
+          description: The path of the Sharepoint folder to read from.
+        folder_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Folder Id
+          description: The ID of the Sharepoint folder to read from.
+        drive_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Drive Name
+          description: The name of the Sharepoint drive to read from.
+        client_id:
+          type: string
+          title: Client Id
+          description: The client ID to use for authentication.
+        client_secret:
+          type: string
+          format: password
+          title: Client Secret
+          description: The client secret to use for authentication.
+          writeOnly: true
+        tenant_id:
+          type: string
+          title: Tenant Id
+          description: The tenant ID to use for authentication.
+        required_exts:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Required Exts
+          description: The list of required file extensions.
+        get_permissions:
+          type: boolean
+          title: Get Permissions
+          description: Whether to get permissions for the sharepoint site.
+          default: true
+        include_path_patterns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Include Path Patterns
+          description: 'List of regex patterns for file paths to include. Full paths (including filename) must match at least one pattern to be included. Example: [''/reports/'', ''/docs/.*\.pdf$'', ''^Report.*\.pdf$'']'
+        exclude_path_patterns:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude Path Patterns
+          description: 'List of regex patterns for file paths to exclude. Files whose paths (including filename) match any pattern will be excluded. Example: [''/temp/'', ''/backup/'', ''\.git/'', ''\.tmp$'', ''^~'']'
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudSharepointDataSource
+      type: object
+      required:
+      - client_id
+      - client_secret
+      - tenant_id
+      title: CloudSharepointDataSource
+    CloudJiraDataSourceV2:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+          description: The email address to use for authentication.
+        api_token:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Api Token
+          description: The API Access Token used for Basic, PAT and OAuth2 authentication.
+        server_url:
+          type: string
+          title: Server Url
+          description: The server url for Jira Cloud.
+        cloud_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cloud Id
+          description: The cloud ID, used in case of OAuth2.
+        authentication_mechanism:
+          type: string
+          title: Authentication Mechanism
+          description: Type of Authentication for connecting to Jira APIs.
+        api_version:
+          type: string
+          enum:
+          - '2'
+          - '3'
+          title: Api Version
+          description: Jira REST API version to use (2 or 3). 3 supports Atlassian Document Format (ADF).
+          default: '2'
+        query:
+          type: string
+          title: Query
+          description: JQL (Jira Query Language) query to search.
+        fields:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+          description: List of fields to retrieve from Jira. If None, retrieves all fields.
+        expand:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expand
+          description: Fields to expand in the response.
+        requests_per_minute:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Requests Per Minute
+          description: Rate limit for Jira API requests per minute.
+        get_permissions:
+          type: boolean
+          title: Get Permissions
+          description: Whether to fetch project role permissions and issue-level security
+          default: true
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudJiraDataSourceV2
+      type: object
+      required:
+      - server_url
+      - authentication_mechanism
+      - query
+      title: CloudJiraDataSourceV2
+      description: Cloud Jira Data Source integrating JiraReaderV2.
+    CloudSlackDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        slack_token:
+          type: string
+          format: password
+          title: Slack Token
+          description: Slack Bot Token.
+          writeOnly: true
+        channel_ids:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Channel Ids
+          description: Slack Channel.
+        latest_date:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Latest Date
+          description: Latest date.
+        earliest_date:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Earliest Date
+          description: Earliest date.
+        earliest_date_timestamp:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Earliest Date Timestamp
+          description: Earliest date timestamp.
+        latest_date_timestamp:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latest Date Timestamp
+          description: Latest date timestamp.
+        channel_patterns:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Channel Patterns
+          description: Slack Channel name pattern.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudSlackDataSource
+      type: object
+      required:
+      - slack_token
+      title: CloudSlackDataSource
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

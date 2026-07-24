@@ -1,0 +1,1110 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Retrievers API
+  version: 0.1.0
+tags:
+- name: Retrievers
+paths:
+  /api/v1/retrievers:
+    post:
+      tags:
+      - Retrievers
+      summary: Create Retriever
+      description: Create a new Retriever.
+      operationId: create_retriever_api_v1_retrievers_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrieverCreate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retriever'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+      - Retrievers
+      summary: Upsert Retriever
+      description: Upsert a new Retriever.
+      operationId: upsert_retriever_api_v1_retrievers_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrieverCreate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retriever'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Retrievers
+      summary: List Retrievers
+      description: List Retrievers for a project.
+      operationId: list_retrievers_api_v1_retrievers_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Retriever'
+                title: Response List Retrievers Api V1 Retrievers Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/retrievers/{retriever_id}:
+    get:
+      tags:
+      - Retrievers
+      summary: Get Retriever
+      description: Get a Retriever by ID.
+      operationId: get_retriever_api_v1_retrievers__retriever_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: retriever_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Retriever Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retriever'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+      - Retrievers
+      summary: Update Retriever
+      description: Update an existing Retriever.
+      operationId: update_retriever_api_v1_retrievers__retriever_id__put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: retriever_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Retriever Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrieverUpdate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retriever'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Retrievers
+      summary: Delete Retriever
+      description: Delete a Retriever by ID.
+      operationId: delete_retriever_api_v1_retrievers__retriever_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: retriever_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Retriever Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/retrievers/{retriever_id}/retrieve:
+    post:
+      tags:
+      - Retrievers
+      summary: Retrieve
+      description: Retrieve data using a Retriever.
+      operationId: retrieve_api_v1_retrievers__retriever_id__retrieve_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: retriever_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Retriever Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeRetrievalParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeRetrievalResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/retrievers/retrieve:
+    post:
+      tags:
+      - Retrievers
+      summary: Direct Retrieve
+      description: Retrieve data using specified pipelines without creating a persistent retriever.
+      operationId: direct_retrieve_api_v1_retrievers_retrieve_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectRetrievalParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeRetrievalResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    PresetRetrievalParams:
+      properties:
+        dense_similarity_top_k:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Dense Similarity Top K
+          description: Number of nodes for dense retrieval.
+          default: 30
+        dense_similarity_cutoff:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Dense Similarity Cutoff
+          description: Minimum similarity score wrt query for retrieval
+          default: 0.0
+        sparse_similarity_top_k:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Sparse Similarity Top K
+          description: Number of nodes for sparse retrieval.
+          default: 30
+        enable_reranking:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable Reranking
+          description: Enable reranking for retrieval
+        rerank_top_n:
+          anyOf:
+          - type: integer
+            maximum: 100.0
+            minimum: 1.0
+          - type: 'null'
+          title: Rerank Top N
+          description: Number of reranked nodes for returning.
+          default: 6
+        alpha:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Alpha
+          description: Alpha value for hybrid retrieval to determine the weights between dense and sparse retrieval. 0 is sparse retrieval and 1 is dense retrieval.
+        search_filters:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataFilters'
+          - type: 'null'
+          description: Search filters for retrieval.
+        search_filters_inference_schema:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Search Filters Inference Schema
+          description: JSON Schema that will be used to infer search_filters. Omit or leave as null to skip inference.
+        files_top_k:
+          anyOf:
+          - type: integer
+            maximum: 5.0
+            minimum: 1.0
+          - type: 'null'
+          title: Files Top K
+          description: Number of files to retrieve (only for retrieval mode files_via_metadata and files_via_content).
+          default: 1
+        retrieval_mode:
+          $ref: '#/components/schemas/RetrievalMode'
+          description: The retrieval mode for the query.
+          default: chunks
+        retrieve_image_nodes:
+          type: boolean
+          title: Retrieve Image Nodes
+          description: Whether to retrieve image nodes.
+          default: false
+          deprecated: true
+        retrieve_page_screenshot_nodes:
+          type: boolean
+          title: Retrieve Page Screenshot Nodes
+          description: Whether to retrieve page screenshot nodes.
+          default: false
+        retrieve_page_figure_nodes:
+          type: boolean
+          title: Retrieve Page Figure Nodes
+          description: Whether to retrieve page figure nodes.
+          default: false
+        class_name:
+          type: string
+          title: Class Name
+          default: base_component
+      type: object
+      title: PresetRetrievalParams
+      description: Schema for the search params for an retrieval execution that can be preset for a pipeline.
+    DirectRetrievalParams:
+      properties:
+        mode:
+          $ref: '#/components/schemas/CompositeRetrievalMode'
+          description: The mode of composite retrieval.
+          default: full
+        rerank_top_n:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rerank Top N
+          description: (use rerank_config.top_n instead) The number of nodes to retrieve after reranking over retrieved nodes from all retrieval tools.
+          deprecated: true
+        rerank_config:
+          $ref: '#/components/schemas/ReRankConfig'
+          description: The rerank configuration for composite retrieval.
+        query:
+          type: string
+          minLength: 1
+          title: Query
+          description: The query to retrieve against.
+        pipelines:
+          items:
+            $ref: '#/components/schemas/RetrieverPipeline'
+          type: array
+          title: Pipelines
+          description: The pipelines to use for retrieval.
+      type: object
+      required:
+      - query
+      title: DirectRetrievalParams
+    PageScreenshotMetadata:
+      properties:
+        page_index:
+          type: integer
+          minimum: 0.0
+          title: Page Index
+          description: The index of the page for which the screenshot is taken (0-indexed)
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file that the page screenshot was taken from
+        image_size:
+          type: integer
+          minimum: 0.0
+          title: Image Size
+          description: The size of the image in bytes
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata for the screenshot
+      type: object
+      required:
+      - page_index
+      - file_id
+      - image_size
+      title: PageScreenshotMetadata
+    ReRankConfig:
+      properties:
+        top_n:
+          type: integer
+          minimum: 1.0
+          title: Top N
+          description: The number of nodes to retrieve after reranking over retrieved nodes from all retrieval tools.
+          default: 6
+        type:
+          $ref: '#/components/schemas/ReRankerType'
+          description: The type of reranker to use.
+          default: system_default
+      type: object
+      title: ReRankConfig
+    Retriever:
+      properties:
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+          description: A name for the retriever tool. Will default to the pipeline name if not provided.
+        pipelines:
+          items:
+            $ref: '#/components/schemas/RetrieverPipeline'
+          type: array
+          title: Pipelines
+          description: The pipelines this retriever uses.
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+          description: The ID of the project this retriever resides in.
+      type: object
+      required:
+      - name
+      - id
+      - project_id
+      title: Retriever
+      description: An entity that retrieves context nodes from several sub RetrieverTools.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    FilterOperator:
+      type: string
+      enum:
+      - ==
+      - '>'
+      - <
+      - '!='
+      - '>='
+      - <=
+      - in
+      - nin
+      - any
+      - all
+      - text_match
+      - text_match_insensitive
+      - contains
+      - is_empty
+      title: FilterOperator
+      description: Vector store filter operator.
+    FilterCondition:
+      type: string
+      enum:
+      - and
+      - or
+      - not
+      title: FilterCondition
+      description: Vector store filter conditions to combine different filters.
+    RetrievalMode:
+      type: string
+      enum:
+      - chunks
+      - files_via_metadata
+      - files_via_content
+      - auto_routed
+      title: RetrievalMode
+    MetadataFilters:
+      properties:
+        filters:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/MetadataFilter'
+            - $ref: '#/components/schemas/MetadataFilters'
+          type: array
+          title: Filters
+        condition:
+          anyOf:
+          - $ref: '#/components/schemas/FilterCondition'
+          - type: 'null'
+          default: and
+      type: object
+      required:
+      - filters
+      title: MetadataFilters
+      description: Metadata filters for vector stores.
+    CompositeRetrievalMode:
+      type: string
+      enum:
+      - routing
+      - full
+      title: CompositeRetrievalMode
+      description: Enum for the mode of composite retrieval.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    MetadataFilter:
+      properties:
+        key:
+          type: string
+          title: Key
+        value:
+          anyOf:
+          - type: integer
+          - type: number
+          - type: string
+          - items:
+              type: string
+            type: array
+          - items:
+              type: number
+            type: array
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Value
+        operator:
+          $ref: '#/components/schemas/FilterOperator'
+          default: ==
+      type: object
+      required:
+      - key
+      - value
+      title: MetadataFilter
+      description: 'Comprehensive metadata filter for vector stores to support more operators.
+
+
+        Value uses Strict types, as int, float and str are compatible types and were all
+
+        converted to string before.
+
+
+        See: https://docs.pydantic.dev/latest/usage/types/#strict-types'
+    PageScreenshotNodeWithScore:
+      properties:
+        node:
+          $ref: '#/components/schemas/PageScreenshotMetadata'
+        score:
+          type: number
+          title: Score
+          description: The score of the screenshot node
+        class_name:
+          type: string
+          title: Class Name
+          default: NodeWithScore
+      type: object
+      required:
+      - node
+      - score
+      title: PageScreenshotNodeWithScore
+      description: Page screenshot metadata with score
+    CompositeRetrievalResult:
+      properties:
+        nodes:
+          items:
+            $ref: '#/components/schemas/CompositeRetrievedTextNodeWithScore'
+          type: array
+          title: Nodes
+          description: The retrieved nodes from the composite retrieval.
+        image_nodes:
+          items:
+            $ref: '#/components/schemas/PageScreenshotNodeWithScore'
+          type: array
+          title: Image Nodes
+          description: The image nodes retrieved by the pipeline for the given query. Deprecated - will soon be replaced with 'page_screenshot_nodes'.
+          deprecated: true
+        page_figure_nodes:
+          items:
+            $ref: '#/components/schemas/PageFigureNodeWithScore'
+          type: array
+          title: Page Figure Nodes
+          description: The page figure nodes retrieved by the pipeline for the given query.
+      type: object
+      title: CompositeRetrievalResult
+    CompositeRetrievalParams:
+      properties:
+        mode:
+          $ref: '#/components/schemas/CompositeRetrievalMode'
+          description: The mode of composite retrieval.
+          default: full
+        rerank_top_n:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Rerank Top N
+          description: (use rerank_config.top_n instead) The number of nodes to retrieve after reranking over retrieved nodes from all retrieval tools.
+          deprecated: true
+        rerank_config:
+          $ref: '#/components/schemas/ReRankConfig'
+          description: The rerank configuration for composite retrieval.
+        query:
+          type: string
+          minLength: 1
+          title: Query
+          description: The query to retrieve against.
+      type: object
+      required:
+      - query
+      title: CompositeRetrievalParams
+    RetrieverUpdate:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: A name for the retriever.
+        pipelines:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/RetrieverPipeline'
+            type: array
+          - type: 'null'
+          title: Pipelines
+          description: The pipelines this retriever uses.
+      type: object
+      required:
+      - pipelines
+      title: RetrieverUpdate
+    CompositeRetrievedTextNode:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: The ID of the retrieved node.
+        retriever_id:
+          type: string
+          format: uuid
+          title: Retriever Id
+          description: The ID of the retriever this node was retrieved from.
+        retriever_pipeline_name:
+          type: string
+          title: Retriever Pipeline Name
+          description: The name of the retrieval pipeline this node was retrieved from.
+        pipeline_id:
+          type: string
+          format: uuid
+          title: Pipeline Id
+          description: The ID of the pipeline this node was retrieved from.
+        metadata:
+          additionalProperties: true
+          type: object
+          title: Metadata
+          description: Metadata associated with the retrieved node.
+        text:
+          type: string
+          title: Text
+          description: The text of the retrieved node.
+        start_char_idx:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Start Char Idx
+          description: The start character index of the retrieved node in the document
+        end_char_idx:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: End Char Idx
+          description: The end character index of the retrieved node in the document
+      type: object
+      required:
+      - id
+      - retriever_id
+      - retriever_pipeline_name
+      - pipeline_id
+      - text
+      - start_char_idx
+      - end_char_idx
+      title: CompositeRetrievedTextNode
+    CompositeRetrievedTextNodeWithScore:
+      properties:
+        node:
+          $ref: '#/components/schemas/CompositeRetrievedTextNode'
+        score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Score
+        class_name:
+          type: string
+          title: Class Name
+          default: CompositeRetrievedTextNodeWithScore
+      type: object
+      required:
+      - node
+      title: CompositeRetrievedTextNodeWithScore
+    RetrieverCreate:
+      properties:
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+          description: A name for the retriever tool. Will default to the pipeline name if not provided.
+        pipelines:
+          items:
+            $ref: '#/components/schemas/RetrieverPipeline'
+          type: array
+          title: Pipelines
+          description: The pipelines this retriever uses.
+      type: object
+      required:
+      - name
+      title: RetrieverCreate
+    PageFigureNodeWithScore:
+      properties:
+        node:
+          $ref: '#/components/schemas/PageFigureMetadata'
+        score:
+          type: number
+          title: Score
+          description: The score of the figure node
+        class_name:
+          type: string
+          title: Class Name
+          default: PageFigureNodeWithScore
+      type: object
+      required:
+      - node
+      - score
+      title: PageFigureNodeWithScore
+      description: Page figure metadata with score
+    ReRankerType:
+      type: string
+      enum:
+      - system_default
+      - llm
+      - cohere
+      - bedrock
+      - score
+      - disabled
+      title: ReRankerType
+      description: Enum for the reranker type.
+    RetrieverPipeline:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 3000
+            minLength: 1
+          - type: 'null'
+          title: Name
+          description: A name for the retriever tool. Will default to the pipeline name if not provided.
+        description:
+          anyOf:
+          - type: string
+            maxLength: 15000
+          - type: 'null'
+          title: Description
+          description: A description of the retriever tool.
+        pipeline_id:
+          type: string
+          format: uuid
+          title: Pipeline Id
+          description: The ID of the pipeline this tool uses.
+        preset_retrieval_parameters:
+          $ref: '#/components/schemas/PresetRetrievalParams'
+          description: Parameters for retrieval configuration.
+      type: object
+      required:
+      - name
+      - description
+      - pipeline_id
+      title: RetrieverPipeline
+    PageFigureMetadata:
+      properties:
+        figure_name:
+          type: string
+          title: Figure Name
+          description: The name of the figure
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file that the figure was taken from
+        page_index:
+          type: integer
+          minimum: 0.0
+          title: Page Index
+          description: The index of the page for which the figure is taken (0-indexed)
+        figure_size:
+          type: integer
+          minimum: 0.0
+          title: Figure Size
+          description: The size of the figure in bytes
+        is_likely_noise:
+          type: boolean
+          title: Is Likely Noise
+          description: Whether the figure is likely to be noise
+          default: false
+        confidence:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Confidence
+          description: The confidence of the figure
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata for the figure
+      type: object
+      required:
+      - figure_name
+      - file_id
+      - page_index
+      - figure_size
+      - confidence
+      title: PageFigureMetadata
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

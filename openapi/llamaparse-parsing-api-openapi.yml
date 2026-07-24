@@ -1,0 +1,1647 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Parsing API
+  version: 0.1.0
+tags:
+- name: Parsing
+paths:
+  /api/v1/parsing/job/{job_id}/result/image/{name}:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job Image Result
+      description: Get a job by id
+      operationId: get_job_image_result_api_v1_parsing_job__job_id__result_image__name__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Name
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            image/jpeg: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/supported_file_extensions:
+    get:
+      tags:
+      - Parsing
+      summary: Get Supported File Extensions
+      description: Get a list of supported file extensions
+      operationId: get_supported_file_extensions_api_v1_parsing_supported_file_extensions_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LlamaParseSupportedFileExtensions'
+                type: array
+                title: Response Get Supported File Extensions Api V1 Parsing Supported File Extensions Get
+  /api/v1/parsing/screenshot:
+    post:
+      tags:
+      - Parsing
+      summary: Screenshot
+      operationId: screenshot_api_v1_parsing_screenshot_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_screenshot_api_v1_parsing_screenshot_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParsingJob'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/upload:
+    post:
+      tags:
+      - Parsing
+      summary: Upload File
+      operationId: upload_file_api_v1_parsing_upload_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_file_api_v1_parsing_upload_post'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParsingJob'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job
+      description: Get a job by id
+      operationId: get_job_api_v1_parsing_job__job_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParsingJob'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/parameters:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job Parameters
+      description: Get a job by id
+      operationId: get_job_parameters_api_v1_parsing_job__job_id__parameters_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Get Job Parameters Api V1 Parsing Job  Job Id  Parameters Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/details:
+    get:
+      tags:
+      - Parsing
+      summary: Get Parsing Job Details
+      description: Get a parsing job's status, parameters (API keys redacted), telemetry, and session logs.
+      operationId: get_parsing_job_details_api_v1_parsing_job__job_id__details_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response Get Parsing Job Details Api V1 Parsing Job  Job Id  Details Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/result/text:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job Text Result
+      description: 'Get a job by id. Deprecated: `credits_used` and `job_credits_usage` will be removed in a future release.'
+      operationId: get_job_text_result_api_v1_parsing_job__job_id__result_text_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParsingJobTextResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/result/pdf:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job Raw Text Result
+      description: Get a job by id
+      operationId: get_job_raw_text_result_api_v1_parsing_job__job_id__result_pdf_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/result/structured:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job Structured Result
+      description: 'Get a job by id. Deprecated: `credits_used` and `job_credits_usage` will be removed in a future release.'
+      operationId: get_job_structured_result_api_v1_parsing_job__job_id__result_structured_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParsingJobStructuredResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/result/xlsx:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job Raw Xlsx Result
+      description: Get a job by id
+      operationId: get_job_raw_xlsx_result_api_v1_parsing_job__job_id__result_xlsx_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/result/markdown:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job Result
+      description: 'Get a job by id. Deprecated: `credits_used` and `job_credits_usage` will be removed in a future release.'
+      operationId: get_job_result_api_v1_parsing_job__job_id__result_markdown_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParsingJobMarkdownResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/result/json:
+    get:
+      tags:
+      - Parsing
+      summary: Get Job Json Result
+      description: 'Get a job by id. Deprecated: `credits_used` and `job_credits_usage` will be removed in a future release.'
+      operationId: get_job_json_result_api_v1_parsing_job__job_id__result_json_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParsingJobJsonResult'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/parsing/job/{job_id}/read/{filename}:
+    get:
+      tags:
+      - Parsing
+      summary: Generate Presigned Url
+      description: Generate a presigned URL for a job
+      operationId: generate_presigned_url_api_v1_parsing_job__job_id__read__filename__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: filename
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Filename
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresignedUrl'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ParsingJobJsonResult:
+      properties:
+        pages:
+          title: Pages
+          description: Array of per-page objects containing parsed content, images, and layout data
+        job_metadata:
+          title: Job Metadata
+          description: Job metadata including credit usage and page counts
+      type: object
+      required:
+      - pages
+      - job_metadata
+      title: ParsingJobJsonResult
+      description: Parse job result as structured JSON pages.
+    StatusEnum:
+      type: string
+      enum:
+      - PENDING
+      - SUCCESS
+      - ERROR
+      - PARTIAL_SUCCESS
+      - CANCELLED
+      title: StatusEnum
+      description: Enum for representing the status of a job
+    ParserLanguages:
+      type: string
+      enum:
+      - af
+      - az
+      - bs
+      - cs
+      - cy
+      - da
+      - de
+      - en
+      - es
+      - et
+      - fr
+      - ga
+      - hr
+      - hu
+      - id
+      - is
+      - it
+      - ku
+      - la
+      - lt
+      - lv
+      - mi
+      - ms
+      - mt
+      - nl
+      - 'no'
+      - oc
+      - pi
+      - pl
+      - pt
+      - ro
+      - rs_latin
+      - sk
+      - sl
+      - sq
+      - sv
+      - sw
+      - tl
+      - tr
+      - uz
+      - vi
+      - ar
+      - fa
+      - ug
+      - ur
+      - bn
+      - as
+      - mni
+      - ru
+      - rs_cyrillic
+      - be
+      - bg
+      - uk
+      - mn
+      - abq
+      - ady
+      - kbd
+      - ava
+      - dar
+      - inh
+      - che
+      - lbe
+      - lez
+      - tab
+      - tjk
+      - hi
+      - mr
+      - ne
+      - bh
+      - mai
+      - ang
+      - bho
+      - mah
+      - sck
+      - new
+      - gom
+      - sa
+      - bgc
+      - th
+      - ch_sim
+      - ch_tra
+      - ja
+      - ko
+      - ta
+      - te
+      - kn
+      title: ParserLanguages
+      description: Enum for representing the languages supported by the parser.
+    ParsingJobTextResult:
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Full document content as plain text (no formatting)
+        job_metadata:
+          title: Job Metadata
+          description: Job metadata including credit usage and page counts
+      type: object
+      required:
+      - text
+      - job_metadata
+      title: ParsingJobTextResult
+      description: Parse job result as plain text.
+    LlamaParseSupportedFileExtensions:
+      type: string
+      enum:
+      - .pdf
+      - .abw
+      - .awt
+      - .cgm
+      - .cwk
+      - .doc
+      - .docm
+      - .docx
+      - .dot
+      - .dotm
+      - .dotx
+      - .fodg
+      - .fodp
+      - .fopd
+      - .fodt
+      - .fb2
+      - .hwp
+      - .lwp
+      - .mcw
+      - .mw
+      - .mwd
+      - .odf
+      - .odt
+      - .otg
+      - .ott
+      - .pages
+      - .pbd
+      - .psw
+      - .rtf
+      - .sda
+      - .sdd
+      - .sdp
+      - .sdw
+      - .sgl
+      - .std
+      - .stw
+      - .sxd
+      - .sxg
+      - .sxm
+      - .sxw
+      - .uof
+      - .uop
+      - .uot
+      - .vor
+      - .wpd
+      - .wps
+      - .wpt
+      - .wri
+      - .wn
+      - .xml
+      - .zabw
+      - .key
+      - .odp
+      - .odg
+      - .otp
+      - .pot
+      - .potm
+      - .potx
+      - .ppt
+      - .pptm
+      - .pptx
+      - .sti
+      - .sxi
+      - .vsd
+      - .vsdm
+      - .vsdx
+      - .vdx
+      - .bmp
+      - .gif
+      - .heic
+      - .heif
+      - .jpg
+      - .jpeg
+      - .png
+      - .svg
+      - .tif
+      - .tiff
+      - .webp
+      - .htm
+      - .html
+      - .xhtm
+      - .csv
+      - .dbf
+      - .dif
+      - .et
+      - .eth
+      - .fods
+      - .numbers
+      - .ods
+      - .ots
+      - .prn
+      - .qpw
+      - .slk
+      - .stc
+      - .sxc
+      - .sylk
+      - .tsv
+      - .uos1
+      - .uos2
+      - .uos
+      - .wb1
+      - .wb2
+      - .wb3
+      - .wk1
+      - .wk2
+      - .wk3
+      - .wk4
+      - .wks
+      - .wq1
+      - .wq2
+      - .xlr
+      - .xls
+      - .xlsb
+      - .xlsm
+      - .xlsx
+      - .xlw
+      - .azw
+      - .azw3
+      - .azw4
+      - .cb7
+      - .cbc
+      - .cbr
+      - .cbz
+      - .chm
+      - .djvu
+      - .epub
+      - .fbz
+      - .htmlz
+      - .lit
+      - .lrf
+      - .md
+      - .mobi
+      - .pdb
+      - .pml
+      - .prc
+      - .rb
+      - .snb
+      - .tcr
+      - .txtz
+      - .m4a
+      - .mp3
+      - .mp4
+      - .mpeg
+      - .mpga
+      - .wav
+      - .webm
+      - .yxmd
+      title: LlamaParseSupportedFileExtensions
+      description: Enum for supported file extensions.
+    ParsingJobStructuredResult:
+      properties:
+        structured:
+          title: Structured
+          description: Extracted structured data conforming to the output_schema provided at job creation
+        job_metadata:
+          title: Job Metadata
+          description: Job metadata including credit usage and page counts
+      type: object
+      required:
+      - structured
+      - job_metadata
+      title: ParsingJobStructuredResult
+      description: Parse job result as structured output (custom schema).
+    Body_upload_file_api_v1_parsing_upload_post:
+      properties:
+        file:
+          anyOf:
+          - type: string
+            format: binary
+          - type: 'null'
+          title: File
+        adaptive_long_table:
+          type: boolean
+          title: Adaptive Long Table
+          default: false
+        annotate_links:
+          type: boolean
+          title: Annotate Links
+          default: false
+        auto_mode:
+          type: boolean
+          title: Auto Mode
+          default: false
+        auto_mode_trigger_on_image_in_page:
+          type: boolean
+          title: Auto Mode Trigger On Image In Page
+          default: false
+        auto_mode_trigger_on_table_in_page:
+          type: boolean
+          title: Auto Mode Trigger On Table In Page
+          default: false
+        auto_mode_trigger_on_text_in_page:
+          type: string
+          title: Auto Mode Trigger On Text In Page
+        auto_mode_trigger_on_regexp_in_page:
+          type: string
+          title: Auto Mode Trigger On Regexp In Page
+        auto_mode_configuration_json:
+          type: string
+          title: Auto Mode Configuration Json
+        azure_openai_api_version:
+          type: string
+          title: Azure Openai Api Version
+        azure_openai_deployment_name:
+          type: string
+          title: Azure Openai Deployment Name
+        azure_openai_endpoint:
+          type: string
+          title: Azure Openai Endpoint
+        azure_openai_key:
+          type: string
+          title: Azure Openai Key
+        bbox_bottom:
+          type: number
+          title: Bbox Bottom
+        bbox_left:
+          type: number
+          title: Bbox Left
+        bbox_right:
+          type: number
+          title: Bbox Right
+        bbox_top:
+          type: number
+          title: Bbox Top
+        compact_markdown_table:
+          type: boolean
+          title: Compact Markdown Table
+          default: false
+        disable_ocr:
+          type: boolean
+          title: Disable Ocr
+          default: false
+        disable_reconstruction:
+          type: boolean
+          title: Disable Reconstruction
+          default: false
+        disable_image_extraction:
+          type: boolean
+          title: Disable Image Extraction
+          default: false
+        do_not_cache:
+          type: boolean
+          title: Do Not Cache
+          default: false
+        do_not_unroll_columns:
+          type: boolean
+          title: Do Not Unroll Columns
+          default: false
+        extract_charts:
+          type: boolean
+          title: Extract Charts
+          default: false
+        guess_xlsx_sheet_name:
+          type: boolean
+          title: Guess Xlsx Sheet Name
+          default: false
+        high_res_ocr:
+          type: boolean
+          title: High Res Ocr
+          default: false
+        html_make_all_elements_visible:
+          type: boolean
+          title: Html Make All Elements Visible
+          default: false
+        layout_aware:
+          type: boolean
+          title: Layout Aware
+          default: false
+        specialized_chart_parsing_agentic:
+          type: boolean
+          title: Specialized Chart Parsing Agentic
+          default: false
+        specialized_chart_parsing_plus:
+          type: boolean
+          title: Specialized Chart Parsing Plus
+          default: false
+        specialized_chart_parsing_efficient:
+          type: boolean
+          title: Specialized Chart Parsing Efficient
+          default: false
+        specialized_image_parsing:
+          type: boolean
+          title: Specialized Image Parsing
+          default: false
+        precise_bounding_box:
+          type: boolean
+          title: Precise Bounding Box
+          default: false
+        line_level_bounding_box:
+          type: boolean
+          title: Line Level Bounding Box
+          default: false
+        html_remove_fixed_elements:
+          type: boolean
+          title: Html Remove Fixed Elements
+          default: false
+        html_remove_navigation_elements:
+          type: boolean
+          title: Html Remove Navigation Elements
+          default: false
+        http_proxy:
+          type: string
+          title: Http Proxy
+        input_s3_path:
+          type: string
+          title: Input S3 Path
+          default: ''
+        input_s3_region:
+          type: string
+          title: Input S3 Region
+          default: ''
+        input_url:
+          type: string
+          title: Input Url
+        invalidate_cache:
+          type: boolean
+          title: Invalidate Cache
+          default: false
+        language:
+          items:
+            $ref: '#/components/schemas/ParserLanguages'
+          type: array
+          title: Language
+          default:
+          - en
+        extract_layout:
+          type: boolean
+          title: Extract Layout
+          default: false
+        max_pages:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Pages
+        merge_tables_across_pages_in_markdown:
+          type: boolean
+          title: Merge Tables Across Pages In Markdown
+          default: false
+        outlined_table_extraction:
+          type: boolean
+          title: Outlined Table Extraction
+          default: false
+        aggressive_table_extraction:
+          type: boolean
+          title: Aggressive Table Extraction
+          default: false
+        output_pdf_of_document:
+          type: boolean
+          title: Output Pdf Of Document
+          default: false
+        output_s3_path_prefix:
+          type: string
+          title: Output S3 Path Prefix
+          default: ''
+        output_s3_region:
+          type: string
+          title: Output S3 Region
+          default: ''
+        page_prefix:
+          type: string
+          title: Page Prefix
+          default: ''
+        page_separator:
+          type: string
+          title: Page Separator
+        page_suffix:
+          type: string
+          title: Page Suffix
+          default: ''
+        preserve_layout_alignment_across_pages:
+          type: boolean
+          title: Preserve Layout Alignment Across Pages
+          default: false
+        preserve_very_small_text:
+          type: boolean
+          title: Preserve Very Small Text
+          default: false
+        skip_diagonal_text:
+          type: boolean
+          title: Skip Diagonal Text
+          default: false
+        spreadsheet_extract_sub_tables:
+          type: boolean
+          title: Spreadsheet Extract Sub Tables
+          default: true
+        spreadsheet_force_formula_computation:
+          type: boolean
+          title: Spreadsheet Force Formula Computation
+          default: false
+        inline_images_in_markdown:
+          type: boolean
+          title: Inline Images In Markdown
+          default: false
+        structured_output:
+          type: boolean
+          title: Structured Output
+          default: false
+        structured_output_json_schema:
+          type: string
+          title: Structured Output Json Schema
+        structured_output_json_schema_name:
+          type: string
+          title: Structured Output Json Schema Name
+        take_screenshot:
+          type: boolean
+          title: Take Screenshot
+          default: false
+        target_pages:
+          type: string
+          title: Target Pages
+          default: ''
+        vendor_multimodal_api_key:
+          type: string
+          title: Vendor Multimodal Api Key
+          default: ''
+        vendor_multimodal_model_name:
+          type: string
+          title: Vendor Multimodal Model Name
+        model:
+          type: string
+          title: Model
+        webhook_url:
+          type: string
+          title: Webhook Url
+          default: ''
+        webhook_configurations:
+          type: string
+          title: Webhook Configurations
+          default: ''
+        preset:
+          type: string
+          title: Preset
+          default: ''
+        parse_mode:
+          anyOf:
+          - $ref: '#/components/schemas/ParsingMode'
+          - type: 'null'
+        page_error_tolerance:
+          type: number
+          title: Page Error Tolerance
+          default: 0.05
+        replace_failed_page_mode:
+          anyOf:
+          - $ref: '#/components/schemas/FailPageMode'
+          - type: 'null'
+        replace_failed_page_with_error_message_prefix:
+          type: string
+          title: Replace Failed Page With Error Message Prefix
+          default: ''
+        replace_failed_page_with_error_message_suffix:
+          type: string
+          title: Replace Failed Page With Error Message Suffix
+          default: ''
+        system_prompt:
+          type: string
+          title: System Prompt
+          default: ''
+        system_prompt_append:
+          type: string
+          title: System Prompt Append
+          default: ''
+        user_prompt:
+          type: string
+          title: User Prompt
+          default: ''
+        job_timeout_in_seconds:
+          type: number
+          title: Job Timeout In Seconds
+        job_timeout_extra_time_per_page_in_seconds:
+          type: number
+          title: Job Timeout Extra Time Per Page In Seconds
+        strict_mode_image_extraction:
+          type: boolean
+          title: Strict Mode Image Extraction
+          default: false
+        strict_mode_image_ocr:
+          type: boolean
+          title: Strict Mode Image Ocr
+          default: false
+        strict_mode_reconstruction:
+          type: boolean
+          title: Strict Mode Reconstruction
+          default: false
+        strict_mode_buggy_font:
+          type: boolean
+          title: Strict Mode Buggy Font
+          default: false
+        save_images:
+          type: boolean
+          title: Save Images
+          default: true
+        ignore_document_elements_for_layout_detection:
+          type: boolean
+          title: Ignore Document Elements For Layout Detection
+          default: false
+        keep_page_separator_when_merging_tables:
+          type: boolean
+          title: Keep Page Separator When Merging Tables
+          default: false
+        output_tables_as_HTML:
+          type: boolean
+          title: Output Tables As Html
+          default: false
+        markdown_table_multiline_header_separator:
+          type: string
+          title: Markdown Table Multiline Header Separator
+        use_vendor_multimodal_model:
+          type: boolean
+          title: Use Vendor Multimodal Model
+          default: false
+        bounding_box:
+          type: string
+          title: Bounding Box
+          default: ''
+        gpt4o_mode:
+          type: boolean
+          title: Gpt4O Mode
+          default: false
+        gpt4o_api_key:
+          type: string
+          title: Gpt4O Api Key
+          default: ''
+        complemental_formatting_instruction:
+          type: string
+          title: Complemental Formatting Instruction
+        content_guideline_instruction:
+          type: string
+          title: Content Guideline Instruction
+        premium_mode:
+          type: boolean
+          title: Premium Mode
+          default: false
+        is_formatting_instruction:
+          type: boolean
+          title: Is Formatting Instruction
+          default: true
+        continuous_mode:
+          type: boolean
+          title: Continuous Mode
+          default: false
+        parsing_instruction:
+          type: string
+          title: Parsing Instruction
+          default: ''
+        fast_mode:
+          type: boolean
+          title: Fast Mode
+          default: false
+        formatting_instruction:
+          type: string
+          title: Formatting Instruction
+        hide_headers:
+          type: boolean
+          title: Hide Headers
+          default: false
+        hide_footers:
+          type: boolean
+          title: Hide Footers
+          default: false
+        page_header_prefix:
+          type: string
+          title: Page Header Prefix
+        page_header_suffix:
+          type: string
+          title: Page Header Suffix
+        page_footer_prefix:
+          type: string
+          title: Page Footer Prefix
+        page_footer_suffix:
+          type: string
+          title: Page Footer Suffix
+        remove_hidden_text:
+          type: boolean
+          title: Remove Hidden Text
+          default: false
+        presentation_out_of_bounds_content:
+          type: boolean
+          title: Presentation Out Of Bounds Content
+          default: false
+        presentation_skip_embedded_data:
+          type: boolean
+          title: Presentation Skip Embedded Data
+          default: false
+        extract_printed_page_number:
+          type: boolean
+          title: Extract Printed Page Number
+          default: false
+        tier:
+          type: string
+          title: Tier
+        version:
+          type: string
+          title: Version
+      type: object
+      title: Body_upload_file_api_v1_parsing_upload_post
+    ParsingMode:
+      type: string
+      enum:
+      - parse_page_without_llm
+      - parse_page_with_llm
+      - parse_page_with_lvm
+      - parse_page_with_agent
+      - parse_page_with_layout_agent
+      - parse_document_with_llm
+      - parse_document_with_lvm
+      - parse_document_with_agent
+      title: ParsingMode
+      description: Enum for representing the mode of parsing to be used.
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ParsingJob:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique parse job identifier
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+          description: Current job status
+        error_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Code
+          description: Machine-readable error code when failed
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+          description: Human-readable error details when failed
+      type: object
+      required:
+      - id
+      - status
+      title: ParsingJob
+      description: A parse job (v1).
+    FailPageMode:
+      type: string
+      enum:
+      - raw_text
+      - blank_page
+      - error_message
+      title: FailPageMode
+      description: Enum for representing the different available page error handling modes.
+    Body_screenshot_api_v1_parsing_screenshot_post:
+      properties:
+        file:
+          anyOf:
+          - type: string
+            format: binary
+          - type: 'null'
+          title: File
+        do_not_cache:
+          type: boolean
+          title: Do Not Cache
+          default: false
+        http_proxy:
+          type: string
+          title: Http Proxy
+        input_s3_path:
+          type: string
+          title: Input S3 Path
+          default: ''
+        input_s3_region:
+          type: string
+          title: Input S3 Region
+          default: ''
+        input_url:
+          type: string
+          title: Input Url
+        invalidate_cache:
+          type: boolean
+          title: Invalidate Cache
+          default: false
+        max_pages:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Pages
+        output_s3_path_prefix:
+          type: string
+          title: Output S3 Path Prefix
+          default: ''
+        output_s3_region:
+          type: string
+          title: Output S3 Region
+          default: ''
+        target_pages:
+          type: string
+          title: Target Pages
+          default: ''
+        webhook_url:
+          type: string
+          title: Webhook Url
+          default: ''
+        webhook_configurations:
+          type: string
+          title: Webhook Configurations
+          default: ''
+        job_timeout_in_seconds:
+          type: number
+          title: Job Timeout In Seconds
+        job_timeout_extra_time_per_page_in_seconds:
+          type: number
+          title: Job Timeout Extra Time Per Page In Seconds
+      type: object
+      title: Body_screenshot_api_v1_parsing_screenshot_post
+    ParsingJobMarkdownResult:
+      properties:
+        markdown:
+          type: string
+          title: Markdown
+          description: Full document content rendered as markdown
+        job_metadata:
+          title: Job Metadata
+          description: Job metadata including credit usage and page counts
+      type: object
+      required:
+      - markdown
+      - job_metadata
+      title: ParsingJobMarkdownResult
+      description: Parse job result in markdown format.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

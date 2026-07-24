@@ -1,0 +1,309 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Usage Metrics API
+  version: 0.1.0
+tags:
+- name: Usage Metrics
+paths:
+  /api/v1/beta/usage-metrics:
+    get:
+      tags:
+      - Usage Metrics
+      summary: List Usage Metrics
+      description: List usage metrics with filtering and pagination.
+      operationId: list_usage_metrics_api_v1_beta_usage_metrics_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Number of items per page
+          title: Page Size
+        description: Number of items per page
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Token for pagination
+          title: Page Token
+        description: Token for pagination
+      - name: include_total
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Include total count in response
+          default: false
+          title: Include Total
+        description: Include total count in response
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          description: Filter by project ID
+          title: Project Id
+        description: Filter by project ID
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by user ID
+          title: User Id
+        description: Filter by user ID
+      - name: event_types
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by event types
+          title: Event Types
+        description: Filter by event types
+      - name: days
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by specific days (YYYY-MM-DD)
+          title: Days
+        description: Filter by specific days (YYYY-MM-DD)
+      - name: day_on_or_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by days on or before this date (YYYY-MM-DD)
+          title: Day On Or Before
+        description: Filter by days on or before this date (YYYY-MM-DD)
+      - name: day_on_or_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by days on or after this date (YYYY-MM-DD)
+          title: Day On Or After
+        description: Filter by days on or after this date (YYYY-MM-DD)
+      - name: event_aggregation_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by event aggregation type
+          title: Event Aggregation Type
+        description: Filter by event aggregation type
+      - name: event_aggregation_key
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by event aggregation key
+          title: Event Aggregation Key
+        description: Filter by event aggregation key
+      - name: organization_id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageMetricQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    UsageMetric:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: The system-generated UUID for the metric
+        user_id:
+          type: string
+          title: User Id
+          description: The ID of the user
+        event_type:
+          type: string
+          enum:
+          - pages_indexed
+          - pages_embedded
+          - pages_parsed
+          - set_total_pages_indexed
+          - set_total_indexes
+          - layout_extracted
+          - layout_aware_parsing
+          - layout_aware_chart_extraction
+          - chart_parsing_agentic
+          - chart_parsing_plus
+          - chart_parsing_efficient
+          - image_classified
+          - precise_bbox_extraction
+          - audio_seconds_parsed
+          - extraction_num_pages
+          - extraction_num_pages_parsed
+          - pages_split
+          - pages_classified
+          - directory_file_count_snapshot
+          - directory_count_snapshot
+          title: Event Type
+          description: The event type that is emitted
+        project_id:
+          type: string
+          title: Project Id
+          description: The project ID
+        organization_id:
+          type: string
+          title: Organization Id
+          description: The organization ID
+        value:
+          type: integer
+          title: Value
+          description: The unit measurement associated with the event type
+        properties:
+          additionalProperties: true
+          type: object
+          title: Properties
+          description: Properties associated with the metric
+        day:
+          type: string
+          title: Day
+          description: The day the metric was emitted [UTC], in the format 'YYYY-MM-DD'
+        event_aggregation_key:
+          type: string
+          title: Event Aggregation Key
+          description: The source job identifier, i.e. job_id or file_id
+        event_aggregation_type:
+          type: string
+          title: Event Aggregation Type
+          description: The source job aggregation type, i.e. pdf
+        credits:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Credits
+          description: The number of credits consumed by this metric
+      type: object
+      required:
+      - id
+      - user_id
+      - event_type
+      - project_id
+      - organization_id
+      - value
+      - day
+      - event_aggregation_key
+      - event_aggregation_type
+      title: UsageMetric
+      description: API boundary representation of a usage metric.
+    UsageMetricQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/UsageMetric'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: UsageMetricQueryResponse
+      description: Paginated response containing usage metrics.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

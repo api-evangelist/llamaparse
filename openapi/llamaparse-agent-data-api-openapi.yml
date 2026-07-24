@@ -1,0 +1,825 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data API
+  version: 0.1.0
+tags:
+- name: Agent Data
+paths:
+  /api/v1/beta/agent-data/{item_id}:
+    get:
+      tags:
+      - Agent Data
+      summary: Get Agent Data
+      description: Get agent data by ID.
+      operationId: get_agent_data_api_v1_beta_agent_data__item_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Item Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentData'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+      - Agent Data
+      summary: Update Agent Data
+      description: Update agent data by ID (overwrites).
+      operationId: update_agent_data_api_v1_beta_agent_data__item_id__put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Item Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDataUpdate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentData'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Agent Data
+      summary: Delete Agent Data
+      description: Delete agent data by ID.
+      operationId: delete_agent_data_api_v1_beta_agent_data__item_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Item Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+                title: Response Delete Agent Data Api V1 Beta Agent Data  Item Id  Delete
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/agent-data:
+    post:
+      tags:
+      - Agent Data
+      summary: Create Agent Data
+      description: Create new agent data.
+      operationId: create_agent_data_api_v1_beta_agent_data_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDataCreate'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentData'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/agent-data/:search:
+    post:
+      tags:
+      - Agent Data
+      summary: Search Agent Data
+      description: Search agent data with filtering, sorting, and pagination.
+      operationId: search_agent_data_api_v1_beta_agent_data__search_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_AgentData_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/agent-data/:aggregate:
+    post:
+      tags:
+      - Agent Data
+      summary: Aggregate Agent Data
+      description: Aggregate agent data with grouping and optional counting/first item retrieval.
+      operationId: aggregate_agent_data_api_v1_beta_agent_data__aggregate_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AggregateRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse_AggregateGroup_'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/agent-data/:delete:
+    post:
+      tags:
+      - Agent Data
+      summary: Delete Agent Data By Query
+      description: Bulk delete agent data by query (deployment_name, collection, optional filters).
+      operationId: delete_agent_data_by_query_api_v1_beta_agent_data__delete_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    DeleteRequest:
+      properties:
+        deployment_name:
+          type: string
+          title: Deployment Name
+          description: The agent deployment's name to delete data for
+        collection:
+          type: string
+          title: Collection
+          description: The logical agent data collection to delete from
+          default: default
+        filter:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/FilterOperation'
+            type: object
+          - type: 'null'
+          title: Filter
+          description: Optional filters to select which items to delete
+      type: object
+      required:
+      - deployment_name
+      title: DeleteRequest
+      description: API request body for bulk deleting agent data by query
+    PaginatedResponse_AgentData_:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AgentData'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: PaginatedResponse[AgentData]
+    AgentDataCreate:
+      properties:
+        deployment_name:
+          type: string
+          title: Deployment Name
+        collection:
+          type: string
+          title: Collection
+          default: default
+        data:
+          additionalProperties: true
+          type: object
+          title: Data
+      type: object
+      required:
+      - deployment_name
+      - data
+      title: AgentDataCreate
+      description: API request model for creating agent data
+    DeleteResponse:
+      properties:
+        deleted_count:
+          type: integer
+          title: Deleted Count
+      type: object
+      required:
+      - deleted_count
+      title: DeleteResponse
+      description: API response for bulk delete operation
+    FilterOperation:
+      properties:
+        eq:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: string
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Eq
+        ne:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: string
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Ne
+        gt:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: string
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Gt
+        gte:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: string
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Gte
+        lt:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: string
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Lt
+        lte:
+          anyOf:
+          - type: number
+          - type: integer
+          - type: string
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Lte
+        includes:
+          items:
+            anyOf:
+            - type: number
+            - type: integer
+            - type: string
+            - type: string
+              format: date-time
+            - type: 'null'
+          type: array
+          title: Includes
+        excludes:
+          items:
+            anyOf:
+            - type: number
+            - type: integer
+            - type: string
+            - type: string
+              format: date-time
+            - type: 'null'
+          type: array
+          title: Excludes
+      type: object
+      title: FilterOperation
+      description: API request model for a filter comparison operation.
+    SearchRequest:
+      properties:
+        page_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
+        page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
+        filter:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/FilterOperation'
+            type: object
+          - type: 'null'
+          title: Filter
+          description: A filter object or expression that filters resources listed in the response.
+        order_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Order By
+          description: A comma-separated list of fields to order by, sorted in ascending order. Use 'field_name desc' to specify descending order.
+        deployment_name:
+          type: string
+          title: Deployment Name
+          description: The agent deployment's name to search within
+        collection:
+          type: string
+          title: Collection
+          description: The logical agent data collection to search within
+          default: default
+        include_total:
+          type: boolean
+          title: Include Total
+          description: Whether to include the total number of items in the response
+          default: false
+        offset:
+          anyOf:
+          - type: integer
+            maximum: 1000.0
+            minimum: 0.0
+          - type: 'null'
+          title: Offset
+          description: The offset to start from. If not provided, the first page is returned
+          default: 0
+      type: object
+      required:
+      - deployment_name
+      title: SearchRequest
+      description: API request body for searching agent data
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PaginatedResponse_AggregateGroup_:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AggregateGroup'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: PaginatedResponse[AggregateGroup]
+    AggregateRequest:
+      properties:
+        page_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
+        page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
+        filter:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/FilterOperation'
+            type: object
+          - type: 'null'
+          title: Filter
+          description: A filter object or expression that filters resources listed in the response.
+        order_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Order By
+          description: A comma-separated list of fields to order by, sorted in ascending order. Use 'field_name desc' to specify descending order.
+        deployment_name:
+          type: string
+          title: Deployment Name
+          description: The agent deployment's name to aggregate data for
+        collection:
+          type: string
+          title: Collection
+          description: The logical agent data collection to aggregate data for
+          default: default
+        group_by:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Group By
+          description: The fields to group by. If empty, the entire dataset is grouped on. e.g. if left out, can be used for simple count operations
+        count:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Count
+          description: Whether to count the number of items in each group
+          default: false
+        first:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: First
+          description: Whether to return the first item in each group (Sorted by created_at)
+          default: false
+        offset:
+          anyOf:
+          - type: integer
+            maximum: 1000.0
+            minimum: 0.0
+          - type: 'null'
+          title: Offset
+          description: The offset to start from. If not provided, the first page is returned
+          default: 0
+      type: object
+      required:
+      - deployment_name
+      title: AggregateRequest
+      description: API request body for aggregating agent data
+    AgentDataUpdate:
+      properties:
+        data:
+          additionalProperties: true
+          type: object
+          title: Data
+      type: object
+      required:
+      - data
+      title: AgentDataUpdate
+      description: API request model for updating agent data
+    AggregateGroup:
+      properties:
+        group_key:
+          additionalProperties: true
+          type: object
+          title: Group Key
+        count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Count
+        first_item:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: First Item
+      type: object
+      required:
+      - group_key
+      title: AggregateGroup
+      description: API Result for a single group in the aggregate response
+    AgentData:
+      properties:
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        deployment_name:
+          type: string
+          title: Deployment Name
+        project_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Project Id
+        collection:
+          type: string
+          title: Collection
+          default: default
+        data:
+          additionalProperties: true
+          type: object
+          title: Data
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+      type: object
+      required:
+      - deployment_name
+      - data
+      title: AgentData
+      description: API Result for a single agent data item
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

@@ -1,0 +1,381 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Page Figures API
+  version: 0.1.0
+tags:
+- name: Page Figures
+paths:
+  /api/v1/files/{id}/page-figures:
+    get:
+      tags:
+      - Page Figures
+      summary: List File Pages Figures
+      description: List metadata for all figures from all pages of a file.
+      operationId: list_file_pages_figures_api_v1_files__id__page_figures_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageFigureMetadata'
+                title: Response List File Pages Figures Api V1 Files  Id  Page Figures Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/files/{id}/page-figures/{page_index}:
+    get:
+      tags:
+      - Page Figures
+      summary: List File Page Figures
+      description: List metadata for figures from a specific page of a file.
+      operationId: list_file_page_figures_api_v1_files__id__page_figures__page_index__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Id
+      - name: page_index
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Page Index
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageFigureMetadata'
+                title: Response List File Page Figures Api V1 Files  Id  Page Figures  Page Index  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/files/{id}/page-figures/{page_index}/{figure_name}:
+    get:
+      tags:
+      - Page Figures
+      summary: Get File Page Figure
+      description: Get a specific figure from a page of a file.
+      operationId: get_file_page_figure_api_v1_files__id__page_figures__page_index___figure_name__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Id
+      - name: page_index
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Page Index
+      - name: figure_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Figure Name
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/files/{id}/page-figures/{page_index}/{figure_name}/presigned_url:
+    post:
+      tags:
+      - Page Figures
+      summary: Generate File Page Figure Presigned Url
+      description: Returns a short-lived presigned URL to read a page figure; treat the URL as sensitive while it is valid.
+      operationId: generate_file_page_figure_presigned_url_api_v1_files__id__page_figures__page_index___figure_name__presigned_url_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Id
+      - name: page_index
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Page Index
+      - name: figure_name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Figure Name
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresignedUrl'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    PageFigureMetadata:
+      properties:
+        figure_name:
+          type: string
+          title: Figure Name
+          description: The name of the figure
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file that the figure was taken from
+        page_index:
+          type: integer
+          minimum: 0.0
+          title: Page Index
+          description: The index of the page for which the figure is taken (0-indexed)
+        figure_size:
+          type: integer
+          minimum: 0.0
+          title: Figure Size
+          description: The size of the figure in bytes
+        is_likely_noise:
+          type: boolean
+          title: Is Likely Noise
+          description: Whether the figure is likely to be noise
+          default: false
+        confidence:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Confidence
+          description: The confidence of the figure
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata for the figure
+      type: object
+      required:
+      - figure_name
+      - file_id
+      - page_index
+      - figure_size
+      - confidence
+      title: PageFigureMetadata
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

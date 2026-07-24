@@ -1,0 +1,2848 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Parse API
+  version: 0.1.0
+tags:
+- name: Parse
+paths:
+  /api/v2/parse/upload:
+    post:
+      tags:
+      - Parse
+      summary: Upload File Multipart
+      description: 'Upload and parse a file using multipart/form-data.
+
+
+        Send the file as a `file` field and parsing configuration as a
+
+        `configuration` JSON string field.
+
+
+        The job runs asynchronously. Poll `GET /parse/{job_id}` with
+
+        `expand` to retrieve results.'
+      operationId: upload_file_multipart_api_v2_parse_upload_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v2/parse:
+    post:
+      tags:
+      - Parse
+      summary: Parse File
+      description: 'Parse a file by file ID or URL.
+
+
+        Provide either `file_id` (a previously uploaded file) or
+
+        `source_url` (a publicly accessible URL). Configure parsing
+
+        with options like `tier`, `target_pages`, and `lang`.
+
+
+        ## Tiers
+
+
+        - `fast` — rule-based, cheapest, no AI
+
+        - `cost_effective` — balanced speed and quality
+
+        - `agentic` — full AI-powered parsing
+
+        - `agentic_plus` — premium AI with specialized features
+
+
+        The job runs asynchronously. Poll `GET /parse/{job_id}` with
+
+        `expand=text` or `expand=markdown` to retrieve results.'
+      operationId: parse_file_api_v2_parse_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParseRequestConfiguration'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Parse
+      summary: List Parse Jobs
+      description: 'List parse jobs for the current project.
+
+
+        Filter by `status` or creation date range. Results are
+
+        paginated — use `page_token` from the response to fetch
+
+        subsequent pages.'
+      operationId: list_parse_jobs_api_v2_parse_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Number of items per page
+          title: Page Size
+        description: Number of items per page
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Token for pagination
+          title: Page Token
+        description: Token for pagination
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - enum:
+            - PENDING
+            - RUNNING
+            - COMPLETED
+            - FAILED
+            - CANCELLED
+            type: string
+          - type: 'null'
+          description: Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)
+          title: Status
+        description: Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)
+      - name: job_ids
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Filter by specific job IDs
+          title: Job Ids
+        description: Filter by specific job IDs
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: created_at_on_or_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Include items created at or after this timestamp (inclusive)
+          title: Created At On Or After
+        description: Include items created at or after this timestamp (inclusive)
+      - name: created_at_on_or_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          description: Include items created at or before this timestamp (inclusive)
+          title: Created At On Or Before
+        description: Include items created at or before this timestamp (inclusive)
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseJobQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v2/parse/versions:
+    get:
+      tags:
+      - Parse
+      summary: List Parse Versions
+      description: List the parse versions accepted by each tier.
+      operationId: list_parse_versions_api_v2_parse_versions_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseVersionsResponse'
+  /api/v2/parse/{job_id}:
+    get:
+      tags:
+      - Parse
+      summary: Get Parse Job
+      description: 'Retrieve a parse job with optional expanded content.
+
+
+        By default returns job metadata only. Use `expand` to include
+
+        parsed content:
+
+
+        - `text` — plain text output
+
+        - `markdown` — markdown output
+
+        - `items` — structured page-by-page output
+
+        - `job_metadata` — usage and processing details
+
+
+        Content metadata fields (e.g. `text_content_metadata`) return
+
+        presigned URLs for downloading large results.'
+      operationId: get_parse_job_api_v2_parse__job_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+          description: 'Fields to include: text, markdown, items, metadata, job_metadata, text_content_metadata, markdown_content_metadata, items_content_metadata, metadata_content_metadata, raw_words_content_metadata, xlsx_content_metadata, output_pdf_content_metadata, images_content_metadata. Metadata fields include presigned URLs.'
+          title: Expand
+        description: 'Fields to include: text, markdown, items, metadata, job_metadata, text_content_metadata, markdown_content_metadata, items_content_metadata, metadata_content_metadata, raw_words_content_metadata, xlsx_content_metadata, output_pdf_content_metadata, images_content_metadata. Metadata fields include presigned URLs.'
+      - name: image_filenames
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: 'Filter to specific image filenames (optional). Example: image_0.png,image_1.jpg'
+          title: Image Filenames
+        description: 'Filter to specific image filenames (optional). Example: image_0.png,image_1.jpg'
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseResultResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v2/parse/{job_id}/cancel:
+    post:
+      tags:
+      - Parse
+      summary: Cancel Parse Job
+      description: 'Cancel a running parse job.
+
+
+        Stops processing and marks the job as CANCELLED. Returns the updated job. Jobs already in a terminal state (COMPLETED, FAILED, CANCELLED) cannot be cancelled.'
+      operationId: cancel_parse_job_api_v2_parse__job_id__cancel_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    MetadataResultPage:
+      properties:
+        page_number:
+          type: integer
+          title: Page Number
+          description: Page number of the document
+        confidence:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Confidence
+          description: Confidence score for the page parsing (0-1)
+        speaker_notes:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Speaker Notes
+          description: Speaker notes from presentation slides
+        slide_section_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Slide Section Name
+          description: Section name from presentation slides
+        printed_page_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Printed Page Number
+          description: Printed page number as it appears in the document
+        original_orientation_angle:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Original Orientation Angle
+          description: Original orientation angle of the page in degrees
+        cost_optimized:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Cost Optimized
+          description: Whether cost-optimized parsing was used for the page
+        triggered_auto_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Triggered Auto Mode
+          description: Whether auto mode was triggered for the page
+      type: object
+      required:
+      - page_number
+      title: MetadataResultPage
+      description: Page-level metadata including confidence scores and presentation-specific data.
+    ResultTypeMetadata:
+      properties:
+        size_bytes:
+          type: integer
+          title: Size Bytes
+          description: Size of the result file in bytes
+        exists:
+          type: boolean
+          title: Exists
+          description: Whether the result file exists in S3
+          default: true
+        presigned_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Presigned Url
+          description: Presigned URL to download the result file
+      type: object
+      required:
+      - size_bytes
+      title: ResultTypeMetadata
+      description: Metadata about a specific result type stored in S3.
+    MarkdownResultPage:
+      properties:
+        page_number:
+          type: integer
+          title: Page Number
+          description: Page number of the document
+        markdown:
+          type: string
+          title: Markdown
+          description: Markdown content of the page
+        header:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Header
+          description: Header of the page in markdown
+        footer:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Footer
+          description: Footer of the page in markdown
+        success:
+          type: boolean
+          const: true
+          title: Success
+          description: Success indicator
+      type: object
+      required:
+      - page_number
+      - markdown
+      - success
+      title: MarkdownResultPage
+    LlamaParseSpatialTextOptions:
+      properties:
+        preserve_layout_alignment_across_pages:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Preserve Layout Alignment Across Pages
+          description: Maintain consistent text column alignment across page boundaries. Automatically enabled for document-level parsing modes
+        preserve_very_small_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Preserve Very Small Text
+          description: Include text below the normal size threshold. Useful for footnotes, watermarks, or fine print that might otherwise be filtered out
+        do_not_unroll_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Do Not Unroll Columns
+          description: Keep multi-column layouts intact instead of linearizing columns into sequential text. Automatically enabled for non-fast tiers
+      additionalProperties: false
+      type: object
+      title: LlamaParseSpatialTextOptions
+      description: 'Spatial text output options for preserving document layout.
+
+
+        Spatial text maintains the visual positioning of text elements, useful for
+
+        documents where layout conveys meaning (forms, tables, multi-column layouts).'
+    HeadingItem:
+      properties:
+        type:
+          type: string
+          const: heading
+          title: Type
+          description: Heading item type
+          default: heading
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        level:
+          type: integer
+          title: Level
+          description: Heading level (1-6)
+        value:
+          type: string
+          title: Value
+          description: Heading text content
+      type: object
+      required:
+      - md
+      - level
+      - value
+      title: HeadingItem
+    LlamaParseProcessingControl:
+      properties:
+        timeouts:
+          $ref: '#/components/schemas/LlamaParseTimeouts'
+          description: Timeout settings for job execution. Increase for large or complex documents
+        job_failure_conditions:
+          $ref: '#/components/schemas/LlamaParseJobFailureConditions'
+          description: Quality thresholds that determine when a job should fail vs complete with partial results
+      additionalProperties: false
+      type: object
+      title: LlamaParseProcessingControl
+      description: Job processing controls for timeouts and failure handling.
+    LlamaParseFastOptions:
+      properties: {}
+      additionalProperties: false
+      type: object
+      title: LlamaParseFastOptions
+      description: 'Options for fast tier parsing (rule-based, no AI).
+
+
+        Fast tier uses deterministic algorithms for text extraction without AI enhancement.
+
+        It''s the fastest and most cost-effective option, best suited for simple documents
+
+        with standard layouts. Currently has no configurable options but reserved for
+
+        future expansion.'
+    LlamaParseInputOptions:
+      properties:
+        html:
+          $ref: '#/components/schemas/LlamaParseHtmlOptions'
+          description: HTML/web page parsing options (applies to .html, .htm files)
+        pdf:
+          $ref: '#/components/schemas/LlamaParsePdfOptions'
+          description: PDF-specific parsing options (applies to .pdf files)
+        spreadsheet:
+          $ref: '#/components/schemas/LlamaParseSpreadsheetOptions'
+          description: Spreadsheet parsing options (applies to .xlsx, .xls, .csv, .ods files)
+        presentation:
+          $ref: '#/components/schemas/LlamaParsePresentationOptions'
+          description: Presentation parsing options (applies to .pptx, .ppt, .odp, .key files)
+      additionalProperties: false
+      type: object
+      title: LlamaParseInputOptions
+      description: 'Input format-specific parsing options.
+
+
+        These options only apply when parsing documents of the corresponding format.
+
+        LlamaParse automatically detects the input format based on file extension and content.'
+    TextResult:
+      properties:
+        pages:
+          items:
+            $ref: '#/components/schemas/TextResultPage'
+          type: array
+          title: Pages
+          description: List of text pages
+      type: object
+      required:
+      - pages
+      title: TextResult
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CodeItem:
+      properties:
+        type:
+          type: string
+          const: code
+          title: Type
+          description: Code block item type
+          default: code
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        value:
+          type: string
+          title: Value
+          description: Code content
+        language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+          description: Programming language identifier
+      type: object
+      required:
+      - md
+      - value
+      title: CodeItem
+    LlamaParseTables:
+      properties:
+        compact_markdown_tables:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Compact Markdown Tables
+          description: Remove extra whitespace padding in markdown table cells for more compact output
+        output_tables_as_markdown:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Output Tables As Markdown
+          description: Output tables as markdown pipe tables instead of HTML &lt;table&gt; tags. Markdown tables are simpler but cannot represent complex structures like merged cells
+        markdown_table_multiline_separator:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Markdown Table Multiline Separator
+          description: 'Separator string for multiline cell content in markdown tables. Example: ''&lt;br&gt;'' to preserve line breaks, '' '' to join with spaces'
+        merge_continued_tables:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Merge Continued Tables
+          description: Automatically merge tables that span multiple pages into a single table. The merged table appears on the first page with merged_from_pages metadata
+      additionalProperties: false
+      type: object
+      title: LlamaParseTables
+      description: Table formatting options for markdown output.
+    LlamaParsePresentationOptions:
+      properties:
+        out_of_bounds_content:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Out Of Bounds Content
+          description: Extract content positioned outside the visible slide area. Some presentations have hidden notes or content that extends beyond slide boundaries
+        skip_embedded_data:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Skip Embedded Data
+          description: Skip extraction of embedded chart data tables. When true, only the visual representation of charts is captured, not the underlying data
+      additionalProperties: false
+      type: object
+      title: LlamaParsePresentationOptions
+      description: Presentation (PowerPoint, Keynote, ODP) parsing options.
+    LlamaParsePdfOptions:
+      properties: {}
+      additionalProperties: false
+      type: object
+      title: LlamaParsePdfOptions
+    LlamaParseJobFailureConditions:
+      properties:
+        allowed_page_failure_ratio:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Allowed Page Failure Ratio
+          description: 'Maximum ratio of pages allowed to fail before the job fails (0-1). Example: 0.1 means job fails if more than 10% of pages fail. Default is 0.05 (5%)'
+        fail_on_image_extraction_error:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fail On Image Extraction Error
+          description: Fail the entire job if any embedded image cannot be extracted. By default, image extraction errors are logged but don't fail the job
+        fail_on_image_ocr_error:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fail On Image Ocr Error
+          description: Fail the entire job if OCR fails on any image. By default, OCR errors result in empty text for that image
+        fail_on_markdown_reconstruction_error:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fail On Markdown Reconstruction Error
+          description: Fail the entire job if markdown cannot be reconstructed for any page. By default, failed pages use fallback text extraction
+        fail_on_buggy_font:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fail On Buggy Font
+          description: Fail the job if a problematic font is detected that may cause incorrect text extraction. Buggy fonts can produce garbled or missing characters
+      additionalProperties: false
+      type: object
+      title: LlamaParseJobFailureConditions
+      description: 'Conditions that determine when a parsing job should fail vs complete with partial results.
+
+
+        By default, jobs complete successfully even if some pages fail to parse.
+
+        Use these settings to enforce stricter quality requirements.'
+    ImagesContentMetadata:
+      properties:
+        total_count:
+          type: integer
+          title: Total Count
+          description: Total number of extracted images
+        images:
+          items:
+            $ref: '#/components/schemas/ImageMetadata'
+          type: array
+          title: Images
+          description: List of image metadata with presigned URLs
+      type: object
+      required:
+      - total_count
+      - images
+      title: ImagesContentMetadata
+      description: Metadata for all extracted images.
+    ImageMetadata:
+      properties:
+        index:
+          type: integer
+          title: Index
+          description: Index of the image in the extraction order
+        filename:
+          type: string
+          title: Filename
+          description: Image filename (e.g., 'image_0.png')
+        content_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content Type
+          description: MIME type of the image
+        size_bytes:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Size Bytes
+          description: 'Deprecated: always returns None. Will be removed in a future release.'
+          deprecated: true
+        presigned_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Presigned Url
+          description: Presigned URL to download the image
+        category:
+          anyOf:
+          - type: string
+            enum:
+            - screenshot
+            - embedded
+            - layout
+          - type: 'null'
+          title: Category
+          description: 'Image category: ''screenshot'' (full page), ''embedded'' (images in document), or ''layout'' (cropped from layout detection)'
+        bbox:
+          anyOf:
+          - $ref: '#/components/schemas/ImageMetadataBBox'
+          - type: 'null'
+          description: Bounding box of the image on its page
+      type: object
+      required:
+      - index
+      - filename
+      title: ImageMetadata
+      description: Metadata for a single extracted image.
+    ParseResultResponse:
+      properties:
+        job:
+          $ref: '#/components/schemas/ParseJobResponse'
+          description: Parse job status and metadata
+        result_content_metadata:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/ResultTypeMetadata'
+            type: object
+          - type: 'null'
+          title: Result Content Metadata
+          description: Metadata including size, existence, and presigned URLs for result files
+        text:
+          anyOf:
+          - $ref: '#/components/schemas/TextResult'
+          - type: 'null'
+          description: Plain text result (if requested)
+        markdown:
+          anyOf:
+          - $ref: '#/components/schemas/MarkdownResult'
+          - type: 'null'
+          description: Markdown result (if requested)
+        items:
+          anyOf:
+          - $ref: '#/components/schemas/StructuredResult'
+          - type: 'null'
+          description: Structured JSON result (if requested)
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataResult'
+          - type: 'null'
+          description: Page-level metadata including confidence scores and presentation data (if requested)
+        markdown_full:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Markdown Full
+          description: Full raw markdown content (if requested)
+        text_full:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text Full
+          description: Full raw text content (if requested)
+        images_content_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/ImagesContentMetadata'
+          - type: 'null'
+          description: Metadata for all extracted images with presigned URLs (if requested)
+        job_metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Job Metadata
+          description: Job execution metadata (if requested)
+        raw_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Raw Parameters
+      type: object
+      required:
+      - job
+      title: ParseResultResponse
+      description: 'Parse result response with job status and optional content or metadata.
+
+
+        The job field is always included. Other fields are included based on expand parameters.'
+    FooterItem:
+      properties:
+        type:
+          type: string
+          const: footer
+          title: Type
+          description: Page footer container
+          default: footer
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        items:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TextItem'
+            - $ref: '#/components/schemas/HeadingItem'
+            - $ref: '#/components/schemas/ListItem'
+            - $ref: '#/components/schemas/CodeItem'
+            - $ref: '#/components/schemas/TableItem'
+            - $ref: '#/components/schemas/ImageItem'
+            - $ref: '#/components/schemas/LinkItem'
+            discriminator:
+              propertyName: type
+              mapping:
+                code: '#/components/schemas/CodeItem'
+                heading: '#/components/schemas/HeadingItem'
+                image: '#/components/schemas/ImageItem'
+                link: '#/components/schemas/LinkItem'
+                list: '#/components/schemas/ListItem'
+                table: '#/components/schemas/TableItem'
+                text: '#/components/schemas/TextItem'
+          type: array
+          title: Items
+          description: List of items within the footer
+      type: object
+      required:
+      - md
+      - items
+      title: FooterItem
+    MarkdownResult:
+      properties:
+        pages:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/MarkdownResultPage'
+            - $ref: '#/components/schemas/FailedMarkdownPage'
+          type: array
+          title: Pages
+          description: List of markdown pages or failed page entries
+      type: object
+      required:
+      - pages
+      title: MarkdownResult
+    LlamaParseOcrParameters:
+      properties:
+        languages:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ParserLanguages'
+            type: array
+          - type: 'null'
+          title: Languages
+          description: 'Languages to use for OCR text recognition. Specify multiple languages if document contains mixed-language content. Order matters - put primary language first. Example: [''en'', ''es''] for English with Spanish'
+      additionalProperties: false
+      type: object
+      title: LlamaParseOcrParameters
+      description: OCR (Optical Character Recognition) configuration parameters.
+    AutoModePresentationOptions:
+      properties:
+        out_of_bounds_content:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Out Of Bounds Content
+          description: Extract out of bounds content in presentation slides
+        skip_embedded_data:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Skip Embedded Data
+          description: Skip extraction of embedded data for charts in presentation slides
+      additionalProperties: false
+      type: object
+      title: AutoModePresentationOptions
+      description: Presentation-specific options for auto mode parsing configuration.
+    ImageItem:
+      properties:
+        type:
+          type: string
+          const: image
+          title: Type
+          description: Image item type
+          default: image
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        caption:
+          type: string
+          title: Caption
+          description: Image caption
+        url:
+          type: string
+          title: Url
+          description: URL to the image
+      type: object
+      required:
+      - md
+      - caption
+      - url
+      title: ImageItem
+    ParseJobResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique parse job identifier
+          examples:
+          - pjb-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        project_id:
+          type: string
+          title: Project Id
+          description: Project this job belongs to
+          examples:
+          - prj-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        status:
+          type: string
+          enum:
+          - PENDING
+          - RUNNING
+          - COMPLETED
+          - FAILED
+          - CANCELLED
+          title: Status
+          description: 'Current job status: PENDING, RUNNING, COMPLETED, FAILED, or CANCELLED'
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+          description: Error details when status is FAILED
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: Optional display name for this parse job
+          examples:
+          - Q4 Financial Report
+        tier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tier
+          description: Parsing tier used for this job
+          examples:
+          - fast
+          - cost_effective
+          - agentic
+          - agentic_plus
+      type: object
+      required:
+      - id
+      - project_id
+      - status
+      title: ParseJobResponse
+      description: A parse job.
+    ParseConcernItem:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: Type of parse concern (e.g. header_value_type_mismatch, inconsistent_row_cell_count)
+        details:
+          type: string
+          title: Details
+          description: Human-readable details about the concern
+      type: object
+      required:
+      - type
+      - details
+      title: ParseConcernItem
+    ParseJobQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ParseJobResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: ParseJobQueryResponse
+      description: Response schema for paginated parse job queries.
+    AutoModeIgnoreOptions:
+      properties:
+        ignore_diagonal_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Diagonal Text
+          description: Whether to ignore diagonal text in the document
+        ignore_hidden_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Hidden Text
+          description: Whether to ignore hidden text in the document
+      additionalProperties: false
+      type: object
+      title: AutoModeIgnoreOptions
+      description: Ignore options for auto mode parsing configuration.
+    LlamaParseTablesAsSpreadsheetOptions:
+      properties:
+        enable:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable
+          description: Whether this option is enabled
+        guess_sheet_name:
+          type: boolean
+          title: Guess Sheet Name
+          description: Automatically generate descriptive sheet names from table context (headers, surrounding text) instead of using generic names like 'Table_1'
+          default: true
+      additionalProperties: false
+      type: object
+      title: LlamaParseTablesAsSpreadsheetOptions
+      description: Options for exporting extracted tables as XLSX spreadsheet files.
+    AutoModeParsingConf:
+      properties:
+        tier:
+          anyOf:
+          - type: string
+            enum:
+            - fast
+            - cost_effective
+            - agentic
+            - agentic_plus
+          - type: 'null'
+          title: Tier
+          description: Override the parsing tier for matched pages. Must be paired with version
+        version:
+          anyOf:
+          - type: string
+            enum:
+            - latest
+            - '2026-06-05'
+            - '2026-06-04'
+            - '2025-12-11'
+            x-enum-order-preserved: true
+          - type: string
+          - type: 'null'
+          title: Version
+          description: 'Version for the override tier. Required when `tier` is set. Use `latest`, or pin one of that tier''s dated versions.
+
+
+            Current `latest` by tier:
+
+            - `fast`: `2025-12-11`
+
+            - `cost_effective`: `2026-06-05`
+
+            - `agentic`: `2026-06-04`
+
+            - `agentic_plus`: `2026-06-04`
+
+
+            Full list: `GET /api/v2/parse/versions`.'
+        custom_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Custom Prompt
+          description: Custom AI instructions for matched pages. Overrides the base custom_prompt
+        ignore:
+          anyOf:
+          - $ref: '#/components/schemas/AutoModeIgnoreOptions'
+          - type: 'null'
+          description: Options for ignoring specific text types
+        aggressive_table_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Aggressive Table Extraction
+          description: Whether to use aggressive table extraction
+        outlined_table_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Outlined Table Extraction
+          description: Whether to use outlined table extraction
+        adaptive_long_table:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Adaptive Long Table
+          description: Whether to use adaptive long table handling
+        extract_layout:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Layout
+          description: Whether to extract layout information
+        specialized_chart_parsing:
+          anyOf:
+          - type: string
+            enum:
+            - agentic_plus
+            - agentic
+            - efficient
+          - type: 'null'
+          title: Specialized Chart Parsing
+          description: Enable specialized chart parsing with the specified mode
+        high_res_ocr:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: High Res Ocr
+          description: Whether to use high resolution OCR
+        language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+          description: Primary language of the document
+        crop_box:
+          anyOf:
+          - $ref: '#/components/schemas/AutoModeCropBox'
+          - type: 'null'
+          description: Document crop box boundaries
+        spatial_text:
+          anyOf:
+          - $ref: '#/components/schemas/AutoModeSpatialTextOptions'
+          - type: 'null'
+          description: Spatial text output options
+        presentation:
+          anyOf:
+          - $ref: '#/components/schemas/AutoModePresentationOptions'
+          - type: 'null'
+          description: Presentation-specific parsing options
+      additionalProperties: false
+      type: object
+      title: AutoModeParsingConf
+      description: 'Parsing configuration applied when auto mode triggers match.
+
+
+        These settings override the base configuration for pages where trigger conditions
+
+        are satisfied. Only specify fields you want to override - unset fields inherit
+
+        from the base configuration.'
+    AutoModeCropBox:
+      properties:
+        bottom:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Bottom
+          description: Bottom boundary of crop box as ratio (0-1)
+        left:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Left
+          description: Left boundary of crop box as ratio (0-1)
+        right:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Right
+          description: Right boundary of crop box as ratio (0-1)
+        top:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Top
+          description: Top boundary of crop box as ratio (0-1)
+      additionalProperties: false
+      type: object
+      title: AutoModeCropBox
+      description: Crop box options for auto mode parsing configuration.
+    TableItem:
+      properties:
+        type:
+          type: string
+          const: table
+          title: Type
+          description: Table item type
+          default: table
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        rows:
+          items:
+            items:
+              anyOf:
+              - type: string
+              - type: integer
+              - type: number
+              - type: 'null'
+            type: array
+          type: array
+          title: Rows
+          description: Table data as array of arrays (string, number, or null)
+        html:
+          type: string
+          title: Html
+          description: HTML representation of the table
+        csv:
+          type: string
+          title: Csv
+          description: CSV representation of the table
+        merged_from_pages:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Merged From Pages
+          description: List of page numbers with tables that were merged into this table (e.g., [1, 2, 3, 4])
+        merged_into_page:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Merged Into Page
+          description: Populated when merged into another table. Page number where the full merged table begins (used on empty tables).
+        parse_concerns:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ParseConcernItem'
+            type: array
+          - type: 'null'
+          title: Parse Concerns
+          description: Quality concerns detected during table extraction, indicating the table may have issues
+      type: object
+      required:
+      - md
+      - rows
+      - html
+      - csv
+      title: TableItem
+    StructuredResultPage:
+      properties:
+        page_number:
+          type: integer
+          title: Page Number
+          description: Page number of the document
+        items:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TextItem'
+            - $ref: '#/components/schemas/HeadingItem'
+            - $ref: '#/components/schemas/ListItem'
+            - $ref: '#/components/schemas/CodeItem'
+            - $ref: '#/components/schemas/TableItem'
+            - $ref: '#/components/schemas/ImageItem'
+            - $ref: '#/components/schemas/LinkItem'
+            - $ref: '#/components/schemas/HeaderItem'
+            - $ref: '#/components/schemas/FooterItem'
+            discriminator:
+              propertyName: type
+              mapping:
+                code: '#/components/schemas/CodeItem'
+                footer: '#/components/schemas/FooterItem'
+                header: '#/components/schemas/HeaderItem'
+                heading: '#/components/schemas/HeadingItem'
+                image: '#/components/schemas/ImageItem'
+                link: '#/components/schemas/LinkItem'
+                list: '#/components/schemas/ListItem'
+                table: '#/components/schemas/TableItem'
+                text: '#/components/schemas/TextItem'
+          type: array
+          title: Items
+          description: List of structured items on the page
+        page_width:
+          type: number
+          title: Page Width
+          description: Width of the page in points
+        page_height:
+          type: number
+          title: Page Height
+          description: Height of the page in points
+        success:
+          type: boolean
+          const: true
+          title: Success
+          description: Success indicator
+      type: object
+      required:
+      - page_number
+      - items
+      - page_width
+      - page_height
+      - success
+      title: StructuredResultPage
+    LlamaParseIgnoreOptions:
+      properties:
+        ignore_diagonal_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Diagonal Text
+          description: Skip text rotated at an angle (not horizontal/vertical). Useful for ignoring watermarks or decorative angled text
+        ignore_text_in_image:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Text In Image
+          description: Skip OCR text extraction from embedded images. Use when images contain irrelevant text (watermarks, logos) that shouldn't be in the output
+        ignore_hidden_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Hidden Text
+          description: Skip text marked as hidden in the document structure. Some PDFs contain invisible text layers used for accessibility or search indexing
+      additionalProperties: false
+      type: object
+      title: LlamaParseIgnoreOptions
+      description: Options for ignoring specific types of text during extraction.
+    AutoModeConfigurationEntry:
+      properties:
+        parsing_conf:
+          $ref: '#/components/schemas/AutoModeParsingConf'
+          description: Parsing configuration to apply when trigger conditions are met
+        trigger_mode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trigger Mode
+          description: 'How to combine multiple trigger conditions: ''and'' (all conditions must match, this is the default) or ''or'' (any single condition can trigger)'
+        page_md_error:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Page Md Error
+          description: Trigger on pages with markdown extraction errors
+        text_in_page:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text In Page
+          description: Trigger if page text/markdown contains this string
+        table_in_page:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Table In Page
+          description: Trigger if page contains a table
+        image_in_page:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Image In Page
+          description: Trigger if page contains non-screenshot images
+        full_page_image_in_page:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Full Page Image In Page
+          description: Trigger if page contains a full-page image (scanned page detection)
+        full_page_image_in_page_threshold:
+          anyOf:
+          - type: number
+          - type: string
+          - type: 'null'
+          title: Full Page Image In Page Threshold
+          description: Threshold for full page image detection (0.0-1.0, default 0.8)
+        filename_regexp:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filename Regexp
+          description: Regex pattern to match against filename
+        filename_regexp_mode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filename Regexp Mode
+          description: Regex mode flags (e.g., 'i' for case-insensitive)
+        filename_match_glob:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filename Match Glob
+          description: Single glob pattern to match against filename
+        filename_match_glob_list:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Filename Match Glob List
+          description: List of glob patterns to match against filename
+        page_longer_than_n_chars:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Longer Than N Chars
+          description: Trigger if page has more than N characters
+        page_shorter_than_n_chars:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Shorter Than N Chars
+          description: Trigger if page has fewer than N characters
+        page_contains_at_least_n_words:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Words
+          description: Trigger if page has more than N words
+        page_contains_at_most_n_words:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Words
+          description: Trigger if page has fewer than N words
+        page_contains_at_least_n_lines:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Lines
+          description: Trigger if page has more than N lines
+        page_contains_at_most_n_lines:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Lines
+          description: Trigger if page has fewer than N lines
+        page_contains_at_least_n_images:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Images
+          description: Trigger if page has more than N images
+        page_contains_at_most_n_images:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Images
+          description: Trigger if page has fewer than N images
+        page_contains_at_least_n_tables:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Tables
+          description: Trigger if page has more than N tables
+        page_contains_at_most_n_tables:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Tables
+          description: Trigger if page has fewer than N tables
+        page_contains_at_least_n_links:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Links
+          description: Trigger if page has more than N links
+        page_contains_at_most_n_links:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Links
+          description: Trigger if page has fewer than N links
+        page_contains_at_least_n_charts:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Charts
+          description: Trigger if page has more than N charts
+        page_contains_at_most_n_charts:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Charts
+          description: Trigger if page has fewer than N charts
+        page_contains_at_least_n_layout_elements:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Layout Elements
+          description: Trigger if page has more than N layout elements
+        page_contains_at_most_n_layout_elements:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Layout Elements
+          description: Trigger if page has fewer than N layout elements
+        page_contains_at_least_n_percent_numbers:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Percent Numbers
+          description: Trigger if page has more than N% numeric words
+        page_contains_at_most_n_percent_numbers:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Percent Numbers
+          description: Trigger if page has fewer than N% numeric words
+        page_contains_at_least_n_numbers:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Least N Numbers
+          description: Trigger if page has more than N numeric words
+        page_contains_at_most_n_numbers:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Page Contains At Most N Numbers
+          description: Trigger if page has fewer than N numeric words
+        regexp_in_page:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Regexp In Page
+          description: Regex pattern to match in page content
+        regexp_in_page_mode:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Regexp In Page Mode
+          description: Regex mode flags for regexp_in_page
+        layout_element_in_page:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Layout Element In Page
+          description: Trigger if page contains this layout element type
+        layout_element_in_page_confidence_threshold:
+          anyOf:
+          - type: number
+          - type: string
+          - type: 'null'
+          title: Layout Element In Page Confidence Threshold
+          description: Confidence threshold for layout element detection
+      additionalProperties: false
+      type: object
+      required:
+      - parsing_conf
+      title: AutoModeConfigurationEntry
+      description: 'A single auto mode rule with trigger conditions and parsing configuration.
+
+
+        Auto mode allows conditional parsing where different configurations are applied
+
+        based on page content, structure, or filename. When triggers match, the
+
+        parsing_conf overrides default settings for that page.'
+      examples:
+      - parsing_conf:
+          tier: agentic
+          version: latest
+        table_in_page: true
+      - image_in_page: true
+        parsing_conf:
+          tier: agentic
+          version: latest
+      - filename_match_glob: '*.txt'
+        parsing_conf:
+          tier: fast
+          version: latest
+    LlamaParseOutputOptions:
+      properties:
+        markdown:
+          $ref: '#/components/schemas/LlamaParseMarkdownOptions'
+          description: Markdown formatting options including table styles and link annotations
+        spatial_text:
+          $ref: '#/components/schemas/LlamaParseSpatialTextOptions'
+          description: Spatial text output options for preserving document layout structure
+        tables_as_spreadsheet:
+          $ref: '#/components/schemas/LlamaParseTablesAsSpreadsheetOptions'
+          description: Options for exporting tables as XLSX spreadsheets
+        extract_printed_page_number:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Printed Page Number
+          description: Extract the printed page number as it appears in the document (e.g., 'Page 5 of 10', 'v', 'A-3'). Useful for referencing original page numbers
+        images_to_save:
+          items:
+            type: string
+            enum:
+            - screenshot
+            - embedded
+            - layout
+          type: array
+          title: Images To Save
+          description: 'Image categories to extract and save. Options: ''screenshot'' (full page renders useful for visual QA), ''embedded'' (images found within the document), ''layout'' (cropped regions from layout detection like figures and diagrams). Empty list saves no images'
+        additional_outputs:
+          items:
+            type: string
+          type: array
+          title: Additional Outputs
+          description: 'Optional additional output artifacts to save alongside the primary parse output. Each value opts in to generating and persisting one extra file; the empty list (default) saves none. The three accepted values are: ''stripped_md'' — per-page markdown stripped of formatting (links, bold/italic, images, HTML), saved as JSON for full-text-search indexing; fetch via `expand=stripped_markdown_content_metadata`. ''concatenated_stripped_txt'' — all stripped pages concatenated into a single plain-text file with `\n\n---\n\n` between pages, useful for feeding the document into search or embedding pipelines as one blob; fetch via `expand=concatenated_stripped_markdown_content_metadata`. ''word_bbox'' — raw word-level bounding boxes (one JSON object per word, with page number and x/y/w/h coordinates) saved as JSONL, useful for highlighting or grounding extracted answers back to the source document; fetch via `expand=raw_words_content_metadata`.'
+          examples:
+          - - stripped_md
+            - concatenated_stripped_txt
+            - word_bbox
+        granular_bboxes:
+          items:
+            type: string
+            enum:
+            - cell
+            - line
+            - word
+          type: array
+          title: Granular Bboxes
+          description: Bounding-box granularity levels to compute for the parse. 'word' computes one bounding box per detected word; 'line' computes one per text line; 'cell' computes one per table cell. Multiple levels can be requested. Empty list (default) disables granular bboxes — only item-level layout boxes are returned on the result. When set, the computed boxes are not inlined on the result items; they are written to a separate `grounded_items` sidecar (JSONL, one row per page) and exposed as `result_content_metadata.grounded_items` (a presigned download URL) on the parse result. Each row matches the `GroundedJsonItem` shape.
+          examples:
+          - - word
+            - line
+            - cell
+      additionalProperties: false
+      type: object
+      title: LlamaParseOutputOptions
+      description: 'Output formatting and content extraction options.
+
+
+        Controls how parsed content is formatted and what additional data is extracted.'
+    LlamaParseMarkdownOptions:
+      properties:
+        annotate_links:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Annotate Links
+          description: Add link annotations to markdown output in the format [text](url). When false, only the link text is included
+        tables:
+          $ref: '#/components/schemas/LlamaParseTables'
+          description: Table formatting options including markdown vs HTML format and merging behavior
+        inline_images:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Inline Images
+          description: Embed images directly in markdown as base64 data URIs instead of extracting them as separate files. Useful for self-contained markdown output
+      additionalProperties: false
+      type: object
+      title: LlamaParseMarkdownOptions
+      description: Markdown output formatting options.
+    StructuredResult:
+      properties:
+        pages:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/StructuredResultPage'
+            - $ref: '#/components/schemas/FailedStructuredPage'
+          type: array
+          title: Pages
+          description: List of structured pages or failed page entries
+      type: object
+      required:
+      - pages
+      title: StructuredResult
+    LlamaParseAgenticOptions:
+      properties:
+        custom_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Custom Prompt
+          description: 'Custom instructions for the AI parser. Use to guide extraction behavior, specify output formatting, or provide domain-specific context. Example: ''Extract financial tables with currency symbols. Format dates as YYYY-MM-DD.'''
+      additionalProperties: false
+      type: object
+      title: LlamaParseAgenticOptions
+      description: 'Options for AI-powered parsing tiers (cost_effective, agentic, agentic_plus).
+
+
+        These options customize how the AI processes and interprets document content.
+
+        Only applicable when using non-fast tiers.'
+    TextResultPage:
+      properties:
+        page_number:
+          type: integer
+          title: Page Number
+          description: Page number of the document
+        text:
+          type: string
+          title: Text
+          description: Plain text content of the page
+      type: object
+      required:
+      - page_number
+      - text
+      title: TextResultPage
+    BBox:
+      properties:
+        x:
+          type: number
+          title: X
+          description: X coordinate of the bounding box
+        y:
+          type: number
+          title: Y
+          description: Y coordinate of the bounding box
+        w:
+          type: number
+          title: W
+          description: Width of the bounding box
+        h:
+          type: number
+          title: H
+          description: Height of the bounding box
+        r:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: R
+          description: Optional visual text rotation angle in degrees. Omitted when unrotated.
+        confidence:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Confidence
+          description: Confidence score
+        start_index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Start Index
+          description: Start index in the text
+        end_index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: End Index
+          description: End index in the text
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
+          description: Label for the bounding box
+      type: object
+      required:
+      - x
+      - y
+      - w
+      - h
+      title: BBox
+      description: Bounding box with coordinates and optional metadata.
+    TextItem:
+      properties:
+        type:
+          type: string
+          const: text
+          title: Type
+          description: Text item type
+          default: text
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        value:
+          type: string
+          title: Value
+          description: Text content
+      type: object
+      required:
+      - md
+      - value
+      title: TextItem
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ImageMetadataBBox:
+      properties:
+        x:
+          type: integer
+          title: X
+          description: X coordinate of the bounding box
+        y:
+          type: integer
+          title: Y
+          description: Y coordinate of the bounding box
+        w:
+          type: integer
+          title: W
+          description: Width of the bounding box
+        h:
+          type: integer
+          title: H
+          description: Height of the bounding box
+      type: object
+      required:
+      - x
+      - y
+      - w
+      - h
+      title: ImageMetadataBBox
+      description: Bounding box for an image on its page.
+    LlamaParseHtmlOptions:
+      properties:
+        make_all_elements_visible:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Make All Elements Visible
+          description: Force all HTML elements to be visible by overriding CSS display/visibility properties. Useful for parsing pages with hidden content or collapsed sections
+        remove_fixed_elements:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Remove Fixed Elements
+          description: Remove fixed-position elements (headers, footers, floating buttons) that appear on every page render
+        remove_navigation_elements:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Remove Navigation Elements
+          description: Remove navigation elements (nav bars, sidebars, menus) to focus on main content
+      additionalProperties: false
+      type: object
+      title: LlamaParseHtmlOptions
+      description: HTML/web page parsing options.
+    ListItem:
+      properties:
+        type:
+          type: string
+          const: list
+          title: Type
+          description: List item type
+          default: list
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        items:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/TextItem'
+            - $ref: '#/components/schemas/ListItem'
+          type: array
+          title: Items
+          description: List of nested text or list items
+        ordered:
+          type: boolean
+          title: Ordered
+          description: Whether the list is ordered or unordered
+      type: object
+      required:
+      - md
+      - items
+      - ordered
+      title: ListItem
+    LlamaParseWebhookConfiguration:
+      properties:
+        webhook_url:
+          anyOf:
+          - type: string
+            pattern: '^https?:'
+          - type: 'null'
+          title: Webhook Url
+          description: HTTPS URL to receive webhook POST requests. Must be publicly accessible
+        webhook_headers:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Webhook Headers
+          description: 'Custom HTTP headers to include in webhook requests. Use for authentication tokens or custom routing. Example: {''Authorization'': ''Bearer xyz''}'
+        webhook_events:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Webhook Events
+          description: 'Events that trigger this webhook. Options: ''parse.success'' (job completed), ''parse.error'' (job failed), ''parse.partial_success'' (some pages failed), ''parse.pending'', ''parse.running'', ''parse.cancelled''. If not specified, webhook fires for all events'
+          examples:
+          - - parse.success
+            - parse.error
+        webhook_output_format:
+          anyOf:
+          - type: string
+            enum:
+            - string
+            - json
+          - type: 'null'
+          title: Webhook Output Format
+          description: Format of the webhook payload body. 'string' (default) sends the payload as a JSON-encoded string; 'json' sends it as a JSON object.
+          examples:
+          - json
+      additionalProperties: false
+      type: object
+      title: LlamaParseWebhookConfiguration
+      description: 'Webhook configuration for receiving parsing job notifications.
+
+
+        Webhooks are called when specified events occur during job processing.
+
+        Configure multiple webhook configurations to send to different endpoints.'
+    HeaderItem:
+      properties:
+        type:
+          type: string
+          const: header
+          title: Type
+          description: Page header container
+          default: header
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        items:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TextItem'
+            - $ref: '#/components/schemas/HeadingItem'
+            - $ref: '#/components/schemas/ListItem'
+            - $ref: '#/components/schemas/CodeItem'
+            - $ref: '#/components/schemas/TableItem'
+            - $ref: '#/components/schemas/ImageItem'
+            - $ref: '#/components/schemas/LinkItem'
+            discriminator:
+              propertyName: type
+              mapping:
+                code: '#/components/schemas/CodeItem'
+                heading: '#/components/schemas/HeadingItem'
+                image: '#/components/schemas/ImageItem'
+                link: '#/components/schemas/LinkItem'
+                list: '#/components/schemas/ListItem'
+                table: '#/components/schemas/TableItem'
+                text: '#/components/schemas/TextItem'
+          type: array
+          title: Items
+          description: List of items within the header
+      type: object
+      required:
+      - md
+      - items
+      title: HeaderItem
+    LlamaParseCropBox:
+      properties:
+        bottom:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Bottom
+          description: Bottom boundary as ratio (0-1). 0=top edge, 1=bottom edge. Content below this line is excluded
+        left:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Left
+          description: Left boundary as ratio (0-1). 0=left edge, 1=right edge. Content left of this line is excluded
+        right:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Right
+          description: Right boundary as ratio (0-1). 0=left edge, 1=right edge. Content right of this line is excluded
+        top:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Top
+          description: Top boundary as ratio (0-1). 0=top edge, 1=bottom edge. Content above this line is excluded
+      additionalProperties: false
+      type: object
+      title: LlamaParseCropBox
+      description: 'Crop box boundaries for processing only a portion of each page.
+
+
+        All values are ratios from 0 to 1, where (0,0) is the top-left corner and (1,1) is
+
+        the bottom-right corner. For example, to process only the top half of each page,
+
+        set bottom=0.5 (keeping top=0, left=0, right=1).'
+    ParseRequestConfiguration:
+      properties:
+        tier:
+          type: string
+          enum:
+          - fast
+          - cost_effective
+          - agentic
+          - agentic_plus
+          title: Tier
+          description: 'Parsing tier: ''fast'' (rule-based, cheapest), ''cost_effective'' (balanced), ''agentic'' (AI-powered with custom prompts), or ''agentic_plus'' (premium AI with highest accuracy)'
+        version:
+          anyOf:
+          - type: string
+            enum:
+            - latest
+            - '2026-06-05'
+            - '2026-06-04'
+            - '2025-12-11'
+            x-enum-order-preserved: true
+          - type: string
+          title: Version
+          description: 'Version for the selected tier. Use `latest`, or pin one of that tier''s dated versions.
+
+
+            Current `latest` by tier:
+
+            - `fast`: `2025-12-11`
+
+            - `cost_effective`: `2026-06-05`
+
+            - `agentic`: `2026-06-04`
+
+            - `agentic_plus`: `2026-06-04`
+
+
+            Full list: `GET /api/v2/parse/versions`.'
+        client_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Name
+          description: 'Identifier for the client/application making the request. Used for analytics and debugging. Example: ''my-app-v2'''
+        processing_options:
+          $ref: '#/components/schemas/LlamaParseProcessingOptions'
+          description: Document processing options including OCR, table extraction, and chart parsing
+        fast_options:
+          anyOf:
+          - $ref: '#/components/schemas/LlamaParseFastOptions'
+          - type: 'null'
+          description: Fast tier configuration options. Auto-initialized when tier='fast'. Cannot be used with other tiers
+        agentic_options:
+          anyOf:
+          - $ref: '#/components/schemas/LlamaParseAgenticOptions'
+          - type: 'null'
+          description: AI-powered tier configuration (custom prompts). Auto-initialized for cost_effective/agentic/agentic_plus tiers. Cannot be used with fast tier
+        webhook_configurations:
+          items:
+            $ref: '#/components/schemas/LlamaParseWebhookConfiguration'
+          type: array
+          title: Webhook Configurations
+          description: Webhook endpoints for job status notifications. Multiple webhooks can be configured for different events or services
+        input_options:
+          $ref: '#/components/schemas/LlamaParseInputOptions'
+          description: Format-specific options (HTML, PDF, spreadsheet, presentation). Applied based on detected input file type
+        crop_box:
+          $ref: '#/components/schemas/LlamaParseCropBox'
+          description: Crop boundaries to process only a portion of each page. Values are ratios 0-1 from page edges
+        page_ranges:
+          $ref: '#/components/schemas/LlamaParsePageRanges'
+          description: 'Page selection: limit total pages or specify exact pages to process'
+        disable_cache:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Cache
+          description: Bypass result caching and force re-parsing. Use when document content may have changed or you need fresh results
+        output_options:
+          $ref: '#/components/schemas/LlamaParseOutputOptions'
+          description: Output formatting options for markdown, text, and extracted images
+        processing_control:
+          $ref: '#/components/schemas/LlamaParseProcessingControl'
+          description: Job execution controls including timeouts and failure thresholds
+        file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Id
+          description: ID of an existing file in the project to parse. Mutually exclusive with source_url
+        source_url:
+          anyOf:
+          - type: string
+            pattern: '^https?:'
+          - type: 'null'
+          title: Source Url
+          description: Public URL of the document to parse. Mutually exclusive with file_id
+        http_proxy:
+          anyOf:
+          - type: string
+            pattern: '^https?:'
+          - type: 'null'
+          title: Http Proxy
+          description: HTTP/HTTPS proxy for fetching source_url. Ignored if using file_id
+      additionalProperties: false
+      type: object
+      required:
+      - tier
+      - version
+      title: ParseRequestConfiguration
+      description: 'Unified configuration for parsing with flexible input source.
+
+
+        Specify exactly one input source: either an existing file by ID or a URL to fetch.
+
+        This endpoint consolidates file-based and URL-based parsing into a single interface.'
+    ParserLanguages:
+      type: string
+      enum:
+      - af
+      - az
+      - bs
+      - cs
+      - cy
+      - da
+      - de
+      - en
+      - es
+      - et
+      - fr
+      - ga
+      - hr
+      - hu
+      - id
+      - is
+      - it
+      - ku
+      - la
+      - lt
+      - lv
+      - mi
+      - ms
+      - mt
+      - nl
+      - 'no'
+      - oc
+      - pi
+      - pl
+      - pt
+      - ro
+      - rs_latin
+      - sk
+      - sl
+      - sq
+      - sv
+      - sw
+      - tl
+      - tr
+      - uz
+      - vi
+      - ar
+      - fa
+      - ug
+      - ur
+      - bn
+      - as
+      - mni
+      - ru
+      - rs_cyrillic
+      - be
+      - bg
+      - uk
+      - mn
+      - abq
+      - ady
+      - kbd
+      - ava
+      - dar
+      - inh
+      - che
+      - lbe
+      - lez
+      - tab
+      - tjk
+      - hi
+      - mr
+      - ne
+      - bh
+      - mai
+      - ang
+      - bho
+      - mah
+      - sck
+      - new
+      - gom
+      - sa
+      - bgc
+      - th
+      - ch_sim
+      - ch_tra
+      - ja
+      - ko
+      - ta
+      - te
+      - kn
+      title: ParserLanguages
+      description: Enum for representing the languages supported by the parser.
+    LlamaParseProcessingOptions:
+      properties:
+        ignore:
+          $ref: '#/components/schemas/LlamaParseIgnoreOptions'
+          description: Options for ignoring specific text types (diagonal, hidden, text in images)
+        ocr_parameters:
+          $ref: '#/components/schemas/LlamaParseOcrParameters'
+          description: OCR configuration including language detection settings
+        aggressive_table_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Aggressive Table Extraction
+          description: Use aggressive heuristics to detect table boundaries, even without visible borders. Useful for documents with borderless or complex tables
+        disable_heuristics:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Heuristics
+          description: Disable automatic heuristics including outlined table extraction and adaptive long table handling. Use when heuristics produce incorrect results
+        specialized_chart_parsing:
+          anyOf:
+          - type: string
+            enum:
+            - agentic_plus
+            - agentic
+            - efficient
+          - type: 'null'
+          title: Specialized Chart Parsing
+          description: 'Enable AI-powered chart analysis. Modes: ''efficient'' (fast, lower cost), ''agentic'' (balanced), ''agentic_plus'' (highest accuracy). Automatically enables extract_layout and precise_bounding_box when set'
+        cost_optimizer:
+          anyOf:
+          - $ref: '#/components/schemas/LlamaParseCostOptimizerParameters'
+          - type: 'null'
+          description: Cost optimization settings. Only available with 'agentic' or 'agentic_plus' tiers
+        auto_mode_configuration:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AutoModeConfigurationEntry'
+            type: array
+          - type: 'null'
+          title: Auto Mode Configuration
+          description: Conditional processing rules that apply different parsing options based on page content, document structure, or filename patterns. Each entry defines trigger conditions and the parsing configuration to apply when triggered
+      additionalProperties: false
+      type: object
+      title: LlamaParseProcessingOptions
+      description: 'Processing options shared across all parsing tiers.
+
+
+        These options control how documents are analyzed and processed regardless of the selected tier.
+
+        Some options automatically enable additional behaviors (e.g., specialized_chart_parsing
+
+        enables extract_layout and precise_bounding_box).'
+    MetadataResult:
+      properties:
+        pages:
+          items:
+            $ref: '#/components/schemas/MetadataResultPage'
+          type: array
+          title: Pages
+          description: List of page metadata entries
+      type: object
+      required:
+      - pages
+      title: MetadataResult
+      description: Result containing metadata (page level and general) for the parsed document.
+    LlamaParseCostOptimizerParameters:
+      properties:
+        enable:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable
+          description: 'Enable cost-optimized parsing. Routes simpler pages to faster processing while complex pages use full AI analysis. May reduce speed on some documents. IMPORTANT: Only available with ''agentic'' or ''agentic_plus'' tiers'
+      additionalProperties: false
+      type: object
+      title: LlamaParseCostOptimizerParameters
+      description: 'Cost optimizer configuration for reducing parsing costs on simpler pages.
+
+
+        When enabled, the parser analyzes each page and routes simpler pages to faster,
+
+        cheaper processing while preserving quality for complex pages. Only works with
+
+        ''agentic'' or ''agentic_plus'' tiers.'
+    ParseVersionsResponse:
+      properties:
+        fast:
+          items:
+            type: string
+            enum:
+            - '2025-12-11'
+            x-enum-order-preserved: true
+          type: array
+          title: Fast
+          description: Versions for the fast tier
+        cost_effective:
+          items:
+            type: string
+            enum:
+            - '2026-06-05'
+            - '2026-05-28'
+            - '2026-04-09'
+            - '2026-03-31'
+            - '2026-03-27'
+            - '2026-03-25'
+            x-enum-order-preserved: true
+          type: array
+          title: Cost Effective
+          description: Versions for the cost_effective tier
+        agentic:
+          items:
+            type: string
+            enum:
+            - '2026-06-04'
+            - '2026-06-01'
+            - '2026-05-26'
+            - '2026-05-21'
+            - '2026-05-20'
+            - '2026-05-19'
+            - '2026-05-13'
+            - '2026-05-11'
+            - '2026-05-06'
+            - '2026-05-04'
+            - '2026-04-27'
+            - '2026-04-22'
+            - '2026-04-09'
+            - '2026-04-06'
+            - '2026-04-02'
+            - '2026-03-31'
+            - '2026-03-30'
+            - '2026-03-27'
+            - '2026-03-25'
+            - '2026-03-23'
+            - '2026-03-22'
+            - '2026-03-20'
+            - '2026-03-11'
+            - '2026-03-10'
+            - '2026-03-09'
+            - '2026-03-03'
+            - '2026-03-02'
+            - '2026-02-26'
+            - '2026-02-24'
+            - '2026-01-30'
+            - '2026-01-22'
+            - '2026-01-21'
+            - '2026-01-16'
+            - '2026-01-08'
+            - '2025-12-31'
+            - '2025-12-18'
+            - '2025-12-11'
+            x-enum-order-preserved: true
+          type: array
+          title: Agentic
+          description: Versions for the agentic tier
+        agentic_plus:
+          items:
+            type: string
+            enum:
+            - '2026-06-04'
+            - '2026-06-01'
+            - '2026-05-26'
+            - '2026-05-21'
+            - '2026-05-20'
+            - '2026-05-19'
+            - '2026-05-11'
+            - '2026-05-06'
+            - '2026-05-04'
+            - '2026-05-01'
+            - '2026-04-27'
+            - '2026-04-19'
+            - '2026-04-14'
+            - '2026-04-09'
+            - '2026-04-02'
+            - '2026-03-31'
+            - '2026-03-26'
+            - '2026-03-25'
+            - '2026-03-22'
+            - '2026-03-20'
+            - '2026-03-17'
+            - '2026-03-12'
+            - '2026-03-10'
+            - '2026-03-09'
+            - '2026-03-02'
+            - '2026-02-26'
+            - '2026-02-24'
+            - '2026-01-30'
+            - '2026-01-29'
+            - '2026-01-24'
+            - '2026-01-22'
+            - '2026-01-21'
+            - '2026-01-16'
+            - '2025-12-31'
+            - '2025-12-18'
+            - '2025-12-11'
+            x-enum-order-preserved: true
+          type: array
+          title: Agentic Plus
+          description: Versions for the agentic_plus tier
+      type: object
+      required:
+      - fast
+      - cost_effective
+      - agentic
+      - agentic_plus
+      title: ParseVersionsResponse
+      description: Versions accepted by the parse API, grouped by tier.
+    LlamaParseSpreadsheetOptions:
+      properties:
+        detect_sub_tables_in_sheets:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Detect Sub Tables In Sheets
+          description: Detect and extract multiple tables within a single sheet. Useful when spreadsheets contain several data regions separated by blank rows/columns
+        force_formula_computation_in_sheets:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Force Formula Computation In Sheets
+          description: Compute formula results instead of extracting formula text. Use when you need calculated values rather than formula definitions
+        include_hidden_sheets:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Include Hidden Sheets
+          description: Parse hidden sheets in addition to visible ones. By default, hidden sheets are skipped
+      additionalProperties: false
+      type: object
+      title: LlamaParseSpreadsheetOptions
+      description: Spreadsheet (Excel, CSV, ODS) parsing options.
+    AutoModeSpatialTextOptions:
+      properties:
+        preserve_layout_alignment_across_pages:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Preserve Layout Alignment Across Pages
+          description: Preserve text alignment across page boundaries
+        preserve_very_small_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Preserve Very Small Text
+          description: Include very small text in spatial output
+        do_not_unroll_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Do Not Unroll Columns
+          description: Keep column structure intact without unrolling
+      additionalProperties: false
+      type: object
+      title: AutoModeSpatialTextOptions
+      description: Spatial text options for auto mode parsing configuration.
+    FailedStructuredPage:
+      properties:
+        page_number:
+          type: integer
+          title: Page Number
+          description: Page number of the document
+        error:
+          type: string
+          title: Error
+          description: Error message describing the failure
+        success:
+          type: boolean
+          const: false
+          title: Success
+          description: Failure indicator
+      type: object
+      required:
+      - page_number
+      - error
+      - success
+      title: FailedStructuredPage
+    LlamaParsePageRanges:
+      properties:
+        max_pages:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Max Pages
+          description: Maximum number of pages to process. Pages are processed in order starting from page 1. If both max_pages and target_pages are set, target_pages takes precedence
+        target_pages:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Pages
+          description: 'Comma-separated list of specific pages to process using 1-based indexing. Supports individual pages and ranges. Examples: ''1,3,5'' (pages 1, 3, 5), ''1-5'' (pages 1 through 5 inclusive), ''1,3,5-8,10'' (pages 1, 3, 5-8, and 10). Pages are sorted and deduplicated automatically. Duplicate pages cause an error'
+      additionalProperties: false
+      type: object
+      title: LlamaParsePageRanges
+      description: Page selection options for processing specific pages or limiting page count.
+    LinkItem:
+      properties:
+        type:
+          type: string
+          const: link
+          title: Type
+          description: Link item type
+          default: link
+        md:
+          type: string
+          title: Md
+          description: Markdown representation preserving formatting
+        bbox:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/BBox'
+            type: array
+          - type: 'null'
+          title: Bbox
+          description: List of bounding boxes
+        url:
+          type: string
+          title: Url
+          description: URL of the link
+        text:
+          type: string
+          title: Text
+          description: Display text of the link
+      type: object
+      required:
+      - md
+      - url
+      - text
+      title: LinkItem
+    FailedMarkdownPage:
+      properties:
+        page_number:
+          type: integer
+          title: Page Number
+          description: Page number of the document
+        error:
+          type: string
+          title: Error
+          description: Error message describing the failure
+        success:
+          type: boolean
+          const: false
+          title: Success
+          description: Failure indicator
+      type: object
+      required:
+      - page_number
+      - error
+      - success
+      title: FailedMarkdownPage
+    LlamaParseTimeouts:
+      properties:
+        base_in_seconds:
+          anyOf:
+          - type: integer
+            maximum: 7200.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Base In Seconds
+          description: Base timeout for the job in seconds (max 7200 = 2 hours). This is the minimum time allowed regardless of document size
+        extra_time_per_page_in_seconds:
+          anyOf:
+          - type: integer
+            maximum: 300.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Extra Time Per Page In Seconds
+          description: Additional timeout per page in seconds (max 300 = 5 minutes). Total timeout = base + (this value × page count)
+      additionalProperties: false
+      type: object
+      title: LlamaParseTimeouts
+      description: 'Job timeout configuration.
+
+
+        Total timeout = base_in_seconds + (extra_time_per_page_in_seconds × page_count).
+
+        Use these settings for large documents or complex parsing that needs more time.'
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

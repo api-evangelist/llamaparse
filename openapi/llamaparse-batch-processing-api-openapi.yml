@@ -1,0 +1,2090 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Batch Processing API
+  version: 0.1.0
+tags:
+- name: Batch Processing
+paths:
+  /api/v1/beta/batch-processing:
+    post:
+      tags:
+      - Batch Processing
+      summary: Create Batch Job
+      description: 'Create a batch processing job.
+
+
+        Processes files from a directory or a specific list of item IDs.
+
+        Supports batch parsing and classification operations.
+
+
+        Provide either `directory_id` to process all files in a directory,
+
+        or `item_ids` for specific items. The job runs asynchronously —
+
+        poll `GET /batch/{job_id}` for progress.'
+      operationId: create_batch_job_api_v1_beta_batch_processing_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: temporal-namespace
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Temporal-Namespace
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchJobCreateRequest'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Batch Processing
+      summary: List Batch Jobs
+      description: 'List batch processing jobs with optional filtering.
+
+
+        Filter by `directory_id`, `job_type`, or `status`. Results
+
+        are paginated with configurable `limit` and `offset`.'
+      operationId: list_batch_jobs_api_v1_beta_batch_processing_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter by directory ID
+          title: Directory Id
+        description: Filter by directory ID
+      - name: job_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BatchJobType'
+          - type: 'null'
+          description: Filter by job type (PARSE, EXTRACT, CLASSIFY)
+          title: Job Type
+        description: Filter by job type (PARSE, EXTRACT, CLASSIFY)
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BatchJobStatus'
+          - type: 'null'
+          description: Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)
+          title: Status
+        description: Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 1000
+          minimum: 1
+          description: Maximum number of jobs to return
+          default: 50
+          title: Limit
+        description: Maximum number of jobs to return
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          description: Number of jobs to skip for pagination
+          default: 0
+          title: Offset
+        description: Number of jobs to skip for pagination
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/batch-processing/{job_id}:
+    get:
+      tags:
+      - Batch Processing
+      summary: Get Batch Job Status
+      description: 'Get detailed status of a batch processing job.
+
+
+        Returns current progress percentage, file counts (total,
+
+        processed, failed, skipped), and timestamps.'
+      operationId: get_batch_job_status_api_v1_beta_batch_processing__job_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobStatusResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/batch-processing/{job_id}/items:
+    get:
+      tags:
+      - Batch Processing
+      summary: List Batch Job Items
+      description: 'List items in a batch job with optional status filtering.
+
+
+        Useful for finding failed items, viewing completed items,
+
+        or debugging processing issues.'
+      operationId: list_batch_job_items_api_v1_beta_batch_processing__job_id__items_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BatchFileStatus'
+          - type: 'null'
+          description: Filter items by status
+          title: Status
+        description: Filter items by status
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 1000
+          minimum: 1
+          description: Maximum number of items to return
+          default: 100
+          title: Limit
+        description: Maximum number of items to return
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          description: Number of items to skip
+          default: 0
+          title: Offset
+        description: Number of items to skip
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchItemListResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/batch-processing/{job_id}/cancel:
+    post:
+      tags:
+      - Batch Processing
+      summary: Cancel Batch Job
+      description: 'Cancel a running batch processing job.
+
+
+        Stops processing and marks pending items as cancelled.
+
+        Items currently being processed may still complete.'
+      operationId: cancel_batch_job_api_v1_beta_batch_processing__job_id__cancel_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: temporal-namespace
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Temporal-Namespace
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchJobCancelRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobCancelResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/batch-processing/items/{item_id}/processing-results:
+    get:
+      tags:
+      - Batch Processing
+      summary: Get Item Processing Results
+      description: 'Get all processing results for a specific item.
+
+
+        Returns the complete processing history for an item including
+
+        what operations were performed, parameters used, and where
+
+        outputs are stored. Optionally filter by `job_type`.'
+      operationId: get_item_processing_results_api_v1_beta_batch_processing_items__item_id__processing_results_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Item Id
+      - name: job_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BatchJobType'
+          - type: 'null'
+          description: Filter results by job type
+          title: Job Type
+        description: Filter results by job type
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemProcessingResultsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    StatusEnum:
+      type: string
+      enum:
+      - PENDING
+      - SUCCESS
+      - ERROR
+      - PARTIAL_SUCCESS
+      - CANCELLED
+      title: StatusEnum
+      description: Enum for representing the status of a job
+    BatchParseJobRecordCreate:
+      properties:
+        job_name:
+          type: string
+          const: parse_raw_file_job
+          title: Job Name
+          default: parse_raw_file_job
+        partitions:
+          additionalProperties:
+            anyOf:
+            - type: string
+              format: uuid
+            - type: string
+          propertyNames:
+            $ref: '#/components/schemas/PartitionNames'
+          type: object
+          title: Partitions
+          description: The partitions for this execution. Used for determining where to save job output.
+        parameters:
+          anyOf:
+          - $ref: '#/components/schemas/BatchParseJobConfig'
+          - type: 'null'
+          description: The generic parse configuration for all files in the batch.
+        session_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Session Id
+          description: The upstream request ID that created this job. Used for tracking the job across services.
+        correlation_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Correlation Id
+          description: The correlation ID for this job. Used for tracking the job across services.
+        parent_job_execution_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Parent Job Execution Id
+          description: The ID of the parent job execution.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: The ID of the user that created this job
+        project_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+          description: The ID of the project this job belongs to.
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+          description: The URL that needs to be called at the end of the parsing job.
+      type: object
+      title: BatchParseJobRecordCreate
+      description: "Batch-specific parse job record for batch processing.\n\nThis model contains the metadata and configuration for a batch parse job,\nbut excludes file-specific information. It's used as input to the batch\nparent workflow and combined with DirectoryFile data to create full\nParseJobRecordCreate instances for each file.\n\nAttributes:\n    job_name: Must be PARSE_RAW_FILE\n    partitions: Partitions for job output location\n    parameters: Generic parse configuration (BatchParseJobConfig)\n    session_id: Upstream request ID for tracking\n    correlation_id: Correlation ID for cross-service tracking\n    parent_job_execution_id: Parent job execution ID if nested\n    user_id: User who created the job\n    project_id: Project this job belongs to\n    webhook_url: Optional webhook URL for job completion notifications"
+    ItemProcessingResultsResponse:
+      properties:
+        item_id:
+          type: string
+          title: Item Id
+          description: ID of the source item
+        item_name:
+          type: string
+          title: Item Name
+          description: Name of the source item
+        processing_results:
+          items:
+            $ref: '#/components/schemas/ProcessingResult'
+          type: array
+          title: Processing Results
+          description: List of all processing operations performed on this item
+      type: object
+      required:
+      - item_id
+      - item_name
+      title: ItemProcessingResultsResponse
+      description: Response containing all processing results for an item.
+    BatchFileStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      - failed
+      - skipped
+      - cancelled
+      title: BatchFileStatus
+      description: Status of an individual file in a batch job.
+    BatchParseJobConfig:
+      properties:
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Outbound webhook endpoints to notify on job status changes
+        priority:
+          anyOf:
+          - type: string
+            enum:
+            - low
+            - medium
+            - high
+            - critical
+          - type: 'null'
+          title: Priority
+          description: The priority for the request. This field may be ignored or overwritten depending on the organization tier.
+        custom_metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: The custom metadata to attach to the documents.
+        resource_info:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Resource Info
+          description: The resource info about the file
+        languages:
+          items:
+            $ref: '#/components/schemas/ParserLanguages'
+          type: array
+          minItems: 1
+          title: Languages
+        parsing_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parsing Instruction
+          default: ''
+        disable_ocr:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Ocr
+          default: false
+        annotate_links:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Annotate Links
+          default: false
+        adaptive_long_table:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Adaptive Long Table
+          default: false
+        compact_markdown_table:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Compact Markdown Table
+          default: false
+        disable_reconstruction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Reconstruction
+          default: false
+        disable_image_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Image Extraction
+          default: false
+        invalidate_cache:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Invalidate Cache
+          default: false
+        outlined_table_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Outlined Table Extraction
+          default: false
+        aggressive_table_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Aggressive Table Extraction
+          default: false
+        merge_tables_across_pages_in_markdown:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Merge Tables Across Pages In Markdown
+          default: false
+        output_pdf_of_document:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Output Pdf Of Document
+          default: false
+        do_not_cache:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Do Not Cache
+          default: false
+        fast_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fast Mode
+          default: false
+        skip_diagonal_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Skip Diagonal Text
+          default: false
+        preserve_layout_alignment_across_pages:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Preserve Layout Alignment Across Pages
+          default: false
+        preserve_very_small_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Preserve Very Small Text
+          default: false
+        gpt4o_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Gpt4O Mode
+          default: false
+        gpt4o_api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Gpt4O Api Key
+        do_not_unroll_columns:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Do Not Unroll Columns
+          default: false
+        extract_layout:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Layout
+          default: false
+        high_res_ocr:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: High Res Ocr
+          default: false
+        html_make_all_elements_visible:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Html Make All Elements Visible
+          default: false
+        layout_aware:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Layout Aware
+          default: false
+        specialized_chart_parsing_agentic:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Specialized Chart Parsing Agentic
+          default: false
+        specialized_chart_parsing_plus:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Specialized Chart Parsing Plus
+          default: false
+        specialized_chart_parsing_efficient:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Specialized Chart Parsing Efficient
+          default: false
+        specialized_image_parsing:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Specialized Image Parsing
+          default: false
+        precise_bounding_box:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Precise Bounding Box
+          default: false
+        line_level_bounding_box:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Line Level Bounding Box
+          default: false
+        html_remove_navigation_elements:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Html Remove Navigation Elements
+          default: false
+        html_remove_fixed_elements:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Html Remove Fixed Elements
+          default: false
+        guess_xlsx_sheet_name:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Guess Xlsx Sheet Name
+          default: false
+        page_separator:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Separator
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+        bbox_top:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bbox Top
+        bbox_right:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bbox Right
+        bbox_bottom:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bbox Bottom
+        bbox_left:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Bbox Left
+        target_pages:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Pages
+        use_vendor_multimodal_model:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Use Vendor Multimodal Model
+          default: false
+        vendor_multimodal_model_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vendor Multimodal Model Name
+        model:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Model
+        vendor_multimodal_api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vendor Multimodal Api Key
+        page_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Prefix
+        page_suffix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Suffix
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+        preset:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Preset
+        take_screenshot:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Take Screenshot
+          default: false
+        is_formatting_instruction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Formatting Instruction
+          default: true
+        premium_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Premium Mode
+          default: false
+        continuous_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Continuous Mode
+          default: false
+        input_s3_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input S3 Path
+        input_s3_region:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input S3 Region
+          description: The region for the input S3 bucket.
+        output_s3_path_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Output S3 Path Prefix
+          description: If specified, llamaParse will save the output to the specified path. All output file will use this 'prefix' should be a valid s3:// url
+        output_s3_region:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Output S3 Region
+          description: The region for the output S3 bucket.
+        project_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Project Id
+        azure_openai_deployment_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Openai Deployment Name
+        azure_openai_endpoint:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Openai Endpoint
+        azure_openai_api_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Openai Api Version
+        azure_openai_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Openai Key
+        input_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input Url
+        http_proxy:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Http Proxy
+        auto_mode:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Auto Mode
+          default: false
+        auto_mode_trigger_on_regexp_in_page:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Auto Mode Trigger On Regexp In Page
+        auto_mode_trigger_on_text_in_page:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Auto Mode Trigger On Text In Page
+        auto_mode_trigger_on_table_in_page:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Auto Mode Trigger On Table In Page
+          default: false
+        auto_mode_trigger_on_image_in_page:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Auto Mode Trigger On Image In Page
+          default: false
+        auto_mode_configuration_json:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Auto Mode Configuration Json
+        structured_output:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Structured Output
+          default: false
+        structured_output_json_schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Structured Output Json Schema
+        structured_output_json_schema_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Structured Output Json Schema Name
+        max_pages:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Pages
+        max_pages_enforced:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Pages Enforced
+        extract_charts:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Charts
+          default: false
+        formatting_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Formatting Instruction
+        complemental_formatting_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Complemental Formatting Instruction
+        content_guideline_instruction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content Guideline Instruction
+        spreadsheet_extract_sub_tables:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Spreadsheet Extract Sub Tables
+          default: false
+        spreadsheet_force_formula_computation:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Spreadsheet Force Formula Computation
+          default: false
+        spreadsheet_include_hidden_sheets:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Spreadsheet Include Hidden Sheets
+          default: false
+        inline_images_in_markdown:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Inline Images In Markdown
+          default: false
+        job_timeout_in_seconds:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Job Timeout In Seconds
+        job_timeout_extra_time_per_page_in_seconds:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Job Timeout Extra Time Per Page In Seconds
+        strict_mode_image_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict Mode Image Extraction
+          default: false
+        strict_mode_image_ocr:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict Mode Image Ocr
+          default: false
+        strict_mode_reconstruction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict Mode Reconstruction
+          default: false
+        strict_mode_buggy_font:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Strict Mode Buggy Font
+          default: false
+        save_images:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Save Images
+          default: true
+        images_to_save:
+          anyOf:
+          - items:
+              type: string
+              enum:
+              - screenshot
+              - embedded
+              - layout
+            type: array
+          - type: 'null'
+          title: Images To Save
+        hide_headers:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hide Headers
+          default: false
+        hide_footers:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hide Footers
+          default: false
+        page_header_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Header Prefix
+        page_header_suffix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Header Suffix
+        page_footer_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Footer Prefix
+        page_footer_suffix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Footer Suffix
+        remove_hidden_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Remove Hidden Text
+          default: false
+        keep_page_separator_when_merging_tables:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Keep Page Separator When Merging Tables
+          default: false
+        ignore_document_elements_for_layout_detection:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Document Elements For Layout Detection
+          default: false
+        output_tables_as_HTML:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Output Tables As Html
+          default: false
+        internal_is_screenshot_job:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Internal Is Screenshot Job
+          default: false
+        parse_mode:
+          anyOf:
+          - $ref: '#/components/schemas/ParsingMode'
+          - type: 'null'
+        system_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: System Prompt
+        system_prompt_append:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: System Prompt Append
+        user_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Prompt
+        page_error_tolerance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Page Error Tolerance
+          default: 0.05
+        replace_failed_page_mode:
+          anyOf:
+          - $ref: '#/components/schemas/FailPageMode'
+          - type: 'null'
+          default: raw_text
+        replace_failed_page_with_error_message_prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Replace Failed Page With Error Message Prefix
+        replace_failed_page_with_error_message_suffix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Replace Failed Page With Error Message Suffix
+        markdown_table_multiline_header_separator:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Markdown Table Multiline Header Separator
+        presentation_out_of_bounds_content:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Presentation Out Of Bounds Content
+          default: false
+        presentation_skip_embedded_data:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Presentation Skip Embedded Data
+          default: false
+        tier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tier
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Version
+        extract_printed_page_number:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Printed Page Number
+          default: false
+        enable_cost_optimizer:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable Cost Optimizer
+        type:
+          type: string
+          const: parse
+          title: Type
+          default: parse
+        lang:
+          type: string
+          title: Lang
+          description: The language.
+          default: en
+        outputBucket:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Outputbucket
+          description: The output bucket.
+        pipeline_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pipeline Id
+          description: The pipeline ID.
+      type: object
+      title: BatchParseJobConfig
+      description: 'Generic parse job configuration for batch processing.
+
+
+        This model contains the parsing configuration that applies to all files
+
+        in a batch, but excludes file-specific fields like file_name, file_id, etc.
+
+        Those file-specific fields are populated from DirectoryFile data when
+
+        creating individual ParseJobRecordCreate instances for each file.
+
+
+        The fields in this model should be generic settings that apply uniformly
+
+        to all files being processed in the batch.'
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    BatchItemDetail:
+      properties:
+        status:
+          $ref: '#/components/schemas/BatchFileStatus'
+          description: Processing status of this item
+        effective_at:
+          type: string
+          format: date-time
+          title: Effective At
+        job_record_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Job Record Id
+          description: The job record ID associated with this status, if any.
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+          description: Error message for the latest job attempt, if any.
+        item_id:
+          type: string
+          title: Item Id
+          description: ID of the item
+        item_name:
+          type: string
+          title: Item Name
+          description: Name of the item
+        job_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Job Id
+          description: Job ID for the underlying processing job (links to parse/extract job results)
+        skip_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Skip Reason
+          description: Reason item was skipped (e.g., 'already_processed', 'size_limit_exceeded')
+        started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started At
+          description: When processing started for this item
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+          description: When processing completed for this item
+      type: object
+      required:
+      - status
+      - item_id
+      - item_name
+      title: BatchItemDetail
+      description: Detailed information about an item in a batch job.
+    PartitionNames:
+      type: string
+      enum:
+      - data_source_id_partition
+      - pipeline_id_partition
+      - eval_dataset_id_partition
+      - file_id_partition
+      - pipeline_file_id_partition
+      - file_parsing_id_partition
+      - extraction_schema_id_partition
+      title: PartitionNames
+      description: Enum for dataset partition names.
+    ClassifyParsingConfiguration:
+      properties:
+        lang:
+          $ref: '#/components/schemas/ParserLanguages'
+          description: The language to parse the files in
+          default: en
+        max_pages:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Pages
+          description: The maximum number of pages to parse
+          default: 5
+        target_pages:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+            minItems: 1
+          - type: 'null'
+          title: Target Pages
+          description: The pages to target for parsing (0-indexed, so first page is at 0)
+      type: object
+      title: ClassifyParsingConfiguration
+      description: Parsing configuration for a classify job.
+    BatchJobStatusResponse:
+      properties:
+        job:
+          $ref: '#/components/schemas/BatchJobResponse'
+        progress_percentage:
+          type: number
+          maximum: 100.0
+          minimum: 0.0
+          title: Progress Percentage
+          description: Percentage of items processed (0-100)
+      type: object
+      required:
+      - job
+      - progress_percentage
+      title: BatchJobStatusResponse
+      description: Detailed status response for a batch processing job.
+    BatchJobType:
+      type: string
+      enum:
+      - parse
+      - extract
+      - classify
+      title: BatchJobType
+      description: Type of batch processing operation.
+    ProcessingResult:
+      properties:
+        result_id:
+          type: string
+          title: Result Id
+          description: Unique identifier for this result
+        item_id:
+          type: string
+          title: Item Id
+          description: Source item that was processed
+        job_type:
+          $ref: '#/components/schemas/BatchJobType'
+          description: Type of processing performed
+        job_config:
+          anyOf:
+          - $ref: '#/components/schemas/BatchParseJobRecordCreate'
+          - $ref: '#/components/schemas/ClassifyJob'
+          title: Job Config
+          description: Job configuration used for processing
+        parameters_hash:
+          type: string
+          title: Parameters Hash
+          description: Content hash of the job configuration for dedup
+        output_s3_path:
+          type: string
+          title: Output S3 Path
+          description: Location of the processing output
+        output_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/ProcessingResultMetadata'
+          - type: 'null'
+          description: Summary statistics about the output
+        processed_at:
+          type: string
+          format: date-time
+          title: Processed At
+          description: When this processing occurred
+      type: object
+      required:
+      - result_id
+      - item_id
+      - job_type
+      - job_config
+      - parameters_hash
+      - output_s3_path
+      - processed_at
+      title: ProcessingResult
+      description: A processing result with lineage information.
+    ParsingMode:
+      type: string
+      enum:
+      - parse_page_without_llm
+      - parse_page_with_llm
+      - parse_page_with_lvm
+      - parse_page_with_agent
+      - parse_page_with_layout_agent
+      - parse_document_with_llm
+      - parse_document_with_lvm
+      - parse_document_with_agent
+      title: ParsingMode
+      description: Enum for representing the mode of parsing to be used.
+    BatchJobCancelRequest:
+      properties:
+        reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Reason
+          description: Optional reason for cancelling the job
+      type: object
+      title: BatchJobCancelRequest
+      description: Request to cancel a running batch job.
+    ClassifyMode:
+      type: string
+      enum:
+      - FAST
+      - MULTIMODAL
+      title: ClassifyMode
+      description: Supported classification execution modes.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    BatchJobCreateRequest:
+      properties:
+        directory_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Directory Id
+          description: ID of the directory containing files to process
+          examples:
+          - dir-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        item_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Item Ids
+          description: List of specific item IDs to process. Either this or directory_id must be provided.
+          examples:
+          - - dfl-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+            - dfl-11111111-2222-3333-4444-555555555555
+        job_config:
+          anyOf:
+          - $ref: '#/components/schemas/BatchParseJobRecordCreate'
+          - $ref: '#/components/schemas/ClassifyJob'
+          title: Job Config
+          description: Job configuration — either a parse or classify config
+        page_size:
+          type: integer
+          maximum: 1000.0
+          minimum: 1.0
+          title: Page Size
+          description: Number of files to process per batch when using directory mode
+          default: 100
+        continue_as_new_threshold:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Continue As New Threshold
+          description: Maximum files to process per execution cycle in directory mode. Defaults to page_size.
+      type: object
+      required:
+      - job_config
+      title: BatchJobCreateRequest
+      description: 'Request to create a batch processing job.
+
+
+        Supports two modes:
+
+        1. Directory mode: Process all files in a directory (use directory_id)
+
+        2. Item list mode: Process specific items (use item_ids). Project must be provided via validate_project dependency.'
+    BatchJobQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BatchJobResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: BatchJobQueryResponse
+      description: Response schema for paginated batch job queries.
+    ClassifyJob:
+      properties:
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+          description: The status of the classify job
+        effective_at:
+          type: string
+          format: date-time
+          title: Effective At
+        job_record_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Job Record Id
+          description: The job record ID associated with this status, if any.
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+          description: Error message for the latest job attempt, if any.
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        rules:
+          items:
+            $ref: '#/components/schemas/ClassifierRule'
+          type: array
+          minItems: 1
+          title: Rules
+          description: The rules to classify the files
+        user_id:
+          type: string
+          title: User Id
+          description: The ID of the user
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+          description: The ID of the project
+        mode:
+          $ref: '#/components/schemas/ClassifyMode'
+          description: The classification mode to use
+          default: FAST
+        parsing_configuration:
+          $ref: '#/components/schemas/ClassifyParsingConfiguration'
+          description: The configuration for the parsing job
+          default:
+            lang: en
+            max_pages: 5
+      type: object
+      required:
+      - status
+      - id
+      - rules
+      - user_id
+      - project_id
+      title: ClassifyJob
+      description: A classify job.
+    ParserLanguages:
+      type: string
+      enum:
+      - af
+      - az
+      - bs
+      - cs
+      - cy
+      - da
+      - de
+      - en
+      - es
+      - et
+      - fr
+      - ga
+      - hr
+      - hu
+      - id
+      - is
+      - it
+      - ku
+      - la
+      - lt
+      - lv
+      - mi
+      - ms
+      - mt
+      - nl
+      - 'no'
+      - oc
+      - pi
+      - pl
+      - pt
+      - ro
+      - rs_latin
+      - sk
+      - sl
+      - sq
+      - sv
+      - sw
+      - tl
+      - tr
+      - uz
+      - vi
+      - ar
+      - fa
+      - ug
+      - ur
+      - bn
+      - as
+      - mni
+      - ru
+      - rs_cyrillic
+      - be
+      - bg
+      - uk
+      - mn
+      - abq
+      - ady
+      - kbd
+      - ava
+      - dar
+      - inh
+      - che
+      - lbe
+      - lez
+      - tab
+      - tjk
+      - hi
+      - mr
+      - ne
+      - bh
+      - mai
+      - ang
+      - bho
+      - mah
+      - sck
+      - new
+      - gom
+      - sa
+      - bgc
+      - th
+      - ch_sim
+      - ch_tra
+      - ja
+      - ko
+      - ta
+      - te
+      - kn
+      title: ParserLanguages
+      description: Enum for representing the languages supported by the parser.
+    ProcessingResultMetadata:
+      properties: {}
+      type: object
+      title: ProcessingResultMetadata
+      description: 'Metadata about processing output.
+
+
+        Currently empty - will be populated with job-type-specific metadata fields in the future.'
+    BatchItemListResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BatchItemDetail'
+          type: array
+          title: Items
+          description: List of item details
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      title: BatchItemListResponse
+      description: Paginated response containing batch job item details.
+    FailPageMode:
+      type: string
+      enum:
+      - raw_text
+      - blank_page
+      - error_message
+      title: FailPageMode
+      description: Enum for representing the different available page error handling modes.
+    WebhookConfiguration:
+      properties:
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+          description: URL to receive webhook POST notifications
+          examples:
+          - https://example.com/webhooks/llamacloud
+        webhook_headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Webhook Headers
+          description: Custom HTTP headers sent with each webhook request (e.g. auth tokens)
+          examples:
+          - Authorization: Bearer sk-...
+        webhook_events:
+          anyOf:
+          - items:
+              type: string
+              enum:
+              - extract.pending
+              - extract.success
+              - extract.error
+              - extract.partial_success
+              - extract.cancelled
+              - parse.pending
+              - parse.running
+              - parse.success
+              - parse.error
+              - parse.partial_success
+              - parse.cancelled
+              - classify.pending
+              - classify.running
+              - classify.success
+              - classify.error
+              - classify.partial_success
+              - classify.cancelled
+              - sheets.pending
+              - sheets.success
+              - sheets.error
+              - sheets.partial_success
+              - sheets.cancelled
+              - unmapped_event
+            type: array
+          - type: 'null'
+          title: Webhook Events
+          description: Events to subscribe to (e.g. 'parse.success', 'extract.error'). If null, all events are delivered.
+          examples:
+          - - parse.success
+            - parse.error
+        webhook_output_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Output Format
+          description: 'Response format sent to the webhook: ''string'' (default) or ''json'''
+          examples:
+          - json
+      type: object
+      title: WebhookConfiguration
+      description: Configuration for a single outbound webhook endpoint.
+    BatchJobCancelResponse:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+          description: ID of the cancelled job
+        status:
+          $ref: '#/components/schemas/BatchJobStatus'
+          description: New status (should be 'cancelled')
+        processed_items:
+          type: integer
+          title: Processed Items
+          description: Number of items processed before cancellation
+        message:
+          type: string
+          title: Message
+          description: Confirmation message
+      type: object
+      required:
+      - job_id
+      - status
+      - processed_items
+      - message
+      title: BatchJobCancelResponse
+      description: Response after cancelling a batch job.
+    BatchJobStatus:
+      type: string
+      enum:
+      - pending
+      - running
+      - dispatched
+      - completed
+      - failed
+      - cancelled
+      title: BatchJobStatus
+      description: Status of a batch processing job.
+    BatchJobResponse:
+      properties:
+        status:
+          $ref: '#/components/schemas/BatchJobStatus'
+          description: Current job status
+        effective_at:
+          type: string
+          format: date-time
+          title: Effective At
+        job_record_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Job Record Id
+          description: The job record ID associated with this status, if any.
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+          description: Error message for the latest job attempt, if any.
+        id:
+          type: string
+          title: Id
+          description: Unique identifier for the batch job
+          examples:
+          - bjb-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        project_id:
+          type: string
+          title: Project Id
+          description: Project this job belongs to
+          examples:
+          - proj-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        directory_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Directory Id
+          description: Directory being processed
+          examples:
+          - dir-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+        job_type:
+          $ref: '#/components/schemas/BatchJobType'
+          description: Type of processing operation (parse or classify)
+        total_items:
+          type: integer
+          title: Total Items
+          description: Total number of items in the job
+        processed_items:
+          type: integer
+          title: Processed Items
+          description: Number of items processed so far
+          default: 0
+        failed_items:
+          type: integer
+          title: Failed Items
+          description: Number of items that failed processing
+          default: 0
+        skipped_items:
+          type: integer
+          title: Skipped Items
+          description: Number of items skipped (already processed or size limit)
+          default: 0
+        workflow_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Workflow Id
+          description: Async job tracking ID
+        started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started At
+          description: Timestamp when job processing started
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+          description: Timestamp when job completed
+      type: object
+      required:
+      - status
+      - id
+      - project_id
+      - job_type
+      - total_items
+      title: BatchJobResponse
+      description: Response schema for a batch processing job.
+    ClassifierRule:
+      properties:
+        type:
+          type: string
+          maxLength: 50
+          minLength: 1
+          title: Type
+          description: The document type to assign when this rule matches (e.g., 'invoice', 'receipt', 'contract')
+          examples:
+          - invoice
+          - receipt
+          - contract
+          - report
+          - proposal
+        description:
+          type: string
+          maxLength: 500
+          minLength: 10
+          title: Description
+          description: Natural language description of what to classify. Be specific about the content characteristics that identify this document type.
+          examples:
+          - contains invoice number, line items, and total amount
+          - purchase receipt with transaction info and merchant details
+          - legal contract with terms, conditions, and signatures
+      type: object
+      required:
+      - type
+      - description
+      title: ClassifierRule
+      description: 'A rule for classifying documents - v0 simplified version.
+
+
+        This represents a single classification rule that will be applied to documents.
+
+        All rules are content-based and use natural language descriptions.'
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

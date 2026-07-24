@@ -1,0 +1,520 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Directories API
+  version: 0.1.0
+tags:
+- name: Directories
+paths:
+  /api/v1/beta/directories:
+    post:
+      tags:
+      - Directories
+      summary: Create Directory
+      description: Create a new directory within the specified project.
+      operationId: create_directory_api_v1_beta_directories_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryCreateRequest'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Directories
+      summary: List Directories
+      operationId: list_directories_api_v1_beta_directories_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      - name: type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - enum:
+            - user
+            - index
+            - ephemeral
+            type: string
+          - type: 'null'
+          title: Type
+      - name: include_deleted
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Include Deleted
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/beta/directories/{directory_id}:
+    get:
+      tags:
+      - Directories
+      summary: Get Directory
+      description: Retrieve a directory by its identifier.
+      operationId: get_directory_api_v1_beta_directories__directory_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    patch:
+      tags:
+      - Directories
+      summary: Update Directory
+      description: Update directory metadata.
+      operationId: update_directory_api_v1_beta_directories__directory_id__patch
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryUpdateRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Directories
+      summary: Delete Directory
+      description: Permanently delete a directory.
+      operationId: delete_directory_api_v1_beta_directories__directory_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: directory_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Directory Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    DirectoryResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique identifier for the directory.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        project_id:
+          type: string
+          title: Project Id
+          description: Project the directory belongs to.
+        name:
+          type: string
+          minLength: 1
+          title: Name
+          description: Human-readable name for the directory.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Optional description shown to users.
+        type:
+          anyOf:
+          - type: string
+            enum:
+            - user
+            - index
+            - ephemeral
+            - system_ephemeral
+          - type: 'null'
+          title: Type
+          description: 'Directory type: ''user'', ''index'', ''ephemeral'', or ''system_ephemeral''.'
+        expires_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expires At
+          description: When this directory expires and is eligible for cleanup.
+        system_metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: System Metadata
+          description: Reserved system-managed metadata.
+        deleted_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Deleted At
+          description: Optional timestamp of when the directory was deleted. Null if not deleted.
+      type: object
+      required:
+      - id
+      - project_id
+      - name
+      title: DirectoryResponse
+      description: API response schema for a directory.
+    DirectoryCreateRequest:
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: Name
+          description: Human-readable name for the directory.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Optional description shown to users.
+        type:
+          type: string
+          enum:
+          - user
+          - ephemeral
+          title: Type
+          description: Directory type. Use 'ephemeral' for batch processing with automatic cleanup.
+          default: user
+          examples:
+          - user
+          - ephemeral
+        expires_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expires At
+          description: When this directory expires. Required for ephemeral directories.
+          examples:
+          - '2026-05-10T00:00:00Z'
+        system_metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: System Metadata
+          description: Reserved system-managed metadata.
+      type: object
+      required:
+      - name
+      title: DirectoryCreateRequest
+      description: API request schema for creating a directory.
+    DirectoryUpdateRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Name
+          description: Updated name for the directory.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Updated description for the directory.
+      type: object
+      title: DirectoryUpdateRequest
+      description: API request schema for updating a directory.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    DirectoryQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DirectoryResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: DirectoryQueryResponse
+      description: API query response schema for directories.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

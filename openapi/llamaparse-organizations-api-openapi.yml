@@ -1,0 +1,325 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Organizations API
+  version: 0.1.0
+tags:
+- name: Organizations
+paths:
+  /api/v1/organizations:
+    get:
+      tags:
+      - Organizations
+      summary: List Organizations
+      description: List organizations for a user.
+      operationId: list_organizations_api_v1_organizations_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+                title: Response List Organizations Api V1 Organizations Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/organizations/{organization_id}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Organization
+      description: Get an organization by ID.
+      operationId: get_organization_api_v1_organizations__organization_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v2/organizations:
+    get:
+      tags:
+      - Organizations
+      summary: List Organizations
+      description: List organizations the current user can access.
+      operationId: list_organizations_api_v2_organizations_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationQueryResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v2/organizations/{organization_id}:
+    get:
+      tags:
+      - Organizations
+      summary: Get Organization
+      description: Get an organization by ID.
+      operationId: get_organization_api_v2_organizations__organization_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ParsePlanLevel:
+      type: string
+      enum:
+      - DEFAULT
+      - PREMIUM
+      title: ParsePlanLevel
+      description: Enum for the Parse plan level.
+    OrganizationResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: The organization's unique identifier.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: The organization's display name.
+      type: object
+      required:
+      - id
+      - name
+      title: OrganizationResponse
+      description: API response schema for an organization.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    OrganizationQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/OrganizationResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: OrganizationQueryResponse
+      description: API query response schema for organizations.
+    Organization:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+          description: A name for the organization.
+        parse_plan_level:
+          $ref: '#/components/schemas/ParsePlanLevel'
+          description: '[Deprecated] Whether the organization is a Parse Premium customer.'
+          default: DEFAULT
+        stripe_customer_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Stripe Customer Id
+          description: The Stripe customer ID for the organization.
+        feature_flags:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Feature Flags
+          description: Feature flags for the organization.
+      type: object
+      required:
+      - id
+      - name
+      title: Organization
+      description: Schema for an organization.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

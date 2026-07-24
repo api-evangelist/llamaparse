@@ -1,0 +1,776 @@
+openapi: 3.0.3
+info:
+  title: Llama Platform Agent Data Chat API
+  version: 0.1.0
+tags:
+- name: Chat
+paths:
+  /api/v1/chat:
+    post:
+      tags:
+      - Chat
+      summary: Create Session
+      description: Create a chat session, optionally bound to indexes (locked after the first message).
+      operationId: create_session_api_v1_chat_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionCreate'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatSessionSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Chat
+      summary: List Sessions
+      description: List all chat sessions for the current project.
+      operationId: list_sessions_api_v1_chat_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+      - name: page_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionList'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/chat/{session_id}:
+    get:
+      tags:
+      - Chat
+      summary: Get Full Session
+      description: Retrieve a full session by ID, including its event history.
+      operationId: get_full_session_api_v1_chat__session_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Chat
+      summary: Delete Session
+      description: Delete a session.
+      operationId: delete_session_api_v1_chat__session_id__delete
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/chat/{session_id}/summary:
+    get:
+      tags:
+      - Chat
+      summary: Get Session Summary
+      description: Retrieve a session summary by ID.
+      operationId: get_session_summary_api_v1_chat__session_id__summary_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatSessionSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/chat/{session_id}/messages/stream:
+    post:
+      tags:
+      - Chat
+      summary: Stream Messages
+      description: Stream agent events for a chat turn as Server-Sent Events.
+      operationId: stream_messages_api_v1_chat__session_id__messages_stream_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Session Id
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+      - name: organization_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Organization Id
+      - name: session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatParams'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    StopEvent:
+      properties:
+        type:
+          type: string
+          const: stop
+          title: Type
+          default: stop
+        usage:
+          $ref: '#/components/schemas/Usage'
+        is_error:
+          type: boolean
+          title: Is Error
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - usage
+      - is_error
+      - error
+      title: StopEvent
+    ChatSessionSummary:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+          description: Unique session identifier.
+          examples:
+          - ses-abc123
+        generated_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Generated Title
+          description: Auto-generated title derived from the first user message.
+          examples:
+          - What were the main findings in Q3?...
+        last_updated_at:
+          type: string
+          title: Last Updated At
+          description: ISO-format timestamp showing when the session was last updated.
+          examples:
+          - '2026-04-22T12:34:41.342245'
+        job_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/JobMetadata'
+          - type: 'null'
+          description: Token usage and status from the most recent run. Null if the session has not been run yet.
+        index_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Index Ids
+          description: Indexes this session is bound to. Null on unbound sessions.
+          examples:
+          - - idx-abc123
+            - idx-def456
+      type: object
+      required:
+      - session_id
+      - last_updated_at
+      title: ChatSessionSummary
+      description: Summary of a chat session, including its title and last run metadata.
+    ToolResultEvent:
+      properties:
+        type:
+          type: string
+          const: tool_result
+          title: Type
+          default: tool_result
+        name:
+          type: string
+          title: Name
+        call_id:
+          type: string
+          title: Call Id
+        result:
+          title: Result
+        image_attachment:
+          anyOf:
+          - $ref: '#/components/schemas/ImageAttachmentRef'
+          - type: 'null'
+      type: object
+      required:
+      - name
+      - call_id
+      - result
+      title: ToolResultEvent
+    TextDeltaEvent:
+      properties:
+        type:
+          type: string
+          const: text_delta
+          title: Type
+          default: text_delta
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: TextDeltaEvent
+    ChatParams:
+      properties:
+        index_ids:
+          items:
+            type: string
+          type: array
+          minItems: 1
+          title: Index Ids
+          description: Indexes to retrieve data from.
+          examples:
+          - - idx-abc123
+            - idx-def456
+        prompt:
+          type: string
+          maxLength: 1000
+          title: Prompt
+          description: User message for this chat turn.
+          examples:
+          - What were the main findings in Q3?
+      type: object
+      required:
+      - index_ids
+      - prompt
+      title: ChatParams
+      description: Request body for running a chat turn against one or more indexes.
+    SessionCreate:
+      properties:
+        index_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+            maxItems: 10
+          - type: 'null'
+          title: Index Ids
+          description: Indexes this session will retrieve from. Once set and the first message has been sent, the source set is locked for the session's lifetime. Leave null to create an unbound session.
+          examples:
+          - - idx-abc123
+            - idx-def456
+      type: object
+      title: SessionCreate
+      description: Request body for creating a chat session.
+    UserInputEvent:
+      properties:
+        type:
+          type: string
+          const: user_input
+          title: Type
+          default: user_input
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: UserInputEvent
+    ToolCallEvent:
+      properties:
+        type:
+          type: string
+          const: tool_call
+          title: Type
+          default: tool_call
+        arguments:
+          additionalProperties: true
+          type: object
+          title: Arguments
+        name:
+          type: string
+          title: Name
+        call_id:
+          type: string
+          title: Call Id
+      type: object
+      required:
+      - arguments
+      - name
+      - call_id
+      title: ToolCallEvent
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SessionDetail:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+          description: Unique session identifier.
+          examples:
+          - ses-abc123
+        generated_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Generated Title
+          description: Auto-generated title derived from the first user message.
+          examples:
+          - What were the main findings in Q3?...
+        last_updated_at:
+          type: string
+          title: Last Updated At
+          description: ISO-format timestamp showing when the session was last updated.
+          examples:
+          - '2026-04-22T12:34:41.342245'
+        job_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/JobMetadata'
+          - type: 'null'
+          description: Token usage and status from the most recent run. Null if the session has not been run yet.
+        index_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Index Ids
+          description: Indexes this session is bound to. Null on unbound sessions.
+          examples:
+          - - idx-abc123
+            - idx-def456
+        events:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ThinkingDeltaEvent'
+            - $ref: '#/components/schemas/TextDeltaEvent'
+            - $ref: '#/components/schemas/ThinkingEvent'
+            - $ref: '#/components/schemas/TextEvent'
+            - $ref: '#/components/schemas/ToolCallEvent'
+            - $ref: '#/components/schemas/ToolResultEvent'
+            - $ref: '#/components/schemas/StopEvent'
+            - $ref: '#/components/schemas/UserInputEvent'
+            discriminator:
+              propertyName: type
+              mapping:
+                stop: '#/components/schemas/StopEvent'
+                text: '#/components/schemas/TextEvent'
+                text_delta: '#/components/schemas/TextDeltaEvent'
+                thinking: '#/components/schemas/ThinkingEvent'
+                thinking_delta: '#/components/schemas/ThinkingDeltaEvent'
+                tool_call: '#/components/schemas/ToolCallEvent'
+                tool_result: '#/components/schemas/ToolResultEvent'
+                user_input: '#/components/schemas/UserInputEvent'
+          type: array
+          title: Events
+          description: Ordered list of events that make up the conversation history.
+      type: object
+      required:
+      - session_id
+      - last_updated_at
+      - events
+      title: SessionDetail
+      description: Full chat session including its complete event history.
+    Usage:
+      properties:
+        total_input_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Input Tokens
+        total_output_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Output Tokens
+        turns:
+          type: integer
+          title: Turns
+          default: 1
+        duration_ms:
+          type: number
+          title: Duration Ms
+          default: 0.0
+      type: object
+      title: Usage
+    ThinkingDeltaEvent:
+      properties:
+        type:
+          type: string
+          const: thinking_delta
+          title: Type
+          default: thinking_delta
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: ThinkingDeltaEvent
+    JobMetadata:
+      properties:
+        total_input_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Input Tokens
+        total_output_tokens:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Output Tokens
+        turns:
+          type: integer
+          title: Turns
+          default: 1
+        duration_ms:
+          type: number
+          title: Duration Ms
+          default: 0.0
+        is_error:
+          type: boolean
+          title: Is Error
+          default: false
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+        export_config_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Export Config Ids
+      type: object
+      title: JobMetadata
+    ThinkingEvent:
+      properties:
+        type:
+          type: string
+          const: thinking
+          title: Type
+          default: thinking
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: ThinkingEvent
+    SessionList:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ChatSessionSummary'
+          type: array
+          title: Items
+          description: Chat sessions for the current page.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: Opaque token to retrieve the next page. Omitted when there are no further pages.
+      type: object
+      required:
+      - items
+      title: SessionList
+      description: Paginated list of chat sessions.
+    ImageAttachmentRef:
+      properties:
+        source_id:
+          type: string
+          title: Source Id
+        attachment_name:
+          type: string
+          title: Attachment Name
+      type: object
+      required:
+      - source_id
+      - attachment_name
+      title: ImageAttachmentRef
+      description: Coordinates for lazily resolving a page screenshot presigned URL.
+    TextEvent:
+      properties:
+        type:
+          type: string
+          const: text
+          title: Type
+          default: text
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: TextEvent
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer
