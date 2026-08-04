@@ -1,0 +1,670 @@
+{
+  "info": {
+    "_postman_id": "fffd1845-ed14-408c-9de6-f39cf24fbae8",
+    "name": "Llama Platform Agent Data Page Screenshots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:31.000Z",
+    "updatedAt": "2026-07-28T02:08:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fffd1845-ed14-408c-9de6-f39cf24fbae8"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "files",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "page_screenshots",
+                      "item": [
+                        {
+                          "name": "{page_index}",
+                          "item": [
+                            {
+                              "name": "presigned_url",
+                              "item": [
+                                {
+                                  "name": "Generate File Page Screenshot Presigned Url",
+                                  "id": "8ee834a8-942d-450e-993c-d28ca391d606",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots/:page_index/presigned_url?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "files",
+                                        ":id",
+                                        "page_screenshots",
+                                        ":page_index",
+                                        "presigned_url"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "b2c89e82-619e-406c-9809-3dad1d9188e9",
+                                          "key": "id",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "8c69bce2-abbd-458f-a16e-6d1220fbd097",
+                                          "key": "page_index",
+                                          "value": "<integer>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns a short-lived presigned URL to read a page screenshot; treat the URL as sensitive while it is valid."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "18f5319c-a53f-4d88-b22d-e12d02cc6dce",
+                                      "name": "Successful Response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots/:page_index/presigned_url?project_id=<uuid>&organization_id=<uuid>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "files",
+                                            ":id",
+                                            "page_screenshots",
+                                            ":page_index",
+                                            "presigned_url"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "project_id",
+                                              "value": "<uuid>"
+                                            },
+                                            {
+                                              "key": "organization_id",
+                                              "value": "<uuid>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "id"
+                                            },
+                                            {
+                                              "key": "page_index"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"url\": \"<uri>\",\n  \"expires_at\": \"<dateTime>\",\n  \"form_fields\": {\n    \"cupidatat4\": \"<string>\",\n    \"nostrud2\": \"<string>\",\n    \"enim_27d\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:08:32.000Z",
+                                      "updatedAt": "2026-07-28T02:08:32.000Z",
+                                      "uid": "35240-18f5319c-a53f-4d88-b22d-e12d02cc6dce"
+                                    },
+                                    {
+                                      "id": "98917edc-a970-47c3-a79a-4aa2852c48d0",
+                                      "name": "Validation Error",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots/:page_index/presigned_url?project_id=<uuid>&organization_id=<uuid>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "files",
+                                            ":id",
+                                            "page_screenshots",
+                                            ":page_index",
+                                            "presigned_url"
+                                          ],
+                                          "query": [
+                                            {
+                                              "key": "project_id",
+                                              "value": "<uuid>"
+                                            },
+                                            {
+                                              "key": "organization_id",
+                                              "value": "<uuid>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "id"
+                                            },
+                                            {
+                                              "key": "page_index"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T02:08:32.000Z",
+                                      "updatedAt": "2026-07-28T02:08:32.000Z",
+                                      "uid": "35240-98917edc-a970-47c3-a79a-4aa2852c48d0"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:08:32.000Z",
+                                  "updatedAt": "2026-07-28T02:08:32.000Z",
+                                  "uid": "35240-8ee834a8-942d-450e-993c-d28ca391d606"
+                                }
+                              ],
+                              "id": "da5b2cd2-bb7d-4f2c-b07e-13e73b7cba70",
+                              "createdAt": "2026-07-28T02:08:32.000Z",
+                              "updatedAt": "2026-07-28T02:08:32.000Z",
+                              "uid": "35240-da5b2cd2-bb7d-4f2c-b07e-13e73b7cba70"
+                            },
+                            {
+                              "name": "Get File Page Screenshot",
+                              "id": "dbd282b8-038c-420c-b04e-f9bad2e0bf63",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots/:page_index?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "files",
+                                    ":id",
+                                    "page_screenshots",
+                                    ":page_index"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b7fce5e8-9f0f-45b2-a999-9d81d94b8789",
+                                      "key": "id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "51e89406-79bc-44fa-9be0-74944c854518",
+                                      "key": "page_index",
+                                      "value": "<integer>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get screenshot of a page from a file."
+                              },
+                              "response": [
+                                {
+                                  "id": "ef1a3b1a-21b1-4aab-b5a7-73356fb4a6c6",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots/:page_index?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "files",
+                                        ":id",
+                                        "page_screenshots",
+                                        ":page_index"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "id"
+                                        },
+                                        {
+                                          "key": "page_index"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:08:32.000Z",
+                                  "updatedAt": "2026-07-28T02:08:32.000Z",
+                                  "uid": "35240-ef1a3b1a-21b1-4aab-b5a7-73356fb4a6c6"
+                                },
+                                {
+                                  "id": "d713648c-4ef9-4ffc-aed5-4ec9586a6a44",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots/:page_index?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "files",
+                                        ":id",
+                                        "page_screenshots",
+                                        ":page_index"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "id"
+                                        },
+                                        {
+                                          "key": "page_index"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:32.000Z",
+                                  "updatedAt": "2026-07-28T02:08:32.000Z",
+                                  "uid": "35240-d713648c-4ef9-4ffc-aed5-4ec9586a6a44"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:32.000Z",
+                              "updatedAt": "2026-07-28T02:08:32.000Z",
+                              "uid": "35240-dbd282b8-038c-420c-b04e-f9bad2e0bf63"
+                            }
+                          ],
+                          "id": "59b80d5c-ad10-4936-809f-877d321fbe10",
+                          "createdAt": "2026-07-28T02:08:32.000Z",
+                          "updatedAt": "2026-07-28T02:08:32.000Z",
+                          "uid": "35240-59b80d5c-ad10-4936-809f-877d321fbe10"
+                        },
+                        {
+                          "name": "List File Page Screenshots",
+                          "id": "d7b11bcd-378d-4e5c-9cd3-5004283fadc3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "files",
+                                ":id",
+                                "page_screenshots"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2e10eb3f-13e6-4322-97c7-6a45bf5638da",
+                                  "key": "id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "List metadata for all screenshots of pages from a file."
+                          },
+                          "response": [
+                            {
+                              "id": "e32e9eba-9f35-4c28-84f9-f578c9107344",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "files",
+                                    ":id",
+                                    "page_screenshots"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"page_index\": \"<integer>\",\n    \"file_id\": \"<uuid>\",\n    \"image_size\": \"<integer>\",\n    \"metadata\": {\n      \"proident_51\": true,\n      \"laboris_4b_\": true\n    }\n  },\n  {\n    \"page_index\": \"<integer>\",\n    \"file_id\": \"<uuid>\",\n    \"image_size\": \"<integer>\",\n    \"metadata\": {\n      \"cupidatat1e\": -69943845,\n      \"commodo_2e\": true\n    }\n  }\n]",
+                              "createdAt": "2026-07-28T02:08:32.000Z",
+                              "updatedAt": "2026-07-28T02:08:32.000Z",
+                              "uid": "35240-e32e9eba-9f35-4c28-84f9-f578c9107344"
+                            },
+                            {
+                              "id": "85c177da-264f-4bdd-80b7-98f41b23c901",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/files/:id/page_screenshots?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "files",
+                                    ":id",
+                                    "page_screenshots"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:32.000Z",
+                              "updatedAt": "2026-07-28T02:08:32.000Z",
+                              "uid": "35240-85c177da-264f-4bdd-80b7-98f41b23c901"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:32.000Z",
+                          "updatedAt": "2026-07-28T02:08:32.000Z",
+                          "uid": "35240-d7b11bcd-378d-4e5c-9cd3-5004283fadc3"
+                        }
+                      ],
+                      "id": "1f4d57a4-c608-42a1-90a1-fa1df3dddd62",
+                      "createdAt": "2026-07-28T02:08:32.000Z",
+                      "updatedAt": "2026-07-28T02:08:32.000Z",
+                      "uid": "35240-1f4d57a4-c608-42a1-90a1-fa1df3dddd62"
+                    }
+                  ],
+                  "id": "6f97c70a-088b-4723-bd80-bb0f4309b384",
+                  "createdAt": "2026-07-28T02:08:32.000Z",
+                  "updatedAt": "2026-07-28T02:08:32.000Z",
+                  "uid": "35240-6f97c70a-088b-4723-bd80-bb0f4309b384"
+                }
+              ],
+              "id": "95d62093-80cf-4084-883b-0bae7c49630c",
+              "createdAt": "2026-07-28T02:08:32.000Z",
+              "updatedAt": "2026-07-28T02:08:32.000Z",
+              "uid": "35240-95d62093-80cf-4084-883b-0bae7c49630c"
+            }
+          ],
+          "id": "d8c5aaa8-2a8c-4886-bc54-c47d7abdd658",
+          "createdAt": "2026-07-28T02:08:32.000Z",
+          "updatedAt": "2026-07-28T02:08:32.000Z",
+          "uid": "35240-d8c5aaa8-2a8c-4886-bc54-c47d7abdd658"
+        }
+      ],
+      "id": "af95df8f-9827-4a96-8750-a94a0e48db21",
+      "createdAt": "2026-07-28T02:08:32.000Z",
+      "updatedAt": "2026-07-28T02:08:32.000Z",
+      "uid": "35240-af95df8f-9827-4a96-8750-a94a0e48db21"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

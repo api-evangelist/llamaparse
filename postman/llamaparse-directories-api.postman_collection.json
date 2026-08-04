@@ -1,0 +1,1081 @@
+{
+  "info": {
+    "_postman_id": "c1067b14-c6ef-4490-a538-147f5c792fcb",
+    "name": "Llama Platform Agent Data Directories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:56.000Z",
+    "updatedAt": "2026-07-28T02:07:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c1067b14-c6ef-4490-a538-147f5c792fcb"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "beta",
+              "item": [
+                {
+                  "name": "directories",
+                  "item": [
+                    {
+                      "name": "{directory_id}",
+                      "item": [
+                        {
+                          "name": "Get Directory",
+                          "id": "a6744f5c-ae8a-461c-8e5a-e661b004f1d2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "directories",
+                                ":directory_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b7764395-1f71-44e8-965b-1d1f98d69c33",
+                                  "key": "directory_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve a directory by its identifier."
+                          },
+                          "response": [
+                            {
+                              "id": "66d94f38-66aa-43ec-908e-33e33dfcc6e1",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "directories",
+                                    ":directory_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "directory_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"type\": \"ephemeral\",\n  \"expires_at\": \"<dateTime>\",\n  \"system_metadata\": {\n    \"sed_be1\": \"in occaecat anim laborum mag\"\n  },\n  \"deleted_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:07:56.000Z",
+                              "updatedAt": "2026-07-28T02:07:56.000Z",
+                              "uid": "35240-66d94f38-66aa-43ec-908e-33e33dfcc6e1"
+                            },
+                            {
+                              "id": "d53d24d8-faad-4688-b984-99e26b729d92",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "directories",
+                                    ":directory_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "directory_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:56.000Z",
+                              "updatedAt": "2026-07-28T02:07:56.000Z",
+                              "uid": "35240-d53d24d8-faad-4688-b984-99e26b729d92"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:56.000Z",
+                          "updatedAt": "2026-07-28T02:07:56.000Z",
+                          "uid": "35240-a6744f5c-ae8a-461c-8e5a-e661b004f1d2"
+                        },
+                        {
+                          "name": "Update Directory",
+                          "id": "6522e329-52b2-4391-86ec-30ee6e9c3671",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "directories",
+                                ":directory_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "aa87ffd0-dc57-41a1-809b-976bd80e1c5c",
+                                  "key": "directory_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update directory metadata."
+                          },
+                          "response": [
+                            {
+                              "id": "9ee1bf6f-8e65-48d3-b48e-b9cc4c8ae35a",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "directories",
+                                    ":directory_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "directory_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"type\": \"ephemeral\",\n  \"expires_at\": \"<dateTime>\",\n  \"system_metadata\": {\n    \"sed_be1\": \"in occaecat anim laborum mag\"\n  },\n  \"deleted_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:07:56.000Z",
+                              "updatedAt": "2026-07-28T02:07:56.000Z",
+                              "uid": "35240-9ee1bf6f-8e65-48d3-b48e-b9cc4c8ae35a"
+                            },
+                            {
+                              "id": "7f579fcd-7079-4785-b4c1-58c6677d8a47",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "directories",
+                                    ":directory_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "directory_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:56.000Z",
+                              "updatedAt": "2026-07-28T02:07:56.000Z",
+                              "uid": "35240-7f579fcd-7079-4785-b4c1-58c6677d8a47"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:56.000Z",
+                          "updatedAt": "2026-07-28T02:07:56.000Z",
+                          "uid": "35240-6522e329-52b2-4391-86ec-30ee6e9c3671"
+                        },
+                        {
+                          "name": "Delete Directory",
+                          "id": "06266588-5b39-4cde-8d47-26f8c32ebd8b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "directories",
+                                ":directory_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fb307727-bdb6-4eac-8e0f-12bf78571e5d",
+                                  "key": "directory_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Permanently delete a directory."
+                          },
+                          "response": [
+                            {
+                              "id": "660667c1-86b2-4991-a7eb-6bc1e2c38a03",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "directories",
+                                    ":directory_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "directory_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:07:56.000Z",
+                              "updatedAt": "2026-07-28T02:07:56.000Z",
+                              "uid": "35240-660667c1-86b2-4991-a7eb-6bc1e2c38a03"
+                            },
+                            {
+                              "id": "ff631ff7-d695-4e1e-a55c-3a14e3e2758e",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/directories/:directory_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "directories",
+                                    ":directory_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "directory_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:56.000Z",
+                              "updatedAt": "2026-07-28T02:07:56.000Z",
+                              "uid": "35240-ff631ff7-d695-4e1e-a55c-3a14e3e2758e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:56.000Z",
+                          "updatedAt": "2026-07-28T02:07:56.000Z",
+                          "uid": "35240-06266588-5b39-4cde-8d47-26f8c32ebd8b"
+                        }
+                      ],
+                      "id": "4a01c90c-2f2c-4d39-9a9d-8f27c9576da4",
+                      "createdAt": "2026-07-28T02:07:56.000Z",
+                      "updatedAt": "2026-07-28T02:07:56.000Z",
+                      "uid": "35240-4a01c90c-2f2c-4d39-9a9d-8f27c9576da4"
+                    },
+                    {
+                      "name": "Create Directory",
+                      "id": "ef237560-c300-4a6a-8b4b-277581e7fa96",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"user\",\n  \"expires_at\": \"<dateTime>\",\n  \"system_metadata\": {\n    \"sint99\": 51712571.36058974,\n    \"elit_2\": \"ex fugiat eu in\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/beta/directories?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "beta",
+                            "directories"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "Create a new directory within the specified project."
+                      },
+                      "response": [
+                        {
+                          "id": "0afca6f7-517c-444e-83bc-69e8d13f1e35",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"user\",\n  \"expires_at\": \"<dateTime>\",\n  \"system_metadata\": {\n    \"sint99\": 51712571.36058974,\n    \"elit_2\": \"ex fugiat eu in\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/directories?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "directories"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"type\": \"ephemeral\",\n  \"expires_at\": \"<dateTime>\",\n  \"system_metadata\": {\n    \"sed_be1\": \"in occaecat anim laborum mag\"\n  },\n  \"deleted_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:07:56.000Z",
+                          "updatedAt": "2026-07-28T02:07:56.000Z",
+                          "uid": "35240-0afca6f7-517c-444e-83bc-69e8d13f1e35"
+                        },
+                        {
+                          "id": "f852ad17-ee88-4b7f-b101-b64b2c53fdb3",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"user\",\n  \"expires_at\": \"<dateTime>\",\n  \"system_metadata\": {\n    \"sint99\": 51712571.36058974,\n    \"elit_2\": \"ex fugiat eu in\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/directories?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "directories"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:56.000Z",
+                          "updatedAt": "2026-07-28T02:07:56.000Z",
+                          "uid": "35240-f852ad17-ee88-4b7f-b101-b64b2c53fdb3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:56.000Z",
+                      "updatedAt": "2026-07-28T02:07:56.000Z",
+                      "uid": "35240-ef237560-c300-4a6a-8b4b-277581e7fa96"
+                    },
+                    {
+                      "name": "List Directories",
+                      "id": "981c822f-2dda-423e-9b4f-bf85acb3c45b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/beta/directories?project_id=<uuid>&organization_id=<uuid>&name=<string>&type=ephemeral&include_deleted=false&page_size=<integer>&page_token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "beta",
+                            "directories"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "type",
+                              "value": "ephemeral"
+                            },
+                            {
+                              "key": "include_deleted",
+                              "value": "false"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "page_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "076df8dd-6233-421d-997e-eed06bffba99",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/directories?project_id=<uuid>&organization_id=<uuid>&name=<string>&type=ephemeral&include_deleted=false&page_size=<integer>&page_token=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "directories"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "type",
+                                  "value": "ephemeral"
+                                },
+                                {
+                                  "key": "include_deleted",
+                                  "value": "false"
+                                },
+                                {
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"type\": \"system_ephemeral\",\n      \"expires_at\": \"<dateTime>\",\n      \"system_metadata\": {\n        \"qui_16\": 62461116.37953389,\n        \"ea_b3\": 40363343\n      },\n      \"deleted_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"type\": \"user\",\n      \"expires_at\": \"<dateTime>\",\n      \"system_metadata\": {\n        \"ine9\": \"officia est ut elit in\",\n        \"dolor5\": false,\n        \"ex8b\": -78795054,\n        \"Lorema_\": true\n      },\n      \"deleted_at\": \"<dateTime>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:07:56.000Z",
+                          "updatedAt": "2026-07-28T02:07:56.000Z",
+                          "uid": "35240-076df8dd-6233-421d-997e-eed06bffba99"
+                        },
+                        {
+                          "id": "ea14927a-39ab-4a0a-b978-5409bc40b7e6",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/directories?project_id=<uuid>&organization_id=<uuid>&name=<string>&type=ephemeral&include_deleted=false&page_size=<integer>&page_token=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "directories"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "type",
+                                  "value": "ephemeral"
+                                },
+                                {
+                                  "key": "include_deleted",
+                                  "value": "false"
+                                },
+                                {
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:56.000Z",
+                          "updatedAt": "2026-07-28T02:07:56.000Z",
+                          "uid": "35240-ea14927a-39ab-4a0a-b978-5409bc40b7e6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:56.000Z",
+                      "updatedAt": "2026-07-28T02:07:56.000Z",
+                      "uid": "35240-981c822f-2dda-423e-9b4f-bf85acb3c45b"
+                    }
+                  ],
+                  "id": "03d29950-b5b4-4b2b-8056-b73690450923",
+                  "createdAt": "2026-07-28T02:07:56.000Z",
+                  "updatedAt": "2026-07-28T02:07:56.000Z",
+                  "uid": "35240-03d29950-b5b4-4b2b-8056-b73690450923"
+                }
+              ],
+              "id": "e021f592-63d0-4788-a637-1ff58a2972ba",
+              "createdAt": "2026-07-28T02:07:56.000Z",
+              "updatedAt": "2026-07-28T02:07:56.000Z",
+              "uid": "35240-e021f592-63d0-4788-a637-1ff58a2972ba"
+            }
+          ],
+          "id": "a5ccd35f-dc0c-4b0e-b65d-3b6433c8d971",
+          "createdAt": "2026-07-28T02:07:56.000Z",
+          "updatedAt": "2026-07-28T02:07:56.000Z",
+          "uid": "35240-a5ccd35f-dc0c-4b0e-b65d-3b6433c8d971"
+        }
+      ],
+      "id": "961afaec-5935-44e0-b60e-6b061a881c5a",
+      "createdAt": "2026-07-28T02:07:56.000Z",
+      "updatedAt": "2026-07-28T02:07:56.000Z",
+      "uid": "35240-961afaec-5935-44e0-b60e-6b061a881c5a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

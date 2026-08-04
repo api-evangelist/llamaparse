@@ -1,0 +1,1941 @@
+{
+  "info": {
+    "_postman_id": "82b918a0-1eef-479e-bd86-e8ec1be2cf79",
+    "name": "Llama Platform Agent Data Pipeline Files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:45.000Z",
+    "updatedAt": "2026-07-28T02:08:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-82b918a0-1eef-479e-bd86-e8ec1be2cf79"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "pipelines",
+              "item": [
+                {
+                  "name": "{pipeline_id}",
+                  "item": [
+                    {
+                      "name": "files2",
+                      "item": [
+                        {
+                          "name": "List Pipeline Files2",
+                          "id": "a5d4e3a0-16f5-4819-9b17-2a2f024ddb1f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files2?data_source_id=<uuid>&only_manually_uploaded=false&file_name_contains=<string>&statuses=CANCELLED&statuses=ERROR&limit=<integer>&offset=<integer>&order_by=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "pipelines",
+                                ":pipeline_id",
+                                "files2"
+                              ],
+                              "query": [
+                                {
+                                  "key": "data_source_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "only_manually_uploaded",
+                                  "value": "false"
+                                },
+                                {
+                                  "key": "file_name_contains",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by file statuses",
+                                  "key": "statuses",
+                                  "value": "CANCELLED"
+                                },
+                                {
+                                  "description": "Filter by file statuses",
+                                  "key": "statuses",
+                                  "value": "ERROR"
+                                },
+                                {
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "order_by",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7f7d7c36-8a5e-4eaa-bfc4-c2d13ddf55b4",
+                                  "key": "pipeline_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "List files for a pipeline with optional filtering, sorting, and pagination."
+                          },
+                          "response": [
+                            {
+                              "id": "d975e632-cf55-4014-bf6a-0dc54453ad81",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files2?data_source_id=<uuid>&only_manually_uploaded=false&file_name_contains=<string>&statuses=ERROR&limit=<integer>&offset=<integer>&order_by=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "files2"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "data_source_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "only_manually_uploaded",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "key": "file_name_contains",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by file statuses",
+                                      "key": "statuses",
+                                      "value": "ERROR"
+                                    },
+                                    {
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "offset",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "order_by",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"files\": [\n    {\n      \"id\": \"<uuid>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"external_file_id\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"file_type\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"last_modified_at\": \"<dateTime>\",\n      \"file_id\": \"<uuid>\",\n      \"resource_info\": {\n        \"ut5d\": {\n          \"id_2_d\": -83396996.76744118\n        }\n      },\n      \"permission_info\": {\n        \"sint_b2_\": {\n          \"exercitation_45\": false,\n          \"cupidatatfb\": \"minim commodo\"\n        }\n      },\n      \"custom_metadata\": {\n        \"dolore_36\": {\n          \"quis7\": true,\n          \"dolore_66a\": false\n        }\n      },\n      \"data_source_id\": \"<uuid>\",\n      \"config_hash\": {\n        \"fugiat_38e\": {\n          \"cillum3\": false\n        },\n        \"quis_5\": {\n          \"id__c8\": 68427611.55578905\n        }\n      },\n      \"indexed_page_count\": \"<integer>\",\n      \"status\": \"CANCELLED\",\n      \"status_updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"external_file_id\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"file_type\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"last_modified_at\": \"<dateTime>\",\n      \"file_id\": \"<uuid>\",\n      \"resource_info\": {\n        \"magna16\": {\n          \"ad078\": \"Excepteur in esse minim\",\n          \"ad_6\": \"Duis tempor et \"\n        }\n      },\n      \"permission_info\": {\n        \"esse_8b1\": {\n          \"fugiat12c\": \"sunt officia qui deserunt\",\n          \"sed57\": \"eu sint consequat ipsum\",\n          \"Excepteur73\": 53093964\n        }\n      },\n      \"custom_metadata\": {\n        \"labore_1\": {\n          \"ad_0\": false\n        },\n        \"occaecatb\": {\n          \"ad_873\": \"in sit\",\n          \"pariatur_39a\": \"esse nulla\"\n        },\n        \"dolor0c\": {\n          \"in_96\": false,\n          \"aute_7f6\": 46958688.76084393\n        }\n      },\n      \"data_source_id\": \"<uuid>\",\n      \"config_hash\": {\n        \"consequat07c\": {\n          \"dolorb\": -4976849.755498096\n        }\n      },\n      \"indexed_page_count\": \"<integer>\",\n      \"status\": \"SUCCESS\",\n      \"status_updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"total_count\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-d975e632-cf55-4014-bf6a-0dc54453ad81"
+                            },
+                            {
+                              "id": "701515de-f4c3-4078-95e4-9e1c80c12fa9",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files2?data_source_id=<uuid>&only_manually_uploaded=false&file_name_contains=<string>&statuses=ERROR&limit=<integer>&offset=<integer>&order_by=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "files2"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "data_source_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "only_manually_uploaded",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "key": "file_name_contains",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by file statuses",
+                                      "key": "statuses",
+                                      "value": "ERROR"
+                                    },
+                                    {
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "offset",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "order_by",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-701515de-f4c3-4078-95e4-9e1c80c12fa9"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:46.000Z",
+                          "updatedAt": "2026-07-28T02:08:46.000Z",
+                          "uid": "35240-a5d4e3a0-16f5-4819-9b17-2a2f024ddb1f"
+                        }
+                      ],
+                      "id": "ec167dc7-fea8-4871-ae3e-b14edc83f8ca",
+                      "createdAt": "2026-07-28T02:08:46.000Z",
+                      "updatedAt": "2026-07-28T02:08:46.000Z",
+                      "uid": "35240-ec167dc7-fea8-4871-ae3e-b14edc83f8ca"
+                    },
+                    {
+                      "name": "files",
+                      "item": [
+                        {
+                          "name": "status-counts",
+                          "item": [
+                            {
+                              "name": "Get Pipeline File Status Counts",
+                              "id": "5f50e8aa-4961-43ea-a179-a1d4a4266dd1",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/status-counts?data_source_id=<uuid>&only_manually_uploaded=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "files",
+                                    "status-counts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "data_source_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "only_manually_uploaded",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ebb31a49-0ff5-4480-95c2-b068260604ca",
+                                      "key": "pipeline_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get files for a pipeline."
+                              },
+                              "response": [
+                                {
+                                  "id": "0efeeb3d-5360-4022-aa4f-af0c6572a586",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/status-counts?data_source_id=<uuid>&only_manually_uploaded=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files",
+                                        "status-counts"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "data_source_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "only_manually_uploaded",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"counts\": {\n    \"adipisicing6\": \"<integer>\",\n    \"ullamco_09f\": \"<integer>\",\n    \"id5c9\": \"<integer>\"\n  },\n  \"total_count\": \"<integer>\",\n  \"pipeline_id\": \"<uuid>\",\n  \"data_source_id\": \"<uuid>\",\n  \"only_manually_uploaded\": false\n}",
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-0efeeb3d-5360-4022-aa4f-af0c6572a586"
+                                },
+                                {
+                                  "id": "454b64ac-394f-465e-afcc-984e615d328b",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/status-counts?data_source_id=<uuid>&only_manually_uploaded=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files",
+                                        "status-counts"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "data_source_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "only_manually_uploaded",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-454b64ac-394f-465e-afcc-984e615d328b"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-5f50e8aa-4961-43ea-a179-a1d4a4266dd1"
+                            }
+                          ],
+                          "id": "e4e2892d-9509-4d89-b7f7-38df6f68efa1",
+                          "createdAt": "2026-07-28T02:08:46.000Z",
+                          "updatedAt": "2026-07-28T02:08:46.000Z",
+                          "uid": "35240-e4e2892d-9509-4d89-b7f7-38df6f68efa1"
+                        },
+                        {
+                          "name": "{file_id}",
+                          "item": [
+                            {
+                              "name": "status",
+                              "item": [
+                                {
+                                  "name": "Get Pipeline File Status",
+                                  "id": "61bddaa8-e266-420f-a586-0471b1a63c7e",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id/status",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files",
+                                        ":file_id",
+                                        "status"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a91d862b-85c4-43fe-8a1a-424689b90f99",
+                                          "key": "pipeline_id",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "62a397a6-41f0-426e-ac00-38f2c5fc2ef5",
+                                          "key": "file_id",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get status of a file for a pipeline."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "8e642526-9b34-4868-9597-8f196bfec1f8",
+                                      "name": "Successful Response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id/status",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "pipelines",
+                                            ":pipeline_id",
+                                            "files",
+                                            ":file_id",
+                                            "status"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "pipeline_id"
+                                            },
+                                            {
+                                              "key": "file_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"status\": \"PARTIAL_SUCCESS\",\n  \"job_id\": \"<uuid>\",\n  \"deployment_date\": \"<dateTime>\",\n  \"error\": [\n    {\n      \"job_id\": \"<uuid>\",\n      \"message\": \"<string>\",\n      \"step\": \"INGESTION\"\n    },\n    {\n      \"job_id\": \"<uuid>\",\n      \"message\": \"<string>\",\n      \"step\": \"DATA_SOURCE\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-07-28T02:08:46.000Z",
+                                      "updatedAt": "2026-07-28T02:08:46.000Z",
+                                      "uid": "35240-8e642526-9b34-4868-9597-8f196bfec1f8"
+                                    },
+                                    {
+                                      "id": "6bb563db-7a87-411c-8321-7e5427f6b8a9",
+                                      "name": "Validation Error",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id/status",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "pipelines",
+                                            ":pipeline_id",
+                                            "files",
+                                            ":file_id",
+                                            "status"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "pipeline_id"
+                                            },
+                                            {
+                                              "key": "file_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T02:08:46.000Z",
+                                      "updatedAt": "2026-07-28T02:08:46.000Z",
+                                      "uid": "35240-6bb563db-7a87-411c-8321-7e5427f6b8a9"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-61bddaa8-e266-420f-a586-0471b1a63c7e"
+                                }
+                              ],
+                              "id": "582acfcc-8e62-406d-ba46-5268ba7d56f8",
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-582acfcc-8e62-406d-ba46-5268ba7d56f8"
+                            },
+                            {
+                              "name": "Update Pipeline File",
+                              "id": "daa56475-1e26-4fec-bd2b-1d23fbb5b021",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"custom_metadata\": {\n    \"dolore_c3\": {\n      \"eue4e\": false\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "files",
+                                    ":file_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6db31ee0-d919-45a1-a0c9-d9b1a8ece8c4",
+                                      "key": "pipeline_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "979c6049-1ca3-4c32-8984-6ebcc01e5246",
+                                      "key": "file_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Update a file for a pipeline."
+                              },
+                              "response": [
+                                {
+                                  "id": "7137684a-9163-40e0-8e5d-1857ae49f828",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"custom_metadata\": {\n    \"dolore_c3\": {\n      \"eue4e\": false\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files",
+                                        ":file_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        },
+                                        {
+                                          "key": "file_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<uuid>\",\n  \"pipeline_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"external_file_id\": \"<string>\",\n  \"file_size\": \"<integer>\",\n  \"file_type\": \"<string>\",\n  \"project_id\": \"<uuid>\",\n  \"last_modified_at\": \"<dateTime>\",\n  \"file_id\": \"<uuid>\",\n  \"resource_info\": {\n    \"et_867\": {\n      \"esseb3\": 84751956,\n      \"commodo_b74\": \"nostrud\"\n    },\n    \"aute_3\": {\n      \"incididunt5\": true,\n      \"magna_8\": false\n    },\n    \"fugiat_\": {\n      \"sunt_3\": \"ut \",\n      \"minim_9\": \"reprehenderit\",\n      \"consequat_8\": false\n    }\n  },\n  \"permission_info\": {\n    \"ut5\": {\n      \"ut71e\": 84778543.15226439,\n      \"mollit_9\": -13640846\n    }\n  },\n  \"custom_metadata\": {\n    \"consequat_c7\": {\n      \"sit869\": 64873474,\n      \"ullamco40\": true\n    }\n  },\n  \"data_source_id\": \"<uuid>\",\n  \"config_hash\": {\n    \"irure_0_6\": {\n      \"inc\": \"cupidatat Excepteur est exercitati\",\n      \"pariatur_4f\": -31102596\n    }\n  },\n  \"indexed_page_count\": \"<integer>\",\n  \"status\": \"SUCCESS\",\n  \"status_updated_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-7137684a-9163-40e0-8e5d-1857ae49f828"
+                                },
+                                {
+                                  "id": "649740bc-b860-4d82-a7d7-9f56a7987c8c",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"custom_metadata\": {\n    \"dolore_c3\": {\n      \"eue4e\": false\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files",
+                                        ":file_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        },
+                                        {
+                                          "key": "file_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-649740bc-b860-4d82-a7d7-9f56a7987c8c"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-daa56475-1e26-4fec-bd2b-1d23fbb5b021"
+                            },
+                            {
+                              "name": "Delete Pipeline File",
+                              "id": "c65f4846-2b56-4e94-a4ec-75b964ef39dc",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "files",
+                                    ":file_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "11ccf02c-c103-4378-a42a-298be95ed4f1",
+                                      "key": "pipeline_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "a800c920-9f9d-4a5c-a9c6-ded0ca119ddb",
+                                      "key": "file_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Delete a file from a pipeline."
+                              },
+                              "response": [
+                                {
+                                  "id": "bc7501cc-527e-40e2-bdb3-01d4bdbbc6bb",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files",
+                                        ":file_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        },
+                                        {
+                                          "key": "file_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-bc7501cc-527e-40e2-bdb3-01d4bdbbc6bb"
+                                },
+                                {
+                                  "id": "e46ca302-2981-476d-ae11-bfb7ad2e4f08",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files/:file_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files",
+                                        ":file_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        },
+                                        {
+                                          "key": "file_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-e46ca302-2981-476d-ae11-bfb7ad2e4f08"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-c65f4846-2b56-4e94-a4ec-75b964ef39dc"
+                            }
+                          ],
+                          "id": "04439dd9-19b7-47f6-a48b-0bcee4651f47",
+                          "createdAt": "2026-07-28T02:08:46.000Z",
+                          "updatedAt": "2026-07-28T02:08:46.000Z",
+                          "uid": "35240-04439dd9-19b7-47f6-a48b-0bcee4651f47"
+                        },
+                        {
+                          "name": "Add Files To Pipeline Api",
+                          "id": "b3a8e243-bfb3-45c2-8f17-51be3fb99ef3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"file_id\": \"<uuid>\",\n    \"custom_metadata\": {\n      \"laboris27\": {\n        \"elitd4f\": \"laboris dolor nostrud\"\n      },\n      \"Duis_e\": {\n        \"ipsum_1\": -81247850.58906685,\n        \"exercitation6\": 7047128.255545855\n      },\n      \"nisi_c_0\": {\n        \"consecteture\": true\n      }\n    }\n  },\n  {\n    \"file_id\": \"<uuid>\",\n    \"custom_metadata\": {\n      \"laboris_7fc\": {\n        \"commodo7c\": false,\n        \"dolore_fe2\": -37840105.71038152,\n        \"id_b2a\": -22612066\n      },\n      \"Ut_4_\": {\n        \"eiusmodd61\": \"Lorem Ut\"\n      }\n    }\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "pipelines",
+                                ":pipeline_id",
+                                "files"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6008d068-6f5b-4506-ae4b-26faf7108de8",
+                                  "key": "pipeline_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Add files to a pipeline."
+                          },
+                          "response": [
+                            {
+                              "id": "c4233592-58e3-4f5d-bdeb-1fe941f3f5ac",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"file_id\": \"<uuid>\",\n    \"custom_metadata\": {\n      \"laboris27\": {\n        \"elitd4f\": \"laboris dolor nostrud\"\n      },\n      \"Duis_e\": {\n        \"ipsum_1\": -81247850.58906685,\n        \"exercitation6\": 7047128.255545855\n      },\n      \"nisi_c_0\": {\n        \"consecteture\": true\n      }\n    }\n  },\n  {\n    \"file_id\": \"<uuid>\",\n    \"custom_metadata\": {\n      \"laboris_7fc\": {\n        \"commodo7c\": false,\n        \"dolore_fe2\": -37840105.71038152,\n        \"id_b2a\": -22612066\n      },\n      \"Ut_4_\": {\n        \"eiusmodd61\": \"Lorem Ut\"\n      }\n    }\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "files"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"pipeline_id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"external_file_id\": \"<string>\",\n    \"file_size\": \"<integer>\",\n    \"file_type\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"last_modified_at\": \"<dateTime>\",\n    \"file_id\": \"<uuid>\",\n    \"resource_info\": {\n      \"ea5b\": {\n        \"reprehenderitf\": -36423244\n      }\n    },\n    \"permission_info\": {\n      \"sunt_b2\": {\n        \"Excepteur_c\": false,\n        \"dolore_ca\": 20295671,\n        \"id_e2\": \"fugiat\"\n      },\n      \"sint_c\": {\n        \"sint_71\": 18052933,\n        \"labore_a4\": -15765557.626173481,\n        \"id30\": -85689939\n      }\n    },\n    \"custom_metadata\": {\n      \"consecteturb_\": {\n        \"reprehenderit1\": true,\n        \"magnac6\": false\n      },\n      \"voluptate15\": {\n        \"laboris_c\": false\n      }\n    },\n    \"data_source_id\": \"<uuid>\",\n    \"config_hash\": {\n      \"enim5\": {\n        \"aliquip_a86\": \"consequat eiusmod ad\",\n        \"non672\": true\n      }\n    },\n    \"indexed_page_count\": \"<integer>\",\n    \"status\": \"ERROR\",\n    \"status_updated_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"pipeline_id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"external_file_id\": \"<string>\",\n    \"file_size\": \"<integer>\",\n    \"file_type\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"last_modified_at\": \"<dateTime>\",\n    \"file_id\": \"<uuid>\",\n    \"resource_info\": {\n      \"nostrud027\": {\n        \"velitb69\": \"eu in occaecat qui\"\n      },\n      \"idf\": {\n        \"consectetur4bc\": -37361517.89847693,\n        \"quis_90\": true\n      },\n      \"ipsum01f\": {\n        \"fugiat51\": true\n      }\n    },\n    \"permission_info\": {\n      \"reprehenderit_e29\": {\n        \"enimc6\": true,\n        \"ad6a8\": true,\n        \"velit8e\": \"magna\"\n      },\n      \"consequat_8a\": {\n        \"aliquip5d7\": false,\n        \"non_d2\": \"ad nulla Lorem\"\n      }\n    },\n    \"custom_metadata\": {\n      \"estf10\": {\n        \"etc\": 91729058\n      }\n    },\n    \"data_source_id\": \"<uuid>\",\n    \"config_hash\": {\n      \"Excepteur__\": {\n        \"quis_bdd\": -3223709,\n        \"cupidatat_\": \"pariatur \",\n        \"dolore14\": false\n      }\n    },\n    \"indexed_page_count\": \"<integer>\",\n    \"status\": \"CANCELLED\",\n    \"status_updated_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-c4233592-58e3-4f5d-bdeb-1fe941f3f5ac"
+                            },
+                            {
+                              "id": "fed100ef-9624-49a6-a668-02fa97d68bd3",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"file_id\": \"<uuid>\",\n    \"custom_metadata\": {\n      \"laboris27\": {\n        \"elitd4f\": \"laboris dolor nostrud\"\n      },\n      \"Duis_e\": {\n        \"ipsum_1\": -81247850.58906685,\n        \"exercitation6\": 7047128.255545855\n      },\n      \"nisi_c_0\": {\n        \"consecteture\": true\n      }\n    }\n  },\n  {\n    \"file_id\": \"<uuid>\",\n    \"custom_metadata\": {\n      \"laboris_7fc\": {\n        \"commodo7c\": false,\n        \"dolore_fe2\": -37840105.71038152,\n        \"id_b2a\": -22612066\n      },\n      \"Ut_4_\": {\n        \"eiusmodd61\": \"Lorem Ut\"\n      }\n    }\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/files",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "files"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-fed100ef-9624-49a6-a668-02fa97d68bd3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:46.000Z",
+                          "updatedAt": "2026-07-28T02:08:46.000Z",
+                          "uid": "35240-b3a8e243-bfb3-45c2-8f17-51be3fb99ef3"
+                        }
+                      ],
+                      "id": "bf332c7b-332f-4bdc-992f-b4c236447eff",
+                      "createdAt": "2026-07-28T02:08:46.000Z",
+                      "updatedAt": "2026-07-28T02:08:46.000Z",
+                      "uid": "35240-bf332c7b-332f-4bdc-992f-b4c236447eff"
+                    },
+                    {
+                      "name": "metadata",
+                      "item": [
+                        {
+                          "name": "Import Pipeline Metadata",
+                          "id": "fc67cc61-7fd5-4802-a85f-2e368ce1c6bc",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "upload_file",
+                                  "type": "file",
+                                  "value": null
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "pipelines",
+                                ":pipeline_id",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8c5c92e8-c3d0-47d2-9116-1a1cd02f61af",
+                                  "key": "pipeline_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Import metadata for a pipeline."
+                          },
+                          "response": [
+                            {
+                              "id": "19c27460-c9b2-45de-80ad-5cb4b50a998d",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "upload_file",
+                                      "type": "file"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "metadata"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ipsum32\": \"<string>\",\n  \"consequat__91\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-19c27460-c9b2-45de-80ad-5cb4b50a998d"
+                            },
+                            {
+                              "id": "2e1a07ba-3c94-446e-8f33-25a56b7b0df4",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "upload_file",
+                                      "type": "file"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "metadata"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-2e1a07ba-3c94-446e-8f33-25a56b7b0df4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:46.000Z",
+                          "updatedAt": "2026-07-28T02:08:46.000Z",
+                          "uid": "35240-fc67cc61-7fd5-4802-a85f-2e368ce1c6bc"
+                        },
+                        {
+                          "name": "Delete Pipeline Files Metadata",
+                          "id": "6ed60309-5882-40b2-b4a1-2f0cda9b05ef",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "pipelines",
+                                ":pipeline_id",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "da1bda9d-3b62-44eb-9903-918c889ab27e",
+                                  "key": "pipeline_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete metadata for all files in a pipeline."
+                          },
+                          "response": [
+                            {
+                              "id": "18e91b65-a4a1-4be0-9b11-55a6c4c3a704",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "metadata"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-18e91b65-a4a1-4be0-9b11-55a6c4c3a704"
+                            },
+                            {
+                              "id": "cca17aa8-81cf-4792-84c8-852fc5dd734e",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "metadata"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-cca17aa8-81cf-4792-84c8-852fc5dd734e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:46.000Z",
+                          "updatedAt": "2026-07-28T02:08:46.000Z",
+                          "uid": "35240-6ed60309-5882-40b2-b4a1-2f0cda9b05ef"
+                        }
+                      ],
+                      "id": "b4c526f8-614b-4c7e-bdcf-0bc1677d472f",
+                      "createdAt": "2026-07-28T02:08:46.000Z",
+                      "updatedAt": "2026-07-28T02:08:46.000Z",
+                      "uid": "35240-b4c526f8-614b-4c7e-bdcf-0bc1677d472f"
+                    }
+                  ],
+                  "id": "ffa05ddb-1612-4ea5-91a0-6937c317a8a5",
+                  "createdAt": "2026-07-28T02:08:46.000Z",
+                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                  "uid": "35240-ffa05ddb-1612-4ea5-91a0-6937c317a8a5"
+                }
+              ],
+              "id": "810142ef-9fc6-499e-a813-3f6ec2d51186",
+              "createdAt": "2026-07-28T02:08:46.000Z",
+              "updatedAt": "2026-07-28T02:08:46.000Z",
+              "uid": "35240-810142ef-9fc6-499e-a813-3f6ec2d51186"
+            },
+            {
+              "name": "beta",
+              "item": [
+                {
+                  "name": "pipelines",
+                  "item": [
+                    {
+                      "name": "{pipeline_id}",
+                      "item": [
+                        {
+                          "name": "files",
+                          "item": [
+                            {
+                              "name": "List Pipeline Files",
+                              "id": "667d0f17-8834-4401-912d-57047dc50e47",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/pipelines/:pipeline_id/files?data_source_id=<uuid>&file_name_contains=<string>&statuses=CANCELLED&statuses=ERROR&page_size=<integer>&page_token=<string>&project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "files"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter by data source ID.",
+                                      "key": "data_source_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "description": "Filter by files whose names contain this substring (case-insensitive).",
+                                      "key": "file_name_contains",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by pipeline file statuses.",
+                                      "key": "statuses",
+                                      "value": "CANCELLED"
+                                    },
+                                    {
+                                      "description": "Filter by pipeline file statuses.",
+                                      "key": "statuses",
+                                      "value": "ERROR"
+                                    },
+                                    {
+                                      "description": "Maximum number of items to return. Defaults to 50, max 1000.",
+                                      "key": "page_size",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Page token for pagination, from a previous response.",
+                                      "key": "page_token",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "39e24856-98dd-4943-b648-454364c2cca2",
+                                      "key": "pipeline_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "List files for a pipeline with pagination and filtering."
+                              },
+                              "response": [
+                                {
+                                  "id": "d582f3d9-76be-4ebc-b0c0-e183f05318c2",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/pipelines/:pipeline_id/files?data_source_id=<uuid>&file_name_contains=<string>&statuses=ERROR&page_size=<integer>&page_token=<string>&project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter by data source ID.",
+                                          "key": "data_source_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "Filter by files whose names contain this substring (case-insensitive).",
+                                          "key": "file_name_contains",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter by pipeline file statuses.",
+                                          "key": "statuses",
+                                          "value": "ERROR"
+                                        },
+                                        {
+                                          "description": "Maximum number of items to return. Defaults to 50, max 1000.",
+                                          "key": "page_size",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Page token for pagination, from a previous response.",
+                                          "key": "page_token",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"external_file_id\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"file_type\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"last_modified_at\": \"<dateTime>\",\n      \"file_id\": \"<uuid>\",\n      \"resource_info\": {\n        \"inc\": {\n          \"velit_d7\": -63290880\n        },\n        \"quis0b5\": {\n          \"quis9\": true,\n          \"occaecat_a81\": true,\n          \"deserunt_e\": 10851720,\n          \"ipsum3e\": true\n        }\n      },\n      \"permission_info\": {\n        \"dolorea\": {\n          \"dolor_a3\": false,\n          \"deserunt__6\": \"e\"\n        },\n        \"ametc84\": {\n          \"in_9\": \"amet ut sunt labore aliquip\"\n        }\n      },\n      \"custom_metadata\": {\n        \"mollit_8\": {\n          \"tempor__1b\": 41163568\n        },\n        \"mollitb\": {\n          \"Excepteure13\": \"nostrud\"\n        }\n      },\n      \"data_source_id\": \"<uuid>\",\n      \"status\": \"CANCELLED\",\n      \"status_updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"external_file_id\": \"<string>\",\n      \"file_size\": \"<integer>\",\n      \"file_type\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"last_modified_at\": \"<dateTime>\",\n      \"file_id\": \"<uuid>\",\n      \"resource_info\": {\n        \"irure_92\": {\n          \"occaecat25\": \"pariatur Ut\",\n          \"tempor_99\": -91831917,\n          \"magnafd\": -63678406.4670127\n        },\n        \"nostrud9\": {\n          \"adipisicing_f92\": \"aute quis\",\n          \"sit_18\": 73773898.76930907,\n          \"anime\": true\n        }\n      },\n      \"permission_info\": {\n        \"cupidatat_091\": {\n          \"adffe\": \"re\"\n        },\n        \"ete72\": {\n          \"in_794\": false,\n          \"elit4df\": 55609437.70235571\n        }\n      },\n      \"custom_metadata\": {\n        \"minimc_9\": {\n          \"essef8\": -14438233.015273556,\n          \"dolore6b0\": \"non voluptate d\"\n        },\n        \"Lorem_\": {\n          \"cupidatat_555\": -29302999.25638917\n        }\n      },\n      \"data_source_id\": \"<uuid>\",\n      \"status\": \"CANCELLED\",\n      \"status_updated_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-d582f3d9-76be-4ebc-b0c0-e183f05318c2"
+                                },
+                                {
+                                  "id": "caa29158-f588-4539-bd15-5c79eac1fceb",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/pipelines/:pipeline_id/files?data_source_id=<uuid>&file_name_contains=<string>&statuses=ERROR&page_size=<integer>&page_token=<string>&project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "files"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter by data source ID.",
+                                          "key": "data_source_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "description": "Filter by files whose names contain this substring (case-insensitive).",
+                                          "key": "file_name_contains",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter by pipeline file statuses.",
+                                          "key": "statuses",
+                                          "value": "ERROR"
+                                        },
+                                        {
+                                          "description": "Maximum number of items to return. Defaults to 50, max 1000.",
+                                          "key": "page_size",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Page token for pagination, from a previous response.",
+                                          "key": "page_token",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:46.000Z",
+                                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                                  "uid": "35240-caa29158-f588-4539-bd15-5c79eac1fceb"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:46.000Z",
+                              "updatedAt": "2026-07-28T02:08:46.000Z",
+                              "uid": "35240-667d0f17-8834-4401-912d-57047dc50e47"
+                            }
+                          ],
+                          "id": "1c472d3e-889c-43f4-9eed-6532437a0836",
+                          "createdAt": "2026-07-28T02:08:46.000Z",
+                          "updatedAt": "2026-07-28T02:08:46.000Z",
+                          "uid": "35240-1c472d3e-889c-43f4-9eed-6532437a0836"
+                        }
+                      ],
+                      "id": "50dd038f-2f87-4c87-b6e3-261a293c57fe",
+                      "createdAt": "2026-07-28T02:08:46.000Z",
+                      "updatedAt": "2026-07-28T02:08:46.000Z",
+                      "uid": "35240-50dd038f-2f87-4c87-b6e3-261a293c57fe"
+                    }
+                  ],
+                  "id": "740d004c-ea22-46a2-b6d5-12f2032d11a3",
+                  "createdAt": "2026-07-28T02:08:46.000Z",
+                  "updatedAt": "2026-07-28T02:08:46.000Z",
+                  "uid": "35240-740d004c-ea22-46a2-b6d5-12f2032d11a3"
+                }
+              ],
+              "id": "fa435fdd-0540-493d-9259-57ab93a2c31e",
+              "createdAt": "2026-07-28T02:08:46.000Z",
+              "updatedAt": "2026-07-28T02:08:46.000Z",
+              "uid": "35240-fa435fdd-0540-493d-9259-57ab93a2c31e"
+            }
+          ],
+          "id": "30e6d540-5d8d-4999-be65-6b337669b508",
+          "createdAt": "2026-07-28T02:08:46.000Z",
+          "updatedAt": "2026-07-28T02:08:46.000Z",
+          "uid": "35240-30e6d540-5d8d-4999-be65-6b337669b508"
+        }
+      ],
+      "id": "dfb07ead-eb2e-40ec-9f95-35d77a2fb0ab",
+      "createdAt": "2026-07-28T02:08:46.000Z",
+      "updatedAt": "2026-07-28T02:08:46.000Z",
+      "uid": "35240-dfb07ead-eb2e-40ec-9f95-35d77a2fb0ab"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

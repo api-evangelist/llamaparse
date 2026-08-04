@@ -1,0 +1,1245 @@
+{
+  "info": {
+    "_postman_id": "6a670ca6-acae-41aa-a9b2-4140274487cd",
+    "name": "Llama Platform Agent Data Sheets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:55.000Z",
+    "updatedAt": "2026-07-28T02:08:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6a670ca6-acae-41aa-a9b2-4140274487cd"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "beta",
+              "item": [
+                {
+                  "name": "sheets",
+                  "item": [
+                    {
+                      "name": "jobs",
+                      "item": [
+                        {
+                          "name": "{spreadsheet_job_id}",
+                          "item": [
+                            {
+                              "name": "regions",
+                              "item": [
+                                {
+                                  "name": "{region_id}",
+                                  "item": [
+                                    {
+                                      "name": "result",
+                                      "item": [
+                                        {
+                                          "name": "{region_type}",
+                                          "item": [
+                                            {
+                                              "name": "Get Result Region",
+                                              "id": "ab419f9a-4ff7-400e-85a1-996bbbc1ec81",
+                                              "protocolProfileBehavior": {
+                                                "disableBodyPruning": true
+                                              },
+                                              "request": {
+                                                "auth": {
+                                                  "type": "bearer",
+                                                  "bearer": [
+                                                    {
+                                                      "key": "token",
+                                                      "value": "{{bearerToken}}",
+                                                      "type": "string"
+                                                    }
+                                                  ]
+                                                },
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id/regions/:region_id/result/:region_type?expires_at_seconds=<integer>&project_id=<uuid>&organization_id=<uuid>",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "v1",
+                                                    "beta",
+                                                    "sheets",
+                                                    "jobs",
+                                                    ":spreadsheet_job_id",
+                                                    "regions",
+                                                    ":region_id",
+                                                    "result",
+                                                    ":region_type"
+                                                  ],
+                                                  "query": [
+                                                    {
+                                                      "key": "expires_at_seconds",
+                                                      "value": "<integer>"
+                                                    },
+                                                    {
+                                                      "key": "project_id",
+                                                      "value": "<uuid>"
+                                                    },
+                                                    {
+                                                      "key": "organization_id",
+                                                      "value": "<uuid>"
+                                                    }
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "id": "c2cf3384-c986-468d-97cc-4311fc39552e",
+                                                      "key": "spreadsheet_job_id",
+                                                      "value": "<string>",
+                                                      "description": "(Required) "
+                                                    },
+                                                    {
+                                                      "id": "d4970320-560b-4c44-afc1-a03de3c79e00",
+                                                      "key": "region_id",
+                                                      "value": "<string>",
+                                                      "description": "(Required) "
+                                                    },
+                                                    {
+                                                      "id": "81cc1534-0c5b-443a-975c-ca9f04ef7bb7",
+                                                      "key": "region_type",
+                                                      "value": "extra",
+                                                      "description": "(Required) "
+                                                    }
+                                                  ]
+                                                },
+                                                "description": "Generate a presigned URL to download a specific extracted region. Experimental: not production-ready and subject to change."
+                                              },
+                                              "response": [
+                                                {
+                                                  "id": "63b32932-f7bf-43ce-b834-32329498e4a4",
+                                                  "name": "Successful Response",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id/regions/:region_id/result/:region_type?expires_at_seconds=<integer>&project_id=<uuid>&organization_id=<uuid>",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "v1",
+                                                        "beta",
+                                                        "sheets",
+                                                        "jobs",
+                                                        ":spreadsheet_job_id",
+                                                        "regions",
+                                                        ":region_id",
+                                                        "result",
+                                                        ":region_type"
+                                                      ],
+                                                      "query": [
+                                                        {
+                                                          "key": "expires_at_seconds",
+                                                          "value": "<integer>"
+                                                        },
+                                                        {
+                                                          "key": "project_id",
+                                                          "value": "<uuid>"
+                                                        },
+                                                        {
+                                                          "key": "organization_id",
+                                                          "value": "<uuid>"
+                                                        }
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "spreadsheet_job_id"
+                                                        },
+                                                        {
+                                                          "key": "region_id"
+                                                        },
+                                                        {
+                                                          "key": "region_type"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "OK",
+                                                  "code": 200,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"url\": \"<uri>\",\n  \"expires_at\": \"<dateTime>\",\n  \"form_fields\": {\n    \"ullamcod3a\": \"<string>\",\n    \"ullamco__1\": \"<string>\"\n  }\n}",
+                                                  "createdAt": "2026-07-28T02:08:56.000Z",
+                                                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                                                  "uid": "35240-63b32932-f7bf-43ce-b834-32329498e4a4"
+                                                },
+                                                {
+                                                  "id": "3a774f72-50ca-422a-9da1-d23d4b7ad907",
+                                                  "name": "Validation Error",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: bearer",
+                                                        "key": "Authorization",
+                                                        "value": "Bearer <token>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id/regions/:region_id/result/:region_type?expires_at_seconds=<integer>&project_id=<uuid>&organization_id=<uuid>",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "v1",
+                                                        "beta",
+                                                        "sheets",
+                                                        "jobs",
+                                                        ":spreadsheet_job_id",
+                                                        "regions",
+                                                        ":region_id",
+                                                        "result",
+                                                        ":region_type"
+                                                      ],
+                                                      "query": [
+                                                        {
+                                                          "key": "expires_at_seconds",
+                                                          "value": "<integer>"
+                                                        },
+                                                        {
+                                                          "key": "project_id",
+                                                          "value": "<uuid>"
+                                                        },
+                                                        {
+                                                          "key": "organization_id",
+                                                          "value": "<uuid>"
+                                                        }
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "spreadsheet_job_id"
+                                                        },
+                                                        {
+                                                          "key": "region_id"
+                                                        },
+                                                        {
+                                                          "key": "region_type"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                                  "code": 422,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                                  "createdAt": "2026-07-28T02:08:56.000Z",
+                                                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                                                  "uid": "35240-3a774f72-50ca-422a-9da1-d23d4b7ad907"
+                                                }
+                                              ],
+                                              "createdAt": "2026-07-28T02:08:56.000Z",
+                                              "updatedAt": "2026-07-28T02:08:56.000Z",
+                                              "uid": "35240-ab419f9a-4ff7-400e-85a1-996bbbc1ec81"
+                                            }
+                                          ],
+                                          "id": "99d78b96-b0f3-4b82-a149-326d65c78fc7",
+                                          "createdAt": "2026-07-28T02:08:56.000Z",
+                                          "updatedAt": "2026-07-28T02:08:56.000Z",
+                                          "uid": "35240-99d78b96-b0f3-4b82-a149-326d65c78fc7"
+                                        }
+                                      ],
+                                      "id": "abcb4ab1-5e8d-4cc1-937c-be2e4ab5c0ee",
+                                      "createdAt": "2026-07-28T02:08:56.000Z",
+                                      "updatedAt": "2026-07-28T02:08:56.000Z",
+                                      "uid": "35240-abcb4ab1-5e8d-4cc1-937c-be2e4ab5c0ee"
+                                    }
+                                  ],
+                                  "id": "e73c52ef-fe30-4e86-b953-662875affddf",
+                                  "createdAt": "2026-07-28T02:08:56.000Z",
+                                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                                  "uid": "35240-e73c52ef-fe30-4e86-b953-662875affddf"
+                                }
+                              ],
+                              "id": "3d08fb8b-632c-48f1-b9a2-06355cf7e12f",
+                              "createdAt": "2026-07-28T02:08:56.000Z",
+                              "updatedAt": "2026-07-28T02:08:56.000Z",
+                              "uid": "35240-3d08fb8b-632c-48f1-b9a2-06355cf7e12f"
+                            },
+                            {
+                              "name": "Get Spreadsheet Job",
+                              "id": "f99fd971-9c73-4240-b721-d51d5eb42c67",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id?include_results=true&expand=<string>&expand=<string>&project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "sheets",
+                                    "jobs",
+                                    ":spreadsheet_job_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "include_results",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "description": "Optional fields to populate on the response. Valid values: metadata_state_transitions.",
+                                      "key": "expand",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Optional fields to populate on the response. Valid values: metadata_state_transitions.",
+                                      "key": "expand",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9721f930-cd78-43be-8f0c-0f80c7d774f4",
+                                      "key": "spreadsheet_job_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get a spreadsheet parsing job. When `include_results=True` (default), embeds extracted regions and results if complete, skipping the separate `/results` call. Experimental: not production-ready and subject to change."
+                              },
+                              "response": [
+                                {
+                                  "id": "ada6ce3e-ce76-479d-8e06-a411fe2647c0",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id?include_results=true&expand=<string>&project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "sheets",
+                                        "jobs",
+                                        ":spreadsheet_job_id"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "include_results",
+                                          "value": "true"
+                                        },
+                                        {
+                                          "description": "Optional fields to populate on the response. Valid values: metadata_state_transitions.",
+                                          "key": "expand",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "spreadsheet_job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"project_id\": \"<uuid>\",\n  \"configuration\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  },\n  \"status\": \"CANCELLED\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"file_id\": \"<uuid>\",\n  \"config\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  },\n  \"parameters\": {\n    \"webhook_configurations\": [\n      {\n        \"webhook_url\": \"<string>\",\n        \"webhook_headers\": {\n          \"proident_5ad\": \"<string>\",\n          \"consectetur_6f\": \"<string>\"\n        },\n        \"webhook_events\": [\n          \"classify.partial_success\",\n          \"extract.partial_success\"\n        ],\n        \"webhook_output_format\": \"<string>\"\n      },\n      {\n        \"webhook_url\": \"<string>\",\n        \"webhook_headers\": {\n          \"pariaturab_\": \"<string>\",\n          \"ullamco_df4\": \"<string>\"\n        },\n        \"webhook_events\": [\n          \"sheets.cancelled\",\n          \"parse.cancelled\"\n        ],\n        \"webhook_output_format\": \"<string>\"\n      }\n    ]\n  },\n  \"configuration_id\": \"<string>\",\n  \"metadata_state_transitions\": {\n    \"exad\": 18287591.65689498,\n    \"amet_704\": -10441815\n  },\n  \"success\": \"<boolean>\",\n  \"regions\": [\n    {\n      \"sheet_name\": \"<string>\",\n      \"location\": \"<string>\",\n      \"region_type\": \"<string>\",\n      \"region_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"sheet_name\": \"<string>\",\n      \"location\": \"<string>\",\n      \"region_type\": \"<string>\",\n      \"region_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"worksheet_metadata\": [\n    {\n      \"sheet_name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"sheet_name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"external_file_id\": \"<string>\",\n    \"file_size\": \"<integer>\",\n    \"file_type\": \"<string>\",\n    \"last_modified_at\": \"<dateTime>\",\n    \"resource_info\": {\n      \"exercitation_2\": {\n        \"in6e\": -59941515,\n        \"consectetur_6\": 92040001.0767208\n      },\n      \"occaecat36\": {\n        \"fugiat_a_\": -78036494,\n        \"in835\": false\n      }\n    },\n    \"permission_info\": {\n      \"reprehenderit_55d\": {\n        \"sint31d\": -74273712,\n        \"non_db\": -97694081\n      },\n      \"ad_30\": {\n        \"amet_464\": false,\n        \"veniam_5\": -90118091.52676453,\n        \"occaecat3e1\": \"consequat \"\n      },\n      \"aliqua_4_e\": {\n        \"dolore_b\": 32454506.32876703,\n        \"reprehenderit_7d\": true\n      }\n    },\n    \"data_source_id\": \"<uuid>\",\n    \"expires_at\": \"<dateTime>\",\n    \"purpose\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:08:56.000Z",
+                                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                                  "uid": "35240-ada6ce3e-ce76-479d-8e06-a411fe2647c0"
+                                },
+                                {
+                                  "id": "450111b0-eb93-4a15-9559-d35b76233995",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id?include_results=true&expand=<string>&project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "sheets",
+                                        "jobs",
+                                        ":spreadsheet_job_id"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "include_results",
+                                          "value": "true"
+                                        },
+                                        {
+                                          "description": "Optional fields to populate on the response. Valid values: metadata_state_transitions.",
+                                          "key": "expand",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "spreadsheet_job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:56.000Z",
+                                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                                  "uid": "35240-450111b0-eb93-4a15-9559-d35b76233995"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:56.000Z",
+                              "updatedAt": "2026-07-28T02:08:56.000Z",
+                              "uid": "35240-f99fd971-9c73-4240-b721-d51d5eb42c67"
+                            },
+                            {
+                              "name": "Delete Spreadsheet Job",
+                              "id": "ea59e868-a991-439e-8edd-6dd1ef93b3de",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "sheets",
+                                    "jobs",
+                                    ":spreadsheet_job_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c4d0f311-6cbc-4b82-82c1-432c6291861f",
+                                      "key": "spreadsheet_job_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Delete a spreadsheet parsing job and its associated data. Experimental: not production-ready and subject to change."
+                              },
+                              "response": [
+                                {
+                                  "id": "5b839197-add9-48d7-82d8-9a3ffe6ac199",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "sheets",
+                                        "jobs",
+                                        ":spreadsheet_job_id"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "spreadsheet_job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:08:56.000Z",
+                                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                                  "uid": "35240-5b839197-add9-48d7-82d8-9a3ffe6ac199"
+                                },
+                                {
+                                  "id": "50bf1411-a67d-439e-a2d1-51ecb825097e",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs/:spreadsheet_job_id?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "sheets",
+                                        "jobs",
+                                        ":spreadsheet_job_id"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "spreadsheet_job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:56.000Z",
+                                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                                  "uid": "35240-50bf1411-a67d-439e-a2d1-51ecb825097e"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:56.000Z",
+                              "updatedAt": "2026-07-28T02:08:56.000Z",
+                              "uid": "35240-ea59e868-a991-439e-8edd-6dd1ef93b3de"
+                            }
+                          ],
+                          "id": "34559f9b-905a-47ca-a9b6-e1acffdebd33",
+                          "createdAt": "2026-07-28T02:08:56.000Z",
+                          "updatedAt": "2026-07-28T02:08:56.000Z",
+                          "uid": "35240-34559f9b-905a-47ca-a9b6-e1acffdebd33"
+                        },
+                        {
+                          "name": "Create Spreadsheet Job",
+                          "id": "f248ba7a-5e68-46cb-8959-076d8b59e4c5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"file_id\": \"<uuid>\",\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"dolore_102\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"unmapped_event\",\n        \"extract.pending\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"aliquip_a0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"classify.partial_success\",\n        \"extract.partial_success\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"config\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "sheets",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Create a spreadsheet parsing job.\n\nProvide at most one of `configuration` (an inline parsing configuration) or `configuration_id` (a saved configuration preset). If neither is provided, a default configuration is used. Optionally include `webhook_configurations` to receive `sheets.*` status notifications.\n\nExperimental: not production-ready and subject to change."
+                          },
+                          "response": [
+                            {
+                              "id": "be1f53e5-d585-4dc2-aa8c-9c2ced464c88",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"file_id\": \"<uuid>\",\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"dolore_102\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"unmapped_event\",\n        \"extract.pending\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"aliquip_a0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"classify.partial_success\",\n        \"extract.partial_success\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"config\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "sheets",
+                                    "jobs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"project_id\": \"<uuid>\",\n  \"configuration\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  },\n  \"status\": \"CANCELLED\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"file_id\": \"<uuid>\",\n  \"config\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  },\n  \"parameters\": {\n    \"webhook_configurations\": [\n      {\n        \"webhook_url\": \"<string>\",\n        \"webhook_headers\": {\n          \"proident_5ad\": \"<string>\",\n          \"consectetur_6f\": \"<string>\"\n        },\n        \"webhook_events\": [\n          \"classify.partial_success\",\n          \"extract.partial_success\"\n        ],\n        \"webhook_output_format\": \"<string>\"\n      },\n      {\n        \"webhook_url\": \"<string>\",\n        \"webhook_headers\": {\n          \"pariaturab_\": \"<string>\",\n          \"ullamco_df4\": \"<string>\"\n        },\n        \"webhook_events\": [\n          \"sheets.cancelled\",\n          \"parse.cancelled\"\n        ],\n        \"webhook_output_format\": \"<string>\"\n      }\n    ]\n  },\n  \"configuration_id\": \"<string>\",\n  \"metadata_state_transitions\": {\n    \"exad\": 18287591.65689498,\n    \"amet_704\": -10441815\n  },\n  \"success\": \"<boolean>\",\n  \"regions\": [\n    {\n      \"sheet_name\": \"<string>\",\n      \"location\": \"<string>\",\n      \"region_type\": \"<string>\",\n      \"region_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"sheet_name\": \"<string>\",\n      \"location\": \"<string>\",\n      \"region_type\": \"<string>\",\n      \"region_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"worksheet_metadata\": [\n    {\n      \"sheet_name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"sheet_name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"external_file_id\": \"<string>\",\n    \"file_size\": \"<integer>\",\n    \"file_type\": \"<string>\",\n    \"last_modified_at\": \"<dateTime>\",\n    \"resource_info\": {\n      \"exercitation_2\": {\n        \"in6e\": -59941515,\n        \"consectetur_6\": 92040001.0767208\n      },\n      \"occaecat36\": {\n        \"fugiat_a_\": -78036494,\n        \"in835\": false\n      }\n    },\n    \"permission_info\": {\n      \"reprehenderit_55d\": {\n        \"sint31d\": -74273712,\n        \"non_db\": -97694081\n      },\n      \"ad_30\": {\n        \"amet_464\": false,\n        \"veniam_5\": -90118091.52676453,\n        \"occaecat3e1\": \"consequat \"\n      },\n      \"aliqua_4_e\": {\n        \"dolore_b\": 32454506.32876703,\n        \"reprehenderit_7d\": true\n      }\n    },\n    \"data_source_id\": \"<uuid>\",\n    \"expires_at\": \"<dateTime>\",\n    \"purpose\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:08:56.000Z",
+                              "updatedAt": "2026-07-28T02:08:56.000Z",
+                              "uid": "35240-be1f53e5-d585-4dc2-aa8c-9c2ced464c88"
+                            },
+                            {
+                              "id": "9291c2c5-2dc5-4330-a438-9c9865d5808b",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"file_id\": \"<uuid>\",\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"dolore_102\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"unmapped_event\",\n        \"extract.pending\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"aliquip_a0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"classify.partial_success\",\n        \"extract.partial_success\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"config\": {\n    \"sheet_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"include_hidden_cells\": true,\n    \"extraction_range\": \"<string>\",\n    \"generate_additional_metadata\": true,\n    \"use_experimental_processing\": false,\n    \"flatten_hierarchical_tables\": false,\n    \"table_merge_sensitivity\": \"strong\",\n    \"specialization\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "sheets",
+                                    "jobs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:56.000Z",
+                              "updatedAt": "2026-07-28T02:08:56.000Z",
+                              "uid": "35240-9291c2c5-2dc5-4330-a438-9c9865d5808b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:56.000Z",
+                          "updatedAt": "2026-07-28T02:08:56.000Z",
+                          "uid": "35240-f248ba7a-5e68-46cb-8959-076d8b59e4c5"
+                        },
+                        {
+                          "name": "List Spreadsheet Jobs",
+                          "id": "4d1ca159-495e-40df-95d8-77f6ee92e41a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs?include_results=false&status=ERROR&job_ids=<string>&job_ids=<string>&configuration_id=<string>&project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "sheets",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "key": "include_results",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Filter by job status",
+                                  "key": "status",
+                                  "value": "ERROR"
+                                },
+                                {
+                                  "description": "Filter by specific job IDs",
+                                  "key": "job_ids",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by specific job IDs",
+                                  "key": "job_ids",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by saved configuration ID",
+                                  "key": "configuration_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Include items created at or after this timestamp (inclusive)",
+                                  "key": "created_at_on_or_after",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "Include items created at or before this timestamp (inclusive)",
+                                  "key": "created_at_on_or_before",
+                                  "value": "<dateTime>"
+                                }
+                              ]
+                            },
+                            "description": "List spreadsheet parsing jobs. Experimental: not production-ready and subject to change."
+                          },
+                          "response": [
+                            {
+                              "id": "cc0bc0df-4256-4d28-bb1d-50c3c8a19a62",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs?include_results=false&status=ERROR&job_ids=<string>&configuration_id=<string>&project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "sheets",
+                                    "jobs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "include_results",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Filter by job status",
+                                      "key": "status",
+                                      "value": "ERROR"
+                                    },
+                                    {
+                                      "description": "Filter by specific job IDs",
+                                      "key": "job_ids",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by saved configuration ID",
+                                      "key": "configuration_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "page_size",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "page_token",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include items created at or after this timestamp (inclusive)",
+                                      "key": "created_at_on_or_after",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Include items created at or before this timestamp (inclusive)",
+                                      "key": "created_at_on_or_before",
+                                      "value": "<dateTime>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"configuration\": {\n        \"sheet_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"include_hidden_cells\": true,\n        \"extraction_range\": \"<string>\",\n        \"generate_additional_metadata\": true,\n        \"use_experimental_processing\": false,\n        \"flatten_hierarchical_tables\": false,\n        \"table_merge_sensitivity\": \"strong\",\n        \"specialization\": \"<string>\"\n      },\n      \"status\": \"PARTIAL_SUCCESS\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"file_id\": \"<uuid>\",\n      \"config\": {\n        \"sheet_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"include_hidden_cells\": true,\n        \"extraction_range\": \"<string>\",\n        \"generate_additional_metadata\": true,\n        \"use_experimental_processing\": false,\n        \"flatten_hierarchical_tables\": false,\n        \"table_merge_sensitivity\": \"strong\",\n        \"specialization\": \"<string>\"\n      },\n      \"parameters\": {\n        \"webhook_configurations\": [\n          {\n            \"webhook_url\": \"<string>\",\n            \"webhook_headers\": {\n              \"aute_f\": \"<string>\"\n            },\n            \"webhook_events\": [\n              \"classify.partial_success\",\n              \"sheets.cancelled\"\n            ],\n            \"webhook_output_format\": \"<string>\"\n          },\n          {\n            \"webhook_url\": \"<string>\",\n            \"webhook_headers\": {\n              \"velit_e\": \"<string>\",\n              \"ullamco_498\": \"<string>\",\n              \"laborum06\": \"<string>\",\n              \"inb\": \"<string>\"\n            },\n            \"webhook_events\": [\n              \"extract.partial_success\",\n              \"parse.pending\"\n            ],\n            \"webhook_output_format\": \"<string>\"\n          }\n        ]\n      },\n      \"configuration_id\": \"<string>\",\n      \"metadata_state_transitions\": {\n        \"velit_5e6\": 23633285.527006894,\n        \"commodof4\": false,\n        \"velit_7\": -90401875.16276865,\n        \"cillum9\": 66561235.77774382\n      },\n      \"success\": \"<boolean>\",\n      \"regions\": [\n        {\n          \"sheet_name\": \"<string>\",\n          \"location\": \"<string>\",\n          \"region_type\": \"<string>\",\n          \"region_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"sheet_name\": \"<string>\",\n          \"location\": \"<string>\",\n          \"region_type\": \"<string>\",\n          \"region_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"worksheet_metadata\": [\n        {\n          \"sheet_name\": \"<string>\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"sheet_name\": \"<string>\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"errors\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"file\": {\n        \"id\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"project_id\": \"<uuid>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"external_file_id\": \"<string>\",\n        \"file_size\": \"<integer>\",\n        \"file_type\": \"<string>\",\n        \"last_modified_at\": \"<dateTime>\",\n        \"resource_info\": {\n          \"do6\": {\n            \"ad__4\": 98512559,\n            \"fugiat_1\": \"Ut do\"\n          }\n        },\n        \"permission_info\": {\n          \"eu4_9\": {\n            \"quis_1\": \"eu adipisicing esse commodo in\",\n            \"cillum_7ac\": true,\n            \"ea661\": 59264299.542761326\n          },\n          \"et_b3e\": {\n            \"sint_8\": false\n          }\n        },\n        \"data_source_id\": \"<uuid>\",\n        \"expires_at\": \"<dateTime>\",\n        \"purpose\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"configuration\": {\n        \"sheet_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"include_hidden_cells\": true,\n        \"extraction_range\": \"<string>\",\n        \"generate_additional_metadata\": true,\n        \"use_experimental_processing\": false,\n        \"flatten_hierarchical_tables\": false,\n        \"table_merge_sensitivity\": \"strong\",\n        \"specialization\": \"<string>\"\n      },\n      \"status\": \"PENDING\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"file_id\": \"<uuid>\",\n      \"config\": {\n        \"sheet_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"include_hidden_cells\": true,\n        \"extraction_range\": \"<string>\",\n        \"generate_additional_metadata\": true,\n        \"use_experimental_processing\": false,\n        \"flatten_hierarchical_tables\": false,\n        \"table_merge_sensitivity\": \"strong\",\n        \"specialization\": \"<string>\"\n      },\n      \"parameters\": {\n        \"webhook_configurations\": [\n          {\n            \"webhook_url\": \"<string>\",\n            \"webhook_headers\": {\n              \"dolore5\": \"<string>\",\n              \"elite\": \"<string>\"\n            },\n            \"webhook_events\": [\n              \"extract.pending\",\n              \"sheets.pending\"\n            ],\n            \"webhook_output_format\": \"<string>\"\n          },\n          {\n            \"webhook_url\": \"<string>\",\n            \"webhook_headers\": {\n              \"magna_7\": \"<string>\",\n              \"dolore_3\": \"<string>\"\n            },\n            \"webhook_events\": [\n              \"parse.cancelled\",\n              \"extract.partial_success\"\n            ],\n            \"webhook_output_format\": \"<string>\"\n          }\n        ]\n      },\n      \"configuration_id\": \"<string>\",\n      \"metadata_state_transitions\": {\n        \"dolore_ce\": 53097899,\n        \"sed30\": 26311231\n      },\n      \"success\": \"<boolean>\",\n      \"regions\": [\n        {\n          \"sheet_name\": \"<string>\",\n          \"location\": \"<string>\",\n          \"region_type\": \"<string>\",\n          \"region_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"sheet_name\": \"<string>\",\n          \"location\": \"<string>\",\n          \"region_type\": \"<string>\",\n          \"region_id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"worksheet_metadata\": [\n        {\n          \"sheet_name\": \"<string>\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"sheet_name\": \"<string>\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"errors\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"file\": {\n        \"id\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"project_id\": \"<uuid>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"external_file_id\": \"<string>\",\n        \"file_size\": \"<integer>\",\n        \"file_type\": \"<string>\",\n        \"last_modified_at\": \"<dateTime>\",\n        \"resource_info\": {\n          \"inf82\": {\n            \"et__6\": \"dolore officia\",\n            \"Lorem_67\": \"labore Excepteur a\"\n          },\n          \"aute4\": {\n            \"incididunt301\": -93724891\n          }\n        },\n        \"permission_info\": {\n          \"Ut3f4\": {\n            \"veniam_b2\": -9593378\n          }\n        },\n        \"data_source_id\": \"<uuid>\",\n        \"expires_at\": \"<dateTime>\",\n        \"purpose\": \"<string>\"\n      }\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:08:56.000Z",
+                              "updatedAt": "2026-07-28T02:08:56.000Z",
+                              "uid": "35240-cc0bc0df-4256-4d28-bb1d-50c3c8a19a62"
+                            },
+                            {
+                              "id": "019d6642-0ae0-4d96-97f3-266e2ada4c2f",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/sheets/jobs?include_results=false&status=ERROR&job_ids=<string>&configuration_id=<string>&project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "sheets",
+                                    "jobs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "include_results",
+                                      "value": "false"
+                                    },
+                                    {
+                                      "description": "Filter by job status",
+                                      "key": "status",
+                                      "value": "ERROR"
+                                    },
+                                    {
+                                      "description": "Filter by specific job IDs",
+                                      "key": "job_ids",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by saved configuration ID",
+                                      "key": "configuration_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "page_size",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "page_token",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include items created at or after this timestamp (inclusive)",
+                                      "key": "created_at_on_or_after",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Include items created at or before this timestamp (inclusive)",
+                                      "key": "created_at_on_or_before",
+                                      "value": "<dateTime>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:56.000Z",
+                              "updatedAt": "2026-07-28T02:08:56.000Z",
+                              "uid": "35240-019d6642-0ae0-4d96-97f3-266e2ada4c2f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:56.000Z",
+                          "updatedAt": "2026-07-28T02:08:56.000Z",
+                          "uid": "35240-4d1ca159-495e-40df-95d8-77f6ee92e41a"
+                        }
+                      ],
+                      "id": "8fceeabe-5f7b-40d7-83d3-f182ec617ac2",
+                      "createdAt": "2026-07-28T02:08:56.000Z",
+                      "updatedAt": "2026-07-28T02:08:56.000Z",
+                      "uid": "35240-8fceeabe-5f7b-40d7-83d3-f182ec617ac2"
+                    }
+                  ],
+                  "id": "c638394d-7858-4a03-8c51-2759ca8cfde0",
+                  "createdAt": "2026-07-28T02:08:56.000Z",
+                  "updatedAt": "2026-07-28T02:08:56.000Z",
+                  "uid": "35240-c638394d-7858-4a03-8c51-2759ca8cfde0"
+                }
+              ],
+              "id": "715d1914-ec1e-48c4-a6fd-8165d89a9572",
+              "createdAt": "2026-07-28T02:08:56.000Z",
+              "updatedAt": "2026-07-28T02:08:56.000Z",
+              "uid": "35240-715d1914-ec1e-48c4-a6fd-8165d89a9572"
+            }
+          ],
+          "id": "39633d41-a5b1-4878-9db8-ff7187a70fec",
+          "createdAt": "2026-07-28T02:08:56.000Z",
+          "updatedAt": "2026-07-28T02:08:56.000Z",
+          "uid": "35240-39633d41-a5b1-4878-9db8-ff7187a70fec"
+        }
+      ],
+      "id": "9d987d50-d063-44a7-9da3-ecf544c615a6",
+      "createdAt": "2026-07-28T02:08:56.000Z",
+      "updatedAt": "2026-07-28T02:08:56.000Z",
+      "uid": "35240-9d987d50-d063-44a7-9da3-ecf544c615a6"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

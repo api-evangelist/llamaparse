@@ -1,0 +1,726 @@
+{
+  "info": {
+    "_postman_id": "9971e272-616f-4af0-a205-f8fb6cb3b264",
+    "name": "Llama Platform Agent Data Split API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:56.000Z",
+    "updatedAt": "2026-07-28T02:08:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9971e272-616f-4af0-a205-f8fb6cb3b264"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "beta",
+              "item": [
+                {
+                  "name": "split",
+                  "item": [
+                    {
+                      "name": "jobs",
+                      "item": [
+                        {
+                          "name": "{split_job_id}",
+                          "item": [
+                            {
+                              "name": "Get Split Job",
+                              "id": "3df6e5d7-389a-47ec-b9cd-87f135876b5a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/split/jobs/:split_job_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "split",
+                                    "jobs",
+                                    ":split_job_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "51433f0a-eabe-4fd0-a8e3-0faf7342881f",
+                                      "key": "split_job_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get a document split job."
+                              },
+                              "response": [
+                                {
+                                  "id": "85909bda-fb8e-4a4e-82d4-26d429b53ab5",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/split/jobs/:split_job_id?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "split",
+                                        "jobs",
+                                        ":split_job_id"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "split_job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"document_input\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"categories\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"configuration_id\": \"<string>\",\n  \"result\": {\n    \"segments\": [\n      {\n        \"category\": \"<string>\",\n        \"pages\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"confidence_category\": \"<string>\"\n      },\n      {\n        \"category\": \"<string>\",\n        \"pages\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"confidence_category\": \"<string>\"\n      }\n    ]\n  },\n  \"error_message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:08:57.000Z",
+                                  "updatedAt": "2026-07-28T02:08:57.000Z",
+                                  "uid": "35240-85909bda-fb8e-4a4e-82d4-26d429b53ab5"
+                                },
+                                {
+                                  "id": "9ac29993-e29b-4d3b-a3a2-62e4f10e7e8b",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/split/jobs/:split_job_id?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "split",
+                                        "jobs",
+                                        ":split_job_id"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "split_job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:57.000Z",
+                                  "updatedAt": "2026-07-28T02:08:57.000Z",
+                                  "uid": "35240-9ac29993-e29b-4d3b-a3a2-62e4f10e7e8b"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:57.000Z",
+                              "updatedAt": "2026-07-28T02:08:57.000Z",
+                              "uid": "35240-3df6e5d7-389a-47ec-b9cd-87f135876b5a"
+                            }
+                          ],
+                          "id": "08d6977e-dec8-4aec-9835-15e82c7ec70e",
+                          "createdAt": "2026-07-28T02:08:57.000Z",
+                          "updatedAt": "2026-07-28T02:08:57.000Z",
+                          "uid": "35240-08d6977e-dec8-4aec-9835-15e82c7ec70e"
+                        },
+                        {
+                          "name": "Create Split Job",
+                          "id": "cccf1fb1-63e9-474e-953b-4037eaed1d4e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"document_input\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"configuration\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  },\n  \"configuration_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/split/jobs?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "split",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Create a document split job."
+                          },
+                          "response": [
+                            {
+                              "id": "74228db6-bfb7-4188-ab57-e3717084f2ad",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"document_input\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"configuration\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  },\n  \"configuration_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/split/jobs?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "split",
+                                    "jobs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"document_input\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"categories\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"configuration_id\": \"<string>\",\n  \"result\": {\n    \"segments\": [\n      {\n        \"category\": \"<string>\",\n        \"pages\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"confidence_category\": \"<string>\"\n      },\n      {\n        \"category\": \"<string>\",\n        \"pages\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"confidence_category\": \"<string>\"\n      }\n    ]\n  },\n  \"error_message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:08:57.000Z",
+                              "updatedAt": "2026-07-28T02:08:57.000Z",
+                              "uid": "35240-74228db6-bfb7-4188-ab57-e3717084f2ad"
+                            },
+                            {
+                              "id": "2e3e0a40-db9a-49e7-98d3-cf5075002ae0",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"document_input\": {\n    \"type\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"configuration\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  },\n  \"configuration_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/split/jobs?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "split",
+                                    "jobs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:57.000Z",
+                              "updatedAt": "2026-07-28T02:08:57.000Z",
+                              "uid": "35240-2e3e0a40-db9a-49e7-98d3-cf5075002ae0"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:57.000Z",
+                          "updatedAt": "2026-07-28T02:08:57.000Z",
+                          "uid": "35240-cccf1fb1-63e9-474e-953b-4037eaed1d4e"
+                        },
+                        {
+                          "name": "List Split Jobs",
+                          "id": "87e4722b-b492-4f7f-80d8-6839108f8978",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/split/jobs?status=pending&job_ids=<string>&job_ids=<string>&project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "split",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by job status (pending, processing, completed, failed, cancelled)",
+                                  "key": "status",
+                                  "value": "pending"
+                                },
+                                {
+                                  "description": "Filter by specific job IDs",
+                                  "key": "job_ids",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by specific job IDs",
+                                  "key": "job_ids",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Include items created at or after this timestamp (inclusive)",
+                                  "key": "created_at_on_or_after",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "Include items created at or before this timestamp (inclusive)",
+                                  "key": "created_at_on_or_before",
+                                  "value": "<dateTime>"
+                                }
+                              ]
+                            },
+                            "description": "List document split jobs."
+                          },
+                          "response": [
+                            {
+                              "id": "3a1b5bba-660f-4902-9783-b32d33af8d54",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/split/jobs?status=pending&job_ids=<string>&project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "split",
+                                    "jobs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter by job status (pending, processing, completed, failed, cancelled)",
+                                      "key": "status",
+                                      "value": "pending"
+                                    },
+                                    {
+                                      "description": "Filter by specific job IDs",
+                                      "key": "job_ids",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "page_size",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "page_token",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include items created at or after this timestamp (inclusive)",
+                                      "key": "created_at_on_or_after",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Include items created at or before this timestamp (inclusive)",
+                                      "key": "created_at_on_or_before",
+                                      "value": "<dateTime>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"document_input\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"categories\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"status\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"configuration_id\": \"<string>\",\n      \"result\": {\n        \"segments\": [\n          {\n            \"category\": \"<string>\",\n            \"pages\": [\n              \"<integer>\",\n              \"<integer>\"\n            ],\n            \"confidence_category\": \"<string>\"\n          },\n          {\n            \"category\": \"<string>\",\n            \"pages\": [\n              \"<integer>\",\n              \"<integer>\"\n            ],\n            \"confidence_category\": \"<string>\"\n          }\n        ]\n      },\n      \"error_message\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"document_input\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"categories\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"status\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"configuration_id\": \"<string>\",\n      \"result\": {\n        \"segments\": [\n          {\n            \"category\": \"<string>\",\n            \"pages\": [\n              \"<integer>\",\n              \"<integer>\"\n            ],\n            \"confidence_category\": \"<string>\"\n          },\n          {\n            \"category\": \"<string>\",\n            \"pages\": [\n              \"<integer>\",\n              \"<integer>\"\n            ],\n            \"confidence_category\": \"<string>\"\n          }\n        ]\n      },\n      \"error_message\": \"<string>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:08:57.000Z",
+                              "updatedAt": "2026-07-28T02:08:57.000Z",
+                              "uid": "35240-3a1b5bba-660f-4902-9783-b32d33af8d54"
+                            },
+                            {
+                              "id": "f390aeaa-2c9e-40d9-8f42-b378b9dd8ca8",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/split/jobs?status=pending&job_ids=<string>&project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "split",
+                                    "jobs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter by job status (pending, processing, completed, failed, cancelled)",
+                                      "key": "status",
+                                      "value": "pending"
+                                    },
+                                    {
+                                      "description": "Filter by specific job IDs",
+                                      "key": "job_ids",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "page_size",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "page_token",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Include items created at or after this timestamp (inclusive)",
+                                      "key": "created_at_on_or_after",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Include items created at or before this timestamp (inclusive)",
+                                      "key": "created_at_on_or_before",
+                                      "value": "<dateTime>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:57.000Z",
+                              "updatedAt": "2026-07-28T02:08:57.000Z",
+                              "uid": "35240-f390aeaa-2c9e-40d9-8f42-b378b9dd8ca8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:57.000Z",
+                          "updatedAt": "2026-07-28T02:08:57.000Z",
+                          "uid": "35240-87e4722b-b492-4f7f-80d8-6839108f8978"
+                        }
+                      ],
+                      "id": "1a92fc0c-1862-4d81-973b-56ba168922b4",
+                      "createdAt": "2026-07-28T02:08:57.000Z",
+                      "updatedAt": "2026-07-28T02:08:57.000Z",
+                      "uid": "35240-1a92fc0c-1862-4d81-973b-56ba168922b4"
+                    }
+                  ],
+                  "id": "c19162c5-14d7-4fe7-aa58-eb80ec34cfc5",
+                  "createdAt": "2026-07-28T02:08:57.000Z",
+                  "updatedAt": "2026-07-28T02:08:57.000Z",
+                  "uid": "35240-c19162c5-14d7-4fe7-aa58-eb80ec34cfc5"
+                }
+              ],
+              "id": "6e5c4c35-9e58-44f0-9280-eb0b18586250",
+              "createdAt": "2026-07-28T02:08:57.000Z",
+              "updatedAt": "2026-07-28T02:08:57.000Z",
+              "uid": "35240-6e5c4c35-9e58-44f0-9280-eb0b18586250"
+            }
+          ],
+          "id": "ee43af55-0fb5-4f2a-ae99-209ec5dbe902",
+          "createdAt": "2026-07-28T02:08:57.000Z",
+          "updatedAt": "2026-07-28T02:08:57.000Z",
+          "uid": "35240-ee43af55-0fb5-4f2a-ae99-209ec5dbe902"
+        }
+      ],
+      "id": "8a25b366-4b51-4004-8640-2b3870e3b708",
+      "createdAt": "2026-07-28T02:08:57.000Z",
+      "updatedAt": "2026-07-28T02:08:57.000Z",
+      "uid": "35240-8a25b366-4b51-4004-8640-2b3870e3b708"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,924 @@
+{
+  "info": {
+    "_postman_id": "6f05390c-cfa6-49d1-b227-5e54d35b8363",
+    "name": "Llama Platform Agent Data Retrieval API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:53.000Z",
+    "updatedAt": "2026-07-28T02:08:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6f05390c-cfa6-49d1-b227-5e54d35b8363"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "retrieval",
+              "item": [
+                {
+                  "name": "retrieve",
+                  "item": [
+                    {
+                      "name": "Retrieve",
+                      "id": "22208be5-8b56-4a9c-8c09-308c892d4f29",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"index_id\": \"<string>\",\n  \"query\": \"<string>\",\n  \"top_k\": \"<integer>\",\n  \"num_candidates\": \"<integer>\",\n  \"vector_pipeline_weight\": \"<number>\",\n  \"full_text_pipeline_weight\": \"<number>\",\n  \"score_threshold\": \"<number>\",\n  \"static_filters\": {\n    \"parsed_directory_file_id\": {\n      \"operator\": \"lte\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"custom_filters\": {\n    \"ex__d\": {\n      \"operator\": \"eq\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"rerank\": {\n    \"enabled\": true,\n    \"top_n\": \"<integer>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrieval/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrieval",
+                            "retrieve"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve relevant chunks via hybrid search (vector + full-text), with filtering on built-in or user-defined metadata."
+                      },
+                      "response": [
+                        {
+                          "id": "5b6d4e5b-7db9-4642-992d-f52966b4a5dc",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"index_id\": \"<string>\",\n  \"query\": \"<string>\",\n  \"top_k\": \"<integer>\",\n  \"num_candidates\": \"<integer>\",\n  \"vector_pipeline_weight\": \"<number>\",\n  \"full_text_pipeline_weight\": \"<number>\",\n  \"score_threshold\": \"<number>\",\n  \"static_filters\": {\n    \"parsed_directory_file_id\": {\n      \"operator\": \"lte\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"custom_filters\": {\n    \"ex__d\": {\n      \"operator\": \"eq\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"rerank\": {\n    \"enabled\": true,\n    \"top_n\": \"<integer>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrieval/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrieval",
+                                "retrieve"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"results\": [\n    {\n      \"content\": \"<string>\",\n      \"score\": \"<number>\",\n      \"rerank_score\": \"<number>\",\n      \"metadata\": {\n        \"cupidatat_7\": \"<string>\",\n        \"sitc9\": \"<string>\",\n        \"occaecat_7b8\": \"<string>\"\n      },\n      \"static_fields\": {\n        \"parsed_directory_file_id\": \"<string>\",\n        \"page_range_start\": \"<integer>\",\n        \"page_range_end\": \"<integer>\",\n        \"chunk_start_char\": \"<integer>\",\n        \"chunk_end_char\": \"<integer>\",\n        \"chunk_index\": \"<integer>\",\n        \"chunk_token_count\": \"<integer>\",\n        \"attachments\": [\n          {\n            \"type\": \"<string>\",\n            \"attachment_name\": \"<string>\",\n            \"source_id\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"attachment_name\": \"<string>\",\n            \"source_id\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"content\": \"<string>\",\n      \"score\": \"<number>\",\n      \"rerank_score\": \"<number>\",\n      \"metadata\": {\n        \"laboris067\": \"<string>\",\n        \"velit9c_\": \"<string>\",\n        \"laborum5\": \"<string>\",\n        \"sit28\": \"<string>\"\n      },\n      \"static_fields\": {\n        \"parsed_directory_file_id\": \"<string>\",\n        \"page_range_start\": \"<integer>\",\n        \"page_range_end\": \"<integer>\",\n        \"chunk_start_char\": \"<integer>\",\n        \"chunk_end_char\": \"<integer>\",\n        \"chunk_index\": \"<integer>\",\n        \"chunk_token_count\": \"<integer>\",\n        \"attachments\": [\n          {\n            \"type\": \"<string>\",\n            \"attachment_name\": \"<string>\",\n            \"source_id\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"attachment_name\": \"<string>\",\n            \"source_id\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:53.000Z",
+                          "updatedAt": "2026-07-28T02:08:53.000Z",
+                          "uid": "35240-5b6d4e5b-7db9-4642-992d-f52966b4a5dc"
+                        },
+                        {
+                          "id": "2085ac26-4c80-41a6-8a30-9aea2c116797",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"index_id\": \"<string>\",\n  \"query\": \"<string>\",\n  \"top_k\": \"<integer>\",\n  \"num_candidates\": \"<integer>\",\n  \"vector_pipeline_weight\": \"<number>\",\n  \"full_text_pipeline_weight\": \"<number>\",\n  \"score_threshold\": \"<number>\",\n  \"static_filters\": {\n    \"parsed_directory_file_id\": {\n      \"operator\": \"lte\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"custom_filters\": {\n    \"ex__d\": {\n      \"operator\": \"eq\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"rerank\": {\n    \"enabled\": true,\n    \"top_n\": \"<integer>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrieval/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrieval",
+                                "retrieve"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:53.000Z",
+                          "updatedAt": "2026-07-28T02:08:53.000Z",
+                          "uid": "35240-2085ac26-4c80-41a6-8a30-9aea2c116797"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:53.000Z",
+                      "updatedAt": "2026-07-28T02:08:53.000Z",
+                      "uid": "35240-22208be5-8b56-4a9c-8c09-308c892d4f29"
+                    }
+                  ],
+                  "id": "f7ff5a73-d353-4bb8-99de-57392c93dfb9",
+                  "createdAt": "2026-07-28T02:08:53.000Z",
+                  "updatedAt": "2026-07-28T02:08:53.000Z",
+                  "uid": "35240-f7ff5a73-d353-4bb8-99de-57392c93dfb9"
+                },
+                {
+                  "name": "files",
+                  "item": [
+                    {
+                      "name": "find",
+                      "item": [
+                        {
+                          "name": "Find Files",
+                          "id": "996ef3d5-80af-4d57-8e80-8e0ceb35e5f3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"index_id\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"file_name_contains\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrieval/files/find?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrieval",
+                                "files",
+                                "find"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Search for files by name."
+                          },
+                          "response": [
+                            {
+                              "id": "9bbb8fe0-d92d-4802-b7f7-2f73bf8d96a7",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"index_id\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"file_name_contains\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/retrieval/files/find?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "retrieval",
+                                    "files",
+                                    "find"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"file_id\": \"<string>\",\n      \"file_name\": \"<string>\"\n    },\n    {\n      \"file_id\": \"<string>\",\n      \"file_name\": \"<string>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:08:53.000Z",
+                              "updatedAt": "2026-07-28T02:08:53.000Z",
+                              "uid": "35240-9bbb8fe0-d92d-4802-b7f7-2f73bf8d96a7"
+                            },
+                            {
+                              "id": "f8277ed4-b4ce-4e74-9494-c8401babe560",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"index_id\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"file_name_contains\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/retrieval/files/find?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "retrieval",
+                                    "files",
+                                    "find"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:53.000Z",
+                              "updatedAt": "2026-07-28T02:08:53.000Z",
+                              "uid": "35240-f8277ed4-b4ce-4e74-9494-c8401babe560"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:53.000Z",
+                          "updatedAt": "2026-07-28T02:08:53.000Z",
+                          "uid": "35240-996ef3d5-80af-4d57-8e80-8e0ceb35e5f3"
+                        }
+                      ],
+                      "id": "6c7c044a-64ce-40cf-b5d3-b960c560a9d4",
+                      "createdAt": "2026-07-28T02:08:53.000Z",
+                      "updatedAt": "2026-07-28T02:08:53.000Z",
+                      "uid": "35240-6c7c044a-64ce-40cf-b5d3-b960c560a9d4"
+                    },
+                    {
+                      "name": "grep",
+                      "item": [
+                        {
+                          "name": "Grep File",
+                          "id": "5a044823-7ac7-46eb-986b-5ef1880393ca",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"index_id\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"context_chars\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrieval/files/grep?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrieval",
+                                "files",
+                                "grep"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Grep within a file's parsed content using a regex pattern."
+                          },
+                          "response": [
+                            {
+                              "id": "17b5e409-b79e-4519-a10b-23333467d59d",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"index_id\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"context_chars\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/retrieval/files/grep?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "retrieval",
+                                    "files",
+                                    "grep"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"start_char\": \"<integer>\",\n      \"end_char\": \"<integer>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"start_char\": \"<integer>\",\n      \"end_char\": \"<integer>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:08:53.000Z",
+                              "updatedAt": "2026-07-28T02:08:53.000Z",
+                              "uid": "35240-17b5e409-b79e-4519-a10b-23333467d59d"
+                            },
+                            {
+                              "id": "7a24dd11-be2b-490b-9cf9-b14705c9cab8",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"index_id\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"context_chars\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/retrieval/files/grep?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "retrieval",
+                                    "files",
+                                    "grep"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:53.000Z",
+                              "updatedAt": "2026-07-28T02:08:53.000Z",
+                              "uid": "35240-7a24dd11-be2b-490b-9cf9-b14705c9cab8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:53.000Z",
+                          "updatedAt": "2026-07-28T02:08:53.000Z",
+                          "uid": "35240-5a044823-7ac7-46eb-986b-5ef1880393ca"
+                        }
+                      ],
+                      "id": "f1dd8c7f-b4c8-45f0-8605-fa000b3b44ff",
+                      "createdAt": "2026-07-28T02:08:53.000Z",
+                      "updatedAt": "2026-07-28T02:08:53.000Z",
+                      "uid": "35240-f1dd8c7f-b4c8-45f0-8605-fa000b3b44ff"
+                    },
+                    {
+                      "name": "read",
+                      "item": [
+                        {
+                          "name": "Read File",
+                          "id": "22060163-eb51-46bf-8edc-4b2cdb08f998",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"index_id\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"offset\": 0,\n  \"max_length\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrieval/files/read?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrieval",
+                                "files",
+                                "read"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Read the parsed text content of a specific file."
+                          },
+                          "response": [
+                            {
+                              "id": "04d3633f-f667-4096-accf-e2ea7c8f2fac",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"index_id\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"offset\": 0,\n  \"max_length\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/retrieval/files/read?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "retrieval",
+                                    "files",
+                                    "read"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"content\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:08:53.000Z",
+                              "updatedAt": "2026-07-28T02:08:53.000Z",
+                              "uid": "35240-04d3633f-f667-4096-accf-e2ea7c8f2fac"
+                            },
+                            {
+                              "id": "aac92936-8052-4ca5-a525-23a5000ea704",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"index_id\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"offset\": 0,\n  \"max_length\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/retrieval/files/read?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "retrieval",
+                                    "files",
+                                    "read"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:53.000Z",
+                              "updatedAt": "2026-07-28T02:08:53.000Z",
+                              "uid": "35240-aac92936-8052-4ca5-a525-23a5000ea704"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:53.000Z",
+                          "updatedAt": "2026-07-28T02:08:53.000Z",
+                          "uid": "35240-22060163-eb51-46bf-8edc-4b2cdb08f998"
+                        }
+                      ],
+                      "id": "a53f894a-3b5f-446f-a88d-181fed3ebda0",
+                      "createdAt": "2026-07-28T02:08:53.000Z",
+                      "updatedAt": "2026-07-28T02:08:53.000Z",
+                      "uid": "35240-a53f894a-3b5f-446f-a88d-181fed3ebda0"
+                    }
+                  ],
+                  "id": "9bf36907-efa2-4e85-b5cb-232077277b44",
+                  "createdAt": "2026-07-28T02:08:53.000Z",
+                  "updatedAt": "2026-07-28T02:08:53.000Z",
+                  "uid": "35240-9bf36907-efa2-4e85-b5cb-232077277b44"
+                }
+              ],
+              "id": "e1f4abd6-ad30-4587-9a44-982baff30496",
+              "createdAt": "2026-07-28T02:08:53.000Z",
+              "updatedAt": "2026-07-28T02:08:53.000Z",
+              "uid": "35240-e1f4abd6-ad30-4587-9a44-982baff30496"
+            }
+          ],
+          "id": "28203411-c458-4a94-8d95-9a535cbc39e2",
+          "createdAt": "2026-07-28T02:08:53.000Z",
+          "updatedAt": "2026-07-28T02:08:53.000Z",
+          "uid": "35240-28203411-c458-4a94-8d95-9a535cbc39e2"
+        }
+      ],
+      "id": "3ee1ca96-99ab-4fd7-8187-4b4c28da0a95",
+      "createdAt": "2026-07-28T02:08:53.000Z",
+      "updatedAt": "2026-07-28T02:08:53.000Z",
+      "uid": "35240-3ee1ca96-99ab-4fd7-8187-4b4c28da0a95"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

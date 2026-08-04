@@ -1,0 +1,840 @@
+{
+  "info": {
+    "_postman_id": "a13946f4-a13a-4f09-8ae2-93c33ff8380c",
+    "name": "Llama Platform Agent Data Classifier API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:40.000Z",
+    "updatedAt": "2026-07-28T02:07:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a13946f4-a13a-4f09-8ae2-93c33ff8380c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "classifier",
+              "item": [
+                {
+                  "name": "jobs",
+                  "item": [
+                    {
+                      "name": "{classify_job_id}",
+                      "item": [
+                        {
+                          "name": "results",
+                          "item": [
+                            {
+                              "name": "Get Classification Job Results",
+                              "id": "90ced003-8163-4d10-b328-20156c5ad531",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/classifier/jobs/:classify_job_id/results?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "classifier",
+                                    "jobs",
+                                    ":classify_job_id",
+                                    "results"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "82719e3b-c860-46dc-9856-65d5a5d9f6f1",
+                                      "key": "classify_job_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Get the results of a classify job. Experimental: not production-ready and subject to change."
+                              },
+                              "response": [
+                                {
+                                  "id": "03dccecb-e218-4a95-aa1c-571e68d191a9",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/classifier/jobs/:classify_job_id/results?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "classifier",
+                                        "jobs",
+                                        ":classify_job_id",
+                                        "results"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "classify_job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"classify_job_id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"file_id\": \"<uuid>\",\n      \"result\": {\n        \"reasoning\": \"<string>\",\n        \"confidence\": \"<number>\",\n        \"type\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"classify_job_id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"file_id\": \"<uuid>\",\n      \"result\": {\n        \"reasoning\": \"<string>\",\n        \"confidence\": \"<number>\",\n        \"type\": \"<string>\"\n      }\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T02:07:40.000Z",
+                                  "updatedAt": "2026-07-28T02:07:40.000Z",
+                                  "uid": "35240-03dccecb-e218-4a95-aa1c-571e68d191a9"
+                                },
+                                {
+                                  "id": "c987ad57-d9a7-4968-8054-65a6a3704d3f",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/classifier/jobs/:classify_job_id/results?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "classifier",
+                                        "jobs",
+                                        ":classify_job_id",
+                                        "results"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "classify_job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:07:40.000Z",
+                                  "updatedAt": "2026-07-28T02:07:40.000Z",
+                                  "uid": "35240-c987ad57-d9a7-4968-8054-65a6a3704d3f"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:07:40.000Z",
+                              "updatedAt": "2026-07-28T02:07:40.000Z",
+                              "uid": "35240-90ced003-8163-4d10-b328-20156c5ad531"
+                            }
+                          ],
+                          "id": "72df82c7-f4a5-4891-bbf2-392d168b6dd2",
+                          "createdAt": "2026-07-28T02:07:40.000Z",
+                          "updatedAt": "2026-07-28T02:07:40.000Z",
+                          "uid": "35240-72df82c7-f4a5-4891-bbf2-392d168b6dd2"
+                        },
+                        {
+                          "name": "Get Classify Job",
+                          "id": "e9b12fad-55cd-46ba-b444-3dd695e5e19b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/classifier/jobs/:classify_job_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "classifier",
+                                "jobs",
+                                ":classify_job_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1e9634d0-ae20-4607-bbb1-d4ff5553d00e",
+                                  "key": "classify_job_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get a classify job. Experimental: not production-ready and subject to change."
+                          },
+                          "response": [
+                            {
+                              "id": "a477e8cc-f28b-431e-859b-27081aa4f03c",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/classifier/jobs/:classify_job_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "classifier",
+                                    "jobs",
+                                    ":classify_job_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "classify_job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"SUCCESS\",\n  \"id\": \"<uuid>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"user_id\": \"<string>\",\n  \"project_id\": \"<uuid>\",\n  \"effective_at\": \"<dateTime>\",\n  \"job_record_id\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"mode\": \"MULTIMODAL\",\n  \"parsing_configuration\": {\n    \"lang\": \"sck\",\n    \"max_pages\": \"<integer>\",\n    \"target_pages\": [\n      \"<integer>\"\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T02:07:40.000Z",
+                              "updatedAt": "2026-07-28T02:07:40.000Z",
+                              "uid": "35240-a477e8cc-f28b-431e-859b-27081aa4f03c"
+                            },
+                            {
+                              "id": "3cc794d9-77df-47ee-8d49-35cdbff62a95",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/classifier/jobs/:classify_job_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "classifier",
+                                    "jobs",
+                                    ":classify_job_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "classify_job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:40.000Z",
+                              "updatedAt": "2026-07-28T02:07:40.000Z",
+                              "uid": "35240-3cc794d9-77df-47ee-8d49-35cdbff62a95"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:40.000Z",
+                          "updatedAt": "2026-07-28T02:07:40.000Z",
+                          "uid": "35240-e9b12fad-55cd-46ba-b444-3dd695e5e19b"
+                        }
+                      ],
+                      "id": "08cb3264-f7bd-40f7-9a54-ceb6df4f16c5",
+                      "createdAt": "2026-07-28T02:07:40.000Z",
+                      "updatedAt": "2026-07-28T02:07:40.000Z",
+                      "uid": "35240-08cb3264-f7bd-40f7-9a54-ceb6df4f16c5"
+                    },
+                    {
+                      "name": "Create Classify Job",
+                      "id": "05c30250-d991-45c1-84f1-19ea64113715",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"file_ids\": [\n    \"<uuid>\"\n  ],\n  \"mode\": \"MULTIMODAL\",\n  \"parsing_configuration\": {\n    \"lang\": \"ro\",\n    \"max_pages\": \"<integer>\",\n    \"target_pages\": [\n      \"<integer>\"\n    ]\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"http:\",\n      \"webhook_headers\": {\n        \"dolore_e\": \"pa\",\n        \"amet_9\": -52379147\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    },\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"sintcf\": \"quis Excepteur esse\",\n        \"ut_d\": \"est qui\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/classifier/jobs?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "classifier",
+                            "jobs"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "Create a classify job. Experimental: not production-ready and subject to change."
+                      },
+                      "response": [
+                        {
+                          "id": "0e131f34-16f9-4abf-aa8f-3718d9934456",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"file_ids\": [\n    \"<uuid>\"\n  ],\n  \"mode\": \"MULTIMODAL\",\n  \"parsing_configuration\": {\n    \"lang\": \"ro\",\n    \"max_pages\": \"<integer>\",\n    \"target_pages\": [\n      \"<integer>\"\n    ]\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"http:\",\n      \"webhook_headers\": {\n        \"dolore_e\": \"pa\",\n        \"amet_9\": -52379147\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    },\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"sintcf\": \"quis Excepteur esse\",\n        \"ut_d\": \"est qui\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/classifier/jobs?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "classifier",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"SUCCESS\",\n  \"id\": \"<uuid>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"user_id\": \"<string>\",\n  \"project_id\": \"<uuid>\",\n  \"effective_at\": \"<dateTime>\",\n  \"job_record_id\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"mode\": \"MULTIMODAL\",\n  \"parsing_configuration\": {\n    \"lang\": \"sck\",\n    \"max_pages\": \"<integer>\",\n    \"target_pages\": [\n      \"<integer>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T02:07:40.000Z",
+                          "updatedAt": "2026-07-28T02:07:40.000Z",
+                          "uid": "35240-0e131f34-16f9-4abf-aa8f-3718d9934456"
+                        },
+                        {
+                          "id": "9a9bdc15-5465-424f-8b15-e42fc23cd400",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"file_ids\": [\n    \"<uuid>\"\n  ],\n  \"mode\": \"MULTIMODAL\",\n  \"parsing_configuration\": {\n    \"lang\": \"ro\",\n    \"max_pages\": \"<integer>\",\n    \"target_pages\": [\n      \"<integer>\"\n    ]\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"http:\",\n      \"webhook_headers\": {\n        \"dolore_e\": \"pa\",\n        \"amet_9\": -52379147\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    },\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"sintcf\": \"quis Excepteur esse\",\n        \"ut_d\": \"est qui\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/classifier/jobs?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "classifier",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:40.000Z",
+                          "updatedAt": "2026-07-28T02:07:40.000Z",
+                          "uid": "35240-9a9bdc15-5465-424f-8b15-e42fc23cd400"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:40.000Z",
+                      "updatedAt": "2026-07-28T02:07:40.000Z",
+                      "uid": "35240-05c30250-d991-45c1-84f1-19ea64113715"
+                    },
+                    {
+                      "name": "List Classify Jobs",
+                      "id": "dc010ea7-443f-4ca5-afa5-61f1820e68d9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/classifier/jobs?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "classifier",
+                            "jobs"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "page_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "List classify jobs. Experimental: not production-ready and subject to change."
+                      },
+                      "response": [
+                        {
+                          "id": "049ccf16-96fc-4b29-b8ae-c9e7bc2c7c11",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/classifier/jobs?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "classifier",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"status\": \"CANCELLED\",\n      \"id\": \"<uuid>\",\n      \"rules\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"user_id\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"effective_at\": \"<dateTime>\",\n      \"job_record_id\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"mode\": \"MULTIMODAL\",\n      \"parsing_configuration\": {\n        \"lang\": \"sck\",\n        \"max_pages\": \"<integer>\",\n        \"target_pages\": [\n          \"<integer>\"\n        ]\n      }\n    },\n    {\n      \"status\": \"PENDING\",\n      \"id\": \"<uuid>\",\n      \"rules\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"user_id\": \"<string>\",\n      \"project_id\": \"<uuid>\",\n      \"effective_at\": \"<dateTime>\",\n      \"job_record_id\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"mode\": \"MULTIMODAL\",\n      \"parsing_configuration\": {\n        \"lang\": \"inh\",\n        \"max_pages\": \"<integer>\",\n        \"target_pages\": [\n          \"<integer>\"\n        ]\n      }\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:07:40.000Z",
+                          "updatedAt": "2026-07-28T02:07:40.000Z",
+                          "uid": "35240-049ccf16-96fc-4b29-b8ae-c9e7bc2c7c11"
+                        },
+                        {
+                          "id": "9355d26c-d7fd-40d3-a90b-2e68797f4eb4",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/classifier/jobs?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "classifier",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:40.000Z",
+                          "updatedAt": "2026-07-28T02:07:40.000Z",
+                          "uid": "35240-9355d26c-d7fd-40d3-a90b-2e68797f4eb4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:40.000Z",
+                      "updatedAt": "2026-07-28T02:07:40.000Z",
+                      "uid": "35240-dc010ea7-443f-4ca5-afa5-61f1820e68d9"
+                    }
+                  ],
+                  "id": "a3b4640d-a78d-471d-92e7-8bd841fa8a37",
+                  "createdAt": "2026-07-28T02:07:40.000Z",
+                  "updatedAt": "2026-07-28T02:07:40.000Z",
+                  "uid": "35240-a3b4640d-a78d-471d-92e7-8bd841fa8a37"
+                }
+              ],
+              "id": "ab987ebe-08b7-40f3-b829-2a2d42f56741",
+              "createdAt": "2026-07-28T02:07:40.000Z",
+              "updatedAt": "2026-07-28T02:07:40.000Z",
+              "uid": "35240-ab987ebe-08b7-40f3-b829-2a2d42f56741"
+            }
+          ],
+          "id": "83516fc5-df34-4912-9b75-bb06cfea09ba",
+          "createdAt": "2026-07-28T02:07:40.000Z",
+          "updatedAt": "2026-07-28T02:07:40.000Z",
+          "uid": "35240-83516fc5-df34-4912-9b75-bb06cfea09ba"
+        }
+      ],
+      "id": "7ed2efa3-4729-4630-bc1f-06c6c07524b2",
+      "createdAt": "2026-07-28T02:07:40.000Z",
+      "updatedAt": "2026-07-28T02:07:40.000Z",
+      "uid": "35240-7ed2efa3-4729-4630-bc1f-06c6c07524b2"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

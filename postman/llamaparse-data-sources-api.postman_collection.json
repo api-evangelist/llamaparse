@@ -1,0 +1,908 @@
+{
+  "info": {
+    "_postman_id": "25ab7c49-8d9c-4f80-a403-facdd2a0b22c",
+    "name": "Llama Platform Agent Data Data Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:53.000Z",
+    "updatedAt": "2026-07-28T02:07:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-25ab7c49-8d9c-4f80-a403-facdd2a0b22c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "data-sources",
+              "item": [
+                {
+                  "name": "{data_source_id}",
+                  "item": [
+                    {
+                      "name": "Get Data Source",
+                      "id": "d908a517-2bcd-4b54-aa56-b52d2dd760e9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sources",
+                            ":data_source_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dd1a5264-2c9e-4e3c-aefa-06223dd22038",
+                              "key": "data_source_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get a data source by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "edefe60d-329b-41e4-b7d1-0dc0345ec8a1",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sources",
+                                ":data_source_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_source_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"source_type\": \"CONFLUENCE\",\n  \"component\": {\n    \"Lorem43c\": -57445538,\n    \"elit1\": \"reprehenderit labore cillum fugiat\",\n    \"irureccf\": \"elit\"\n  },\n  \"project_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"custom_metadata\": {\n    \"est_367\": {\n      \"proident_e4\": -86385441,\n      \"qui_62\": -93790198\n    },\n    \"consectetur_40_\": {\n      \"ullamco43\": \"anim ut dolore do\"\n    }\n  },\n  \"version_metadata\": {\n    \"reader_version\": \"1.0\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:07:53.000Z",
+                          "updatedAt": "2026-07-28T02:07:53.000Z",
+                          "uid": "35240-edefe60d-329b-41e4-b7d1-0dc0345ec8a1"
+                        },
+                        {
+                          "id": "8bd33dc6-920a-4229-82f5-5a343e57ba38",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sources",
+                                ":data_source_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_source_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:53.000Z",
+                          "updatedAt": "2026-07-28T02:07:53.000Z",
+                          "uid": "35240-8bd33dc6-920a-4229-82f5-5a343e57ba38"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:53.000Z",
+                      "updatedAt": "2026-07-28T02:07:53.000Z",
+                      "uid": "35240-d908a517-2bcd-4b54-aa56-b52d2dd760e9"
+                    },
+                    {
+                      "name": "Update Data Source",
+                      "id": "c1644ec8-7b84-40d1-b205-5d29e18340ce",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_type\": \"AZURE_STORAGE_BLOB\",\n  \"name\": \"<string>\",\n  \"custom_metadata\": {\n    \"consequat04\": {\n      \"aliquip9b1\": -66804850.652733184,\n      \"quis57\": \"veniam elit\"\n    },\n    \"mollit_2\": {\n      \"id_8\": false,\n      \"mollit_fac\": 85862993,\n      \"mollit_977\": -44121369.05632376\n    }\n  },\n  \"component\": {\n    \"reprehenderit_05d\": -11289926,\n    \"in_bc_\": false\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sources",
+                            ":data_source_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "680f4def-af04-4cb9-a677-7ce95863c526",
+                              "key": "data_source_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update a data source by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "bf4fbc7b-d01c-4fa2-8b42-ba4b59206317",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"source_type\": \"AZURE_STORAGE_BLOB\",\n  \"name\": \"<string>\",\n  \"custom_metadata\": {\n    \"consequat04\": {\n      \"aliquip9b1\": -66804850.652733184,\n      \"quis57\": \"veniam elit\"\n    },\n    \"mollit_2\": {\n      \"id_8\": false,\n      \"mollit_fac\": 85862993,\n      \"mollit_977\": -44121369.05632376\n    }\n  },\n  \"component\": {\n    \"reprehenderit_05d\": -11289926,\n    \"in_bc_\": false\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sources",
+                                ":data_source_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_source_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"source_type\": \"CONFLUENCE\",\n  \"component\": {\n    \"Lorem43c\": -57445538,\n    \"elit1\": \"reprehenderit labore cillum fugiat\",\n    \"irureccf\": \"elit\"\n  },\n  \"project_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"custom_metadata\": {\n    \"est_367\": {\n      \"proident_e4\": -86385441,\n      \"qui_62\": -93790198\n    },\n    \"consectetur_40_\": {\n      \"ullamco43\": \"anim ut dolore do\"\n    }\n  },\n  \"version_metadata\": {\n    \"reader_version\": \"1.0\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:07:53.000Z",
+                          "updatedAt": "2026-07-28T02:07:53.000Z",
+                          "uid": "35240-bf4fbc7b-d01c-4fa2-8b42-ba4b59206317"
+                        },
+                        {
+                          "id": "6642d127-979a-49de-b48a-4fa0386c867d",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"source_type\": \"AZURE_STORAGE_BLOB\",\n  \"name\": \"<string>\",\n  \"custom_metadata\": {\n    \"consequat04\": {\n      \"aliquip9b1\": -66804850.652733184,\n      \"quis57\": \"veniam elit\"\n    },\n    \"mollit_2\": {\n      \"id_8\": false,\n      \"mollit_fac\": 85862993,\n      \"mollit_977\": -44121369.05632376\n    }\n  },\n  \"component\": {\n    \"reprehenderit_05d\": -11289926,\n    \"in_bc_\": false\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sources",
+                                ":data_source_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_source_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:53.000Z",
+                          "updatedAt": "2026-07-28T02:07:53.000Z",
+                          "uid": "35240-6642d127-979a-49de-b48a-4fa0386c867d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:53.000Z",
+                      "updatedAt": "2026-07-28T02:07:53.000Z",
+                      "uid": "35240-c1644ec8-7b84-40d1-b205-5d29e18340ce"
+                    },
+                    {
+                      "name": "Delete Data Source",
+                      "id": "fd87f662-47c7-4b0c-b5d7-5eb2451294a2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sources",
+                            ":data_source_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "77e2c93d-8aec-49ba-8eb2-b9aba1f5bac0",
+                              "key": "data_source_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a data source by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "07c45c25-3207-4aa4-9964-7354f0836fa0",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sources",
+                                ":data_source_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_source_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:07:53.000Z",
+                          "updatedAt": "2026-07-28T02:07:53.000Z",
+                          "uid": "35240-07c45c25-3207-4aa4-9964-7354f0836fa0"
+                        },
+                        {
+                          "id": "1a19ae71-a9bb-45c6-80ec-57734a70f88f",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sources/:data_source_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sources",
+                                ":data_source_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_source_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:53.000Z",
+                          "updatedAt": "2026-07-28T02:07:53.000Z",
+                          "uid": "35240-1a19ae71-a9bb-45c6-80ec-57734a70f88f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:53.000Z",
+                      "updatedAt": "2026-07-28T02:07:53.000Z",
+                      "uid": "35240-fd87f662-47c7-4b0c-b5d7-5eb2451294a2"
+                    }
+                  ],
+                  "id": "617ea593-229b-4431-b5d2-201d0e87b05d",
+                  "createdAt": "2026-07-28T02:07:53.000Z",
+                  "updatedAt": "2026-07-28T02:07:53.000Z",
+                  "uid": "35240-617ea593-229b-4431-b5d2-201d0e87b05d"
+                },
+                {
+                  "name": "List Data Sources",
+                  "id": "f672d196-83ae-4efd-a81f-b9c84c6e666f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/data-sources?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "data-sources"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "List data sources for a given project.\nIf project_id is not provided, uses the default project."
+                  },
+                  "response": [
+                    {
+                      "id": "24883f45-42ce-41a3-acb6-579be7a8f569",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sources?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sources"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"source_type\": \"GOOGLE_DRIVE\",\n    \"component\": {\n      \"nulla9\": \"amet sed in id sunt\"\n    },\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"custom_metadata\": {\n      \"sunt1a\": {\n        \"ullamco_21\": true,\n        \"cupidatat48\": true\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"1.0\"\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"source_type\": \"JIRA\",\n    \"component\": {\n      \"culpa_1d1\": -97169863.85705554,\n      \"cillum_5\": -43123829.243364796\n    },\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"custom_metadata\": {\n      \"pariaturf4\": {\n        \"sed_d87\": -9777714\n      },\n      \"eiusmod5a4\": {\n        \"dolore_fe\": -77607969,\n        \"in_4d\": 31066170.711686954,\n        \"cupidatat46\": 51541640.329737425\n      },\n      \"enim_8\": {\n        \"non_d\": \"amet laborum do esse\",\n        \"utc5\": false,\n        \"in_5a7\": true\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"2.1\"\n    }\n  }\n]",
+                      "createdAt": "2026-07-28T02:07:53.000Z",
+                      "updatedAt": "2026-07-28T02:07:53.000Z",
+                      "uid": "35240-24883f45-42ce-41a3-acb6-579be7a8f569"
+                    },
+                    {
+                      "id": "dd9d542d-8592-43d7-a61d-929ebadd818c",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sources?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sources"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:53.000Z",
+                      "updatedAt": "2026-07-28T02:07:53.000Z",
+                      "uid": "35240-dd9d542d-8592-43d7-a61d-929ebadd818c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:07:53.000Z",
+                  "updatedAt": "2026-07-28T02:07:53.000Z",
+                  "uid": "35240-f672d196-83ae-4efd-a81f-b9c84c6e666f"
+                },
+                {
+                  "name": "Create Data Source",
+                  "id": "ce8d35ac-e2eb-40d2-8244-2c8780da7b3b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"SLACK\",\n  \"component\": {\n    \"veniam7\": 69592885.47190475\n  },\n  \"custom_metadata\": {\n    \"aliqua_f4\": {\n      \"qui93c\": 84192494,\n      \"fugiat0f\": false,\n      \"velitb\": -85344339.9048588\n    },\n    \"laborum4\": {\n      \"ipsum870\": -87628522.81801905,\n      \"ut_7\": \"esse Duis voluptate consequat in\"\n    },\n    \"elita\": {\n      \"quis_d7a\": -55137755.88913021,\n      \"proident_8\": \"ea elit Excepteur anim do\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/data-sources?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "data-sources"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Create a new data source."
+                  },
+                  "response": [
+                    {
+                      "id": "42791433-1522-4e9e-b8d3-8826017a46e0",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"SLACK\",\n  \"component\": {\n    \"veniam7\": 69592885.47190475\n  },\n  \"custom_metadata\": {\n    \"aliqua_f4\": {\n      \"qui93c\": 84192494,\n      \"fugiat0f\": false,\n      \"velitb\": -85344339.9048588\n    },\n    \"laborum4\": {\n      \"ipsum870\": -87628522.81801905,\n      \"ut_7\": \"esse Duis voluptate consequat in\"\n    },\n    \"elita\": {\n      \"quis_d7a\": -55137755.88913021,\n      \"proident_8\": \"ea elit Excepteur anim do\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sources?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sources"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"source_type\": \"CONFLUENCE\",\n  \"component\": {\n    \"Lorem43c\": -57445538,\n    \"elit1\": \"reprehenderit labore cillum fugiat\",\n    \"irureccf\": \"elit\"\n  },\n  \"project_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"custom_metadata\": {\n    \"est_367\": {\n      \"proident_e4\": -86385441,\n      \"qui_62\": -93790198\n    },\n    \"consectetur_40_\": {\n      \"ullamco43\": \"anim ut dolore do\"\n    }\n  },\n  \"version_metadata\": {\n    \"reader_version\": \"1.0\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:07:53.000Z",
+                      "updatedAt": "2026-07-28T02:07:53.000Z",
+                      "uid": "35240-42791433-1522-4e9e-b8d3-8826017a46e0"
+                    },
+                    {
+                      "id": "9e0804c4-e4f8-4c6f-bdec-6aadc1b1d91b",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"SLACK\",\n  \"component\": {\n    \"veniam7\": 69592885.47190475\n  },\n  \"custom_metadata\": {\n    \"aliqua_f4\": {\n      \"qui93c\": 84192494,\n      \"fugiat0f\": false,\n      \"velitb\": -85344339.9048588\n    },\n    \"laborum4\": {\n      \"ipsum870\": -87628522.81801905,\n      \"ut_7\": \"esse Duis voluptate consequat in\"\n    },\n    \"elita\": {\n      \"quis_d7a\": -55137755.88913021,\n      \"proident_8\": \"ea elit Excepteur anim do\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sources?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sources"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:53.000Z",
+                      "updatedAt": "2026-07-28T02:07:53.000Z",
+                      "uid": "35240-9e0804c4-e4f8-4c6f-bdec-6aadc1b1d91b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:07:53.000Z",
+                  "updatedAt": "2026-07-28T02:07:53.000Z",
+                  "uid": "35240-ce8d35ac-e2eb-40d2-8244-2c8780da7b3b"
+                }
+              ],
+              "id": "85cc6c96-827a-439a-8885-598db52ecdb9",
+              "createdAt": "2026-07-28T02:07:53.000Z",
+              "updatedAt": "2026-07-28T02:07:53.000Z",
+              "uid": "35240-85cc6c96-827a-439a-8885-598db52ecdb9"
+            }
+          ],
+          "id": "c7c82033-0f88-4024-95ef-bb9333c1eb98",
+          "createdAt": "2026-07-28T02:07:53.000Z",
+          "updatedAt": "2026-07-28T02:07:53.000Z",
+          "uid": "35240-c7c82033-0f88-4024-95ef-bb9333c1eb98"
+        }
+      ],
+      "id": "dd744950-e3b8-4f14-af13-dd9048991bca",
+      "createdAt": "2026-07-28T02:07:53.000Z",
+      "updatedAt": "2026-07-28T02:07:53.000Z",
+      "uid": "35240-dd744950-e3b8-4f14-af13-dd9048991bca"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

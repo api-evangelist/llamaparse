@@ -1,0 +1,1102 @@
+{
+  "info": {
+    "_postman_id": "53dea8c1-30e0-411b-b959-3734c7160f05",
+    "name": "Llama Platform Agent Data Configurations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:42.000Z",
+    "updatedAt": "2026-07-28T02:07:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-53dea8c1-30e0-411b-b959-3734c7160f05"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "beta",
+              "item": [
+                {
+                  "name": "configurations",
+                  "item": [
+                    {
+                      "name": "{config_id}",
+                      "item": [
+                        {
+                          "name": "Get Configuration",
+                          "id": "933c462f-74cf-4181-907e-eec90da68b57",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "configurations",
+                                ":config_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "422992b2-2b53-4ad5-9b83-b10a601304f6",
+                                  "key": "config_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get a single product configuration by ID."
+                          },
+                          "response": [
+                            {
+                              "id": "130783f9-8df7-48b2-8cd1-79cedef33e8f",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "configurations",
+                                    ":config_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "config_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"product_type\": \"parse_v2\",\n  \"version\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:07:43.000Z",
+                              "updatedAt": "2026-07-28T02:07:43.000Z",
+                              "uid": "35240-130783f9-8df7-48b2-8cd1-79cedef33e8f"
+                            },
+                            {
+                              "id": "c233809e-8535-4222-b7b2-9faa89b7afcf",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "configurations",
+                                    ":config_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "config_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:43.000Z",
+                              "updatedAt": "2026-07-28T02:07:43.000Z",
+                              "uid": "35240-c233809e-8535-4222-b7b2-9faa89b7afcf"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:43.000Z",
+                          "updatedAt": "2026-07-28T02:07:43.000Z",
+                          "uid": "35240-933c462f-74cf-4181-907e-eec90da68b57"
+                        },
+                        {
+                          "name": "Update Configuration",
+                          "id": "6d6d7125-bfa0-478b-9b7e-6d7b2767be3b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "configurations",
+                                ":config_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d873ad90-d13a-4a9b-bf46-b86a56c58be3",
+                                  "key": "config_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update an existing product configuration."
+                          },
+                          "response": [
+                            {
+                              "id": "4f2dbd43-6f59-417d-acf6-4b1c7df59981",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "configurations",
+                                    ":config_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "config_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"product_type\": \"parse_v2\",\n  \"version\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:07:43.000Z",
+                              "updatedAt": "2026-07-28T02:07:43.000Z",
+                              "uid": "35240-4f2dbd43-6f59-417d-acf6-4b1c7df59981"
+                            },
+                            {
+                              "id": "cd1a774e-e53b-4740-8db5-d43b39355f4a",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "configurations",
+                                    ":config_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "config_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:43.000Z",
+                              "updatedAt": "2026-07-28T02:07:43.000Z",
+                              "uid": "35240-cd1a774e-e53b-4740-8db5-d43b39355f4a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:43.000Z",
+                          "updatedAt": "2026-07-28T02:07:43.000Z",
+                          "uid": "35240-6d6d7125-bfa0-478b-9b7e-6d7b2767be3b"
+                        },
+                        {
+                          "name": "Delete Configuration",
+                          "id": "7ed0084e-e010-444b-a928-9c28bdd37f3e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "configurations",
+                                ":config_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b4a8b460-b5a3-4a28-a0cc-23daca22ffbb",
+                                  "key": "config_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete a product configuration."
+                          },
+                          "response": [
+                            {
+                              "id": "b6455875-24bf-4f19-a2ad-6f35f00e4643",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "configurations",
+                                    ":config_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "config_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:07:43.000Z",
+                              "updatedAt": "2026-07-28T02:07:43.000Z",
+                              "uid": "35240-b6455875-24bf-4f19-a2ad-6f35f00e4643"
+                            },
+                            {
+                              "id": "33fefb92-4129-449b-9a6d-ef1692a617fb",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/configurations/:config_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "configurations",
+                                    ":config_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "config_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:43.000Z",
+                              "updatedAt": "2026-07-28T02:07:43.000Z",
+                              "uid": "35240-33fefb92-4129-449b-9a6d-ef1692a617fb"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:43.000Z",
+                          "updatedAt": "2026-07-28T02:07:43.000Z",
+                          "uid": "35240-7ed0084e-e010-444b-a928-9c28bdd37f3e"
+                        }
+                      ],
+                      "id": "b2866efb-e8a4-4308-9be0-6777fbe92447",
+                      "createdAt": "2026-07-28T02:07:43.000Z",
+                      "updatedAt": "2026-07-28T02:07:43.000Z",
+                      "uid": "35240-b2866efb-e8a4-4308-9be0-6777fbe92447"
+                    },
+                    {
+                      "name": "Create Configuration",
+                      "id": "99caa3b4-5dad-4a6e-b7a6-8239df1450eb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/beta/configurations?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "beta",
+                            "configurations"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "Upsert a product configuration; updates if one with the same name + product type + project exists, otherwise creates."
+                      },
+                      "response": [
+                        {
+                          "id": "8eca8c0b-3e3d-420c-b239-c965e74e013d",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/configurations?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "configurations"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"product_type\": \"parse_v2\",\n  \"version\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:07:43.000Z",
+                          "updatedAt": "2026-07-28T02:07:43.000Z",
+                          "uid": "35240-8eca8c0b-3e3d-420c-b239-c965e74e013d"
+                        },
+                        {
+                          "id": "02a85960-cccc-443b-9d62-ea4e14bddc4d",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"product_type\": \"<string>\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/configurations?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "configurations"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:43.000Z",
+                          "updatedAt": "2026-07-28T02:07:43.000Z",
+                          "uid": "35240-02a85960-cccc-443b-9d62-ea4e14bddc4d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:43.000Z",
+                      "updatedAt": "2026-07-28T02:07:43.000Z",
+                      "uid": "35240-99caa3b4-5dad-4a6e-b7a6-8239df1450eb"
+                    },
+                    {
+                      "name": "List Configurations",
+                      "id": "3d36c45c-12e7-4781-975e-2af0eb3330a5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/beta/configurations?product_type=extract_v2&product_type=classify_v2&name=<string>&page_size=<integer>&page_token=<string>&latest_only=false&project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "beta",
+                            "configurations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by one or more product types. Repeat the parameter for multiple values.",
+                              "key": "product_type",
+                              "value": "extract_v2"
+                            },
+                            {
+                              "description": "Filter by one or more product types. Repeat the parameter for multiple values.",
+                              "key": "product_type",
+                              "value": "classify_v2"
+                            },
+                            {
+                              "description": "Filter by configuration name.",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of items per page.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Pagination token.",
+                              "key": "page_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Return only the latest version per configuration name.",
+                              "key": "latest_only",
+                              "value": "false"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "List product configurations for the current project."
+                      },
+                      "response": [
+                        {
+                          "id": "1ec2fe86-beb5-4d2c-8d30-5ce54410455c",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/configurations?product_type=classify_v2&name=<string>&page_size=<integer>&page_token=<string>&latest_only=false&project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "configurations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by one or more product types. Repeat the parameter for multiple values.",
+                                  "key": "product_type",
+                                  "value": "classify_v2"
+                                },
+                                {
+                                  "description": "Filter by configuration name.",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of items per page.",
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Pagination token.",
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Return only the latest version per configuration name.",
+                                  "key": "latest_only",
+                                  "value": "false"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"product_type\": \"split_v1\",\n      \"version\": \"<string>\",\n      \"parameters\": {\n        \"categories\": [\n          {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"product_type\": \"<string>\",\n        \"splitting_strategy\": {\n          \"allow_uncategorized\": \"include\"\n        }\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"product_type\": \"split_v1\",\n      \"version\": \"<string>\",\n      \"parameters\": {\n        \"categories\": [\n          {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"product_type\": \"<string>\",\n        \"splitting_strategy\": {\n          \"allow_uncategorized\": \"include\"\n        }\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:07:43.000Z",
+                          "updatedAt": "2026-07-28T02:07:43.000Z",
+                          "uid": "35240-1ec2fe86-beb5-4d2c-8d30-5ce54410455c"
+                        },
+                        {
+                          "id": "793e0383-ec38-4a0a-a787-414bf59e7634",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/configurations?product_type=classify_v2&name=<string>&page_size=<integer>&page_token=<string>&latest_only=false&project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "configurations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by one or more product types. Repeat the parameter for multiple values.",
+                                  "key": "product_type",
+                                  "value": "classify_v2"
+                                },
+                                {
+                                  "description": "Filter by configuration name.",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of items per page.",
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Pagination token.",
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Return only the latest version per configuration name.",
+                                  "key": "latest_only",
+                                  "value": "false"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:43.000Z",
+                          "updatedAt": "2026-07-28T02:07:43.000Z",
+                          "uid": "35240-793e0383-ec38-4a0a-a787-414bf59e7634"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:43.000Z",
+                      "updatedAt": "2026-07-28T02:07:43.000Z",
+                      "uid": "35240-3d36c45c-12e7-4781-975e-2af0eb3330a5"
+                    }
+                  ],
+                  "id": "1224b679-f930-4983-a7c9-5d439f1246c1",
+                  "createdAt": "2026-07-28T02:07:43.000Z",
+                  "updatedAt": "2026-07-28T02:07:43.000Z",
+                  "uid": "35240-1224b679-f930-4983-a7c9-5d439f1246c1"
+                }
+              ],
+              "id": "b5d985d8-83e9-4813-9f2c-2e750615b413",
+              "createdAt": "2026-07-28T02:07:43.000Z",
+              "updatedAt": "2026-07-28T02:07:43.000Z",
+              "uid": "35240-b5d985d8-83e9-4813-9f2c-2e750615b413"
+            }
+          ],
+          "id": "2d5e2cca-e32b-489b-a11d-0fb151e1db44",
+          "createdAt": "2026-07-28T02:07:43.000Z",
+          "updatedAt": "2026-07-28T02:07:43.000Z",
+          "uid": "35240-2d5e2cca-e32b-489b-a11d-0fb151e1db44"
+        }
+      ],
+      "id": "7f6e4e59-75a8-42da-959f-43caa58f89e0",
+      "createdAt": "2026-07-28T02:07:43.000Z",
+      "updatedAt": "2026-07-28T02:07:43.000Z",
+      "uid": "35240-7f6e4e59-75a8-42da-959f-43caa58f89e0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

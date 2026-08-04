@@ -1,0 +1,1043 @@
+{
+  "info": {
+    "_postman_id": "35e7c4b5-93c3-4c4b-b727-acc49697012f",
+    "name": "Llama Platform Agent Data Pipeline Data Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:44.000Z",
+    "updatedAt": "2026-07-28T02:08:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-35e7c4b5-93c3-4c4b-b727-acc49697012f"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "pipelines",
+              "item": [
+                {
+                  "name": "{pipeline_id}",
+                  "item": [
+                    {
+                      "name": "data-sources",
+                      "item": [
+                        {
+                          "name": "{data_source_id}",
+                          "item": [
+                            {
+                              "name": "sync",
+                              "item": [
+                                {
+                                  "name": "Sync Pipeline Data Source",
+                                  "id": "c9db401f-2e1b-4a3d-8f73-947086fafb3c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"pipeline_file_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id/sync",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "data-sources",
+                                        ":data_source_id",
+                                        "sync"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "2462a975-d064-4edf-ac75-f0301d529dbb",
+                                          "key": "pipeline_id",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "5a28da85-48f7-490a-b068-ca81a5e30b22",
+                                          "key": "data_source_id",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Run incremental ingestion: pull upstream changes from the data source into the data sink."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "28016309-b53f-4506-873c-354ca173ba82",
+                                      "name": "Successful Response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"pipeline_file_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id/sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "pipelines",
+                                            ":pipeline_id",
+                                            "data-sources",
+                                            ":data_source_id",
+                                            "sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "pipeline_id"
+                                            },
+                                            {
+                                              "key": "data_source_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"project_id\": \"<uuid>\",\n  \"embedding_config\": {\n    \"type\": \"MANAGED_OPENAI_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"openai-text-embedding-3-small\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"class_name\": \"ManagedOpenAIEmbedding\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"embedding_model_config_id\": \"<uuid>\",\n  \"embedding_model_config\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"embedding_config\": {\n      \"type\": \"AZURE_EMBEDDING\",\n      \"component\": {\n        \"model_name\": \"text-embedding-ada-002\",\n        \"embed_batch_size\": 10,\n        \"num_workers\": \"<integer>\",\n        \"additional_kwargs\": {\n          \"sitf\": true,\n          \"laboris59d\": false,\n          \"do7d\": \"sed\"\n        },\n        \"api_key\": \"<string>\",\n        \"api_base\": \"\",\n        \"api_version\": \"\",\n        \"max_retries\": 10,\n        \"timeout\": 60,\n        \"default_headers\": {\n          \"culpa_d\": \"<string>\",\n          \"reprehenderit_1\": \"<string>\",\n          \"dolore_4d4\": \"<string>\"\n        },\n        \"reuse_client\": true,\n        \"dimensions\": \"<integer>\",\n        \"azure_endpoint\": \"<string>\",\n        \"azure_deployment\": \"<string>\",\n        \"class_name\": \"AzureOpenAIEmbedding\"\n      }\n    },\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  \"pipeline_type\": \"PLAYGROUND\",\n  \"managed_pipeline_id\": \"<uuid>\",\n  \"sparse_model_config\": {\n    \"model_type\": \"auto\",\n    \"class_name\": \"SparseModelConfig\"\n  },\n  \"config_hash\": {\n    \"embedding_config_hash\": \"<string>\",\n    \"parsing_config_hash\": \"<string>\",\n    \"transform_config_hash\": \"<string>\"\n  },\n  \"transform_config\": {\n    \"mode\": \"auto\",\n    \"chunk_size\": 1024,\n    \"chunk_overlap\": 200\n  },\n  \"preset_retrieval_parameters\": {\n    \"dense_similarity_top_k\": \"<integer>\",\n    \"dense_similarity_cutoff\": \"<number>\",\n    \"sparse_similarity_top_k\": \"<integer>\",\n    \"enable_reranking\": \"<boolean>\",\n    \"rerank_top_n\": \"<integer>\",\n    \"alpha\": \"<number>\",\n    \"search_filters\": {\n      \"filters\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"operator\": \">=\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<integer>\",\n          \"operator\": \"!=\"\n        }\n      ],\n      \"condition\": \"and\"\n    },\n    \"search_filters_inference_schema\": {\n      \"aliquip_0a\": {\n        \"commodoee\": false\n      },\n      \"qui_a_8\": {\n        \"do4\": -5699465\n      }\n    },\n    \"files_top_k\": \"<integer>\",\n    \"retrieval_mode\": \"auto_routed\",\n    \"retrieve_image_nodes\": false,\n    \"retrieve_page_screenshot_nodes\": false,\n    \"retrieve_page_figure_nodes\": false,\n    \"class_name\": \"base_component\"\n  },\n  \"llama_parse_parameters\": {\n    \"webhook_configurations\": [\n      {\n        \"webhook_url\": \"<string>\",\n        \"webhook_headers\": {\n          \"in_f3\": \"<string>\",\n          \"anim_a37\": \"<string>\"\n        },\n        \"webhook_events\": [\n          \"parse.error\",\n          \"parse.partial_success\"\n        ],\n        \"webhook_output_format\": \"<string>\"\n      },\n      {\n        \"webhook_url\": \"<string>\",\n        \"webhook_headers\": {\n          \"eiusmod_3b\": \"<string>\"\n        },\n        \"webhook_events\": [\n          \"classify.success\",\n          \"parse.partial_success\"\n        ],\n        \"webhook_output_format\": \"<string>\"\n      }\n    ],\n    \"priority\": \"high\",\n    \"languages\": [\n      \"ur\"\n    ],\n    \"parsing_instruction\": \"<string>\",\n    \"disable_ocr\": \"<boolean>\",\n    \"annotate_links\": \"<boolean>\",\n    \"adaptive_long_table\": \"<boolean>\",\n    \"compact_markdown_table\": \"<boolean>\",\n    \"disable_reconstruction\": \"<boolean>\",\n    \"disable_image_extraction\": \"<boolean>\",\n    \"invalidate_cache\": \"<boolean>\",\n    \"outlined_table_extraction\": \"<boolean>\",\n    \"aggressive_table_extraction\": \"<boolean>\",\n    \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n    \"output_pdf_of_document\": \"<boolean>\",\n    \"do_not_cache\": \"<boolean>\",\n    \"fast_mode\": \"<boolean>\",\n    \"skip_diagonal_text\": \"<boolean>\",\n    \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n    \"preserve_very_small_text\": \"<boolean>\",\n    \"gpt4o_mode\": \"<boolean>\",\n    \"gpt4o_api_key\": \"<string>\",\n    \"do_not_unroll_columns\": \"<boolean>\",\n    \"extract_layout\": \"<boolean>\",\n    \"high_res_ocr\": \"<boolean>\",\n    \"html_make_all_elements_visible\": \"<boolean>\",\n    \"layout_aware\": \"<boolean>\",\n    \"specialized_chart_parsing_agentic\": \"<boolean>\",\n    \"specialized_chart_parsing_plus\": \"<boolean>\",\n    \"specialized_chart_parsing_efficient\": \"<boolean>\",\n    \"specialized_image_parsing\": \"<boolean>\",\n    \"precise_bounding_box\": \"<boolean>\",\n    \"line_level_bounding_box\": \"<boolean>\",\n    \"html_remove_navigation_elements\": \"<boolean>\",\n    \"html_remove_fixed_elements\": \"<boolean>\",\n    \"guess_xlsx_sheet_name\": \"<boolean>\",\n    \"page_separator\": \"<string>\",\n    \"bounding_box\": \"<string>\",\n    \"bbox_top\": \"<number>\",\n    \"bbox_right\": \"<number>\",\n    \"bbox_bottom\": \"<number>\",\n    \"bbox_left\": \"<number>\",\n    \"target_pages\": \"<string>\",\n    \"use_vendor_multimodal_model\": \"<boolean>\",\n    \"vendor_multimodal_model_name\": \"<string>\",\n    \"model\": \"<string>\",\n    \"vendor_multimodal_api_key\": \"<string>\",\n    \"page_prefix\": \"<string>\",\n    \"page_suffix\": \"<string>\",\n    \"webhook_url\": \"<string>\",\n    \"preset\": \"<string>\",\n    \"take_screenshot\": \"<boolean>\",\n    \"is_formatting_instruction\": \"<boolean>\",\n    \"premium_mode\": \"<boolean>\",\n    \"continuous_mode\": \"<boolean>\",\n    \"input_s3_path\": \"<string>\",\n    \"input_s3_region\": \"<string>\",\n    \"output_s3_path_prefix\": \"<string>\",\n    \"output_s3_region\": \"<string>\",\n    \"project_id\": \"<string>\",\n    \"azure_openai_deployment_name\": \"<string>\",\n    \"azure_openai_endpoint\": \"<string>\",\n    \"azure_openai_api_version\": \"<string>\",\n    \"azure_openai_key\": \"<string>\",\n    \"input_url\": \"<string>\",\n    \"http_proxy\": \"<string>\",\n    \"auto_mode\": \"<boolean>\",\n    \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n    \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n    \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n    \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n    \"auto_mode_configuration_json\": \"<string>\",\n    \"structured_output\": \"<boolean>\",\n    \"structured_output_json_schema\": \"<string>\",\n    \"structured_output_json_schema_name\": \"<string>\",\n    \"max_pages\": \"<integer>\",\n    \"max_pages_enforced\": \"<integer>\",\n    \"extract_charts\": \"<boolean>\",\n    \"formatting_instruction\": \"<string>\",\n    \"complemental_formatting_instruction\": \"<string>\",\n    \"content_guideline_instruction\": \"<string>\",\n    \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n    \"spreadsheet_force_formula_computation\": \"<boolean>\",\n    \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n    \"inline_images_in_markdown\": \"<boolean>\",\n    \"job_timeout_in_seconds\": \"<number>\",\n    \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n    \"strict_mode_image_extraction\": \"<boolean>\",\n    \"strict_mode_image_ocr\": \"<boolean>\",\n    \"strict_mode_reconstruction\": \"<boolean>\",\n    \"strict_mode_buggy_font\": \"<boolean>\",\n    \"save_images\": \"<boolean>\",\n    \"images_to_save\": [\n      \"embedded\",\n      \"layout\"\n    ],\n    \"hide_headers\": \"<boolean>\",\n    \"hide_footers\": \"<boolean>\",\n    \"page_header_prefix\": \"<string>\",\n    \"page_header_suffix\": \"<string>\",\n    \"page_footer_prefix\": \"<string>\",\n    \"page_footer_suffix\": \"<string>\",\n    \"remove_hidden_text\": \"<boolean>\",\n    \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n    \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n    \"output_tables_as_HTML\": \"<boolean>\",\n    \"internal_is_screenshot_job\": \"<boolean>\",\n    \"parse_mode\": \"parse_page_with_agent\",\n    \"system_prompt\": \"<string>\",\n    \"system_prompt_append\": \"<string>\",\n    \"user_prompt\": \"<string>\",\n    \"page_error_tolerance\": \"<number>\",\n    \"replace_failed_page_mode\": \"blank_page\",\n    \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n    \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n    \"markdown_table_multiline_header_separator\": \"<string>\",\n    \"presentation_out_of_bounds_content\": \"<boolean>\",\n    \"presentation_skip_embedded_data\": \"<boolean>\",\n    \"tier\": \"<string>\",\n    \"version\": \"<string>\",\n    \"extract_printed_page_number\": \"<boolean>\",\n    \"enable_cost_optimizer\": \"<boolean>\"\n  },\n  \"data_sink\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"sink_type\": \"POSTGRES\",\n    \"component\": {\n      \"Loremd\": \"incididunt et aute irure\"\n    },\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  \"status\": \"CREATED\",\n  \"metadata_config\": {\n    \"excluded_embed_metadata_keys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excluded_llm_metadata_keys\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                      "createdAt": "2026-07-28T02:08:45.000Z",
+                                      "updatedAt": "2026-07-28T02:08:45.000Z",
+                                      "uid": "35240-28016309-b53f-4506-873c-354ca173ba82"
+                                    },
+                                    {
+                                      "id": "9b54c0a9-060d-4659-be9a-ced3ae57ee07",
+                                      "name": "Validation Error",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"pipeline_file_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id/sync",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "pipelines",
+                                            ":pipeline_id",
+                                            "data-sources",
+                                            ":data_source_id",
+                                            "sync"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "pipeline_id"
+                                            },
+                                            {
+                                              "key": "data_source_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T02:08:45.000Z",
+                                      "updatedAt": "2026-07-28T02:08:45.000Z",
+                                      "uid": "35240-9b54c0a9-060d-4659-be9a-ced3ae57ee07"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:08:45.000Z",
+                                  "updatedAt": "2026-07-28T02:08:45.000Z",
+                                  "uid": "35240-c9db401f-2e1b-4a3d-8f73-947086fafb3c"
+                                }
+                              ],
+                              "id": "3622a0b3-b089-4ea8-bf39-0eec5229a02d",
+                              "createdAt": "2026-07-28T02:08:45.000Z",
+                              "updatedAt": "2026-07-28T02:08:45.000Z",
+                              "uid": "35240-3622a0b3-b089-4ea8-bf39-0eec5229a02d"
+                            },
+                            {
+                              "name": "status",
+                              "item": [
+                                {
+                                  "name": "Get Pipeline Data Source Status",
+                                  "id": "232a2ca2-a641-4fd5-9596-150ad5695bd4",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id/status",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "data-sources",
+                                        ":data_source_id",
+                                        "status"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "1fbb410a-9e7c-48ea-afc8-231ebd864edb",
+                                          "key": "pipeline_id",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "bf99c7af-49fb-4da8-a3b7-b56f9992a34b",
+                                          "key": "data_source_id",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get the status of a data source for a pipeline."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "7baf4d05-024f-4ee7-9d3f-533882624375",
+                                      "name": "Successful Response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id/status",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "pipelines",
+                                            ":pipeline_id",
+                                            "data-sources",
+                                            ":data_source_id",
+                                            "status"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "pipeline_id"
+                                            },
+                                            {
+                                              "key": "data_source_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"status\": \"CANCELLED\",\n  \"job_id\": \"<uuid>\",\n  \"deployment_date\": \"<dateTime>\",\n  \"error\": [\n    {\n      \"job_id\": \"<uuid>\",\n      \"message\": \"<string>\",\n      \"step\": \"TRANSFORM\"\n    },\n    {\n      \"job_id\": \"<uuid>\",\n      \"message\": \"<string>\",\n      \"step\": \"DATA_SOURCE\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-07-28T02:08:45.000Z",
+                                      "updatedAt": "2026-07-28T02:08:45.000Z",
+                                      "uid": "35240-7baf4d05-024f-4ee7-9d3f-533882624375"
+                                    },
+                                    {
+                                      "id": "c29e4e17-9589-4f55-aceb-3296f28a0b48",
+                                      "name": "Validation Error",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id/status",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "pipelines",
+                                            ":pipeline_id",
+                                            "data-sources",
+                                            ":data_source_id",
+                                            "status"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "pipeline_id"
+                                            },
+                                            {
+                                              "key": "data_source_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T02:08:45.000Z",
+                                      "updatedAt": "2026-07-28T02:08:45.000Z",
+                                      "uid": "35240-c29e4e17-9589-4f55-aceb-3296f28a0b48"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:08:45.000Z",
+                                  "updatedAt": "2026-07-28T02:08:45.000Z",
+                                  "uid": "35240-232a2ca2-a641-4fd5-9596-150ad5695bd4"
+                                }
+                              ],
+                              "id": "427ed1f4-8112-4500-b910-9ac70799c554",
+                              "createdAt": "2026-07-28T02:08:45.000Z",
+                              "updatedAt": "2026-07-28T02:08:45.000Z",
+                              "uid": "35240-427ed1f4-8112-4500-b910-9ac70799c554"
+                            },
+                            {
+                              "name": "Update Pipeline Data Source",
+                              "id": "7fc35c53-0523-4084-b523-f51edad90634",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"sync_interval\": \"<number>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "data-sources",
+                                    ":data_source_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "af4da5d1-c43a-48a5-89d8-85e615632551",
+                                      "key": "pipeline_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "01ea0ff6-1b4b-4804-9fe3-563f387eb102",
+                                      "key": "data_source_id",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Update the configuration of a data source in a pipeline."
+                              },
+                              "response": [
+                                {
+                                  "id": "66825ac2-7b9c-4dfe-b739-562f917d0b93",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"sync_interval\": \"<number>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "data-sources",
+                                        ":data_source_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        },
+                                        {
+                                          "key": "data_source_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"source_type\": \"CONFLUENCE\",\n  \"component\": {\n    \"Excepteur2c\": 7233267.946796179\n  },\n  \"project_id\": \"<uuid>\",\n  \"data_source_id\": \"<uuid>\",\n  \"pipeline_id\": \"<uuid>\",\n  \"last_synced_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"custom_metadata\": {\n    \"sit_aa\": {\n      \"ad_9f1\": 81029664.8077299,\n      \"aute9\": -56994877,\n      \"ut_a7\": \"dolor consectetur id fugiat\",\n      \"amet_8\": 10709003.009016499\n    }\n  },\n  \"version_metadata\": {\n    \"reader_version\": \"2.1\"\n  },\n  \"sync_interval\": \"<number>\",\n  \"sync_schedule_set_by\": \"<string>\",\n  \"status\": \"SUCCESS\",\n  \"status_updated_at\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-07-28T02:08:45.000Z",
+                                  "updatedAt": "2026-07-28T02:08:45.000Z",
+                                  "uid": "35240-66825ac2-7b9c-4dfe-b739-562f917d0b93"
+                                },
+                                {
+                                  "id": "78305d28-1363-48b8-9c6a-cc9363dc4f05",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"sync_interval\": \"<number>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources/:data_source_id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "pipelines",
+                                        ":pipeline_id",
+                                        "data-sources",
+                                        ":data_source_id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "pipeline_id"
+                                        },
+                                        {
+                                          "key": "data_source_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:08:45.000Z",
+                                  "updatedAt": "2026-07-28T02:08:45.000Z",
+                                  "uid": "35240-78305d28-1363-48b8-9c6a-cc9363dc4f05"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:08:45.000Z",
+                              "updatedAt": "2026-07-28T02:08:45.000Z",
+                              "uid": "35240-7fc35c53-0523-4084-b523-f51edad90634"
+                            }
+                          ],
+                          "id": "f148920c-d09b-4e12-808f-83121ee61819",
+                          "createdAt": "2026-07-28T02:08:45.000Z",
+                          "updatedAt": "2026-07-28T02:08:45.000Z",
+                          "uid": "35240-f148920c-d09b-4e12-808f-83121ee61819"
+                        },
+                        {
+                          "name": "List Pipeline Data Sources",
+                          "id": "7a4d5616-ad33-457c-82bd-61bf342f6f69",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "pipelines",
+                                ":pipeline_id",
+                                "data-sources"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "44b529b5-1d14-447f-9fb1-736367b90d7d",
+                                  "key": "pipeline_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get data sources for a pipeline."
+                          },
+                          "response": [
+                            {
+                              "id": "7e6a7848-434a-4324-88af-25a0fe0c1c9e",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "data-sources"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"source_type\": \"S3\",\n    \"component\": {\n      \"non_c\": 35827215,\n      \"eud5f\": \"velit sit\"\n    },\n    \"project_id\": \"<uuid>\",\n    \"data_source_id\": \"<uuid>\",\n    \"pipeline_id\": \"<uuid>\",\n    \"last_synced_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"custom_metadata\": {\n      \"et_c\": {\n        \"quis_d43\": true,\n        \"laborum_9\": true\n      },\n      \"adipisicing_74\": {\n        \"fugiatca\": -77262691,\n        \"Excepteur_2\": -60410214\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"1.0\"\n    },\n    \"sync_interval\": \"<number>\",\n    \"sync_schedule_set_by\": \"<string>\",\n    \"status\": \"IN_PROGRESS\",\n    \"status_updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"source_type\": \"AZURE_STORAGE_BLOB\",\n    \"component\": {\n      \"magna_3a\": -9141742.480719998,\n      \"dolor46\": \"in officia\",\n      \"et32\": \"dolor dolor tempor esse in\"\n    },\n    \"project_id\": \"<uuid>\",\n    \"data_source_id\": \"<uuid>\",\n    \"pipeline_id\": \"<uuid>\",\n    \"last_synced_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"custom_metadata\": {\n      \"elit_51\": {\n        \"amet1e\": 90108903,\n        \"deserunt1\": -76456730.8367734\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"2.1\"\n    },\n    \"sync_interval\": \"<number>\",\n    \"sync_schedule_set_by\": \"<string>\",\n    \"status\": \"NOT_STARTED\",\n    \"status_updated_at\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-07-28T02:08:45.000Z",
+                              "updatedAt": "2026-07-28T02:08:45.000Z",
+                              "uid": "35240-7e6a7848-434a-4324-88af-25a0fe0c1c9e"
+                            },
+                            {
+                              "id": "d13eb395-de53-4257-b8cd-ef3369579b21",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "data-sources"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:45.000Z",
+                              "updatedAt": "2026-07-28T02:08:45.000Z",
+                              "uid": "35240-d13eb395-de53-4257-b8cd-ef3369579b21"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:45.000Z",
+                          "updatedAt": "2026-07-28T02:08:45.000Z",
+                          "uid": "35240-7a4d5616-ad33-457c-82bd-61bf342f6f69"
+                        },
+                        {
+                          "name": "Add Data Sources To Pipeline",
+                          "id": "2a0bc725-7690-4762-a651-b65c302bca6e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  },\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "pipelines",
+                                ":pipeline_id",
+                                "data-sources"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "91bffbcd-830e-4916-8b62-465c897620b1",
+                                  "key": "pipeline_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Add data sources to a pipeline."
+                          },
+                          "response": [
+                            {
+                              "id": "3052830b-b929-4478-a8a4-35760bd0c551",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  },\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "data-sources"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"source_type\": \"SLACK\",\n    \"component\": {\n      \"sedf_b\": 63568021,\n      \"adipisicing8\": 88504163.96713635\n    },\n    \"project_id\": \"<uuid>\",\n    \"data_source_id\": \"<uuid>\",\n    \"pipeline_id\": \"<uuid>\",\n    \"last_synced_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"custom_metadata\": {\n      \"consectetur_b\": {\n        \"est_2\": -38343582\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"1.0\"\n    },\n    \"sync_interval\": \"<number>\",\n    \"sync_schedule_set_by\": \"<string>\",\n    \"status\": \"IN_PROGRESS\",\n    \"status_updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"source_type\": \"JIRA_V2\",\n    \"component\": {\n      \"quis4\": false,\n      \"do_d\": \"fugiat\"\n    },\n    \"project_id\": \"<uuid>\",\n    \"data_source_id\": \"<uuid>\",\n    \"pipeline_id\": \"<uuid>\",\n    \"last_synced_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"custom_metadata\": {\n      \"qui_7a4\": {\n        \"irure_d\": \"velit Ut mollit amet\"\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"2.0\"\n    },\n    \"sync_interval\": \"<number>\",\n    \"sync_schedule_set_by\": \"<string>\",\n    \"status\": \"ERROR\",\n    \"status_updated_at\": \"<dateTime>\"\n  }\n]",
+                              "createdAt": "2026-07-28T02:08:45.000Z",
+                              "updatedAt": "2026-07-28T02:08:45.000Z",
+                              "uid": "35240-3052830b-b929-4478-a8a4-35760bd0c551"
+                            },
+                            {
+                              "id": "716b9f91-c6ee-429d-9e4a-c893bb47bc19",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  },\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/pipelines/:pipeline_id/data-sources",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "pipelines",
+                                    ":pipeline_id",
+                                    "data-sources"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pipeline_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:45.000Z",
+                              "updatedAt": "2026-07-28T02:08:45.000Z",
+                              "uid": "35240-716b9f91-c6ee-429d-9e4a-c893bb47bc19"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:45.000Z",
+                          "updatedAt": "2026-07-28T02:08:45.000Z",
+                          "uid": "35240-2a0bc725-7690-4762-a651-b65c302bca6e"
+                        }
+                      ],
+                      "id": "956c79e3-b942-4763-86ff-f724e53fc403",
+                      "createdAt": "2026-07-28T02:08:45.000Z",
+                      "updatedAt": "2026-07-28T02:08:45.000Z",
+                      "uid": "35240-956c79e3-b942-4763-86ff-f724e53fc403"
+                    }
+                  ],
+                  "id": "a0d33056-502b-425e-be0b-b6ab38ea62de",
+                  "createdAt": "2026-07-28T02:08:45.000Z",
+                  "updatedAt": "2026-07-28T02:08:45.000Z",
+                  "uid": "35240-a0d33056-502b-425e-be0b-b6ab38ea62de"
+                }
+              ],
+              "id": "acd545dc-f5bf-4c94-9008-335585e6d986",
+              "createdAt": "2026-07-28T02:08:45.000Z",
+              "updatedAt": "2026-07-28T02:08:45.000Z",
+              "uid": "35240-acd545dc-f5bf-4c94-9008-335585e6d986"
+            }
+          ],
+          "id": "d806d724-763c-4604-8cfc-74d38364942a",
+          "createdAt": "2026-07-28T02:08:45.000Z",
+          "updatedAt": "2026-07-28T02:08:45.000Z",
+          "uid": "35240-d806d724-763c-4604-8cfc-74d38364942a"
+        }
+      ],
+      "id": "e9cfef68-36f8-40b0-bee3-b2ac268776d7",
+      "createdAt": "2026-07-28T02:08:45.000Z",
+      "updatedAt": "2026-07-28T02:08:45.000Z",
+      "uid": "35240-e9cfef68-36f8-40b0-bee3-b2ac268776d7"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "info": {
+    "_postman_id": "5cf82965-76be-4474-b3b4-3b4fe091ebc1",
+    "name": "Llama Platform Agent Data Usage Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:57.000Z",
+    "updatedAt": "2026-07-28T02:08:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5cf82965-76be-4474-b3b4-3b4fe091ebc1"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "beta",
+              "item": [
+                {
+                  "name": "usage-metrics",
+                  "item": [
+                    {
+                      "name": "List Usage Metrics",
+                      "id": "8bba4468-cc5c-4aa5-903c-4c77a011cac2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/beta/usage-metrics?page_size=<integer>&page_token=<string>&include_total=false&project_id=<uuid>&user_id=<string>&event_types=<string>&event_types=<string>&days=<string>&days=<string>&day_on_or_before=<string>&day_on_or_after=<string>&event_aggregation_type=<string>&event_aggregation_key=<string>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "beta",
+                            "usage-metrics"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of items per page",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Token for pagination",
+                              "key": "page_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include total count in response",
+                              "key": "include_total",
+                              "value": "false"
+                            },
+                            {
+                              "description": "Filter by project ID",
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Filter by user ID",
+                              "key": "user_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by event types",
+                              "key": "event_types",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by event types",
+                              "key": "event_types",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by specific days (YYYY-MM-DD)",
+                              "key": "days",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by specific days (YYYY-MM-DD)",
+                              "key": "days",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by days on or before this date (YYYY-MM-DD)",
+                              "key": "day_on_or_before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by days on or after this date (YYYY-MM-DD)",
+                              "key": "day_on_or_after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by event aggregation type",
+                              "key": "event_aggregation_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by event aggregation key",
+                              "key": "event_aggregation_key",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "List usage metrics with filtering and pagination."
+                      },
+                      "response": [
+                        {
+                          "id": "1af8076a-e318-4d19-bd73-3b8a7b07482d",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/usage-metrics?page_size=<integer>&page_token=<string>&include_total=false&project_id=<uuid>&user_id=<string>&event_types=<string>&days=<string>&day_on_or_before=<string>&day_on_or_after=<string>&event_aggregation_type=<string>&event_aggregation_key=<string>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "usage-metrics"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of items per page",
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Token for pagination",
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Include total count in response",
+                                  "key": "include_total",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Filter by project ID",
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Filter by user ID",
+                                  "key": "user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by event types",
+                                  "key": "event_types",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by specific days (YYYY-MM-DD)",
+                                  "key": "days",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by days on or before this date (YYYY-MM-DD)",
+                                  "key": "day_on_or_before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by days on or after this date (YYYY-MM-DD)",
+                                  "key": "day_on_or_after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by event aggregation type",
+                                  "key": "event_aggregation_type",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by event aggregation key",
+                                  "key": "event_aggregation_key",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"user_id\": \"<string>\",\n      \"event_type\": \"pages_parsed\",\n      \"project_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"value\": \"<integer>\",\n      \"day\": \"<string>\",\n      \"event_aggregation_key\": \"<string>\",\n      \"event_aggregation_type\": \"<string>\",\n      \"properties\": {\n        \"ipsum77\": -39863198,\n        \"in_3b\": -61121758.404927954\n      },\n      \"credits\": \"<number>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"user_id\": \"<string>\",\n      \"event_type\": \"pages_split\",\n      \"project_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"value\": \"<integer>\",\n      \"day\": \"<string>\",\n      \"event_aggregation_key\": \"<string>\",\n      \"event_aggregation_type\": \"<string>\",\n      \"properties\": {\n        \"quis4\": -24549179.357715994\n      },\n      \"credits\": \"<number>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:08:58.000Z",
+                          "updatedAt": "2026-07-28T02:08:58.000Z",
+                          "uid": "35240-1af8076a-e318-4d19-bd73-3b8a7b07482d"
+                        },
+                        {
+                          "id": "ea9b27c6-b0d9-43c2-8c5c-d0c2bc076c31",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/usage-metrics?page_size=<integer>&page_token=<string>&include_total=false&project_id=<uuid>&user_id=<string>&event_types=<string>&days=<string>&day_on_or_before=<string>&day_on_or_after=<string>&event_aggregation_type=<string>&event_aggregation_key=<string>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "usage-metrics"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of items per page",
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Token for pagination",
+                                  "key": "page_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Include total count in response",
+                                  "key": "include_total",
+                                  "value": "false"
+                                },
+                                {
+                                  "description": "Filter by project ID",
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Filter by user ID",
+                                  "key": "user_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by event types",
+                                  "key": "event_types",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by specific days (YYYY-MM-DD)",
+                                  "key": "days",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by days on or before this date (YYYY-MM-DD)",
+                                  "key": "day_on_or_before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by days on or after this date (YYYY-MM-DD)",
+                                  "key": "day_on_or_after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by event aggregation type",
+                                  "key": "event_aggregation_type",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by event aggregation key",
+                                  "key": "event_aggregation_key",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:58.000Z",
+                          "updatedAt": "2026-07-28T02:08:58.000Z",
+                          "uid": "35240-ea9b27c6-b0d9-43c2-8c5c-d0c2bc076c31"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:58.000Z",
+                      "updatedAt": "2026-07-28T02:08:58.000Z",
+                      "uid": "35240-8bba4468-cc5c-4aa5-903c-4c77a011cac2"
+                    }
+                  ],
+                  "id": "1aa42286-e24f-4c2f-847e-4b4b513cebc3",
+                  "createdAt": "2026-07-28T02:08:58.000Z",
+                  "updatedAt": "2026-07-28T02:08:58.000Z",
+                  "uid": "35240-1aa42286-e24f-4c2f-847e-4b4b513cebc3"
+                }
+              ],
+              "id": "d08367b1-c7b2-497f-923f-afa07d651b0b",
+              "createdAt": "2026-07-28T02:08:58.000Z",
+              "updatedAt": "2026-07-28T02:08:58.000Z",
+              "uid": "35240-d08367b1-c7b2-497f-923f-afa07d651b0b"
+            }
+          ],
+          "id": "2e7c80d3-f54e-4824-aaba-47dd1595c8dc",
+          "createdAt": "2026-07-28T02:08:58.000Z",
+          "updatedAt": "2026-07-28T02:08:58.000Z",
+          "uid": "35240-2e7c80d3-f54e-4824-aaba-47dd1595c8dc"
+        }
+      ],
+      "id": "539b2f68-4548-4d89-85e0-97e8a0f853f9",
+      "createdAt": "2026-07-28T02:08:58.000Z",
+      "updatedAt": "2026-07-28T02:08:58.000Z",
+      "uid": "35240-539b2f68-4548-4d89-85e0-97e8a0f853f9"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

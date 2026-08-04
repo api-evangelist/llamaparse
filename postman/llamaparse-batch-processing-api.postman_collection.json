@@ -1,0 +1,1432 @@
+{
+  "info": {
+    "_postman_id": "56a6f685-1ee7-454a-b526-9fcecb62368a",
+    "name": "Llama Platform Agent Data Batch Processing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:34.000Z",
+    "updatedAt": "2026-07-28T02:07:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-56a6f685-1ee7-454a-b526-9fcecb62368a"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "beta",
+              "item": [
+                {
+                  "name": "batch-processing",
+                  "item": [
+                    {
+                      "name": "{job_id}",
+                      "item": [
+                        {
+                          "name": "items",
+                          "item": [
+                            {
+                              "name": "List Batch Job Items",
+                              "id": "d0723d02-c818-4bc8-b615-a77047bfb28f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id/items?status=completed&limit=100&offset=0&project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "batch-processing",
+                                    ":job_id",
+                                    "items"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter items by status",
+                                      "key": "status",
+                                      "value": "completed"
+                                    },
+                                    {
+                                      "description": "Maximum number of items to return",
+                                      "key": "limit",
+                                      "value": "100"
+                                    },
+                                    {
+                                      "description": "Number of items to skip",
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ce5f936d-ca10-4d2d-b71a-0a6f76c667e0",
+                                      "key": "job_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "List items in a batch job with optional status filtering.\n\nUseful for finding failed items, viewing completed items,\nor debugging processing issues."
+                              },
+                              "response": [
+                                {
+                                  "id": "12ba9788-0c61-43ca-8b58-03c062b06f4b",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id/items?status=completed&limit=100&offset=0&project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "batch-processing",
+                                        ":job_id",
+                                        "items"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter items by status",
+                                          "key": "status",
+                                          "value": "completed"
+                                        },
+                                        {
+                                          "description": "Maximum number of items to return",
+                                          "key": "limit",
+                                          "value": "100"
+                                        },
+                                        {
+                                          "description": "Number of items to skip",
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"status\": \"failed\",\n      \"item_id\": \"<string>\",\n      \"item_name\": \"<string>\",\n      \"effective_at\": \"<dateTime>\",\n      \"job_record_id\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"job_id\": \"<string>\",\n      \"skip_reason\": \"<string>\",\n      \"started_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\"\n    },\n    {\n      \"status\": \"processing\",\n      \"item_id\": \"<string>\",\n      \"item_name\": \"<string>\",\n      \"effective_at\": \"<dateTime>\",\n      \"job_record_id\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"job_id\": \"<string>\",\n      \"skip_reason\": \"<string>\",\n      \"started_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T02:07:35.000Z",
+                                  "updatedAt": "2026-07-28T02:07:35.000Z",
+                                  "uid": "35240-12ba9788-0c61-43ca-8b58-03c062b06f4b"
+                                },
+                                {
+                                  "id": "16253ff5-c5b7-4a0b-aed5-eb6024466476",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id/items?status=completed&limit=100&offset=0&project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "batch-processing",
+                                        ":job_id",
+                                        "items"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter items by status",
+                                          "key": "status",
+                                          "value": "completed"
+                                        },
+                                        {
+                                          "description": "Maximum number of items to return",
+                                          "key": "limit",
+                                          "value": "100"
+                                        },
+                                        {
+                                          "description": "Number of items to skip",
+                                          "key": "offset",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:07:35.000Z",
+                                  "updatedAt": "2026-07-28T02:07:35.000Z",
+                                  "uid": "35240-16253ff5-c5b7-4a0b-aed5-eb6024466476"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:07:35.000Z",
+                              "updatedAt": "2026-07-28T02:07:35.000Z",
+                              "uid": "35240-d0723d02-c818-4bc8-b615-a77047bfb28f"
+                            }
+                          ],
+                          "id": "ca482668-2f83-4871-a778-1818bd15d350",
+                          "createdAt": "2026-07-28T02:07:35.000Z",
+                          "updatedAt": "2026-07-28T02:07:35.000Z",
+                          "uid": "35240-ca482668-2f83-4871-a778-1818bd15d350"
+                        },
+                        {
+                          "name": "cancel",
+                          "item": [
+                            {
+                              "name": "Cancel Batch Job",
+                              "id": "6374b240-19db-4594-a228-16ea0b860258",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "temporal-namespace",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id/cancel?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "batch-processing",
+                                    ":job_id",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "500ab594-d2c7-432c-8d42-01ee2cbabaee",
+                                      "key": "job_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Cancel a running batch processing job.\n\nStops processing and marks pending items as cancelled.\nItems currently being processed may still complete."
+                              },
+                              "response": [
+                                {
+                                  "id": "eaf16695-b6b7-40f9-b004-a899d6cec2d7",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "temporal-namespace",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"reason\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id/cancel?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "batch-processing",
+                                        ":job_id",
+                                        "cancel"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"job_id\": \"<string>\",\n  \"status\": \"completed\",\n  \"processed_items\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:07:35.000Z",
+                                  "updatedAt": "2026-07-28T02:07:35.000Z",
+                                  "uid": "35240-eaf16695-b6b7-40f9-b004-a899d6cec2d7"
+                                },
+                                {
+                                  "id": "44a0aa52-25a0-4ba7-9bad-0cd58e784e75",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "temporal-namespace",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"reason\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id/cancel?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "batch-processing",
+                                        ":job_id",
+                                        "cancel"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "job_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:07:35.000Z",
+                                  "updatedAt": "2026-07-28T02:07:35.000Z",
+                                  "uid": "35240-44a0aa52-25a0-4ba7-9bad-0cd58e784e75"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:07:35.000Z",
+                              "updatedAt": "2026-07-28T02:07:35.000Z",
+                              "uid": "35240-6374b240-19db-4594-a228-16ea0b860258"
+                            }
+                          ],
+                          "id": "2d0d948a-f852-431a-8de7-2dfcad2618b1",
+                          "createdAt": "2026-07-28T02:07:35.000Z",
+                          "updatedAt": "2026-07-28T02:07:35.000Z",
+                          "uid": "35240-2d0d948a-f852-431a-8de7-2dfcad2618b1"
+                        },
+                        {
+                          "name": "Get Batch Job Status",
+                          "id": "e716a998-d672-4214-b89c-1f57195d3731",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "batch-processing",
+                                ":job_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "94eb6ab0-d7e0-49b7-b239-3bbab42c1606",
+                                  "key": "job_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get detailed status of a batch processing job.\n\nReturns current progress percentage, file counts (total,\nprocessed, failed, skipped), and timestamps."
+                          },
+                          "response": [
+                            {
+                              "id": "77656e6e-771c-4993-9721-f284781afe17",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "batch-processing",
+                                    ":job_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"job\": {\n    \"status\": \"failed\",\n    \"id\": \"<string>\",\n    \"project_id\": \"<string>\",\n    \"job_type\": \"classify\",\n    \"total_items\": \"<integer>\",\n    \"effective_at\": \"<dateTime>\",\n    \"job_record_id\": \"<string>\",\n    \"error_message\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"directory_id\": \"<string>\",\n    \"processed_items\": 0,\n    \"failed_items\": 0,\n    \"skipped_items\": 0,\n    \"workflow_id\": \"<string>\",\n    \"started_at\": \"<dateTime>\",\n    \"completed_at\": \"<dateTime>\"\n  },\n  \"progress_percentage\": \"<number>\"\n}",
+                              "createdAt": "2026-07-28T02:07:35.000Z",
+                              "updatedAt": "2026-07-28T02:07:35.000Z",
+                              "uid": "35240-77656e6e-771c-4993-9721-f284781afe17"
+                            },
+                            {
+                              "id": "5ec9d0e3-0751-460a-ba43-80a1f389a883",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "batch-processing",
+                                    ":job_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:35.000Z",
+                              "updatedAt": "2026-07-28T02:07:35.000Z",
+                              "uid": "35240-5ec9d0e3-0751-460a-ba43-80a1f389a883"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:35.000Z",
+                          "updatedAt": "2026-07-28T02:07:35.000Z",
+                          "uid": "35240-e716a998-d672-4214-b89c-1f57195d3731"
+                        }
+                      ],
+                      "id": "d8ab5f83-e552-4187-b67f-0f57b0cf1311",
+                      "createdAt": "2026-07-28T02:07:35.000Z",
+                      "updatedAt": "2026-07-28T02:07:35.000Z",
+                      "uid": "35240-d8ab5f83-e552-4187-b67f-0f57b0cf1311"
+                    },
+                    {
+                      "name": "items",
+                      "item": [
+                        {
+                          "name": "{item_id}",
+                          "item": [
+                            {
+                              "name": "processing-results",
+                              "item": [
+                                {
+                                  "name": "Get Item Processing Results",
+                                  "id": "375297e2-b9bb-47b7-8964-598bf73baa7b",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/beta/batch-processing/items/:item_id/processing-results?job_type=classify&project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "beta",
+                                        "batch-processing",
+                                        "items",
+                                        ":item_id",
+                                        "processing-results"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter results by job type",
+                                          "key": "job_type",
+                                          "value": "classify"
+                                        },
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e961ead2-3ee7-4430-9206-6049e18f46c4",
+                                          "key": "item_id",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get all processing results for a specific item.\n\nReturns the complete processing history for an item including\nwhat operations were performed, parameters used, and where\noutputs are stored. Optionally filter by `job_type`."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c50057cc-b983-43bb-9f2b-91f9a201f392",
+                                      "name": "Successful Response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/beta/batch-processing/items/:item_id/processing-results?job_type=classify&project_id=<uuid>&organization_id=<uuid>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "beta",
+                                            "batch-processing",
+                                            "items",
+                                            ":item_id",
+                                            "processing-results"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Filter results by job type",
+                                              "key": "job_type",
+                                              "value": "classify"
+                                            },
+                                            {
+                                              "key": "project_id",
+                                              "value": "<uuid>"
+                                            },
+                                            {
+                                              "key": "organization_id",
+                                              "value": "<uuid>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "item_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"item_id\": \"<string>\",\n  \"item_name\": \"<string>\",\n  \"processing_results\": [\n    {\n      \"result_id\": \"<string>\",\n      \"item_id\": \"<string>\",\n      \"job_type\": \"parse\",\n      \"job_config\": {\n        \"job_name\": \"parse_raw_file_job\",\n        \"partitions\": {\n          \"in_ff2\": \"<uuid>\"\n        },\n        \"parameters\": {\n          \"webhook_configurations\": [\n            {\n              \"webhook_url\": \"<string>\",\n              \"webhook_headers\": {\n                \"deserunt_b_\": \"<string>\",\n                \"culpad7\": \"<string>\"\n              },\n              \"webhook_events\": [\n                \"extract.pending\",\n                \"parse.success\"\n              ],\n              \"webhook_output_format\": \"<string>\"\n            },\n            {\n              \"webhook_url\": \"<string>\",\n              \"webhook_headers\": {\n                \"ine\": \"<string>\",\n                \"voluptate75\": \"<string>\"\n              },\n              \"webhook_events\": [\n                \"classify.running\",\n                \"classify.success\"\n              ],\n              \"webhook_output_format\": \"<string>\"\n            }\n          ],\n          \"priority\": \"medium\",\n          \"custom_metadata\": {\n            \"dolorb\": 63957516,\n            \"adipisicing_5f\": 13067770,\n            \"aute_a2\": 62643891\n          },\n          \"resource_info\": {\n            \"deserunt6\": \"in non ullamco laborum\",\n            \"velit7e\": \"in in\",\n            \"essed\": -57627302,\n            \"sint8a\": 15230277\n          },\n          \"languages\": [\n            \"lez\"\n          ],\n          \"parsing_instruction\": \"<string>\",\n          \"disable_ocr\": \"<boolean>\",\n          \"annotate_links\": \"<boolean>\",\n          \"adaptive_long_table\": \"<boolean>\",\n          \"compact_markdown_table\": \"<boolean>\",\n          \"disable_reconstruction\": \"<boolean>\",\n          \"disable_image_extraction\": \"<boolean>\",\n          \"invalidate_cache\": \"<boolean>\",\n          \"outlined_table_extraction\": \"<boolean>\",\n          \"aggressive_table_extraction\": \"<boolean>\",\n          \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n          \"output_pdf_of_document\": \"<boolean>\",\n          \"do_not_cache\": \"<boolean>\",\n          \"fast_mode\": \"<boolean>\",\n          \"skip_diagonal_text\": \"<boolean>\",\n          \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n          \"preserve_very_small_text\": \"<boolean>\",\n          \"gpt4o_mode\": \"<boolean>\",\n          \"gpt4o_api_key\": \"<string>\",\n          \"do_not_unroll_columns\": \"<boolean>\",\n          \"extract_layout\": \"<boolean>\",\n          \"high_res_ocr\": \"<boolean>\",\n          \"html_make_all_elements_visible\": \"<boolean>\",\n          \"layout_aware\": \"<boolean>\",\n          \"specialized_chart_parsing_agentic\": \"<boolean>\",\n          \"specialized_chart_parsing_plus\": \"<boolean>\",\n          \"specialized_chart_parsing_efficient\": \"<boolean>\",\n          \"specialized_image_parsing\": \"<boolean>\",\n          \"precise_bounding_box\": \"<boolean>\",\n          \"line_level_bounding_box\": \"<boolean>\",\n          \"html_remove_navigation_elements\": \"<boolean>\",\n          \"html_remove_fixed_elements\": \"<boolean>\",\n          \"guess_xlsx_sheet_name\": \"<boolean>\",\n          \"page_separator\": \"<string>\",\n          \"bounding_box\": \"<string>\",\n          \"bbox_top\": \"<number>\",\n          \"bbox_right\": \"<number>\",\n          \"bbox_bottom\": \"<number>\",\n          \"bbox_left\": \"<number>\",\n          \"target_pages\": \"<string>\",\n          \"use_vendor_multimodal_model\": \"<boolean>\",\n          \"vendor_multimodal_model_name\": \"<string>\",\n          \"model\": \"<string>\",\n          \"vendor_multimodal_api_key\": \"<string>\",\n          \"page_prefix\": \"<string>\",\n          \"page_suffix\": \"<string>\",\n          \"webhook_url\": \"<string>\",\n          \"preset\": \"<string>\",\n          \"take_screenshot\": \"<boolean>\",\n          \"is_formatting_instruction\": \"<boolean>\",\n          \"premium_mode\": \"<boolean>\",\n          \"continuous_mode\": \"<boolean>\",\n          \"input_s3_path\": \"<string>\",\n          \"input_s3_region\": \"<string>\",\n          \"output_s3_path_prefix\": \"<string>\",\n          \"output_s3_region\": \"<string>\",\n          \"project_id\": \"<string>\",\n          \"azure_openai_deployment_name\": \"<string>\",\n          \"azure_openai_endpoint\": \"<string>\",\n          \"azure_openai_api_version\": \"<string>\",\n          \"azure_openai_key\": \"<string>\",\n          \"input_url\": \"<string>\",\n          \"http_proxy\": \"<string>\",\n          \"auto_mode\": \"<boolean>\",\n          \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n          \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n          \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n          \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n          \"auto_mode_configuration_json\": \"<string>\",\n          \"structured_output\": \"<boolean>\",\n          \"structured_output_json_schema\": \"<string>\",\n          \"structured_output_json_schema_name\": \"<string>\",\n          \"max_pages\": \"<integer>\",\n          \"max_pages_enforced\": \"<integer>\",\n          \"extract_charts\": \"<boolean>\",\n          \"formatting_instruction\": \"<string>\",\n          \"complemental_formatting_instruction\": \"<string>\",\n          \"content_guideline_instruction\": \"<string>\",\n          \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n          \"spreadsheet_force_formula_computation\": \"<boolean>\",\n          \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n          \"inline_images_in_markdown\": \"<boolean>\",\n          \"job_timeout_in_seconds\": \"<number>\",\n          \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n          \"strict_mode_image_extraction\": \"<boolean>\",\n          \"strict_mode_image_ocr\": \"<boolean>\",\n          \"strict_mode_reconstruction\": \"<boolean>\",\n          \"strict_mode_buggy_font\": \"<boolean>\",\n          \"save_images\": \"<boolean>\",\n          \"images_to_save\": [\n            \"embedded\",\n            \"layout\"\n          ],\n          \"hide_headers\": \"<boolean>\",\n          \"hide_footers\": \"<boolean>\",\n          \"page_header_prefix\": \"<string>\",\n          \"page_header_suffix\": \"<string>\",\n          \"page_footer_prefix\": \"<string>\",\n          \"page_footer_suffix\": \"<string>\",\n          \"remove_hidden_text\": \"<boolean>\",\n          \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n          \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n          \"output_tables_as_HTML\": \"<boolean>\",\n          \"internal_is_screenshot_job\": \"<boolean>\",\n          \"parse_mode\": \"parse_page_with_lvm\",\n          \"system_prompt\": \"<string>\",\n          \"system_prompt_append\": \"<string>\",\n          \"user_prompt\": \"<string>\",\n          \"page_error_tolerance\": \"<number>\",\n          \"replace_failed_page_mode\": \"blank_page\",\n          \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n          \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n          \"markdown_table_multiline_header_separator\": \"<string>\",\n          \"presentation_out_of_bounds_content\": \"<boolean>\",\n          \"presentation_skip_embedded_data\": \"<boolean>\",\n          \"tier\": \"<string>\",\n          \"version\": \"<string>\",\n          \"extract_printed_page_number\": \"<boolean>\",\n          \"enable_cost_optimizer\": \"<boolean>\",\n          \"type\": \"parse\",\n          \"lang\": \"en\",\n          \"outputBucket\": \"<string>\",\n          \"pipeline_id\": \"<string>\"\n        },\n        \"session_id\": \"<uuid>\",\n        \"correlation_id\": \"<uuid>\",\n        \"parent_job_execution_id\": \"<uuid>\",\n        \"user_id\": \"<string>\",\n        \"project_id\": \"<uuid>\",\n        \"webhook_url\": \"<string>\"\n      },\n      \"parameters_hash\": \"<string>\",\n      \"output_s3_path\": \"<string>\",\n      \"processed_at\": \"<dateTime>\",\n      \"output_metadata\": {}\n    },\n    {\n      \"result_id\": \"<string>\",\n      \"item_id\": \"<string>\",\n      \"job_type\": \"classify\",\n      \"job_config\": {\n        \"job_name\": \"parse_raw_file_job\",\n        \"partitions\": {\n          \"etb6\": \"<uuid>\"\n        },\n        \"parameters\": {\n          \"webhook_configurations\": [\n            {\n              \"webhook_url\": \"<string>\",\n              \"webhook_headers\": {\n                \"nulla1\": \"<string>\"\n              },\n              \"webhook_events\": [\n                \"parse.partial_success\",\n                \"parse.error\"\n              ],\n              \"webhook_output_format\": \"<string>\"\n            },\n            {\n              \"webhook_url\": \"<string>\",\n              \"webhook_headers\": {\n                \"aute_8a3\": \"<string>\"\n              },\n              \"webhook_events\": [\n                \"extract.error\",\n                \"parse.pending\"\n              ],\n              \"webhook_output_format\": \"<string>\"\n            }\n          ],\n          \"priority\": \"critical\",\n          \"custom_metadata\": {\n            \"deseruntde\": false,\n            \"laborebf6\": true\n          },\n          \"resource_info\": {\n            \"consectetur_d53\": \"ipsum aute velit nostrud\",\n            \"adipisicingbeb\": -65107961.148105174\n          },\n          \"languages\": [\n            \"ar\"\n          ],\n          \"parsing_instruction\": \"<string>\",\n          \"disable_ocr\": \"<boolean>\",\n          \"annotate_links\": \"<boolean>\",\n          \"adaptive_long_table\": \"<boolean>\",\n          \"compact_markdown_table\": \"<boolean>\",\n          \"disable_reconstruction\": \"<boolean>\",\n          \"disable_image_extraction\": \"<boolean>\",\n          \"invalidate_cache\": \"<boolean>\",\n          \"outlined_table_extraction\": \"<boolean>\",\n          \"aggressive_table_extraction\": \"<boolean>\",\n          \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n          \"output_pdf_of_document\": \"<boolean>\",\n          \"do_not_cache\": \"<boolean>\",\n          \"fast_mode\": \"<boolean>\",\n          \"skip_diagonal_text\": \"<boolean>\",\n          \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n          \"preserve_very_small_text\": \"<boolean>\",\n          \"gpt4o_mode\": \"<boolean>\",\n          \"gpt4o_api_key\": \"<string>\",\n          \"do_not_unroll_columns\": \"<boolean>\",\n          \"extract_layout\": \"<boolean>\",\n          \"high_res_ocr\": \"<boolean>\",\n          \"html_make_all_elements_visible\": \"<boolean>\",\n          \"layout_aware\": \"<boolean>\",\n          \"specialized_chart_parsing_agentic\": \"<boolean>\",\n          \"specialized_chart_parsing_plus\": \"<boolean>\",\n          \"specialized_chart_parsing_efficient\": \"<boolean>\",\n          \"specialized_image_parsing\": \"<boolean>\",\n          \"precise_bounding_box\": \"<boolean>\",\n          \"line_level_bounding_box\": \"<boolean>\",\n          \"html_remove_navigation_elements\": \"<boolean>\",\n          \"html_remove_fixed_elements\": \"<boolean>\",\n          \"guess_xlsx_sheet_name\": \"<boolean>\",\n          \"page_separator\": \"<string>\",\n          \"bounding_box\": \"<string>\",\n          \"bbox_top\": \"<number>\",\n          \"bbox_right\": \"<number>\",\n          \"bbox_bottom\": \"<number>\",\n          \"bbox_left\": \"<number>\",\n          \"target_pages\": \"<string>\",\n          \"use_vendor_multimodal_model\": \"<boolean>\",\n          \"vendor_multimodal_model_name\": \"<string>\",\n          \"model\": \"<string>\",\n          \"vendor_multimodal_api_key\": \"<string>\",\n          \"page_prefix\": \"<string>\",\n          \"page_suffix\": \"<string>\",\n          \"webhook_url\": \"<string>\",\n          \"preset\": \"<string>\",\n          \"take_screenshot\": \"<boolean>\",\n          \"is_formatting_instruction\": \"<boolean>\",\n          \"premium_mode\": \"<boolean>\",\n          \"continuous_mode\": \"<boolean>\",\n          \"input_s3_path\": \"<string>\",\n          \"input_s3_region\": \"<string>\",\n          \"output_s3_path_prefix\": \"<string>\",\n          \"output_s3_region\": \"<string>\",\n          \"project_id\": \"<string>\",\n          \"azure_openai_deployment_name\": \"<string>\",\n          \"azure_openai_endpoint\": \"<string>\",\n          \"azure_openai_api_version\": \"<string>\",\n          \"azure_openai_key\": \"<string>\",\n          \"input_url\": \"<string>\",\n          \"http_proxy\": \"<string>\",\n          \"auto_mode\": \"<boolean>\",\n          \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n          \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n          \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n          \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n          \"auto_mode_configuration_json\": \"<string>\",\n          \"structured_output\": \"<boolean>\",\n          \"structured_output_json_schema\": \"<string>\",\n          \"structured_output_json_schema_name\": \"<string>\",\n          \"max_pages\": \"<integer>\",\n          \"max_pages_enforced\": \"<integer>\",\n          \"extract_charts\": \"<boolean>\",\n          \"formatting_instruction\": \"<string>\",\n          \"complemental_formatting_instruction\": \"<string>\",\n          \"content_guideline_instruction\": \"<string>\",\n          \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n          \"spreadsheet_force_formula_computation\": \"<boolean>\",\n          \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n          \"inline_images_in_markdown\": \"<boolean>\",\n          \"job_timeout_in_seconds\": \"<number>\",\n          \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n          \"strict_mode_image_extraction\": \"<boolean>\",\n          \"strict_mode_image_ocr\": \"<boolean>\",\n          \"strict_mode_reconstruction\": \"<boolean>\",\n          \"strict_mode_buggy_font\": \"<boolean>\",\n          \"save_images\": \"<boolean>\",\n          \"images_to_save\": [\n            \"screenshot\",\n            \"layout\"\n          ],\n          \"hide_headers\": \"<boolean>\",\n          \"hide_footers\": \"<boolean>\",\n          \"page_header_prefix\": \"<string>\",\n          \"page_header_suffix\": \"<string>\",\n          \"page_footer_prefix\": \"<string>\",\n          \"page_footer_suffix\": \"<string>\",\n          \"remove_hidden_text\": \"<boolean>\",\n          \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n          \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n          \"output_tables_as_HTML\": \"<boolean>\",\n          \"internal_is_screenshot_job\": \"<boolean>\",\n          \"parse_mode\": \"parse_document_with_llm\",\n          \"system_prompt\": \"<string>\",\n          \"system_prompt_append\": \"<string>\",\n          \"user_prompt\": \"<string>\",\n          \"page_error_tolerance\": \"<number>\",\n          \"replace_failed_page_mode\": \"error_message\",\n          \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n          \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n          \"markdown_table_multiline_header_separator\": \"<string>\",\n          \"presentation_out_of_bounds_content\": \"<boolean>\",\n          \"presentation_skip_embedded_data\": \"<boolean>\",\n          \"tier\": \"<string>\",\n          \"version\": \"<string>\",\n          \"extract_printed_page_number\": \"<boolean>\",\n          \"enable_cost_optimizer\": \"<boolean>\",\n          \"type\": \"parse\",\n          \"lang\": \"en\",\n          \"outputBucket\": \"<string>\",\n          \"pipeline_id\": \"<string>\"\n        },\n        \"session_id\": \"<uuid>\",\n        \"correlation_id\": \"<uuid>\",\n        \"parent_job_execution_id\": \"<uuid>\",\n        \"user_id\": \"<string>\",\n        \"project_id\": \"<uuid>\",\n        \"webhook_url\": \"<string>\"\n      },\n      \"parameters_hash\": \"<string>\",\n      \"output_s3_path\": \"<string>\",\n      \"processed_at\": \"<dateTime>\",\n      \"output_metadata\": {}\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T02:07:35.000Z",
+                                      "updatedAt": "2026-07-28T02:07:35.000Z",
+                                      "uid": "35240-c50057cc-b983-43bb-9f2b-91f9a201f392"
+                                    },
+                                    {
+                                      "id": "9ae609f4-2170-4a49-829d-2fba4b0efa3c",
+                                      "name": "Validation Error",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/beta/batch-processing/items/:item_id/processing-results?job_type=classify&project_id=<uuid>&organization_id=<uuid>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "beta",
+                                            "batch-processing",
+                                            "items",
+                                            ":item_id",
+                                            "processing-results"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Filter results by job type",
+                                              "key": "job_type",
+                                              "value": "classify"
+                                            },
+                                            {
+                                              "key": "project_id",
+                                              "value": "<uuid>"
+                                            },
+                                            {
+                                              "key": "organization_id",
+                                              "value": "<uuid>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "item_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                      "code": 422,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T02:07:35.000Z",
+                                      "updatedAt": "2026-07-28T02:07:35.000Z",
+                                      "uid": "35240-9ae609f4-2170-4a49-829d-2fba4b0efa3c"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:07:35.000Z",
+                                  "updatedAt": "2026-07-28T02:07:35.000Z",
+                                  "uid": "35240-375297e2-b9bb-47b7-8964-598bf73baa7b"
+                                }
+                              ],
+                              "id": "81c1b4fc-68dd-4747-bf62-e4ffb3bba1b8",
+                              "createdAt": "2026-07-28T02:07:35.000Z",
+                              "updatedAt": "2026-07-28T02:07:35.000Z",
+                              "uid": "35240-81c1b4fc-68dd-4747-bf62-e4ffb3bba1b8"
+                            }
+                          ],
+                          "id": "117e13cf-b948-4ddd-97bc-e9407b570500",
+                          "createdAt": "2026-07-28T02:07:35.000Z",
+                          "updatedAt": "2026-07-28T02:07:35.000Z",
+                          "uid": "35240-117e13cf-b948-4ddd-97bc-e9407b570500"
+                        }
+                      ],
+                      "id": "f0f08c34-2d37-4bd6-b1e9-0bf3a719d70e",
+                      "createdAt": "2026-07-28T02:07:35.000Z",
+                      "updatedAt": "2026-07-28T02:07:35.000Z",
+                      "uid": "35240-f0f08c34-2d37-4bd6-b1e9-0bf3a719d70e"
+                    },
+                    {
+                      "name": "Create Batch Job",
+                      "id": "bb987c68-c7f5-4ecb-9f42-ff09831c1966",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "temporal-namespace",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"job_config\": {\n    \"job_name\": \"parse_raw_file_job\",\n    \"partitions\": {\n      \"aliquip__9\": \"<uuid>\"\n    },\n    \"parameters\": {\n      \"webhook_configurations\": [\n        {\n          \"webhook_url\": \"<string>\",\n          \"webhook_headers\": {\n            \"in964\": \"<string>\"\n          },\n          \"webhook_events\": [\n            \"parse.running\",\n            \"parse.cancelled\"\n          ],\n          \"webhook_output_format\": \"<string>\"\n        },\n        {\n          \"webhook_url\": \"<string>\",\n          \"webhook_headers\": {\n            \"adipisicing5_\": \"<string>\"\n          },\n          \"webhook_events\": [\n            \"parse.success\",\n            \"parse.error\"\n          ],\n          \"webhook_output_format\": \"<string>\"\n        }\n      ],\n      \"priority\": \"high\",\n      \"custom_metadata\": {\n        \"velit_b\": -79414210.77209641\n      },\n      \"resource_info\": {\n        \"Lorem6ce\": true,\n        \"fugiat1f\": \"veniam sint proident\"\n      },\n      \"languages\": [\n        \"bs\"\n      ],\n      \"parsing_instruction\": \"<string>\",\n      \"disable_ocr\": \"<boolean>\",\n      \"annotate_links\": \"<boolean>\",\n      \"adaptive_long_table\": \"<boolean>\",\n      \"compact_markdown_table\": \"<boolean>\",\n      \"disable_reconstruction\": \"<boolean>\",\n      \"disable_image_extraction\": \"<boolean>\",\n      \"invalidate_cache\": \"<boolean>\",\n      \"outlined_table_extraction\": \"<boolean>\",\n      \"aggressive_table_extraction\": \"<boolean>\",\n      \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n      \"output_pdf_of_document\": \"<boolean>\",\n      \"do_not_cache\": \"<boolean>\",\n      \"fast_mode\": \"<boolean>\",\n      \"skip_diagonal_text\": \"<boolean>\",\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"gpt4o_mode\": \"<boolean>\",\n      \"gpt4o_api_key\": \"<string>\",\n      \"do_not_unroll_columns\": \"<boolean>\",\n      \"extract_layout\": \"<boolean>\",\n      \"high_res_ocr\": \"<boolean>\",\n      \"html_make_all_elements_visible\": \"<boolean>\",\n      \"layout_aware\": \"<boolean>\",\n      \"specialized_chart_parsing_agentic\": \"<boolean>\",\n      \"specialized_chart_parsing_plus\": \"<boolean>\",\n      \"specialized_chart_parsing_efficient\": \"<boolean>\",\n      \"specialized_image_parsing\": \"<boolean>\",\n      \"precise_bounding_box\": \"<boolean>\",\n      \"line_level_bounding_box\": \"<boolean>\",\n      \"html_remove_navigation_elements\": \"<boolean>\",\n      \"html_remove_fixed_elements\": \"<boolean>\",\n      \"guess_xlsx_sheet_name\": \"<boolean>\",\n      \"page_separator\": \"<string>\",\n      \"bounding_box\": \"<string>\",\n      \"bbox_top\": \"<number>\",\n      \"bbox_right\": \"<number>\",\n      \"bbox_bottom\": \"<number>\",\n      \"bbox_left\": \"<number>\",\n      \"target_pages\": \"<string>\",\n      \"use_vendor_multimodal_model\": \"<boolean>\",\n      \"vendor_multimodal_model_name\": \"<string>\",\n      \"model\": \"<string>\",\n      \"vendor_multimodal_api_key\": \"<string>\",\n      \"page_prefix\": \"<string>\",\n      \"page_suffix\": \"<string>\",\n      \"webhook_url\": \"<string>\",\n      \"preset\": \"<string>\",\n      \"take_screenshot\": \"<boolean>\",\n      \"is_formatting_instruction\": \"<boolean>\",\n      \"premium_mode\": \"<boolean>\",\n      \"continuous_mode\": \"<boolean>\",\n      \"input_s3_path\": \"<string>\",\n      \"input_s3_region\": \"<string>\",\n      \"output_s3_path_prefix\": \"<string>\",\n      \"output_s3_region\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"azure_openai_deployment_name\": \"<string>\",\n      \"azure_openai_endpoint\": \"<string>\",\n      \"azure_openai_api_version\": \"<string>\",\n      \"azure_openai_key\": \"<string>\",\n      \"input_url\": \"<string>\",\n      \"http_proxy\": \"<string>\",\n      \"auto_mode\": \"<boolean>\",\n      \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n      \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n      \"auto_mode_configuration_json\": \"<string>\",\n      \"structured_output\": \"<boolean>\",\n      \"structured_output_json_schema\": \"<string>\",\n      \"structured_output_json_schema_name\": \"<string>\",\n      \"max_pages\": \"<integer>\",\n      \"max_pages_enforced\": \"<integer>\",\n      \"extract_charts\": \"<boolean>\",\n      \"formatting_instruction\": \"<string>\",\n      \"complemental_formatting_instruction\": \"<string>\",\n      \"content_guideline_instruction\": \"<string>\",\n      \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n      \"spreadsheet_force_formula_computation\": \"<boolean>\",\n      \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n      \"inline_images_in_markdown\": \"<boolean>\",\n      \"job_timeout_in_seconds\": \"<number>\",\n      \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n      \"strict_mode_image_extraction\": \"<boolean>\",\n      \"strict_mode_image_ocr\": \"<boolean>\",\n      \"strict_mode_reconstruction\": \"<boolean>\",\n      \"strict_mode_buggy_font\": \"<boolean>\",\n      \"save_images\": \"<boolean>\",\n      \"images_to_save\": [\n        \"embedded\",\n        \"layout\"\n      ],\n      \"hide_headers\": \"<boolean>\",\n      \"hide_footers\": \"<boolean>\",\n      \"page_header_prefix\": \"<string>\",\n      \"page_header_suffix\": \"<string>\",\n      \"page_footer_prefix\": \"<string>\",\n      \"page_footer_suffix\": \"<string>\",\n      \"remove_hidden_text\": \"<boolean>\",\n      \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n      \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n      \"output_tables_as_HTML\": \"<boolean>\",\n      \"internal_is_screenshot_job\": \"<boolean>\",\n      \"parse_mode\": \"parse_document_with_lvm\",\n      \"system_prompt\": \"<string>\",\n      \"system_prompt_append\": \"<string>\",\n      \"user_prompt\": \"<string>\",\n      \"page_error_tolerance\": \"<number>\",\n      \"replace_failed_page_mode\": \"blank_page\",\n      \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n      \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n      \"markdown_table_multiline_header_separator\": \"<string>\",\n      \"presentation_out_of_bounds_content\": \"<boolean>\",\n      \"presentation_skip_embedded_data\": \"<boolean>\",\n      \"tier\": \"<string>\",\n      \"version\": \"<string>\",\n      \"extract_printed_page_number\": \"<boolean>\",\n      \"enable_cost_optimizer\": \"<boolean>\",\n      \"type\": \"parse\",\n      \"lang\": \"en\",\n      \"outputBucket\": \"<string>\",\n      \"pipeline_id\": \"<string>\"\n    },\n    \"session_id\": \"<uuid>\",\n    \"correlation_id\": \"<uuid>\",\n    \"parent_job_execution_id\": \"<uuid>\",\n    \"user_id\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"webhook_url\": \"<string>\"\n  },\n  \"directory_id\": \"<string>\",\n  \"item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_size\": 100,\n  \"continue_as_new_threshold\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/beta/batch-processing?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "beta",
+                            "batch-processing"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "Create a batch processing job.\n\nProcesses files from a directory or a specific list of item IDs.\nSupports batch parsing and classification operations.\n\nProvide either `directory_id` to process all files in a directory,\nor `item_ids` for specific items. The job runs asynchronously \u2014\npoll `GET /batch/{job_id}` for progress."
+                      },
+                      "response": [
+                        {
+                          "id": "132b993c-f76c-4023-917e-c395cbf8b1eb",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "temporal-namespace",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"job_config\": {\n    \"job_name\": \"parse_raw_file_job\",\n    \"partitions\": {\n      \"aliquip__9\": \"<uuid>\"\n    },\n    \"parameters\": {\n      \"webhook_configurations\": [\n        {\n          \"webhook_url\": \"<string>\",\n          \"webhook_headers\": {\n            \"in964\": \"<string>\"\n          },\n          \"webhook_events\": [\n            \"parse.running\",\n            \"parse.cancelled\"\n          ],\n          \"webhook_output_format\": \"<string>\"\n        },\n        {\n          \"webhook_url\": \"<string>\",\n          \"webhook_headers\": {\n            \"adipisicing5_\": \"<string>\"\n          },\n          \"webhook_events\": [\n            \"parse.success\",\n            \"parse.error\"\n          ],\n          \"webhook_output_format\": \"<string>\"\n        }\n      ],\n      \"priority\": \"high\",\n      \"custom_metadata\": {\n        \"velit_b\": -79414210.77209641\n      },\n      \"resource_info\": {\n        \"Lorem6ce\": true,\n        \"fugiat1f\": \"veniam sint proident\"\n      },\n      \"languages\": [\n        \"bs\"\n      ],\n      \"parsing_instruction\": \"<string>\",\n      \"disable_ocr\": \"<boolean>\",\n      \"annotate_links\": \"<boolean>\",\n      \"adaptive_long_table\": \"<boolean>\",\n      \"compact_markdown_table\": \"<boolean>\",\n      \"disable_reconstruction\": \"<boolean>\",\n      \"disable_image_extraction\": \"<boolean>\",\n      \"invalidate_cache\": \"<boolean>\",\n      \"outlined_table_extraction\": \"<boolean>\",\n      \"aggressive_table_extraction\": \"<boolean>\",\n      \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n      \"output_pdf_of_document\": \"<boolean>\",\n      \"do_not_cache\": \"<boolean>\",\n      \"fast_mode\": \"<boolean>\",\n      \"skip_diagonal_text\": \"<boolean>\",\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"gpt4o_mode\": \"<boolean>\",\n      \"gpt4o_api_key\": \"<string>\",\n      \"do_not_unroll_columns\": \"<boolean>\",\n      \"extract_layout\": \"<boolean>\",\n      \"high_res_ocr\": \"<boolean>\",\n      \"html_make_all_elements_visible\": \"<boolean>\",\n      \"layout_aware\": \"<boolean>\",\n      \"specialized_chart_parsing_agentic\": \"<boolean>\",\n      \"specialized_chart_parsing_plus\": \"<boolean>\",\n      \"specialized_chart_parsing_efficient\": \"<boolean>\",\n      \"specialized_image_parsing\": \"<boolean>\",\n      \"precise_bounding_box\": \"<boolean>\",\n      \"line_level_bounding_box\": \"<boolean>\",\n      \"html_remove_navigation_elements\": \"<boolean>\",\n      \"html_remove_fixed_elements\": \"<boolean>\",\n      \"guess_xlsx_sheet_name\": \"<boolean>\",\n      \"page_separator\": \"<string>\",\n      \"bounding_box\": \"<string>\",\n      \"bbox_top\": \"<number>\",\n      \"bbox_right\": \"<number>\",\n      \"bbox_bottom\": \"<number>\",\n      \"bbox_left\": \"<number>\",\n      \"target_pages\": \"<string>\",\n      \"use_vendor_multimodal_model\": \"<boolean>\",\n      \"vendor_multimodal_model_name\": \"<string>\",\n      \"model\": \"<string>\",\n      \"vendor_multimodal_api_key\": \"<string>\",\n      \"page_prefix\": \"<string>\",\n      \"page_suffix\": \"<string>\",\n      \"webhook_url\": \"<string>\",\n      \"preset\": \"<string>\",\n      \"take_screenshot\": \"<boolean>\",\n      \"is_formatting_instruction\": \"<boolean>\",\n      \"premium_mode\": \"<boolean>\",\n      \"continuous_mode\": \"<boolean>\",\n      \"input_s3_path\": \"<string>\",\n      \"input_s3_region\": \"<string>\",\n      \"output_s3_path_prefix\": \"<string>\",\n      \"output_s3_region\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"azure_openai_deployment_name\": \"<string>\",\n      \"azure_openai_endpoint\": \"<string>\",\n      \"azure_openai_api_version\": \"<string>\",\n      \"azure_openai_key\": \"<string>\",\n      \"input_url\": \"<string>\",\n      \"http_proxy\": \"<string>\",\n      \"auto_mode\": \"<boolean>\",\n      \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n      \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n      \"auto_mode_configuration_json\": \"<string>\",\n      \"structured_output\": \"<boolean>\",\n      \"structured_output_json_schema\": \"<string>\",\n      \"structured_output_json_schema_name\": \"<string>\",\n      \"max_pages\": \"<integer>\",\n      \"max_pages_enforced\": \"<integer>\",\n      \"extract_charts\": \"<boolean>\",\n      \"formatting_instruction\": \"<string>\",\n      \"complemental_formatting_instruction\": \"<string>\",\n      \"content_guideline_instruction\": \"<string>\",\n      \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n      \"spreadsheet_force_formula_computation\": \"<boolean>\",\n      \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n      \"inline_images_in_markdown\": \"<boolean>\",\n      \"job_timeout_in_seconds\": \"<number>\",\n      \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n      \"strict_mode_image_extraction\": \"<boolean>\",\n      \"strict_mode_image_ocr\": \"<boolean>\",\n      \"strict_mode_reconstruction\": \"<boolean>\",\n      \"strict_mode_buggy_font\": \"<boolean>\",\n      \"save_images\": \"<boolean>\",\n      \"images_to_save\": [\n        \"embedded\",\n        \"layout\"\n      ],\n      \"hide_headers\": \"<boolean>\",\n      \"hide_footers\": \"<boolean>\",\n      \"page_header_prefix\": \"<string>\",\n      \"page_header_suffix\": \"<string>\",\n      \"page_footer_prefix\": \"<string>\",\n      \"page_footer_suffix\": \"<string>\",\n      \"remove_hidden_text\": \"<boolean>\",\n      \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n      \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n      \"output_tables_as_HTML\": \"<boolean>\",\n      \"internal_is_screenshot_job\": \"<boolean>\",\n      \"parse_mode\": \"parse_document_with_lvm\",\n      \"system_prompt\": \"<string>\",\n      \"system_prompt_append\": \"<string>\",\n      \"user_prompt\": \"<string>\",\n      \"page_error_tolerance\": \"<number>\",\n      \"replace_failed_page_mode\": \"blank_page\",\n      \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n      \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n      \"markdown_table_multiline_header_separator\": \"<string>\",\n      \"presentation_out_of_bounds_content\": \"<boolean>\",\n      \"presentation_skip_embedded_data\": \"<boolean>\",\n      \"tier\": \"<string>\",\n      \"version\": \"<string>\",\n      \"extract_printed_page_number\": \"<boolean>\",\n      \"enable_cost_optimizer\": \"<boolean>\",\n      \"type\": \"parse\",\n      \"lang\": \"en\",\n      \"outputBucket\": \"<string>\",\n      \"pipeline_id\": \"<string>\"\n    },\n    \"session_id\": \"<uuid>\",\n    \"correlation_id\": \"<uuid>\",\n    \"parent_job_execution_id\": \"<uuid>\",\n    \"user_id\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"webhook_url\": \"<string>\"\n  },\n  \"directory_id\": \"<string>\",\n  \"item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_size\": 100,\n  \"continue_as_new_threshold\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/batch-processing?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "batch-processing"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"failed\",\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"job_type\": \"extract\",\n  \"total_items\": \"<integer>\",\n  \"effective_at\": \"<dateTime>\",\n  \"job_record_id\": \"<string>\",\n  \"error_message\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"directory_id\": \"<string>\",\n  \"processed_items\": 0,\n  \"failed_items\": 0,\n  \"skipped_items\": 0,\n  \"workflow_id\": \"<string>\",\n  \"started_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:07:35.000Z",
+                          "updatedAt": "2026-07-28T02:07:35.000Z",
+                          "uid": "35240-132b993c-f76c-4023-917e-c395cbf8b1eb"
+                        },
+                        {
+                          "id": "4a0e93ee-0090-4b67-a793-f2109f5ea1fc",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "temporal-namespace",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"job_config\": {\n    \"job_name\": \"parse_raw_file_job\",\n    \"partitions\": {\n      \"aliquip__9\": \"<uuid>\"\n    },\n    \"parameters\": {\n      \"webhook_configurations\": [\n        {\n          \"webhook_url\": \"<string>\",\n          \"webhook_headers\": {\n            \"in964\": \"<string>\"\n          },\n          \"webhook_events\": [\n            \"parse.running\",\n            \"parse.cancelled\"\n          ],\n          \"webhook_output_format\": \"<string>\"\n        },\n        {\n          \"webhook_url\": \"<string>\",\n          \"webhook_headers\": {\n            \"adipisicing5_\": \"<string>\"\n          },\n          \"webhook_events\": [\n            \"parse.success\",\n            \"parse.error\"\n          ],\n          \"webhook_output_format\": \"<string>\"\n        }\n      ],\n      \"priority\": \"high\",\n      \"custom_metadata\": {\n        \"velit_b\": -79414210.77209641\n      },\n      \"resource_info\": {\n        \"Lorem6ce\": true,\n        \"fugiat1f\": \"veniam sint proident\"\n      },\n      \"languages\": [\n        \"bs\"\n      ],\n      \"parsing_instruction\": \"<string>\",\n      \"disable_ocr\": \"<boolean>\",\n      \"annotate_links\": \"<boolean>\",\n      \"adaptive_long_table\": \"<boolean>\",\n      \"compact_markdown_table\": \"<boolean>\",\n      \"disable_reconstruction\": \"<boolean>\",\n      \"disable_image_extraction\": \"<boolean>\",\n      \"invalidate_cache\": \"<boolean>\",\n      \"outlined_table_extraction\": \"<boolean>\",\n      \"aggressive_table_extraction\": \"<boolean>\",\n      \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n      \"output_pdf_of_document\": \"<boolean>\",\n      \"do_not_cache\": \"<boolean>\",\n      \"fast_mode\": \"<boolean>\",\n      \"skip_diagonal_text\": \"<boolean>\",\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"gpt4o_mode\": \"<boolean>\",\n      \"gpt4o_api_key\": \"<string>\",\n      \"do_not_unroll_columns\": \"<boolean>\",\n      \"extract_layout\": \"<boolean>\",\n      \"high_res_ocr\": \"<boolean>\",\n      \"html_make_all_elements_visible\": \"<boolean>\",\n      \"layout_aware\": \"<boolean>\",\n      \"specialized_chart_parsing_agentic\": \"<boolean>\",\n      \"specialized_chart_parsing_plus\": \"<boolean>\",\n      \"specialized_chart_parsing_efficient\": \"<boolean>\",\n      \"specialized_image_parsing\": \"<boolean>\",\n      \"precise_bounding_box\": \"<boolean>\",\n      \"line_level_bounding_box\": \"<boolean>\",\n      \"html_remove_navigation_elements\": \"<boolean>\",\n      \"html_remove_fixed_elements\": \"<boolean>\",\n      \"guess_xlsx_sheet_name\": \"<boolean>\",\n      \"page_separator\": \"<string>\",\n      \"bounding_box\": \"<string>\",\n      \"bbox_top\": \"<number>\",\n      \"bbox_right\": \"<number>\",\n      \"bbox_bottom\": \"<number>\",\n      \"bbox_left\": \"<number>\",\n      \"target_pages\": \"<string>\",\n      \"use_vendor_multimodal_model\": \"<boolean>\",\n      \"vendor_multimodal_model_name\": \"<string>\",\n      \"model\": \"<string>\",\n      \"vendor_multimodal_api_key\": \"<string>\",\n      \"page_prefix\": \"<string>\",\n      \"page_suffix\": \"<string>\",\n      \"webhook_url\": \"<string>\",\n      \"preset\": \"<string>\",\n      \"take_screenshot\": \"<boolean>\",\n      \"is_formatting_instruction\": \"<boolean>\",\n      \"premium_mode\": \"<boolean>\",\n      \"continuous_mode\": \"<boolean>\",\n      \"input_s3_path\": \"<string>\",\n      \"input_s3_region\": \"<string>\",\n      \"output_s3_path_prefix\": \"<string>\",\n      \"output_s3_region\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"azure_openai_deployment_name\": \"<string>\",\n      \"azure_openai_endpoint\": \"<string>\",\n      \"azure_openai_api_version\": \"<string>\",\n      \"azure_openai_key\": \"<string>\",\n      \"input_url\": \"<string>\",\n      \"http_proxy\": \"<string>\",\n      \"auto_mode\": \"<boolean>\",\n      \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n      \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n      \"auto_mode_configuration_json\": \"<string>\",\n      \"structured_output\": \"<boolean>\",\n      \"structured_output_json_schema\": \"<string>\",\n      \"structured_output_json_schema_name\": \"<string>\",\n      \"max_pages\": \"<integer>\",\n      \"max_pages_enforced\": \"<integer>\",\n      \"extract_charts\": \"<boolean>\",\n      \"formatting_instruction\": \"<string>\",\n      \"complemental_formatting_instruction\": \"<string>\",\n      \"content_guideline_instruction\": \"<string>\",\n      \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n      \"spreadsheet_force_formula_computation\": \"<boolean>\",\n      \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n      \"inline_images_in_markdown\": \"<boolean>\",\n      \"job_timeout_in_seconds\": \"<number>\",\n      \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n      \"strict_mode_image_extraction\": \"<boolean>\",\n      \"strict_mode_image_ocr\": \"<boolean>\",\n      \"strict_mode_reconstruction\": \"<boolean>\",\n      \"strict_mode_buggy_font\": \"<boolean>\",\n      \"save_images\": \"<boolean>\",\n      \"images_to_save\": [\n        \"embedded\",\n        \"layout\"\n      ],\n      \"hide_headers\": \"<boolean>\",\n      \"hide_footers\": \"<boolean>\",\n      \"page_header_prefix\": \"<string>\",\n      \"page_header_suffix\": \"<string>\",\n      \"page_footer_prefix\": \"<string>\",\n      \"page_footer_suffix\": \"<string>\",\n      \"remove_hidden_text\": \"<boolean>\",\n      \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n      \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n      \"output_tables_as_HTML\": \"<boolean>\",\n      \"internal_is_screenshot_job\": \"<boolean>\",\n      \"parse_mode\": \"parse_document_with_lvm\",\n      \"system_prompt\": \"<string>\",\n      \"system_prompt_append\": \"<string>\",\n      \"user_prompt\": \"<string>\",\n      \"page_error_tolerance\": \"<number>\",\n      \"replace_failed_page_mode\": \"blank_page\",\n      \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n      \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n      \"markdown_table_multiline_header_separator\": \"<string>\",\n      \"presentation_out_of_bounds_content\": \"<boolean>\",\n      \"presentation_skip_embedded_data\": \"<boolean>\",\n      \"tier\": \"<string>\",\n      \"version\": \"<string>\",\n      \"extract_printed_page_number\": \"<boolean>\",\n      \"enable_cost_optimizer\": \"<boolean>\",\n      \"type\": \"parse\",\n      \"lang\": \"en\",\n      \"outputBucket\": \"<string>\",\n      \"pipeline_id\": \"<string>\"\n    },\n    \"session_id\": \"<uuid>\",\n    \"correlation_id\": \"<uuid>\",\n    \"parent_job_execution_id\": \"<uuid>\",\n    \"user_id\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"webhook_url\": \"<string>\"\n  },\n  \"directory_id\": \"<string>\",\n  \"item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_size\": 100,\n  \"continue_as_new_threshold\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/batch-processing?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "batch-processing"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:35.000Z",
+                          "updatedAt": "2026-07-28T02:07:35.000Z",
+                          "uid": "35240-4a0e93ee-0090-4b67-a793-f2109f5ea1fc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:35.000Z",
+                      "updatedAt": "2026-07-28T02:07:35.000Z",
+                      "uid": "35240-bb987c68-c7f5-4ecb-9f42-ff09831c1966"
+                    },
+                    {
+                      "name": "List Batch Jobs",
+                      "id": "e7bad877-66d0-440c-80c8-d5804885cd98",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/beta/batch-processing?directory_id=<string>&job_type=classify&status=cancelled&limit=50&offset=0&project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "beta",
+                            "batch-processing"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by directory ID",
+                              "key": "directory_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by job type (PARSE, EXTRACT, CLASSIFY)",
+                              "key": "job_type",
+                              "value": "classify"
+                            },
+                            {
+                              "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)",
+                              "key": "status",
+                              "value": "cancelled"
+                            },
+                            {
+                              "description": "Maximum number of jobs to return",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Number of jobs to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "List batch processing jobs with optional filtering.\n\nFilter by `directory_id`, `job_type`, or `status`. Results\nare paginated with configurable `limit` and `offset`."
+                      },
+                      "response": [
+                        {
+                          "id": "d569a06f-cf07-4da7-8dbc-2e123ffff9df",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/batch-processing?directory_id=<string>&job_type=classify&status=cancelled&limit=50&offset=0&project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "batch-processing"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by directory ID",
+                                  "key": "directory_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by job type (PARSE, EXTRACT, CLASSIFY)",
+                                  "key": "job_type",
+                                  "value": "classify"
+                                },
+                                {
+                                  "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)",
+                                  "key": "status",
+                                  "value": "cancelled"
+                                },
+                                {
+                                  "description": "Maximum number of jobs to return",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Number of jobs to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"status\": \"running\",\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"job_type\": \"classify\",\n      \"total_items\": \"<integer>\",\n      \"effective_at\": \"<dateTime>\",\n      \"job_record_id\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"directory_id\": \"<string>\",\n      \"processed_items\": 0,\n      \"failed_items\": 0,\n      \"skipped_items\": 0,\n      \"workflow_id\": \"<string>\",\n      \"started_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\"\n    },\n    {\n      \"status\": \"running\",\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"job_type\": \"extract\",\n      \"total_items\": \"<integer>\",\n      \"effective_at\": \"<dateTime>\",\n      \"job_record_id\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"directory_id\": \"<string>\",\n      \"processed_items\": 0,\n      \"failed_items\": 0,\n      \"skipped_items\": 0,\n      \"workflow_id\": \"<string>\",\n      \"started_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:07:35.000Z",
+                          "updatedAt": "2026-07-28T02:07:35.000Z",
+                          "uid": "35240-d569a06f-cf07-4da7-8dbc-2e123ffff9df"
+                        },
+                        {
+                          "id": "c716bebb-169e-47fa-822f-e5ada19ad2ba",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/batch-processing?directory_id=<string>&job_type=classify&status=cancelled&limit=50&offset=0&project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "batch-processing"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by directory ID",
+                                  "key": "directory_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by job type (PARSE, EXTRACT, CLASSIFY)",
+                                  "key": "job_type",
+                                  "value": "classify"
+                                },
+                                {
+                                  "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)",
+                                  "key": "status",
+                                  "value": "cancelled"
+                                },
+                                {
+                                  "description": "Maximum number of jobs to return",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Number of jobs to skip for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:35.000Z",
+                          "updatedAt": "2026-07-28T02:07:35.000Z",
+                          "uid": "35240-c716bebb-169e-47fa-822f-e5ada19ad2ba"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:35.000Z",
+                      "updatedAt": "2026-07-28T02:07:35.000Z",
+                      "uid": "35240-e7bad877-66d0-440c-80c8-d5804885cd98"
+                    }
+                  ],
+                  "id": "dec2adbf-8271-42f3-9892-95bc92215f18",
+                  "createdAt": "2026-07-28T02:07:35.000Z",
+                  "updatedAt": "2026-07-28T02:07:35.000Z",
+                  "uid": "35240-dec2adbf-8271-42f3-9892-95bc92215f18"
+                }
+              ],
+              "id": "c1ff4b02-748b-4c80-9d38-ee3998e9f794",
+              "createdAt": "2026-07-28T02:07:35.000Z",
+              "updatedAt": "2026-07-28T02:07:35.000Z",
+              "uid": "35240-c1ff4b02-748b-4c80-9d38-ee3998e9f794"
+            }
+          ],
+          "id": "c5e9b17b-3c9e-4bd3-9618-677b89c711b4",
+          "createdAt": "2026-07-28T02:07:35.000Z",
+          "updatedAt": "2026-07-28T02:07:35.000Z",
+          "uid": "35240-c5e9b17b-3c9e-4bd3-9618-677b89c711b4"
+        }
+      ],
+      "id": "c5cec5da-6249-472f-aafd-ac5c97907bd0",
+      "createdAt": "2026-07-28T02:07:35.000Z",
+      "updatedAt": "2026-07-28T02:07:35.000Z",
+      "uid": "35240-c5cec5da-6249-472f-aafd-ac5c97907bd0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

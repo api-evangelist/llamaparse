@@ -1,0 +1,1004 @@
+{
+  "info": {
+    "_postman_id": "92efb8b5-4e21-40f0-b255-8562f3547c31",
+    "name": "Llama Platform Agent Data Indexes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:09.000Z",
+    "updatedAt": "2026-07-28T02:08:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-92efb8b5-4e21-40f0-b255-8562f3547c31"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "indexes",
+              "item": [
+                {
+                  "name": "{index_id}",
+                  "item": [
+                    {
+                      "name": "sync",
+                      "item": [
+                        {
+                          "name": "Sync Index",
+                          "id": "0a4a2143-e461-457c-ad39-dbe17c00b6a9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/indexes/:index_id/sync?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "indexes",
+                                ":index_id",
+                                "sync"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "bf1490d2-d920-4777-88f5-bd67d6809667",
+                                  "key": "index_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Trigger a sync and export for an existing index, re-parsing changed files and exporting updated chunks."
+                          },
+                          "response": [
+                            {
+                              "id": "2a72f741-e7b9-4d1e-a17f-91203b5ca151",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/indexes/:index_id/sync?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "indexes",
+                                    ":index_id",
+                                    "sync"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "index_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:08:09.000Z",
+                              "updatedAt": "2026-07-28T02:08:09.000Z",
+                              "uid": "35240-2a72f741-e7b9-4d1e-a17f-91203b5ca151"
+                            },
+                            {
+                              "id": "5159d7e9-92f8-4545-bf98-1aa3303f73f5",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/indexes/:index_id/sync?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "indexes",
+                                    ":index_id",
+                                    "sync"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "index_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:09.000Z",
+                              "updatedAt": "2026-07-28T02:08:09.000Z",
+                              "uid": "35240-5159d7e9-92f8-4545-bf98-1aa3303f73f5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:09.000Z",
+                          "updatedAt": "2026-07-28T02:08:09.000Z",
+                          "uid": "35240-0a4a2143-e461-457c-ad39-dbe17c00b6a9"
+                        }
+                      ],
+                      "id": "86e7a0d6-8ec5-438f-b0bd-c44f5f62f095",
+                      "createdAt": "2026-07-28T02:08:09.000Z",
+                      "updatedAt": "2026-07-28T02:08:09.000Z",
+                      "uid": "35240-86e7a0d6-8ec5-438f-b0bd-c44f5f62f095"
+                    },
+                    {
+                      "name": "Get Index",
+                      "id": "b3232a03-0284-4131-a59a-17079b7aced6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/indexes/:index_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "indexes",
+                            ":index_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "6b4bd8cd-21a6-4ce9-b812-bdef361527d3",
+                              "key": "index_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get an index by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "645abcbe-2b32-4b39-855c-4c884d635279",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/indexes/:index_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "indexes",
+                                ":index_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "index_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"source_directory_id\": \"<string>\",\n  \"sync_config_id\": \"<string>\",\n  \"export_config_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"last_synced_at\": \"<dateTime>\",\n  \"last_exported_at\": \"<dateTime>\",\n  \"metadata\": {\n    \"aliquafeb\": 42280665,\n    \"sint_e7\": -47867438,\n    \"enim_ba8\": \"aute occaecat magna voluptate\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:08:09.000Z",
+                          "updatedAt": "2026-07-28T02:08:09.000Z",
+                          "uid": "35240-645abcbe-2b32-4b39-855c-4c884d635279"
+                        },
+                        {
+                          "id": "f18d9171-771e-4f80-93d4-701ce7ccb3e7",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/indexes/:index_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "indexes",
+                                ":index_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "index_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:09.000Z",
+                          "updatedAt": "2026-07-28T02:08:09.000Z",
+                          "uid": "35240-f18d9171-771e-4f80-93d4-701ce7ccb3e7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:09.000Z",
+                      "updatedAt": "2026-07-28T02:08:09.000Z",
+                      "uid": "35240-b3232a03-0284-4131-a59a-17079b7aced6"
+                    },
+                    {
+                      "name": "Delete Index",
+                      "id": "0eba83aa-5e86-431c-baa7-3d4d4d94c764",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/indexes/:index_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "indexes",
+                            ":index_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "5c916d46-f685-4316-a35e-acebeb9550b7",
+                              "key": "index_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete an index."
+                      },
+                      "response": [
+                        {
+                          "id": "dd55dc71-9787-4ac1-a20b-130b19021c57",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/indexes/:index_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "indexes",
+                                ":index_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "index_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:08:09.000Z",
+                          "updatedAt": "2026-07-28T02:08:09.000Z",
+                          "uid": "35240-dd55dc71-9787-4ac1-a20b-130b19021c57"
+                        },
+                        {
+                          "id": "0ad79dc1-443e-4f1f-b436-830cf5e72d9a",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/indexes/:index_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "indexes",
+                                ":index_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "index_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:09.000Z",
+                          "updatedAt": "2026-07-28T02:08:09.000Z",
+                          "uid": "35240-0ad79dc1-443e-4f1f-b436-830cf5e72d9a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:09.000Z",
+                      "updatedAt": "2026-07-28T02:08:09.000Z",
+                      "uid": "35240-0eba83aa-5e86-431c-baa7-3d4d4d94c764"
+                    }
+                  ],
+                  "id": "0b9e65c8-ea61-45e4-ba1c-fc87e9701167",
+                  "createdAt": "2026-07-28T02:08:09.000Z",
+                  "updatedAt": "2026-07-28T02:08:09.000Z",
+                  "uid": "35240-0b9e65c8-ea61-45e4-ba1c-fc87e9701167"
+                },
+                {
+                  "name": "Create Index",
+                  "id": "30ad596e-e833-4de3-9840-16993cc55ed7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source_directory_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"products\": [\n    {\n      \"product_type\": \"<string>\",\n      \"product_config_id\": \"<string>\"\n    },\n    {\n      \"product_type\": \"<string>\",\n      \"product_config_id\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"sync_frequency\": \"manual\",\n  \"store_attachments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vector_target\": \"DEFAULT\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/indexes?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "indexes"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Create a searchable index over a source directory."
+                  },
+                  "response": [
+                    {
+                      "id": "c3a68d9c-96ab-4f12-9e12-3280339f5058",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_directory_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"products\": [\n    {\n      \"product_type\": \"<string>\",\n      \"product_config_id\": \"<string>\"\n    },\n    {\n      \"product_type\": \"<string>\",\n      \"product_config_id\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"sync_frequency\": \"manual\",\n  \"store_attachments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vector_target\": \"DEFAULT\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/indexes?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "indexes"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"source_directory_id\": \"<string>\",\n  \"sync_config_id\": \"<string>\",\n  \"export_config_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"last_synced_at\": \"<dateTime>\",\n  \"last_exported_at\": \"<dateTime>\",\n  \"metadata\": {\n    \"aliquafeb\": 42280665,\n    \"sint_e7\": -47867438,\n    \"enim_ba8\": \"aute occaecat magna voluptate\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:08:09.000Z",
+                      "updatedAt": "2026-07-28T02:08:09.000Z",
+                      "uid": "35240-c3a68d9c-96ab-4f12-9e12-3280339f5058"
+                    },
+                    {
+                      "id": "0c8e8756-f187-4bb4-91da-3cdcaf36dc11",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_directory_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"products\": [\n    {\n      \"product_type\": \"<string>\",\n      \"product_config_id\": \"<string>\"\n    },\n    {\n      \"product_type\": \"<string>\",\n      \"product_config_id\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"sync_frequency\": \"manual\",\n  \"store_attachments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vector_target\": \"DEFAULT\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/indexes?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "indexes"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:09.000Z",
+                      "updatedAt": "2026-07-28T02:08:09.000Z",
+                      "uid": "35240-0c8e8756-f187-4bb4-91da-3cdcaf36dc11"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:09.000Z",
+                  "updatedAt": "2026-07-28T02:08:09.000Z",
+                  "uid": "35240-30ad596e-e833-4de3-9840-16993cc55ed7"
+                },
+                {
+                  "name": "List Indexes",
+                  "id": "f1372633-c22a-421c-aabe-c6a84f3edf09",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/indexes?project_id=<uuid>&organization_id=<uuid>&source_directory_id=<string>&page_size=<integer>&page_token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "indexes"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "source_directory_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "page_size",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "page_token",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "List indexes for the current project."
+                  },
+                  "response": [
+                    {
+                      "id": "1e25001d-aaf1-48a1-9c10-8f2e8ecdc571",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/indexes?project_id=<uuid>&organization_id=<uuid>&source_directory_id=<string>&page_size=<integer>&page_token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "indexes"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "source_directory_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "page_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"source_directory_id\": \"<string>\",\n      \"sync_config_id\": \"<string>\",\n      \"export_config_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"last_synced_at\": \"<dateTime>\",\n      \"last_exported_at\": \"<dateTime>\",\n      \"metadata\": {\n        \"nulla_b\": \"in incididunt cillum labore\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"source_directory_id\": \"<string>\",\n      \"sync_config_id\": \"<string>\",\n      \"export_config_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"last_synced_at\": \"<dateTime>\",\n      \"last_exported_at\": \"<dateTime>\",\n      \"metadata\": {\n        \"non_ff1\": true,\n        \"nostrudd\": -28557969.8908609\n      }\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:08:09.000Z",
+                      "updatedAt": "2026-07-28T02:08:09.000Z",
+                      "uid": "35240-1e25001d-aaf1-48a1-9c10-8f2e8ecdc571"
+                    },
+                    {
+                      "id": "a6550e8d-219e-465b-b74b-b822bd2dde36",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/indexes?project_id=<uuid>&organization_id=<uuid>&source_directory_id=<string>&page_size=<integer>&page_token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "indexes"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "source_directory_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "page_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:09.000Z",
+                      "updatedAt": "2026-07-28T02:08:09.000Z",
+                      "uid": "35240-a6550e8d-219e-465b-b74b-b822bd2dde36"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:09.000Z",
+                  "updatedAt": "2026-07-28T02:08:09.000Z",
+                  "uid": "35240-f1372633-c22a-421c-aabe-c6a84f3edf09"
+                }
+              ],
+              "id": "60987560-6d8a-428b-befa-b69d0bc8ba75",
+              "createdAt": "2026-07-28T02:08:09.000Z",
+              "updatedAt": "2026-07-28T02:08:09.000Z",
+              "uid": "35240-60987560-6d8a-428b-befa-b69d0bc8ba75"
+            }
+          ],
+          "id": "1f8ae8af-ecc6-4c3b-b251-05cd540ae73d",
+          "createdAt": "2026-07-28T02:08:09.000Z",
+          "updatedAt": "2026-07-28T02:08:09.000Z",
+          "uid": "35240-1f8ae8af-ecc6-4c3b-b251-05cd540ae73d"
+        }
+      ],
+      "id": "5525eddf-15f0-4e37-8548-01b6ca30d076",
+      "createdAt": "2026-07-28T02:08:09.000Z",
+      "updatedAt": "2026-07-28T02:08:09.000Z",
+      "uid": "35240-5525eddf-15f0-4e37-8548-01b6ca30d076"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "info": {
+    "_postman_id": "8f1efc75-d50e-4597-8f61-536baad8acae",
+    "name": "Llama Platform Agent Data Job Dashboard API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:10.000Z",
+    "updatedAt": "2026-07-28T02:08:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8f1efc75-d50e-4597-8f61-536baad8acae"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "job-data-points",
+              "item": [
+                {
+                  "name": "Query project job data points",
+                  "id": "989fe30c-da4b-4e25-803e-be60376f3bb2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/job-data-points?job_type=classify&hours=1&status=<string>&status=<string>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>&project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "job-data-points"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Job type to query.",
+                          "key": "job_type",
+                          "value": "classify"
+                        },
+                        {
+                          "description": "Hours of history to include.",
+                          "key": "hours",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Filter by status.",
+                          "key": "status",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by status.",
+                          "key": "status",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of items per page.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cursor token for the next page.",
+                          "key": "page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Include items created at or after this timestamp (inclusive)",
+                          "key": "created_at_on_or_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Include items created at or before this timestamp (inclusive)",
+                          "key": "created_at_on_or_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Returns paginated job data points for the current project."
+                  },
+                  "response": [
+                    {
+                      "id": "c5cc65d2-273a-436e-87aa-cc842b165af7",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/job-data-points?job_type=classify&hours=1&status=<string>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>&project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "job-data-points"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Job type to query.",
+                              "key": "job_type",
+                              "value": "classify"
+                            },
+                            {
+                              "description": "Hours of history to include.",
+                              "key": "hours",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Filter by status.",
+                              "key": "status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of items per page.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Cursor token for the next page.",
+                              "key": "page_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include items created at or after this timestamp (inclusive)",
+                              "key": "created_at_on_or_after",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Include items created at or before this timestamp (inclusive)",
+                              "key": "created_at_on_or_before",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"custom_tag\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"state_transitions\": {\n        \"pending_at\": \"<dateTime>\",\n        \"throttled_at\": \"<dateTime>\",\n        \"running_at\": \"<dateTime>\",\n        \"completed_at\": \"<dateTime>\",\n        \"failed_at\": \"<dateTime>\",\n        \"cancelled_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"custom_tag\": \"<string>\",\n      \"error_message\": \"<string>\",\n      \"state_transitions\": {\n        \"pending_at\": \"<dateTime>\",\n        \"throttled_at\": \"<dateTime>\",\n        \"running_at\": \"<dateTime>\",\n        \"completed_at\": \"<dateTime>\",\n        \"failed_at\": \"<dateTime>\",\n        \"cancelled_at\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:08:11.000Z",
+                      "updatedAt": "2026-07-28T02:08:11.000Z",
+                      "uid": "35240-c5cc65d2-273a-436e-87aa-cc842b165af7"
+                    },
+                    {
+                      "id": "943bc189-4185-41da-b9a1-ea83d8f5e600",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/job-data-points?job_type=classify&hours=1&status=<string>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>&project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "job-data-points"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Job type to query.",
+                              "key": "job_type",
+                              "value": "classify"
+                            },
+                            {
+                              "description": "Hours of history to include.",
+                              "key": "hours",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Filter by status.",
+                              "key": "status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of items per page.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Cursor token for the next page.",
+                              "key": "page_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include items created at or after this timestamp (inclusive)",
+                              "key": "created_at_on_or_after",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Include items created at or before this timestamp (inclusive)",
+                              "key": "created_at_on_or_before",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:11.000Z",
+                      "updatedAt": "2026-07-28T02:08:11.000Z",
+                      "uid": "35240-943bc189-4185-41da-b9a1-ea83d8f5e600"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:11.000Z",
+                  "updatedAt": "2026-07-28T02:08:11.000Z",
+                  "uid": "35240-989fe30c-da4b-4e25-803e-be60376f3bb2"
+                }
+              ],
+              "id": "152e04de-12a3-40cb-9a9e-4b72d9c58bbb",
+              "createdAt": "2026-07-28T02:08:10.000Z",
+              "updatedAt": "2026-07-28T02:08:10.000Z",
+              "uid": "35240-152e04de-12a3-40cb-9a9e-4b72d9c58bbb"
+            }
+          ],
+          "id": "aff4437f-d494-4613-9610-deeb2467214b",
+          "createdAt": "2026-07-28T02:08:10.000Z",
+          "updatedAt": "2026-07-28T02:08:10.000Z",
+          "uid": "35240-aff4437f-d494-4613-9610-deeb2467214b"
+        }
+      ],
+      "id": "593dc2f4-3bd1-47a4-98b6-7eca32b9322c",
+      "createdAt": "2026-07-28T02:08:10.000Z",
+      "updatedAt": "2026-07-28T02:08:10.000Z",
+      "uid": "35240-593dc2f4-3bd1-47a4-98b6-7eca32b9322c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

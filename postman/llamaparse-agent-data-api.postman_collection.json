@@ -1,0 +1,1569 @@
+{
+  "info": {
+    "_postman_id": "268479f6-922b-44b1-bde2-0e62ac28d6ef",
+    "name": "Llama Platform Agent Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:31.000Z",
+    "updatedAt": "2026-07-28T02:07:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-268479f6-922b-44b1-bde2-0e62ac28d6ef"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "beta",
+              "item": [
+                {
+                  "name": "agent-data",
+                  "item": [
+                    {
+                      "name": "{item_id}",
+                      "item": [
+                        {
+                          "name": "Get Agent Data",
+                          "id": "772e80a1-1b17-43ba-8c88-b41d7bf185d7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "agent-data",
+                                ":item_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d4376c1d-0962-4285-afc3-3dff79928a9d",
+                                  "key": "item_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get agent data by ID."
+                          },
+                          "response": [
+                            {
+                              "id": "45007589-cbac-4811-8b0a-d6480825af42",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":item_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"deployment_name\": \"<string>\",\n  \"data\": {\n    \"ind81\": true\n  },\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"collection\": \"default\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-45007589-cbac-4811-8b0a-d6480825af42"
+                            },
+                            {
+                              "id": "6052bb1a-c9cf-4720-95bf-b7dfda8c31fe",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":item_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-6052bb1a-c9cf-4720-95bf-b7dfda8c31fe"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:32.000Z",
+                          "updatedAt": "2026-07-28T02:07:32.000Z",
+                          "uid": "35240-772e80a1-1b17-43ba-8c88-b41d7bf185d7"
+                        },
+                        {
+                          "name": "Update Agent Data",
+                          "id": "69ff93ea-d9a1-462f-9e6a-c1e7dd5dc3ce",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"nostrud_74_\": \"m\",\n    \"aliqua_44\": -76920626.04605865\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "agent-data",
+                                ":item_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ffba788a-1187-418a-bb8a-303db0476a42",
+                                  "key": "item_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update agent data by ID (overwrites)."
+                          },
+                          "response": [
+                            {
+                              "id": "7efe5240-3883-4046-bfdd-f3fb5a18a068",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"nostrud_74_\": \"m\",\n    \"aliqua_44\": -76920626.04605865\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":item_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"deployment_name\": \"<string>\",\n  \"data\": {\n    \"ind81\": true\n  },\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"collection\": \"default\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-7efe5240-3883-4046-bfdd-f3fb5a18a068"
+                            },
+                            {
+                              "id": "2a70cf55-fbff-43d8-a544-6060c3d23a97",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"nostrud_74_\": \"m\",\n    \"aliqua_44\": -76920626.04605865\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":item_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-2a70cf55-fbff-43d8-a544-6060c3d23a97"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:32.000Z",
+                          "updatedAt": "2026-07-28T02:07:32.000Z",
+                          "uid": "35240-69ff93ea-d9a1-462f-9e6a-c1e7dd5dc3ce"
+                        },
+                        {
+                          "name": "Delete Agent Data",
+                          "id": "54129cb7-2a8a-4a56-b298-395c06a69f59",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "agent-data",
+                                ":item_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "27881dd2-a70a-49be-977b-4172ae8eff90",
+                                  "key": "item_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete agent data by ID."
+                          },
+                          "response": [
+                            {
+                              "id": "81550440-80a8-4180-a01d-9e526f1a631e",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":item_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ut2\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-81550440-80a8-4180-a01d-9e526f1a631e"
+                            },
+                            {
+                              "id": "19d24e0d-de44-42be-be38-13360be6077b",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:item_id?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":item_id"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-19d24e0d-de44-42be-be38-13360be6077b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:32.000Z",
+                          "updatedAt": "2026-07-28T02:07:32.000Z",
+                          "uid": "35240-54129cb7-2a8a-4a56-b298-395c06a69f59"
+                        }
+                      ],
+                      "id": "c72f304f-7cf4-4ef6-8422-c70934a7036a",
+                      "createdAt": "2026-07-28T02:07:32.000Z",
+                      "updatedAt": "2026-07-28T02:07:32.000Z",
+                      "uid": "35240-c72f304f-7cf4-4ef6-8422-c70934a7036a"
+                    },
+                    {
+                      "name": ":search",
+                      "item": [
+                        {
+                          "name": "Search Agent Data",
+                          "id": "07585878-0264-45eb-9295-3efa17a4a416",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"filter\": {\n    \"nisi_72\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"in8\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"reprehenderita8e\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"Ut_87\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  },\n  \"order_by\": \"<string>\",\n  \"collection\": \"default\",\n  \"include_total\": false,\n  \"offset\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/agent-data/:search?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "agent-data",
+                                ":search"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6ebf54be-ba42-48be-84cc-05b3520d51f4",
+                                  "key": "search"
+                                }
+                              ]
+                            },
+                            "description": "Search agent data with filtering, sorting, and pagination."
+                          },
+                          "response": [
+                            {
+                              "id": "4667b469-ca64-41c6-bd87-0182cbfa8841",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"filter\": {\n    \"nisi_72\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"in8\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"reprehenderita8e\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"Ut_87\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  },\n  \"order_by\": \"<string>\",\n  \"collection\": \"default\",\n  \"include_total\": false,\n  \"offset\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:search?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":search"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "search"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"deployment_name\": \"<string>\",\n      \"data\": {\n        \"magnaad\": -40147161\n      },\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"collection\": \"default\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"deployment_name\": \"<string>\",\n      \"data\": {\n        \"enim_dd\": -69512596.69676685,\n        \"sint2\": false\n      },\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"collection\": \"default\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-4667b469-ca64-41c6-bd87-0182cbfa8841"
+                            },
+                            {
+                              "id": "61924b7f-9632-4bd7-bba9-94219c68d9c2",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"filter\": {\n    \"nisi_72\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"in8\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"reprehenderita8e\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    \"Ut_87\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  },\n  \"order_by\": \"<string>\",\n  \"collection\": \"default\",\n  \"include_total\": false,\n  \"offset\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:search?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":search"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "search"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-61924b7f-9632-4bd7-bba9-94219c68d9c2"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:32.000Z",
+                          "updatedAt": "2026-07-28T02:07:32.000Z",
+                          "uid": "35240-07585878-0264-45eb-9295-3efa17a4a416"
+                        }
+                      ],
+                      "id": "c374c1dc-8d20-4715-b86a-a66edcad3979",
+                      "createdAt": "2026-07-28T02:07:32.000Z",
+                      "updatedAt": "2026-07-28T02:07:32.000Z",
+                      "uid": "35240-c374c1dc-8d20-4715-b86a-a66edcad3979"
+                    },
+                    {
+                      "name": ":aggregate",
+                      "item": [
+                        {
+                          "name": "Aggregate Agent Data",
+                          "id": "9bc7f310-41e2-4937-8938-18ea31cf4d26",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"filter\": {\n    \"ina\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  },\n  \"order_by\": \"<string>\",\n  \"collection\": \"default\",\n  \"group_by\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"count\": \"<boolean>\",\n  \"first\": \"<boolean>\",\n  \"offset\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/agent-data/:aggregate?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "agent-data",
+                                ":aggregate"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0d30fa12-a2c9-4938-86a0-a6e7d682e867",
+                                  "key": "aggregate"
+                                }
+                              ]
+                            },
+                            "description": "Aggregate agent data with grouping and optional counting/first item retrieval."
+                          },
+                          "response": [
+                            {
+                              "id": "5f81d870-2cf9-4b8a-80c0-ff4ecf8c0813",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"filter\": {\n    \"ina\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  },\n  \"order_by\": \"<string>\",\n  \"collection\": \"default\",\n  \"group_by\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"count\": \"<boolean>\",\n  \"first\": \"<boolean>\",\n  \"offset\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:aggregate?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":aggregate"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "aggregate"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"group_key\": {\n        \"aute5\": -65810350,\n        \"dolor9\": false\n      },\n      \"count\": \"<integer>\",\n      \"first_item\": {\n        \"cillumf9a\": \"qui deserunt eiusmod null\"\n      }\n    },\n    {\n      \"group_key\": {\n        \"proident_b3\": -54832476.126360595,\n        \"aliquip2\": false\n      },\n      \"count\": \"<integer>\",\n      \"first_item\": {\n        \"pariaturb\": -94133904\n      }\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-5f81d870-2cf9-4b8a-80c0-ff4ecf8c0813"
+                            },
+                            {
+                              "id": "53604cf2-3ac7-480c-bdc1-02e93501e84a",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"page_size\": \"<integer>\",\n  \"page_token\": \"<string>\",\n  \"filter\": {\n    \"ina\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  },\n  \"order_by\": \"<string>\",\n  \"collection\": \"default\",\n  \"group_by\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"count\": \"<boolean>\",\n  \"first\": \"<boolean>\",\n  \"offset\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:aggregate?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":aggregate"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "aggregate"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-53604cf2-3ac7-480c-bdc1-02e93501e84a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:32.000Z",
+                          "updatedAt": "2026-07-28T02:07:32.000Z",
+                          "uid": "35240-9bc7f310-41e2-4937-8938-18ea31cf4d26"
+                        }
+                      ],
+                      "id": "9d28ad5b-4ce2-4f8a-9d6e-4091a7e41bd0",
+                      "createdAt": "2026-07-28T02:07:32.000Z",
+                      "updatedAt": "2026-07-28T02:07:32.000Z",
+                      "uid": "35240-9d28ad5b-4ce2-4f8a-9d6e-4091a7e41bd0"
+                    },
+                    {
+                      "name": ":delete",
+                      "item": [
+                        {
+                          "name": "Delete Agent Data By Query",
+                          "id": "5b976dc5-afc9-462f-bdc7-530fd6f4eae1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"collection\": \"default\",\n  \"filter\": {\n    \"esse_aaf\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/agent-data/:delete?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "agent-data",
+                                ":delete"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8d5cf523-3b21-4141-9299-d452f08994ee",
+                                  "key": "delete"
+                                }
+                              ]
+                            },
+                            "description": "Bulk delete agent data by query (deployment_name, collection, optional filters)."
+                          },
+                          "response": [
+                            {
+                              "id": "bab208c8-99fc-481a-b6a5-4d63b07aed07",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"collection\": \"default\",\n  \"filter\": {\n    \"esse_aaf\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:delete?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":delete"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "delete"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"deleted_count\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-bab208c8-99fc-481a-b6a5-4d63b07aed07"
+                            },
+                            {
+                              "id": "7926a221-b8f9-4246-a726-443d2c19d2ef",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"collection\": \"default\",\n  \"filter\": {\n    \"esse_aaf\": {\n      \"eq\": \"<number>\",\n      \"ne\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"gte\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"lte\": \"<number>\",\n      \"includes\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"excludes\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/beta/agent-data/:delete?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "beta",
+                                    "agent-data",
+                                    ":delete"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "delete"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:32.000Z",
+                              "updatedAt": "2026-07-28T02:07:32.000Z",
+                              "uid": "35240-7926a221-b8f9-4246-a726-443d2c19d2ef"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:32.000Z",
+                          "updatedAt": "2026-07-28T02:07:32.000Z",
+                          "uid": "35240-5b976dc5-afc9-462f-bdc7-530fd6f4eae1"
+                        }
+                      ],
+                      "id": "90934eec-b165-4acb-8a84-68ee3b98833b",
+                      "createdAt": "2026-07-28T02:07:32.000Z",
+                      "updatedAt": "2026-07-28T02:07:32.000Z",
+                      "uid": "35240-90934eec-b165-4acb-8a84-68ee3b98833b"
+                    },
+                    {
+                      "name": "Create Agent Data",
+                      "id": "a0a27c34-f752-4e74-b564-6a6b69b8fad9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"data\": {\n    \"quise\": false\n  },\n  \"collection\": \"default\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/beta/agent-data?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "beta",
+                            "agent-data"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "Create new agent data."
+                      },
+                      "response": [
+                        {
+                          "id": "95bb754e-24b4-40e9-8712-e272b92e6ad1",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"data\": {\n    \"quise\": false\n  },\n  \"collection\": \"default\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/agent-data?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "agent-data"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"deployment_name\": \"<string>\",\n  \"data\": {\n    \"ind81\": true\n  },\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"collection\": \"default\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:07:32.000Z",
+                          "updatedAt": "2026-07-28T02:07:32.000Z",
+                          "uid": "35240-95bb754e-24b4-40e9-8712-e272b92e6ad1"
+                        },
+                        {
+                          "id": "841d4212-40df-450d-840c-af2224cf1fdb",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"deployment_name\": \"<string>\",\n  \"data\": {\n    \"quise\": false\n  },\n  \"collection\": \"default\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/beta/agent-data?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "beta",
+                                "agent-data"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:32.000Z",
+                          "updatedAt": "2026-07-28T02:07:32.000Z",
+                          "uid": "35240-841d4212-40df-450d-840c-af2224cf1fdb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:32.000Z",
+                      "updatedAt": "2026-07-28T02:07:32.000Z",
+                      "uid": "35240-a0a27c34-f752-4e74-b564-6a6b69b8fad9"
+                    }
+                  ],
+                  "id": "72bf4f3f-e340-4b27-b5fa-4fbad4c59e8f",
+                  "createdAt": "2026-07-28T02:07:32.000Z",
+                  "updatedAt": "2026-07-28T02:07:32.000Z",
+                  "uid": "35240-72bf4f3f-e340-4b27-b5fa-4fbad4c59e8f"
+                }
+              ],
+              "id": "eb1bf755-cc70-44dc-a624-032839dee024",
+              "createdAt": "2026-07-28T02:07:32.000Z",
+              "updatedAt": "2026-07-28T02:07:32.000Z",
+              "uid": "35240-eb1bf755-cc70-44dc-a624-032839dee024"
+            }
+          ],
+          "id": "1313cedd-7546-4980-9c81-d473cd812e1a",
+          "createdAt": "2026-07-28T02:07:32.000Z",
+          "updatedAt": "2026-07-28T02:07:32.000Z",
+          "uid": "35240-1313cedd-7546-4980-9c81-d473cd812e1a"
+        }
+      ],
+      "id": "787d18fc-99a2-4593-a4d3-5c28e6fb0c3c",
+      "createdAt": "2026-07-28T02:07:32.000Z",
+      "updatedAt": "2026-07-28T02:07:32.000Z",
+      "uid": "35240-787d18fc-99a2-4593-a4d3-5c28e6fb0c3c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

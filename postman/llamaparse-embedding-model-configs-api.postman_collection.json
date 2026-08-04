@@ -1,0 +1,815 @@
+{
+  "info": {
+    "_postman_id": "9d9a19d1-9747-4f28-9a2f-f0685434b4eb",
+    "name": "Llama Platform Agent Data Embedding Model Configs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:00.000Z",
+    "updatedAt": "2026-07-28T02:08:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9d9a19d1-9747-4f28-9a2f-f0685434b4eb"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "embedding-model-configs",
+              "item": [
+                {
+                  "name": "{embedding_model_config_id}",
+                  "item": [
+                    {
+                      "name": "Update Embedding Model Config",
+                      "id": "b560c31e-b190-446b-befe-315d913e535f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"embedding_config\": {\n    \"type\": \"AZURE_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"text-embedding-ada-002\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"additional_kwargs\": {\n        \"velit_48b\": 71704415.64363596\n      },\n      \"api_key\": \"<string>\",\n      \"api_base\": \"\",\n      \"api_version\": \"\",\n      \"max_retries\": 10,\n      \"timeout\": 60,\n      \"default_headers\": {\n        \"Ut3\": \"<string>\",\n        \"ut59\": \"<string>\"\n      },\n      \"reuse_client\": true,\n      \"dimensions\": \"<integer>\",\n      \"azure_endpoint\": \"<string>\",\n      \"azure_deployment\": \"<string>\",\n      \"class_name\": \"AzureOpenAIEmbedding\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/embedding-model-configs/:embedding_model_config_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "embedding-model-configs",
+                            ":embedding_model_config_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "fa1a6640-75d4-48c3-b95d-2b6afdc88692",
+                              "key": "embedding_model_config_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an embedding model config by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "b9f8dcf8-7965-4ff1-8e3b-c9787f4baa9c",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"embedding_config\": {\n    \"type\": \"AZURE_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"text-embedding-ada-002\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"additional_kwargs\": {\n        \"velit_48b\": 71704415.64363596\n      },\n      \"api_key\": \"<string>\",\n      \"api_base\": \"\",\n      \"api_version\": \"\",\n      \"max_retries\": 10,\n      \"timeout\": 60,\n      \"default_headers\": {\n        \"Ut3\": \"<string>\",\n        \"ut59\": \"<string>\"\n      },\n      \"reuse_client\": true,\n      \"dimensions\": \"<integer>\",\n      \"azure_endpoint\": \"<string>\",\n      \"azure_deployment\": \"<string>\",\n      \"class_name\": \"AzureOpenAIEmbedding\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/embedding-model-configs/:embedding_model_config_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "embedding-model-configs",
+                                ":embedding_model_config_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embedding_model_config_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"embedding_config\": {\n    \"type\": \"AZURE_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"text-embedding-ada-002\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"additional_kwargs\": {\n        \"in_4\": -15200686.07921736\n      },\n      \"api_key\": \"<string>\",\n      \"api_base\": \"\",\n      \"api_version\": \"\",\n      \"max_retries\": 10,\n      \"timeout\": 60,\n      \"default_headers\": {\n        \"tempor33\": \"<string>\",\n        \"ea2\": \"<string>\",\n        \"doloreaee\": \"<string>\",\n        \"nostrud_e85\": \"<string>\"\n      },\n      \"reuse_client\": true,\n      \"dimensions\": \"<integer>\",\n      \"azure_endpoint\": \"<string>\",\n      \"azure_deployment\": \"<string>\",\n      \"class_name\": \"AzureOpenAIEmbedding\"\n    }\n  },\n  \"project_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:08:01.000Z",
+                          "updatedAt": "2026-07-28T02:08:01.000Z",
+                          "uid": "35240-b9f8dcf8-7965-4ff1-8e3b-c9787f4baa9c"
+                        },
+                        {
+                          "id": "f2534243-ce90-45a0-9f79-c35e8702767c",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"embedding_config\": {\n    \"type\": \"AZURE_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"text-embedding-ada-002\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"additional_kwargs\": {\n        \"velit_48b\": 71704415.64363596\n      },\n      \"api_key\": \"<string>\",\n      \"api_base\": \"\",\n      \"api_version\": \"\",\n      \"max_retries\": 10,\n      \"timeout\": 60,\n      \"default_headers\": {\n        \"Ut3\": \"<string>\",\n        \"ut59\": \"<string>\"\n      },\n      \"reuse_client\": true,\n      \"dimensions\": \"<integer>\",\n      \"azure_endpoint\": \"<string>\",\n      \"azure_deployment\": \"<string>\",\n      \"class_name\": \"AzureOpenAIEmbedding\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/embedding-model-configs/:embedding_model_config_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "embedding-model-configs",
+                                ":embedding_model_config_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embedding_model_config_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:01.000Z",
+                          "updatedAt": "2026-07-28T02:08:01.000Z",
+                          "uid": "35240-f2534243-ce90-45a0-9f79-c35e8702767c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:01.000Z",
+                      "updatedAt": "2026-07-28T02:08:01.000Z",
+                      "uid": "35240-b560c31e-b190-446b-befe-315d913e535f"
+                    },
+                    {
+                      "name": "Delete Embedding Model Config",
+                      "id": "774791b4-0136-4830-8d6c-b15c30745851",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/embedding-model-configs/:embedding_model_config_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "embedding-model-configs",
+                            ":embedding_model_config_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "ede38fde-b727-46d0-95f4-432ba7ba01a9",
+                              "key": "embedding_model_config_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete an embedding model config by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "73602f05-a889-4d2b-bb8f-b5f3c2d0fcfb",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/embedding-model-configs/:embedding_model_config_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "embedding-model-configs",
+                                ":embedding_model_config_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embedding_model_config_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:08:01.000Z",
+                          "updatedAt": "2026-07-28T02:08:01.000Z",
+                          "uid": "35240-73602f05-a889-4d2b-bb8f-b5f3c2d0fcfb"
+                        },
+                        {
+                          "id": "a6d77af2-19e5-4e7a-bf81-dd1da16e9912",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/embedding-model-configs/:embedding_model_config_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "embedding-model-configs",
+                                ":embedding_model_config_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "embedding_model_config_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:01.000Z",
+                          "updatedAt": "2026-07-28T02:08:01.000Z",
+                          "uid": "35240-a6d77af2-19e5-4e7a-bf81-dd1da16e9912"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:01.000Z",
+                      "updatedAt": "2026-07-28T02:08:01.000Z",
+                      "uid": "35240-774791b4-0136-4830-8d6c-b15c30745851"
+                    }
+                  ],
+                  "id": "c0354b26-fc1f-468d-94da-acf6aa222de9",
+                  "createdAt": "2026-07-28T02:08:01.000Z",
+                  "updatedAt": "2026-07-28T02:08:01.000Z",
+                  "uid": "35240-c0354b26-fc1f-468d-94da-acf6aa222de9"
+                },
+                {
+                  "name": "List Embedding Model Configs",
+                  "id": "6a25cc62-40c1-4179-9d06-574f0a177fcc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/embedding-model-configs?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "embedding-model-configs"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b09734ba-d39e-4f01-84ae-558eac89f616",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/embedding-model-configs?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "embedding-model-configs"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"embedding_config\": {\n      \"type\": \"AZURE_EMBEDDING\",\n      \"component\": {\n        \"model_name\": \"text-embedding-ada-002\",\n        \"embed_batch_size\": 10,\n        \"num_workers\": \"<integer>\",\n        \"additional_kwargs\": {\n          \"occaecatb2\": 46650009,\n          \"labore2\": \"sint ea minim id\"\n        },\n        \"api_key\": \"<string>\",\n        \"api_base\": \"\",\n        \"api_version\": \"\",\n        \"max_retries\": 10,\n        \"timeout\": 60,\n        \"default_headers\": {\n          \"exercitation_02d\": \"<string>\",\n          \"ut_60e\": \"<string>\"\n        },\n        \"reuse_client\": true,\n        \"dimensions\": \"<integer>\",\n        \"azure_endpoint\": \"<string>\",\n        \"azure_deployment\": \"<string>\",\n        \"class_name\": \"AzureOpenAIEmbedding\"\n      }\n    },\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"embedding_config\": {\n      \"type\": \"AZURE_EMBEDDING\",\n      \"component\": {\n        \"model_name\": \"text-embedding-ada-002\",\n        \"embed_batch_size\": 10,\n        \"num_workers\": \"<integer>\",\n        \"additional_kwargs\": {\n          \"minim_48a\": \"Ut sint cill\"\n        },\n        \"api_key\": \"<string>\",\n        \"api_base\": \"\",\n        \"api_version\": \"\",\n        \"max_retries\": 10,\n        \"timeout\": 60,\n        \"default_headers\": {\n          \"dolore_2\": \"<string>\",\n          \"ut757\": \"<string>\",\n          \"Ut326\": \"<string>\"\n        },\n        \"reuse_client\": true,\n        \"dimensions\": \"<integer>\",\n        \"azure_endpoint\": \"<string>\",\n        \"azure_deployment\": \"<string>\",\n        \"class_name\": \"AzureOpenAIEmbedding\"\n      }\n    },\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T02:08:01.000Z",
+                      "updatedAt": "2026-07-28T02:08:01.000Z",
+                      "uid": "35240-b09734ba-d39e-4f01-84ae-558eac89f616"
+                    },
+                    {
+                      "id": "66850803-0f79-46a7-ac56-9dc41deef46a",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/embedding-model-configs?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "embedding-model-configs"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:01.000Z",
+                      "updatedAt": "2026-07-28T02:08:01.000Z",
+                      "uid": "35240-66850803-0f79-46a7-ac56-9dc41deef46a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:01.000Z",
+                  "updatedAt": "2026-07-28T02:08:01.000Z",
+                  "uid": "35240-6a25cc62-40c1-4179-9d06-574f0a177fcc"
+                },
+                {
+                  "name": "Create a new Embedding Model Configuration",
+                  "id": "8e6457d6-9471-470e-86c6-46e714448050",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"embedding_config\": {\n    \"type\": \"AZURE_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"text-embedding-ada-002\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"additional_kwargs\": {\n        \"Duisdd5\": 38934714.861523926\n      },\n      \"api_key\": \"<string>\",\n      \"api_base\": \"\",\n      \"api_version\": \"\",\n      \"max_retries\": 10,\n      \"timeout\": 60,\n      \"default_headers\": {\n        \"in_\": \"<string>\"\n      },\n      \"reuse_client\": true,\n      \"dimensions\": \"<integer>\",\n      \"azure_endpoint\": \"<string>\",\n      \"azure_deployment\": \"<string>\",\n      \"class_name\": \"AzureOpenAIEmbedding\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/embedding-model-configs?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "embedding-model-configs"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Create a new embedding model configuration within a specified project."
+                  },
+                  "response": [
+                    {
+                      "id": "38140d46-4ae8-4e24-aaec-0533b378d381",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"embedding_config\": {\n    \"type\": \"AZURE_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"text-embedding-ada-002\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"additional_kwargs\": {\n        \"Duisdd5\": 38934714.861523926\n      },\n      \"api_key\": \"<string>\",\n      \"api_base\": \"\",\n      \"api_version\": \"\",\n      \"max_retries\": 10,\n      \"timeout\": 60,\n      \"default_headers\": {\n        \"in_\": \"<string>\"\n      },\n      \"reuse_client\": true,\n      \"dimensions\": \"<integer>\",\n      \"azure_endpoint\": \"<string>\",\n      \"azure_deployment\": \"<string>\",\n      \"class_name\": \"AzureOpenAIEmbedding\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/embedding-model-configs?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "embedding-model-configs"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"embedding_config\": {\n    \"type\": \"AZURE_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"text-embedding-ada-002\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"additional_kwargs\": {\n        \"in_4\": -15200686.07921736\n      },\n      \"api_key\": \"<string>\",\n      \"api_base\": \"\",\n      \"api_version\": \"\",\n      \"max_retries\": 10,\n      \"timeout\": 60,\n      \"default_headers\": {\n        \"tempor33\": \"<string>\",\n        \"ea2\": \"<string>\",\n        \"doloreaee\": \"<string>\",\n        \"nostrud_e85\": \"<string>\"\n      },\n      \"reuse_client\": true,\n      \"dimensions\": \"<integer>\",\n      \"azure_endpoint\": \"<string>\",\n      \"azure_deployment\": \"<string>\",\n      \"class_name\": \"AzureOpenAIEmbedding\"\n    }\n  },\n  \"project_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:08:01.000Z",
+                      "updatedAt": "2026-07-28T02:08:01.000Z",
+                      "uid": "35240-38140d46-4ae8-4e24-aaec-0533b378d381"
+                    },
+                    {
+                      "id": "5eee5690-c479-4f71-ac23-955fb21e14ce",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"embedding_config\": {\n    \"type\": \"AZURE_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"text-embedding-ada-002\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": \"<integer>\",\n      \"additional_kwargs\": {\n        \"Duisdd5\": 38934714.861523926\n      },\n      \"api_key\": \"<string>\",\n      \"api_base\": \"\",\n      \"api_version\": \"\",\n      \"max_retries\": 10,\n      \"timeout\": 60,\n      \"default_headers\": {\n        \"in_\": \"<string>\"\n      },\n      \"reuse_client\": true,\n      \"dimensions\": \"<integer>\",\n      \"azure_endpoint\": \"<string>\",\n      \"azure_deployment\": \"<string>\",\n      \"class_name\": \"AzureOpenAIEmbedding\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/embedding-model-configs?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "embedding-model-configs"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:01.000Z",
+                      "updatedAt": "2026-07-28T02:08:01.000Z",
+                      "uid": "35240-5eee5690-c479-4f71-ac23-955fb21e14ce"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:01.000Z",
+                  "updatedAt": "2026-07-28T02:08:01.000Z",
+                  "uid": "35240-8e6457d6-9471-470e-86c6-46e714448050"
+                }
+              ],
+              "id": "95f28cb9-d434-44b9-8536-df0b19324a1f",
+              "createdAt": "2026-07-28T02:08:01.000Z",
+              "updatedAt": "2026-07-28T02:08:01.000Z",
+              "uid": "35240-95f28cb9-d434-44b9-8536-df0b19324a1f"
+            }
+          ],
+          "id": "cda899e8-fbf2-425f-bb8b-acf6a347b7a8",
+          "createdAt": "2026-07-28T02:08:01.000Z",
+          "updatedAt": "2026-07-28T02:08:01.000Z",
+          "uid": "35240-cda899e8-fbf2-425f-bb8b-acf6a347b7a8"
+        }
+      ],
+      "id": "b0ceec40-0fad-4ae8-a552-124797ae9389",
+      "createdAt": "2026-07-28T02:08:01.000Z",
+      "updatedAt": "2026-07-28T02:08:01.000Z",
+      "uid": "35240-b0ceec40-0fad-4ae8-a552-124797ae9389"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

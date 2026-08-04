@@ -1,0 +1,1664 @@
+{
+  "info": {
+    "_postman_id": "1c1c3353-24de-4197-8380-a0cb3aacdb5a",
+    "name": "Llama Platform Agent Data Retrievers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:54.000Z",
+    "updatedAt": "2026-07-28T02:08:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1c1c3353-24de-4197-8380-a0cb3aacdb5a"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "retrievers",
+              "item": [
+                {
+                  "name": "{retriever_id}",
+                  "item": [
+                    {
+                      "name": "retrieve",
+                      "item": [
+                        {
+                          "name": "Retrieve",
+                          "id": "687eb0d2-8215-4432-b80f-af8523db436d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"full\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"llm\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                ":retriever_id",
+                                "retrieve"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a92a1e73-defe-4d36-8543-e2aa93c06297",
+                                  "key": "retriever_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve data using a Retriever."
+                          },
+                          "response": [
+                            {
+                              "id": "9615347d-a205-4429-a9ea-84b73c43795d",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"full\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"llm\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "retrievers",
+                                    ":retriever_id",
+                                    "retrieve"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "retriever_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"nodes\": [\n    {\n      \"node\": {\n        \"id\": \"<uuid>\",\n        \"retriever_id\": \"<uuid>\",\n        \"retriever_pipeline_name\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"text\": \"<string>\",\n        \"start_char_idx\": \"<integer>\",\n        \"end_char_idx\": \"<integer>\",\n        \"metadata\": {\n          \"consectetur_1\": true,\n          \"ipsum_1ec\": 18750621\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"CompositeRetrievedTextNodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"id\": \"<uuid>\",\n        \"retriever_id\": \"<uuid>\",\n        \"retriever_pipeline_name\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"text\": \"<string>\",\n        \"start_char_idx\": \"<integer>\",\n        \"end_char_idx\": \"<integer>\",\n        \"metadata\": {\n          \"voluptate_8\": 33852883\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"CompositeRetrievedTextNodeWithScore\"\n    }\n  ],\n  \"image_nodes\": [\n    {\n      \"node\": {\n        \"page_index\": \"<integer>\",\n        \"file_id\": \"<uuid>\",\n        \"image_size\": \"<integer>\",\n        \"metadata\": {\n          \"incididuntfc\": \"aliquip officia nulla est\",\n          \"velitb\": \"eiusmod sit ipsum incididunt magna\"\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"NodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"page_index\": \"<integer>\",\n        \"file_id\": \"<uuid>\",\n        \"image_size\": \"<integer>\",\n        \"metadata\": {\n          \"sit8a\": -53745964,\n          \"aliquip_c5\": \"est aliquip pariatur laboris\"\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"NodeWithScore\"\n    }\n  ],\n  \"page_figure_nodes\": [\n    {\n      \"node\": {\n        \"figure_name\": \"<string>\",\n        \"file_id\": \"<uuid>\",\n        \"page_index\": \"<integer>\",\n        \"figure_size\": \"<integer>\",\n        \"confidence\": \"<number>\",\n        \"is_likely_noise\": false,\n        \"metadata\": {\n          \"ullamcoe\": \"a\",\n          \"pariatur_99_\": -20247918\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"PageFigureNodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"figure_name\": \"<string>\",\n        \"file_id\": \"<uuid>\",\n        \"page_index\": \"<integer>\",\n        \"figure_size\": \"<integer>\",\n        \"confidence\": \"<number>\",\n        \"is_likely_noise\": false,\n        \"metadata\": {\n          \"commodo_ad\": 48390589.75877172\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"PageFigureNodeWithScore\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:55.000Z",
+                              "updatedAt": "2026-07-28T02:08:55.000Z",
+                              "uid": "35240-9615347d-a205-4429-a9ea-84b73c43795d"
+                            },
+                            {
+                              "id": "e43efa1b-e0cf-4332-9169-7003def047f8",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"full\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"llm\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "retrievers",
+                                    ":retriever_id",
+                                    "retrieve"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "retriever_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:55.000Z",
+                              "updatedAt": "2026-07-28T02:08:55.000Z",
+                              "uid": "35240-e43efa1b-e0cf-4332-9169-7003def047f8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-687eb0d2-8215-4432-b80f-af8523db436d"
+                        }
+                      ],
+                      "id": "f0ff8afa-9a83-42bb-b816-808386796cdd",
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-f0ff8afa-9a83-42bb-b816-808386796cdd"
+                    },
+                    {
+                      "name": "Get Retriever",
+                      "id": "767b8f53-42f4-42a6-9618-36cf6eb2c96b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers",
+                            ":retriever_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "79cfac8c-45be-4117-a586-cddae6e3d2a9",
+                              "key": "retriever_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get a Retriever by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "a5dbbc13-cc36-41a4-a0c1-227725a83115",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                ":retriever_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "retriever_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"project_id\": \"<uuid>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"contains\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"laboris_9\": {\n            \"consequat_a73\": -97013327\n          },\n          \"reprehenderit_1\": {\n            \"dolorc9\": \"nulla minim consequat mollit occaecat\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"==\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"and\"\n        },\n        \"search_filters_inference_schema\": {\n          \"proidentcad\": {\n            \"Duis_3\": \"consectetur sint aliquip \",\n            \"fugiat2\": false,\n            \"enim6fe\": true\n          },\n          \"nisi_1\": {\n            \"eue\": true,\n            \"esse_2f\": 63420227\n          },\n          \"in_4\": {\n            \"ipsum_3\": true,\n            \"ut_8\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-a5dbbc13-cc36-41a4-a0c1-227725a83115"
+                        },
+                        {
+                          "id": "9a596478-62b7-48b0-82dd-7ca197481700",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                ":retriever_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "retriever_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-9a596478-62b7-48b0-82dd-7ca197481700"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-767b8f53-42f4-42a6-9618-36cf6eb2c96b"
+                    },
+                    {
+                      "name": "Update Retriever",
+                      "id": "ff204ce3-8970-467b-940b-da508e46ce1a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"text_match_insensitive\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"==\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"cupidatat_c\": {\n            \"sed9\": 16742972\n          },\n          \"et_afd\": {\n            \"Excepteur__\": 34574063.54573941,\n            \"esse_8c\": \"velit dolor officia sed\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_content\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \">\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"deserunt3da\": {\n            \"cillum_db_\": \"culpa sint irure Excepteur\",\n            \"esseae3\": \"aliqua sint esse\",\n            \"consectetur8\": 18042432\n          },\n          \"tempor_78_\": {\n            \"idae7\": 15999457,\n            \"est_520\": 16209521,\n            \"velit_f\": 41587654.80728683,\n            \"nullaf2\": \"voluptate dolore mollit sint\"\n          },\n          \"tempor_a48\": {\n            \"in_1\": false,\n            \"elit_c\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers",
+                            ":retriever_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "e1d23dec-b2dd-42f5-8b3f-ae241f47ec61",
+                              "key": "retriever_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an existing Retriever."
+                      },
+                      "response": [
+                        {
+                          "id": "5a14c3db-1ad9-49a7-89ad-95055e3601d3",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"text_match_insensitive\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"==\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"cupidatat_c\": {\n            \"sed9\": 16742972\n          },\n          \"et_afd\": {\n            \"Excepteur__\": 34574063.54573941,\n            \"esse_8c\": \"velit dolor officia sed\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_content\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \">\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"deserunt3da\": {\n            \"cillum_db_\": \"culpa sint irure Excepteur\",\n            \"esseae3\": \"aliqua sint esse\",\n            \"consectetur8\": 18042432\n          },\n          \"tempor_78_\": {\n            \"idae7\": 15999457,\n            \"est_520\": 16209521,\n            \"velit_f\": 41587654.80728683,\n            \"nullaf2\": \"voluptate dolore mollit sint\"\n          },\n          \"tempor_a48\": {\n            \"in_1\": false,\n            \"elit_c\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                ":retriever_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "retriever_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"project_id\": \"<uuid>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"contains\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"laboris_9\": {\n            \"consequat_a73\": -97013327\n          },\n          \"reprehenderit_1\": {\n            \"dolorc9\": \"nulla minim consequat mollit occaecat\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"==\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"and\"\n        },\n        \"search_filters_inference_schema\": {\n          \"proidentcad\": {\n            \"Duis_3\": \"consectetur sint aliquip \",\n            \"fugiat2\": false,\n            \"enim6fe\": true\n          },\n          \"nisi_1\": {\n            \"eue\": true,\n            \"esse_2f\": 63420227\n          },\n          \"in_4\": {\n            \"ipsum_3\": true,\n            \"ut_8\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-5a14c3db-1ad9-49a7-89ad-95055e3601d3"
+                        },
+                        {
+                          "id": "f6ee6256-c4a5-4aa1-ad79-1dbae5de3f76",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"text_match_insensitive\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"==\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"cupidatat_c\": {\n            \"sed9\": 16742972\n          },\n          \"et_afd\": {\n            \"Excepteur__\": 34574063.54573941,\n            \"esse_8c\": \"velit dolor officia sed\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_content\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \">\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"deserunt3da\": {\n            \"cillum_db_\": \"culpa sint irure Excepteur\",\n            \"esseae3\": \"aliqua sint esse\",\n            \"consectetur8\": 18042432\n          },\n          \"tempor_78_\": {\n            \"idae7\": 15999457,\n            \"est_520\": 16209521,\n            \"velit_f\": 41587654.80728683,\n            \"nullaf2\": \"voluptate dolore mollit sint\"\n          },\n          \"tempor_a48\": {\n            \"in_1\": false,\n            \"elit_c\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                ":retriever_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "retriever_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-f6ee6256-c4a5-4aa1-ad79-1dbae5de3f76"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-ff204ce3-8970-467b-940b-da508e46ce1a"
+                    },
+                    {
+                      "name": "Delete Retriever",
+                      "id": "1ad83084-4a4b-4184-a387-af37b866b607",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers",
+                            ":retriever_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "c8365522-8dcb-4806-82b5-e1655120d6a4",
+                              "key": "retriever_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a Retriever by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "57dfbb32-62da-4784-a749-c6843263faef",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                ":retriever_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "retriever_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-57dfbb32-62da-4784-a749-c6843263faef"
+                        },
+                        {
+                          "id": "9b9b9743-befb-48a9-89a5-5dacb943bb25",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/:retriever_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                ":retriever_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "retriever_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-9b9b9743-befb-48a9-89a5-5dacb943bb25"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-1ad83084-4a4b-4184-a387-af37b866b607"
+                    }
+                  ],
+                  "id": "781a0922-1bab-44c1-b77f-dbafb59273d7",
+                  "createdAt": "2026-07-28T02:08:55.000Z",
+                  "updatedAt": "2026-07-28T02:08:55.000Z",
+                  "uid": "35240-781a0922-1bab-44c1-b77f-dbafb59273d7"
+                },
+                {
+                  "name": "retrieve",
+                  "item": [
+                    {
+                      "name": "Direct Retrieve",
+                      "id": "c14e5913-4a64-4b9d-b34f-3c5e99a75b70",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"routing\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"disabled\"\n  },\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"not\"\n        },\n        \"search_filters_inference_schema\": {\n          \"etc4d\": {\n            \"dolore_fc\": -19443371.642215326,\n            \"cillumf\": -62432851.54658867\n          },\n          \"incididunt_ee\": {\n            \"in41\": false,\n            \"culpa_5\": -33883746\n          },\n          \"consequat_a\": {\n            \"culpab4\": -44934194,\n            \"et_32e\": 77512312.83459851,\n            \"commodo0ff\": true\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"<=\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"<\"\n            }\n          ],\n          \"condition\": \"and\"\n        },\n        \"search_filters_inference_schema\": {\n          \"enim_c8c\": {\n            \"Lorem_922\": \"cillum eu\",\n            \"est_f\": -46316620.447490565\n          },\n          \"Ut_32\": {\n            \"aliquipb_\": false,\n            \"consequat0_1\": -63705172.39434577\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers",
+                            "retrieve"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve data using specified pipelines without creating a persistent retriever."
+                      },
+                      "response": [
+                        {
+                          "id": "090139ea-b2fd-43cf-a141-80795ffb4f7e",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"routing\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"disabled\"\n  },\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"not\"\n        },\n        \"search_filters_inference_schema\": {\n          \"etc4d\": {\n            \"dolore_fc\": -19443371.642215326,\n            \"cillumf\": -62432851.54658867\n          },\n          \"incididunt_ee\": {\n            \"in41\": false,\n            \"culpa_5\": -33883746\n          },\n          \"consequat_a\": {\n            \"culpab4\": -44934194,\n            \"et_32e\": 77512312.83459851,\n            \"commodo0ff\": true\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"<=\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"<\"\n            }\n          ],\n          \"condition\": \"and\"\n        },\n        \"search_filters_inference_schema\": {\n          \"enim_c8c\": {\n            \"Lorem_922\": \"cillum eu\",\n            \"est_f\": -46316620.447490565\n          },\n          \"Ut_32\": {\n            \"aliquipb_\": false,\n            \"consequat0_1\": -63705172.39434577\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                "retrieve"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"nodes\": [\n    {\n      \"node\": {\n        \"id\": \"<uuid>\",\n        \"retriever_id\": \"<uuid>\",\n        \"retriever_pipeline_name\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"text\": \"<string>\",\n        \"start_char_idx\": \"<integer>\",\n        \"end_char_idx\": \"<integer>\",\n        \"metadata\": {\n          \"consectetur_1\": true,\n          \"ipsum_1ec\": 18750621\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"CompositeRetrievedTextNodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"id\": \"<uuid>\",\n        \"retriever_id\": \"<uuid>\",\n        \"retriever_pipeline_name\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"text\": \"<string>\",\n        \"start_char_idx\": \"<integer>\",\n        \"end_char_idx\": \"<integer>\",\n        \"metadata\": {\n          \"voluptate_8\": 33852883\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"CompositeRetrievedTextNodeWithScore\"\n    }\n  ],\n  \"image_nodes\": [\n    {\n      \"node\": {\n        \"page_index\": \"<integer>\",\n        \"file_id\": \"<uuid>\",\n        \"image_size\": \"<integer>\",\n        \"metadata\": {\n          \"incididuntfc\": \"aliquip officia nulla est\",\n          \"velitb\": \"eiusmod sit ipsum incididunt magna\"\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"NodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"page_index\": \"<integer>\",\n        \"file_id\": \"<uuid>\",\n        \"image_size\": \"<integer>\",\n        \"metadata\": {\n          \"sit8a\": -53745964,\n          \"aliquip_c5\": \"est aliquip pariatur laboris\"\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"NodeWithScore\"\n    }\n  ],\n  \"page_figure_nodes\": [\n    {\n      \"node\": {\n        \"figure_name\": \"<string>\",\n        \"file_id\": \"<uuid>\",\n        \"page_index\": \"<integer>\",\n        \"figure_size\": \"<integer>\",\n        \"confidence\": \"<number>\",\n        \"is_likely_noise\": false,\n        \"metadata\": {\n          \"ullamcoe\": \"a\",\n          \"pariatur_99_\": -20247918\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"PageFigureNodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"figure_name\": \"<string>\",\n        \"file_id\": \"<uuid>\",\n        \"page_index\": \"<integer>\",\n        \"figure_size\": \"<integer>\",\n        \"confidence\": \"<number>\",\n        \"is_likely_noise\": false,\n        \"metadata\": {\n          \"commodo_ad\": 48390589.75877172\n        }\n      },\n      \"score\": \"<number>\",\n      \"class_name\": \"PageFigureNodeWithScore\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-090139ea-b2fd-43cf-a141-80795ffb4f7e"
+                        },
+                        {
+                          "id": "c8cb634a-fc5b-40b8-9064-70effa8f0769",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"routing\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"disabled\"\n  },\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"not\"\n        },\n        \"search_filters_inference_schema\": {\n          \"etc4d\": {\n            \"dolore_fc\": -19443371.642215326,\n            \"cillumf\": -62432851.54658867\n          },\n          \"incididunt_ee\": {\n            \"in41\": false,\n            \"culpa_5\": -33883746\n          },\n          \"consequat_a\": {\n            \"culpab4\": -44934194,\n            \"et_32e\": 77512312.83459851,\n            \"commodo0ff\": true\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"<=\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"<\"\n            }\n          ],\n          \"condition\": \"and\"\n        },\n        \"search_filters_inference_schema\": {\n          \"enim_c8c\": {\n            \"Lorem_922\": \"cillum eu\",\n            \"est_f\": -46316620.447490565\n          },\n          \"Ut_32\": {\n            \"aliquipb_\": false,\n            \"consequat0_1\": -63705172.39434577\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/retrievers/retrieve?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "retrievers",
+                                "retrieve"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:55.000Z",
+                          "updatedAt": "2026-07-28T02:08:55.000Z",
+                          "uid": "35240-c8cb634a-fc5b-40b8-9064-70effa8f0769"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-c14e5913-4a64-4b9d-b34f-3c5e99a75b70"
+                    }
+                  ],
+                  "id": "0ce90c70-a1c4-4506-90a9-40c3510948d3",
+                  "createdAt": "2026-07-28T02:08:55.000Z",
+                  "updatedAt": "2026-07-28T02:08:55.000Z",
+                  "uid": "35240-0ce90c70-a1c4-4506-90a9-40c3510948d3"
+                },
+                {
+                  "name": "Create Retriever",
+                  "id": "17fc7694-5e63-48ec-951a-fc9e27c3a634",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"in_7\": {\n            \"Duisa\": \"sit voluptate\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"exdf8\": {\n            \"et_9a\": \"cupidatat quis officia sed\",\n            \"commodo_3\": true,\n            \"Ut_2\": 11241031\n          },\n          \"occaecat2a7\": {\n            \"voluptate_f\": 77390284.29609537,\n            \"irure2\": true,\n            \"eu_9\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/retrievers?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "retrievers"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Create a new Retriever."
+                  },
+                  "response": [
+                    {
+                      "id": "ff0bd18f-4590-4f0d-8e11-a495cf43d9e9",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"in_7\": {\n            \"Duisa\": \"sit voluptate\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"exdf8\": {\n            \"et_9a\": \"cupidatat quis officia sed\",\n            \"commodo_3\": true,\n            \"Ut_2\": 11241031\n          },\n          \"occaecat2a7\": {\n            \"voluptate_f\": 77390284.29609537,\n            \"irure2\": true,\n            \"eu_9\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"project_id\": \"<uuid>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"contains\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"laboris_9\": {\n            \"consequat_a73\": -97013327\n          },\n          \"reprehenderit_1\": {\n            \"dolorc9\": \"nulla minim consequat mollit occaecat\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"==\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"and\"\n        },\n        \"search_filters_inference_schema\": {\n          \"proidentcad\": {\n            \"Duis_3\": \"consectetur sint aliquip \",\n            \"fugiat2\": false,\n            \"enim6fe\": true\n          },\n          \"nisi_1\": {\n            \"eue\": true,\n            \"esse_2f\": 63420227\n          },\n          \"in_4\": {\n            \"ipsum_3\": true,\n            \"ut_8\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-ff0bd18f-4590-4f0d-8e11-a495cf43d9e9"
+                    },
+                    {
+                      "id": "c8555e39-0727-43d2-a946-a0f8cd8b13f8",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"in_7\": {\n            \"Duisa\": \"sit voluptate\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"exdf8\": {\n            \"et_9a\": \"cupidatat quis officia sed\",\n            \"commodo_3\": true,\n            \"Ut_2\": 11241031\n          },\n          \"occaecat2a7\": {\n            \"voluptate_f\": 77390284.29609537,\n            \"irure2\": true,\n            \"eu_9\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-c8555e39-0727-43d2-a946-a0f8cd8b13f8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:55.000Z",
+                  "updatedAt": "2026-07-28T02:08:55.000Z",
+                  "uid": "35240-17fc7694-5e63-48ec-951a-fc9e27c3a634"
+                },
+                {
+                  "name": "Upsert Retriever",
+                  "id": "c843b20a-da0b-405d-84e5-dd954bc08b24",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"in_7\": {\n            \"Duisa\": \"sit voluptate\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"exdf8\": {\n            \"et_9a\": \"cupidatat quis officia sed\",\n            \"commodo_3\": true,\n            \"Ut_2\": 11241031\n          },\n          \"occaecat2a7\": {\n            \"voluptate_f\": 77390284.29609537,\n            \"irure2\": true,\n            \"eu_9\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/retrievers?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "retrievers"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Upsert a new Retriever."
+                  },
+                  "response": [
+                    {
+                      "id": "0b597732-cb45-4b65-87b9-279fdf84f781",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"in_7\": {\n            \"Duisa\": \"sit voluptate\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"exdf8\": {\n            \"et_9a\": \"cupidatat quis officia sed\",\n            \"commodo_3\": true,\n            \"Ut_2\": 11241031\n          },\n          \"occaecat2a7\": {\n            \"voluptate_f\": 77390284.29609537,\n            \"irure2\": true,\n            \"eu_9\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"project_id\": \"<uuid>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"contains\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"laboris_9\": {\n            \"consequat_a73\": -97013327\n          },\n          \"reprehenderit_1\": {\n            \"dolorc9\": \"nulla minim consequat mollit occaecat\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"==\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"and\"\n        },\n        \"search_filters_inference_schema\": {\n          \"proidentcad\": {\n            \"Duis_3\": \"consectetur sint aliquip \",\n            \"fugiat2\": false,\n            \"enim6fe\": true\n          },\n          \"nisi_1\": {\n            \"eue\": true,\n            \"esse_2f\": 63420227\n          },\n          \"in_4\": {\n            \"ipsum_3\": true,\n            \"ut_8\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-0b597732-cb45-4b65-87b9-279fdf84f781"
+                    },
+                    {
+                      "id": "758b27e6-0784-48ef-bd7a-e2351814d5eb",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"all\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"in_7\": {\n            \"Duisa\": \"sit voluptate\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"files_via_metadata\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"any\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"value\": \"<integer>\",\n              \"operator\": \"!=\"\n            }\n          ],\n          \"condition\": \"or\"\n        },\n        \"search_filters_inference_schema\": {\n          \"exdf8\": {\n            \"et_9a\": \"cupidatat quis officia sed\",\n            \"commodo_3\": true,\n            \"Ut_2\": 11241031\n          },\n          \"occaecat2a7\": {\n            \"voluptate_f\": 77390284.29609537,\n            \"irure2\": true,\n            \"eu_9\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"auto_routed\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-758b27e6-0784-48ef-bd7a-e2351814d5eb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:55.000Z",
+                  "updatedAt": "2026-07-28T02:08:55.000Z",
+                  "uid": "35240-c843b20a-da0b-405d-84e5-dd954bc08b24"
+                },
+                {
+                  "name": "List Retrievers",
+                  "id": "c7cf7ec4-0672-4bc6-b95c-d7f2c34d8e35",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/retrievers?name=<string>&project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "retrievers"
+                      ],
+                      "query": [
+                        {
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "List Retrievers for a project."
+                  },
+                  "response": [
+                    {
+                      "id": "9b323024-1bb4-4cd7-a52e-de045235c3f2",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers?name=<string>&project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers"
+                          ],
+                          "query": [
+                            {
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"project_id\": \"<uuid>\",\n    \"pipelines\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"preset_retrieval_parameters\": {\n          \"dense_similarity_top_k\": \"<integer>\",\n          \"dense_similarity_cutoff\": \"<number>\",\n          \"sparse_similarity_top_k\": \"<integer>\",\n          \"enable_reranking\": \"<boolean>\",\n          \"rerank_top_n\": \"<integer>\",\n          \"alpha\": \"<number>\",\n          \"search_filters\": {\n            \"filters\": [\n              {\n                \"key\": \"<string>\",\n                \"value\": \"<integer>\",\n                \"operator\": \"contains\"\n              },\n              {\n                \"key\": \"<string>\",\n                \"value\": \"<integer>\",\n                \"operator\": \"contains\"\n              }\n            ],\n            \"condition\": \"and\"\n          },\n          \"search_filters_inference_schema\": {\n            \"sedd44\": {\n              \"sed91\": \"aliquip consectetur Lorem\"\n            },\n            \"ex_633\": {\n              \"fugiat_\": \"eiusmod deserunt laborum\"\n            }\n          },\n          \"files_top_k\": \"<integer>\",\n          \"retrieval_mode\": \"chunks\",\n          \"retrieve_image_nodes\": false,\n          \"retrieve_page_screenshot_nodes\": false,\n          \"retrieve_page_figure_nodes\": false,\n          \"class_name\": \"base_component\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"preset_retrieval_parameters\": {\n          \"dense_similarity_top_k\": \"<integer>\",\n          \"dense_similarity_cutoff\": \"<number>\",\n          \"sparse_similarity_top_k\": \"<integer>\",\n          \"enable_reranking\": \"<boolean>\",\n          \"rerank_top_n\": \"<integer>\",\n          \"alpha\": \"<number>\",\n          \"search_filters\": {\n            \"filters\": [\n              {\n                \"key\": \"<string>\",\n                \"value\": \"<integer>\",\n                \"operator\": \"all\"\n              },\n              {\n                \"key\": \"<string>\",\n                \"value\": \"<integer>\",\n                \"operator\": \"contains\"\n              }\n            ],\n            \"condition\": \"not\"\n          },\n          \"search_filters_inference_schema\": {\n            \"deseruntb5\": {\n              \"veniam_fa\": \"veniam irure culpa\",\n              \"deserunt_78\": -97270919,\n              \"non_ec3\": -29306657.29678008\n            }\n          },\n          \"files_top_k\": \"<integer>\",\n          \"retrieval_mode\": \"chunks\",\n          \"retrieve_image_nodes\": false,\n          \"retrieve_page_screenshot_nodes\": false,\n          \"retrieve_page_figure_nodes\": false,\n          \"class_name\": \"base_component\"\n        }\n      }\n    ],\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"project_id\": \"<uuid>\",\n    \"pipelines\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"preset_retrieval_parameters\": {\n          \"dense_similarity_top_k\": \"<integer>\",\n          \"dense_similarity_cutoff\": \"<number>\",\n          \"sparse_similarity_top_k\": \"<integer>\",\n          \"enable_reranking\": \"<boolean>\",\n          \"rerank_top_n\": \"<integer>\",\n          \"alpha\": \"<number>\",\n          \"search_filters\": {\n            \"filters\": [\n              {\n                \"key\": \"<string>\",\n                \"value\": \"<integer>\",\n                \"operator\": \"<=\"\n              },\n              {\n                \"key\": \"<string>\",\n                \"value\": \"<integer>\",\n                \"operator\": \"==\"\n              }\n            ],\n            \"condition\": \"not\"\n          },\n          \"search_filters_inference_schema\": {\n            \"temporf\": {\n              \"non8c\": \"Duis officia mollit\"\n            },\n            \"minim_35e\": {\n              \"id6_\": 71723759.81052914\n            }\n          },\n          \"files_top_k\": \"<integer>\",\n          \"retrieval_mode\": \"chunks\",\n          \"retrieve_image_nodes\": false,\n          \"retrieve_page_screenshot_nodes\": false,\n          \"retrieve_page_figure_nodes\": false,\n          \"class_name\": \"base_component\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"preset_retrieval_parameters\": {\n          \"dense_similarity_top_k\": \"<integer>\",\n          \"dense_similarity_cutoff\": \"<number>\",\n          \"sparse_similarity_top_k\": \"<integer>\",\n          \"enable_reranking\": \"<boolean>\",\n          \"rerank_top_n\": \"<integer>\",\n          \"alpha\": \"<number>\",\n          \"search_filters\": {\n            \"filters\": [\n              {\n                \"key\": \"<string>\",\n                \"value\": \"<integer>\",\n                \"operator\": \"in\"\n              },\n              {\n                \"key\": \"<string>\",\n                \"value\": \"<integer>\",\n                \"operator\": \">=\"\n              }\n            ],\n            \"condition\": \"or\"\n          },\n          \"search_filters_inference_schema\": {\n            \"ipsum_03b\": {\n              \"laboris26\": \"dolore irure enim dolore\",\n              \"Loremd84\": \"Lorem labor\"\n            },\n            \"enim_3bd\": {\n              \"aliquip_\": \"adipisicing qui fugiat\"\n            }\n          },\n          \"files_top_k\": \"<integer>\",\n          \"retrieval_mode\": \"files_via_content\",\n          \"retrieve_image_nodes\": false,\n          \"retrieve_page_screenshot_nodes\": false,\n          \"retrieve_page_figure_nodes\": false,\n          \"class_name\": \"base_component\"\n        }\n      }\n    ],\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-9b323024-1bb4-4cd7-a52e-de045235c3f2"
+                    },
+                    {
+                      "id": "fca22e1d-4424-430d-a148-cf725f1f47d3",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/retrievers?name=<string>&project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "retrievers"
+                          ],
+                          "query": [
+                            {
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:55.000Z",
+                      "updatedAt": "2026-07-28T02:08:55.000Z",
+                      "uid": "35240-fca22e1d-4424-430d-a148-cf725f1f47d3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:55.000Z",
+                  "updatedAt": "2026-07-28T02:08:55.000Z",
+                  "uid": "35240-c7cf7ec4-0672-4bc6-b95c-d7f2c34d8e35"
+                }
+              ],
+              "id": "ac6f8948-a973-49c0-921b-b3a2fc55c055",
+              "createdAt": "2026-07-28T02:08:55.000Z",
+              "updatedAt": "2026-07-28T02:08:55.000Z",
+              "uid": "35240-ac6f8948-a973-49c0-921b-b3a2fc55c055"
+            }
+          ],
+          "id": "7b0e3159-1057-46ac-a7ff-b969e39cf8d8",
+          "createdAt": "2026-07-28T02:08:55.000Z",
+          "updatedAt": "2026-07-28T02:08:55.000Z",
+          "uid": "35240-7b0e3159-1057-46ac-a7ff-b969e39cf8d8"
+        }
+      ],
+      "id": "00091fe2-075f-4f1c-88a9-e40e1e62146a",
+      "createdAt": "2026-07-28T02:08:55.000Z",
+      "updatedAt": "2026-07-28T02:08:55.000Z",
+      "uid": "35240-00091fe2-075f-4f1c-88a9-e40e1e62146a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

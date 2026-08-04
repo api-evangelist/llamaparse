@@ -1,0 +1,693 @@
+{
+  "info": {
+    "_postman_id": "250b3050-1bf4-4c1a-a559-1ab1fa37ee85",
+    "name": "Llama Platform Agent Data Batches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:35.000Z",
+    "updatedAt": "2026-07-28T02:07:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-250b3050-1bf4-4c1a-a559-1ab1fa37ee85"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "batches",
+              "item": [
+                {
+                  "name": "{batch_id}",
+                  "item": [
+                    {
+                      "name": "Get Batch",
+                      "id": "abe3ffd0-9c89-493a-aaf2-2d2a2ec54e83",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/batches/:batch_id?expand=<string>&expand=<string>&project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "batches",
+                            ":batch_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Fields to expand. Supported value: results.",
+                              "key": "expand",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Fields to expand. Supported value: results.",
+                              "key": "expand",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "9a4b75af-d993-45d3-95d0-6c0735a9835d",
+                              "key": "batch_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get a batch by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "b7d96d50-c722-4022-9add-0857956cc05e",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/batches/:batch_id?expand=<string>&project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "batches",
+                                ":batch_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Fields to expand. Supported value: results.",
+                                  "key": "expand",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "batch_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"source_directory_id\": \"<string>\",\n  \"config\": {\n    \"job\": {\n      \"type\": \"<string>\",\n      \"configuration_id\": \"<string>\"\n    }\n  },\n  \"status\": \"COMPLETED\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"results\": [\n    {\n      \"source_directory_file_id\": \"<string>\",\n      \"job_reference\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"error_message\": \"<string>\"\n    },\n    {\n      \"source_directory_file_id\": \"<string>\",\n      \"job_reference\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"error_message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:36.000Z",
+                          "updatedAt": "2026-07-28T02:07:36.000Z",
+                          "uid": "35240-b7d96d50-c722-4022-9add-0857956cc05e"
+                        },
+                        {
+                          "id": "e3961f5e-e486-4852-8742-96a1b9c7e31b",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/batches/:batch_id?expand=<string>&project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "batches",
+                                ":batch_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Fields to expand. Supported value: results.",
+                                  "key": "expand",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "batch_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:36.000Z",
+                          "updatedAt": "2026-07-28T02:07:36.000Z",
+                          "uid": "35240-e3961f5e-e486-4852-8742-96a1b9c7e31b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:36.000Z",
+                      "updatedAt": "2026-07-28T02:07:36.000Z",
+                      "uid": "35240-abe3ffd0-9c89-493a-aaf2-2d2a2ec54e83"
+                    }
+                  ],
+                  "id": "8b5c0c16-37c4-4bef-b34f-5f94ac124d40",
+                  "createdAt": "2026-07-28T02:07:35.000Z",
+                  "updatedAt": "2026-07-28T02:07:35.000Z",
+                  "uid": "35240-8b5c0c16-37c4-4bef-b34f-5f94ac124d40"
+                },
+                {
+                  "name": "Create Batch",
+                  "id": "36a7ad96-91dd-4518-a52d-5c3870715909",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source_directory_id\": \"<string>\",\n  \"config\": {\n    \"job\": {\n      \"type\": \"<string>\",\n      \"configuration_id\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/batches?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "batches"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Create a batch over a source directory and start processing asynchronously."
+                  },
+                  "response": [
+                    {
+                      "id": "f94bf6ed-1116-422a-91de-ec8911118a26",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_directory_id\": \"<string>\",\n  \"config\": {\n    \"job\": {\n      \"type\": \"<string>\",\n      \"configuration_id\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/batches?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "batches"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"source_directory_id\": \"<string>\",\n  \"config\": {\n    \"job\": {\n      \"type\": \"<string>\",\n      \"configuration_id\": \"<string>\"\n    }\n  },\n  \"status\": \"COMPLETED\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"results\": [\n    {\n      \"source_directory_file_id\": \"<string>\",\n      \"job_reference\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"error_message\": \"<string>\"\n    },\n    {\n      \"source_directory_file_id\": \"<string>\",\n      \"job_reference\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"error_message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:36.000Z",
+                      "updatedAt": "2026-07-28T02:07:36.000Z",
+                      "uid": "35240-f94bf6ed-1116-422a-91de-ec8911118a26"
+                    },
+                    {
+                      "id": "85c62598-e3fc-4b2f-9213-461712ca6795",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_directory_id\": \"<string>\",\n  \"config\": {\n    \"job\": {\n      \"type\": \"<string>\",\n      \"configuration_id\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/batches?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "batches"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:36.000Z",
+                      "updatedAt": "2026-07-28T02:07:36.000Z",
+                      "uid": "35240-85c62598-e3fc-4b2f-9213-461712ca6795"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:07:36.000Z",
+                  "updatedAt": "2026-07-28T02:07:36.000Z",
+                  "uid": "35240-36a7ad96-91dd-4518-a52d-5c3870715909"
+                },
+                {
+                  "name": "List Batches",
+                  "id": "681031d3-bb8f-4e61-b6d3-64a77fd655a6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/batches?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>&status=THROTTLED&source_directory_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "batches"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "page_size",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "created_at_on_or_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "created_at_on_or_before",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "THROTTLED"
+                        },
+                        {
+                          "key": "source_directory_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "List batches for the current project."
+                  },
+                  "response": [
+                    {
+                      "id": "ec1e4678-adb0-4bbf-8d40-33f65545179c",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/batches?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>&status=THROTTLED&source_directory_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "batches"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "page_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "created_at_on_or_after",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "created_at_on_or_before",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "status",
+                              "value": "THROTTLED"
+                            },
+                            {
+                              "key": "source_directory_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"source_directory_id\": \"<string>\",\n      \"config\": {\n        \"job\": {\n          \"type\": \"<string>\",\n          \"configuration_id\": \"<string>\"\n        }\n      },\n      \"status\": \"CANCELLED\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"results\": [\n        {\n          \"source_directory_file_id\": \"<string>\",\n          \"job_reference\": {\n            \"type\": \"<string>\",\n            \"id\": \"<string>\"\n          },\n          \"error_message\": \"<string>\"\n        },\n        {\n          \"source_directory_file_id\": \"<string>\",\n          \"job_reference\": {\n            \"type\": \"<string>\",\n            \"id\": \"<string>\"\n          },\n          \"error_message\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"source_directory_id\": \"<string>\",\n      \"config\": {\n        \"job\": {\n          \"type\": \"<string>\",\n          \"configuration_id\": \"<string>\"\n        }\n      },\n      \"status\": \"RUNNING\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"results\": [\n        {\n          \"source_directory_file_id\": \"<string>\",\n          \"job_reference\": {\n            \"type\": \"<string>\",\n            \"id\": \"<string>\"\n          },\n          \"error_message\": \"<string>\"\n        },\n        {\n          \"source_directory_file_id\": \"<string>\",\n          \"job_reference\": {\n            \"type\": \"<string>\",\n            \"id\": \"<string>\"\n          },\n          \"error_message\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:07:36.000Z",
+                      "updatedAt": "2026-07-28T02:07:36.000Z",
+                      "uid": "35240-ec1e4678-adb0-4bbf-8d40-33f65545179c"
+                    },
+                    {
+                      "id": "321cc483-e966-4b2e-9001-b5ffa7f7e25b",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/batches?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>&status=THROTTLED&source_directory_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "batches"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "page_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "created_at_on_or_after",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "created_at_on_or_before",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "key": "status",
+                              "value": "THROTTLED"
+                            },
+                            {
+                              "key": "source_directory_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:36.000Z",
+                      "updatedAt": "2026-07-28T02:07:36.000Z",
+                      "uid": "35240-321cc483-e966-4b2e-9001-b5ffa7f7e25b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:07:36.000Z",
+                  "updatedAt": "2026-07-28T02:07:36.000Z",
+                  "uid": "35240-681031d3-bb8f-4e61-b6d3-64a77fd655a6"
+                }
+              ],
+              "id": "70bc7497-887f-4a67-a011-ec604e1f3243",
+              "createdAt": "2026-07-28T02:07:35.000Z",
+              "updatedAt": "2026-07-28T02:07:35.000Z",
+              "uid": "35240-70bc7497-887f-4a67-a011-ec604e1f3243"
+            }
+          ],
+          "id": "bdd16951-8116-45e0-83bf-c96ca6a3a74b",
+          "createdAt": "2026-07-28T02:07:35.000Z",
+          "updatedAt": "2026-07-28T02:07:35.000Z",
+          "uid": "35240-bdd16951-8116-45e0-83bf-c96ca6a3a74b"
+        }
+      ],
+      "id": "df7f0a19-6cc8-4f13-9488-f42d0b947746",
+      "createdAt": "2026-07-28T02:07:35.000Z",
+      "updatedAt": "2026-07-28T02:07:35.000Z",
+      "uid": "35240-df7f0a19-6cc8-4f13-9488-f42d0b947746"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

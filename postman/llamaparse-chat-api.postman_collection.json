@@ -1,0 +1,1240 @@
+{
+  "info": {
+    "_postman_id": "e3862d3f-0088-450a-a183-918c90cf7c8e",
+    "name": "Llama Platform Agent Data Chat API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:39.000Z",
+    "updatedAt": "2026-07-28T02:07:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e3862d3f-0088-450a-a183-918c90cf7c8e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "chat",
+              "item": [
+                {
+                  "name": "{session_id}",
+                  "item": [
+                    {
+                      "name": "summary",
+                      "item": [
+                        {
+                          "name": "Get Session Summary",
+                          "id": "00bc8d56-f15c-4b75-b632-7b2a8c67be7a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/chat/:session_id/summary?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "chat",
+                                ":session_id",
+                                "summary"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a66e34af-6bc8-49a1-84eb-ecdc2cd3bbe0",
+                                  "key": "session_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve a session summary by ID."
+                          },
+                          "response": [
+                            {
+                              "id": "71ce2b2a-abe2-4aab-a606-e8fa2494a964",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/chat/:session_id/summary?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "chat",
+                                    ":session_id",
+                                    "summary"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "session_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"session_id\": \"<string>\",\n  \"last_updated_at\": \"<string>\",\n  \"generated_title\": \"<string>\",\n  \"job_metadata\": {\n    \"total_input_tokens\": \"<integer>\",\n    \"total_output_tokens\": \"<integer>\",\n    \"turns\": 1,\n    \"duration_ms\": 0,\n    \"is_error\": false,\n    \"error\": \"<string>\",\n    \"export_config_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"index_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:39.000Z",
+                              "updatedAt": "2026-07-28T02:07:39.000Z",
+                              "uid": "35240-71ce2b2a-abe2-4aab-a606-e8fa2494a964"
+                            },
+                            {
+                              "id": "6e6841b2-cd8f-435d-bc5e-7a174b4b8665",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/chat/:session_id/summary?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "chat",
+                                    ":session_id",
+                                    "summary"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "session_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:07:39.000Z",
+                              "updatedAt": "2026-07-28T02:07:39.000Z",
+                              "uid": "35240-6e6841b2-cd8f-435d-bc5e-7a174b4b8665"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:07:39.000Z",
+                          "updatedAt": "2026-07-28T02:07:39.000Z",
+                          "uid": "35240-00bc8d56-f15c-4b75-b632-7b2a8c67be7a"
+                        }
+                      ],
+                      "id": "b2edb58e-f34f-4d62-8ce7-f144da63a5d5",
+                      "createdAt": "2026-07-28T02:07:39.000Z",
+                      "updatedAt": "2026-07-28T02:07:39.000Z",
+                      "uid": "35240-b2edb58e-f34f-4d62-8ce7-f144da63a5d5"
+                    },
+                    {
+                      "name": "messages",
+                      "item": [
+                        {
+                          "name": "stream",
+                          "item": [
+                            {
+                              "name": "Stream Messages",
+                              "id": "589d892c-f28b-4518-85d6-ba9f14a873c4",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"index_ids\": [\n    \"<string>\"\n  ],\n  \"prompt\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/chat/:session_id/messages/stream?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "chat",
+                                    ":session_id",
+                                    "messages",
+                                    "stream"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e0b8484c-71c7-400a-966e-40389b34ab09",
+                                      "key": "session_id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Stream agent events for a chat turn as Server-Sent Events."
+                              },
+                              "response": [
+                                {
+                                  "id": "1057deae-db45-4530-b2b2-3f64d0ca0edd",
+                                  "name": "Successful Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"index_ids\": [\n    \"<string>\"\n  ],\n  \"prompt\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/chat/:session_id/messages/stream?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "chat",
+                                        ":session_id",
+                                        "messages",
+                                        "stream"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "session_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-07-28T02:07:39.000Z",
+                                  "updatedAt": "2026-07-28T02:07:39.000Z",
+                                  "uid": "35240-1057deae-db45-4530-b2b2-3f64d0ca0edd"
+                                },
+                                {
+                                  "id": "cc4117c1-4eee-4f19-85d9-adf25f8d9cd6",
+                                  "name": "Validation Error",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"index_ids\": [\n    \"<string>\"\n  ],\n  \"prompt\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/chat/:session_id/messages/stream?project_id=<uuid>&organization_id=<uuid>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "chat",
+                                        ":session_id",
+                                        "messages",
+                                        "stream"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "project_id",
+                                          "value": "<uuid>"
+                                        },
+                                        {
+                                          "key": "organization_id",
+                                          "value": "<uuid>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "session_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:07:39.000Z",
+                                  "updatedAt": "2026-07-28T02:07:39.000Z",
+                                  "uid": "35240-cc4117c1-4eee-4f19-85d9-adf25f8d9cd6"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:07:39.000Z",
+                              "updatedAt": "2026-07-28T02:07:39.000Z",
+                              "uid": "35240-589d892c-f28b-4518-85d6-ba9f14a873c4"
+                            }
+                          ],
+                          "id": "9db90d7b-8bb7-47e2-aedc-07e1640a1a3d",
+                          "createdAt": "2026-07-28T02:07:39.000Z",
+                          "updatedAt": "2026-07-28T02:07:39.000Z",
+                          "uid": "35240-9db90d7b-8bb7-47e2-aedc-07e1640a1a3d"
+                        }
+                      ],
+                      "id": "0caf0b1c-e256-4403-baa0-faa6ed63b92d",
+                      "createdAt": "2026-07-28T02:07:39.000Z",
+                      "updatedAt": "2026-07-28T02:07:39.000Z",
+                      "uid": "35240-0caf0b1c-e256-4403-baa0-faa6ed63b92d"
+                    },
+                    {
+                      "name": "Get Full Session",
+                      "id": "dcd66f92-cf31-4445-90f6-b76fa3d1a2b2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/chat/:session_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "chat",
+                            ":session_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "e7013289-ac6c-42b0-9a4d-d921206bcf7c",
+                              "key": "session_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a full session by ID, including its event history."
+                      },
+                      "response": [
+                        {
+                          "id": "a6514475-0fcf-4933-98ba-9b7ec7b29f5d",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/chat/:session_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "chat",
+                                ":session_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "session_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"session_id\": \"<string>\",\n  \"last_updated_at\": \"<string>\",\n  \"events\": [\n    {\n      \"content\": \"<string>\",\n      \"type\": \"thinking_delta\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"type\": \"thinking_delta\"\n    }\n  ],\n  \"generated_title\": \"<string>\",\n  \"job_metadata\": {\n    \"total_input_tokens\": \"<integer>\",\n    \"total_output_tokens\": \"<integer>\",\n    \"turns\": 1,\n    \"duration_ms\": 0,\n    \"is_error\": false,\n    \"error\": \"<string>\",\n    \"export_config_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"index_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:39.000Z",
+                          "updatedAt": "2026-07-28T02:07:39.000Z",
+                          "uid": "35240-a6514475-0fcf-4933-98ba-9b7ec7b29f5d"
+                        },
+                        {
+                          "id": "3de94525-b228-4fe5-9eac-c054295131d7",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/chat/:session_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "chat",
+                                ":session_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "session_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:39.000Z",
+                          "updatedAt": "2026-07-28T02:07:39.000Z",
+                          "uid": "35240-3de94525-b228-4fe5-9eac-c054295131d7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:39.000Z",
+                      "updatedAt": "2026-07-28T02:07:39.000Z",
+                      "uid": "35240-dcd66f92-cf31-4445-90f6-b76fa3d1a2b2"
+                    },
+                    {
+                      "name": "Delete Session",
+                      "id": "4c7c470c-e619-4fc3-bd09-4fbb70695b1a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/chat/:session_id?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "chat",
+                            ":session_id"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "39ced85d-9524-4643-8335-0c33891837ac",
+                              "key": "session_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a session."
+                      },
+                      "response": [
+                        {
+                          "id": "c82a2dfd-2d9f-4117-a440-5d6ed63d4c53",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/chat/:session_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "chat",
+                                ":session_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "session_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:07:39.000Z",
+                          "updatedAt": "2026-07-28T02:07:39.000Z",
+                          "uid": "35240-c82a2dfd-2d9f-4117-a440-5d6ed63d4c53"
+                        },
+                        {
+                          "id": "2712dbef-a10a-41bb-8ab9-6ce99de6c250",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/chat/:session_id?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "chat",
+                                ":session_id"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "session_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:39.000Z",
+                          "updatedAt": "2026-07-28T02:07:39.000Z",
+                          "uid": "35240-2712dbef-a10a-41bb-8ab9-6ce99de6c250"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:39.000Z",
+                      "updatedAt": "2026-07-28T02:07:39.000Z",
+                      "uid": "35240-4c7c470c-e619-4fc3-bd09-4fbb70695b1a"
+                    }
+                  ],
+                  "id": "b0d0d66b-4aa6-4c29-af76-15bbb3c45841",
+                  "createdAt": "2026-07-28T02:07:39.000Z",
+                  "updatedAt": "2026-07-28T02:07:39.000Z",
+                  "uid": "35240-b0d0d66b-4aa6-4c29-af76-15bbb3c45841"
+                },
+                {
+                  "name": "Create Session",
+                  "id": "102538c9-f952-4c1b-a6f7-43a43b0c36b7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"index_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/chat?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "chat"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Create a chat session, optionally bound to indexes (locked after the first message)."
+                  },
+                  "response": [
+                    {
+                      "id": "e672ae7e-83c7-4389-baed-2eb13491665a",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"index_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/chat?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "chat"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"session_id\": \"<string>\",\n  \"last_updated_at\": \"<string>\",\n  \"generated_title\": \"<string>\",\n  \"job_metadata\": {\n    \"total_input_tokens\": \"<integer>\",\n    \"total_output_tokens\": \"<integer>\",\n    \"turns\": 1,\n    \"duration_ms\": 0,\n    \"is_error\": false,\n    \"error\": \"<string>\",\n    \"export_config_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"index_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:39.000Z",
+                      "updatedAt": "2026-07-28T02:07:39.000Z",
+                      "uid": "35240-e672ae7e-83c7-4389-baed-2eb13491665a"
+                    },
+                    {
+                      "id": "add1528c-97c0-46c7-a11a-affc3954e238",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"index_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/chat?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "chat"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:39.000Z",
+                      "updatedAt": "2026-07-28T02:07:39.000Z",
+                      "uid": "35240-add1528c-97c0-46c7-a11a-affc3954e238"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:07:39.000Z",
+                  "updatedAt": "2026-07-28T02:07:39.000Z",
+                  "uid": "35240-102538c9-f952-4c1b-a6f7-43a43b0c36b7"
+                },
+                {
+                  "name": "List Sessions",
+                  "id": "e1ecedbe-25c5-4de1-8cd0-cdf5b01e19e1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/chat?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "chat"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "page_size",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "page_token",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "List all chat sessions for the current project."
+                  },
+                  "response": [
+                    {
+                      "id": "78cf4f2a-9d6c-4558-87ab-85243d47c069",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/chat?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "chat"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "page_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"session_id\": \"<string>\",\n      \"last_updated_at\": \"<string>\",\n      \"generated_title\": \"<string>\",\n      \"job_metadata\": {\n        \"total_input_tokens\": \"<integer>\",\n        \"total_output_tokens\": \"<integer>\",\n        \"turns\": 1,\n        \"duration_ms\": 0,\n        \"is_error\": false,\n        \"error\": \"<string>\",\n        \"export_config_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"index_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"session_id\": \"<string>\",\n      \"last_updated_at\": \"<string>\",\n      \"generated_title\": \"<string>\",\n      \"job_metadata\": {\n        \"total_input_tokens\": \"<integer>\",\n        \"total_output_tokens\": \"<integer>\",\n        \"turns\": 1,\n        \"duration_ms\": 0,\n        \"is_error\": false,\n        \"error\": \"<string>\",\n        \"export_config_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"index_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"next_page_token\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:07:39.000Z",
+                      "updatedAt": "2026-07-28T02:07:39.000Z",
+                      "uid": "35240-78cf4f2a-9d6c-4558-87ab-85243d47c069"
+                    },
+                    {
+                      "id": "77264cd3-5219-4035-bb61-ecf011e86b55",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/chat?project_id=<uuid>&organization_id=<uuid>&page_size=<integer>&page_token=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "chat"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "page_token",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:39.000Z",
+                      "updatedAt": "2026-07-28T02:07:39.000Z",
+                      "uid": "35240-77264cd3-5219-4035-bb61-ecf011e86b55"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:07:39.000Z",
+                  "updatedAt": "2026-07-28T02:07:39.000Z",
+                  "uid": "35240-e1ecedbe-25c5-4de1-8cd0-cdf5b01e19e1"
+                }
+              ],
+              "id": "78b9c6d8-65ba-4d1c-8b97-1dc067df0e3e",
+              "createdAt": "2026-07-28T02:07:39.000Z",
+              "updatedAt": "2026-07-28T02:07:39.000Z",
+              "uid": "35240-78b9c6d8-65ba-4d1c-8b97-1dc067df0e3e"
+            }
+          ],
+          "id": "5705f956-2ffb-4d7f-a709-3edcc81f230c",
+          "createdAt": "2026-07-28T02:07:39.000Z",
+          "updatedAt": "2026-07-28T02:07:39.000Z",
+          "uid": "35240-5705f956-2ffb-4d7f-a709-3edcc81f230c"
+        }
+      ],
+      "id": "30dbfbc4-5133-4f9f-89b9-1df2ee19e308",
+      "createdAt": "2026-07-28T02:07:39.000Z",
+      "updatedAt": "2026-07-28T02:07:39.000Z",
+      "uid": "35240-30dbfbc4-5133-4f9f-89b9-1df2ee19e308"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

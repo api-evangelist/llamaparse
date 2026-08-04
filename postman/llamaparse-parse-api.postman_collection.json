@@ -1,0 +1,1181 @@
+{
+  "info": {
+    "_postman_id": "ec417e25-c7a2-4cee-a8dd-30219526700b",
+    "name": "Llama Platform Agent Data Parse API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:08:34.000Z",
+    "updatedAt": "2026-07-28T02:08:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ec417e25-c7a2-4cee-a8dd-30219526700b"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "parse",
+              "item": [
+                {
+                  "name": "upload",
+                  "item": [
+                    {
+                      "name": "Upload File Multipart",
+                      "id": "6c1dca81-b0a4-489c-a2a2-70e6f8cf8f05",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/parse/upload?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "parse",
+                            "upload"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        },
+                        "description": "Upload and parse a file using multipart/form-data.\n\nSend the file as a `file` field and parsing configuration as a\n`configuration` JSON string field.\n\nThe job runs asynchronously. Poll `GET /parse/{job_id}` with\n`expand` to retrieve results."
+                      },
+                      "response": [
+                        {
+                          "id": "4eabfc5a-86bc-486c-97a2-e6ec838ab4c9",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/parse/upload?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "parse",
+                                "upload"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"status\": \"CANCELLED\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"error_message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"tier\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:08:35.000Z",
+                          "updatedAt": "2026-07-28T02:08:35.000Z",
+                          "uid": "35240-4eabfc5a-86bc-486c-97a2-e6ec838ab4c9"
+                        },
+                        {
+                          "id": "aa8bf339-07ea-4009-a70d-63b07d0f073d",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/parse/upload?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "parse",
+                                "upload"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:35.000Z",
+                          "updatedAt": "2026-07-28T02:08:35.000Z",
+                          "uid": "35240-aa8bf339-07ea-4009-a70d-63b07d0f073d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:35.000Z",
+                      "updatedAt": "2026-07-28T02:08:35.000Z",
+                      "uid": "35240-6c1dca81-b0a4-489c-a2a2-70e6f8cf8f05"
+                    }
+                  ],
+                  "id": "6d31614c-4687-4b97-b2b2-12ea75770665",
+                  "createdAt": "2026-07-28T02:08:35.000Z",
+                  "updatedAt": "2026-07-28T02:08:35.000Z",
+                  "uid": "35240-6d31614c-4687-4b97-b2b2-12ea75770665"
+                },
+                {
+                  "name": "versions",
+                  "item": [
+                    {
+                      "name": "List Parse Versions",
+                      "id": "d94cfc9a-ab1a-4ce0-9c44-ddc4e77e5f2d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/parse/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "parse",
+                            "versions"
+                          ]
+                        },
+                        "description": "List the parse versions accepted by each tier."
+                      },
+                      "response": [
+                        {
+                          "id": "d1133d37-e8a2-4ecb-bfe4-bd9fc6f75e9d",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/parse/versions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "parse",
+                                "versions"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"fast\": [\n    \"2025-12-11\",\n    \"2025-12-11\"\n  ],\n  \"cost_effective\": [\n    \"2026-05-28\",\n    \"2026-03-27\"\n  ],\n  \"agentic\": [\n    \"2025-12-18\",\n    \"2026-03-27\"\n  ],\n  \"agentic_plus\": [\n    \"2026-05-21\",\n    \"2026-01-29\"\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:35.000Z",
+                          "updatedAt": "2026-07-28T02:08:35.000Z",
+                          "uid": "35240-d1133d37-e8a2-4ecb-bfe4-bd9fc6f75e9d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:35.000Z",
+                      "updatedAt": "2026-07-28T02:08:35.000Z",
+                      "uid": "35240-d94cfc9a-ab1a-4ce0-9c44-ddc4e77e5f2d"
+                    }
+                  ],
+                  "id": "3445269d-1ae6-4a29-ac4a-61615f255de5",
+                  "createdAt": "2026-07-28T02:08:35.000Z",
+                  "updatedAt": "2026-07-28T02:08:35.000Z",
+                  "uid": "35240-3445269d-1ae6-4a29-ac4a-61615f255de5"
+                },
+                {
+                  "name": "{job_id}",
+                  "item": [
+                    {
+                      "name": "cancel",
+                      "item": [
+                        {
+                          "name": "Cancel Parse Job",
+                          "id": "67b32cc6-2f0e-49f4-806c-1ef26a5dc8af",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/parse/:job_id/cancel?project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "parse",
+                                ":job_id",
+                                "cancel"
+                              ],
+                              "query": [
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e4fd1011-f401-4f06-aeac-17aa21bc5c0b",
+                                  "key": "job_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Cancel a running parse job.\n\nStops processing and marks the job as CANCELLED. Returns the updated job. Jobs already in a terminal state (COMPLETED, FAILED, CANCELLED) cannot be cancelled."
+                          },
+                          "response": [
+                            {
+                              "id": "86d97097-8800-419a-908d-f37ddf32d718",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/parse/:job_id/cancel?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "parse",
+                                    ":job_id",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"status\": \"CANCELLED\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"error_message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"tier\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:08:35.000Z",
+                              "updatedAt": "2026-07-28T02:08:35.000Z",
+                              "uid": "35240-86d97097-8800-419a-908d-f37ddf32d718"
+                            },
+                            {
+                              "id": "13d3a620-aaa0-449e-9536-fa8e9f91d11a",
+                              "name": "Validation Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/parse/:job_id/cancel?project_id=<uuid>&organization_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "parse",
+                                    ":job_id",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "project_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "organization_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:08:35.000Z",
+                              "updatedAt": "2026-07-28T02:08:35.000Z",
+                              "uid": "35240-13d3a620-aaa0-449e-9536-fa8e9f91d11a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:08:35.000Z",
+                          "updatedAt": "2026-07-28T02:08:35.000Z",
+                          "uid": "35240-67b32cc6-2f0e-49f4-806c-1ef26a5dc8af"
+                        }
+                      ],
+                      "id": "882fa6c4-727b-4e53-a889-222f64bb1ecc",
+                      "createdAt": "2026-07-28T02:08:35.000Z",
+                      "updatedAt": "2026-07-28T02:08:35.000Z",
+                      "uid": "35240-882fa6c4-727b-4e53-a889-222f64bb1ecc"
+                    },
+                    {
+                      "name": "Get Parse Job",
+                      "id": "462b58f6-87c9-4c35-a5a5-4f462b4a2454",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/parse/:job_id?expand=<string>&expand=<string>&image_filenames=<string>&project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "parse",
+                            ":job_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Fields to include: text, markdown, items, metadata, job_metadata, text_content_metadata, markdown_content_metadata, items_content_metadata, metadata_content_metadata, raw_words_content_metadata, xlsx_content_metadata, output_pdf_content_metadata, images_content_metadata. Metadata fields include presigned URLs.",
+                              "key": "expand",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Fields to include: text, markdown, items, metadata, job_metadata, text_content_metadata, markdown_content_metadata, items_content_metadata, metadata_content_metadata, raw_words_content_metadata, xlsx_content_metadata, output_pdf_content_metadata, images_content_metadata. Metadata fields include presigned URLs.",
+                              "key": "expand",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter to specific image filenames (optional). Example: image_0.png,image_1.jpg",
+                              "key": "image_filenames",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "1e740e17-38a4-4484-8582-5a36423bd233",
+                              "key": "job_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a parse job with optional expanded content.\n\nBy default returns job metadata only. Use `expand` to include\nparsed content:\n\n- `text` \u2014 plain text output\n- `markdown` \u2014 markdown output\n- `items` \u2014 structured page-by-page output\n- `job_metadata` \u2014 usage and processing details\n\nContent metadata fields (e.g. `text_content_metadata`) return\npresigned URLs for downloading large results."
+                      },
+                      "response": [
+                        {
+                          "id": "9eab64be-8530-4cc6-ac32-2205d4022ddf",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/parse/:job_id?expand=<string>&image_filenames=<string>&project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "parse",
+                                ":job_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Fields to include: text, markdown, items, metadata, job_metadata, text_content_metadata, markdown_content_metadata, items_content_metadata, metadata_content_metadata, raw_words_content_metadata, xlsx_content_metadata, output_pdf_content_metadata, images_content_metadata. Metadata fields include presigned URLs.",
+                                  "key": "expand",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter to specific image filenames (optional). Example: image_0.png,image_1.jpg",
+                                  "key": "image_filenames",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "job_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"job\": {\n    \"id\": \"<string>\",\n    \"project_id\": \"<string>\",\n    \"status\": \"CANCELLED\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"error_message\": \"<string>\",\n    \"name\": \"<string>\",\n    \"tier\": \"<string>\"\n  },\n  \"result_content_metadata\": {\n    \"in0e7\": {\n      \"size_bytes\": \"<integer>\",\n      \"exists\": true,\n      \"presigned_url\": \"<string>\"\n    }\n  },\n  \"text\": {\n    \"pages\": [\n      {\n        \"page_number\": \"<integer>\",\n        \"text\": \"<string>\"\n      },\n      {\n        \"page_number\": \"<integer>\",\n        \"text\": \"<string>\"\n      }\n    ]\n  },\n  \"markdown\": {\n    \"pages\": [\n      {\n        \"page_number\": \"<integer>\",\n        \"markdown\": \"<string>\",\n        \"success\": \"<boolean>\",\n        \"header\": \"<string>\",\n        \"footer\": \"<string>\"\n      },\n      {\n        \"page_number\": \"<integer>\",\n        \"markdown\": \"<string>\",\n        \"success\": \"<boolean>\",\n        \"header\": \"<string>\",\n        \"footer\": \"<string>\"\n      }\n    ]\n  },\n  \"items\": {\n    \"pages\": [\n      {\n        \"page_number\": \"<integer>\",\n        \"items\": [\n          {\n            \"md\": \"<string>\",\n            \"value\": \"<string>\",\n            \"type\": \"text\",\n            \"bbox\": [\n              {\n                \"x\": \"<number>\",\n                \"y\": \"<number>\",\n                \"w\": \"<number>\",\n                \"h\": \"<number>\",\n                \"r\": \"<number>\",\n                \"confidence\": \"<number>\",\n                \"start_index\": \"<integer>\",\n                \"end_index\": \"<integer>\",\n                \"label\": \"<string>\"\n              },\n              {\n                \"x\": \"<number>\",\n                \"y\": \"<number>\",\n                \"w\": \"<number>\",\n                \"h\": \"<number>\",\n                \"r\": \"<number>\",\n                \"confidence\": \"<number>\",\n                \"start_index\": \"<integer>\",\n                \"end_index\": \"<integer>\",\n                \"label\": \"<string>\"\n              }\n            ]\n          },\n          {\n            \"md\": \"<string>\",\n            \"value\": \"<string>\",\n            \"type\": \"text\",\n            \"bbox\": [\n              {\n                \"x\": \"<number>\",\n                \"y\": \"<number>\",\n                \"w\": \"<number>\",\n                \"h\": \"<number>\",\n                \"r\": \"<number>\",\n                \"confidence\": \"<number>\",\n                \"start_index\": \"<integer>\",\n                \"end_index\": \"<integer>\",\n                \"label\": \"<string>\"\n              },\n              {\n                \"x\": \"<number>\",\n                \"y\": \"<number>\",\n                \"w\": \"<number>\",\n                \"h\": \"<number>\",\n                \"r\": \"<number>\",\n                \"confidence\": \"<number>\",\n                \"start_index\": \"<integer>\",\n                \"end_index\": \"<integer>\",\n                \"label\": \"<string>\"\n              }\n            ]\n          }\n        ],\n        \"page_width\": \"<number>\",\n        \"page_height\": \"<number>\",\n        \"success\": \"<boolean>\"\n      },\n      {\n        \"page_number\": \"<integer>\",\n        \"items\": [\n          {\n            \"md\": \"<string>\",\n            \"value\": \"<string>\",\n            \"type\": \"text\",\n            \"bbox\": [\n              {\n                \"x\": \"<number>\",\n                \"y\": \"<number>\",\n                \"w\": \"<number>\",\n                \"h\": \"<number>\",\n                \"r\": \"<number>\",\n                \"confidence\": \"<number>\",\n                \"start_index\": \"<integer>\",\n                \"end_index\": \"<integer>\",\n                \"label\": \"<string>\"\n              },\n              {\n                \"x\": \"<number>\",\n                \"y\": \"<number>\",\n                \"w\": \"<number>\",\n                \"h\": \"<number>\",\n                \"r\": \"<number>\",\n                \"confidence\": \"<number>\",\n                \"start_index\": \"<integer>\",\n                \"end_index\": \"<integer>\",\n                \"label\": \"<string>\"\n              }\n            ]\n          },\n          {\n            \"md\": \"<string>\",\n            \"value\": \"<string>\",\n            \"type\": \"text\",\n            \"bbox\": [\n              {\n                \"x\": \"<number>\",\n                \"y\": \"<number>\",\n                \"w\": \"<number>\",\n                \"h\": \"<number>\",\n                \"r\": \"<number>\",\n                \"confidence\": \"<number>\",\n                \"start_index\": \"<integer>\",\n                \"end_index\": \"<integer>\",\n                \"label\": \"<string>\"\n              },\n              {\n                \"x\": \"<number>\",\n                \"y\": \"<number>\",\n                \"w\": \"<number>\",\n                \"h\": \"<number>\",\n                \"r\": \"<number>\",\n                \"confidence\": \"<number>\",\n                \"start_index\": \"<integer>\",\n                \"end_index\": \"<integer>\",\n                \"label\": \"<string>\"\n              }\n            ]\n          }\n        ],\n        \"page_width\": \"<number>\",\n        \"page_height\": \"<number>\",\n        \"success\": \"<boolean>\"\n      }\n    ]\n  },\n  \"metadata\": {\n    \"pages\": [\n      {\n        \"page_number\": \"<integer>\",\n        \"confidence\": \"<number>\",\n        \"speaker_notes\": \"<string>\",\n        \"slide_section_name\": \"<string>\",\n        \"printed_page_number\": \"<string>\",\n        \"original_orientation_angle\": \"<integer>\",\n        \"cost_optimized\": \"<boolean>\",\n        \"triggered_auto_mode\": \"<boolean>\"\n      },\n      {\n        \"page_number\": \"<integer>\",\n        \"confidence\": \"<number>\",\n        \"speaker_notes\": \"<string>\",\n        \"slide_section_name\": \"<string>\",\n        \"printed_page_number\": \"<string>\",\n        \"original_orientation_angle\": \"<integer>\",\n        \"cost_optimized\": \"<boolean>\",\n        \"triggered_auto_mode\": \"<boolean>\"\n      }\n    ]\n  },\n  \"markdown_full\": \"<string>\",\n  \"text_full\": \"<string>\",\n  \"images_content_metadata\": {\n    \"total_count\": \"<integer>\",\n    \"images\": [\n      {\n        \"index\": \"<integer>\",\n        \"filename\": \"<string>\",\n        \"content_type\": \"<string>\",\n        \"size_bytes\": \"<integer>\",\n        \"presigned_url\": \"<string>\",\n        \"category\": \"screenshot\",\n        \"bbox\": {\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"w\": \"<integer>\",\n          \"h\": \"<integer>\"\n        }\n      },\n      {\n        \"index\": \"<integer>\",\n        \"filename\": \"<string>\",\n        \"content_type\": \"<string>\",\n        \"size_bytes\": \"<integer>\",\n        \"presigned_url\": \"<string>\",\n        \"category\": \"layout\",\n        \"bbox\": {\n          \"x\": \"<integer>\",\n          \"y\": \"<integer>\",\n          \"w\": \"<integer>\",\n          \"h\": \"<integer>\"\n        }\n      }\n    ]\n  },\n  \"job_metadata\": {\n    \"reprehenderitc\": true,\n    \"Excepteur34\": true,\n    \"dolor_2_9\": -84131910\n  },\n  \"raw_parameters\": {\n    \"veniam79\": -50129780\n  }\n}",
+                          "createdAt": "2026-07-28T02:08:35.000Z",
+                          "updatedAt": "2026-07-28T02:08:35.000Z",
+                          "uid": "35240-9eab64be-8530-4cc6-ac32-2205d4022ddf"
+                        },
+                        {
+                          "id": "1d36dc95-b8b5-4d49-b72c-60fcf41bf1b2",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/parse/:job_id?expand=<string>&image_filenames=<string>&project_id=<uuid>&organization_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "parse",
+                                ":job_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Fields to include: text, markdown, items, metadata, job_metadata, text_content_metadata, markdown_content_metadata, items_content_metadata, metadata_content_metadata, raw_words_content_metadata, xlsx_content_metadata, output_pdf_content_metadata, images_content_metadata. Metadata fields include presigned URLs.",
+                                  "key": "expand",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter to specific image filenames (optional). Example: image_0.png,image_1.jpg",
+                                  "key": "image_filenames",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "project_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "organization_id",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "job_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:08:35.000Z",
+                          "updatedAt": "2026-07-28T02:08:35.000Z",
+                          "uid": "35240-1d36dc95-b8b5-4d49-b72c-60fcf41bf1b2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:08:35.000Z",
+                      "updatedAt": "2026-07-28T02:08:35.000Z",
+                      "uid": "35240-462b58f6-87c9-4c35-a5a5-4f462b4a2454"
+                    }
+                  ],
+                  "id": "ff926fab-c6e6-4f84-9cfe-6fcc9ed88401",
+                  "createdAt": "2026-07-28T02:08:35.000Z",
+                  "updatedAt": "2026-07-28T02:08:35.000Z",
+                  "uid": "35240-ff926fab-c6e6-4f84-9cfe-6fcc9ed88401"
+                },
+                {
+                  "name": "Parse File",
+                  "id": "e1984aa4-305f-469b-be42-399065fce8f6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tier\": \"agentic_plus\",\n  \"version\": \"2026-06-04\",\n  \"client_name\": \"<string>\",\n  \"processing_options\": {\n    \"ignore\": {\n      \"ignore_diagonal_text\": \"<boolean>\",\n      \"ignore_text_in_image\": \"<boolean>\",\n      \"ignore_hidden_text\": \"<boolean>\"\n    },\n    \"ocr_parameters\": {\n      \"languages\": [\n        \"hu\",\n        \"ang\"\n      ]\n    },\n    \"aggressive_table_extraction\": \"<boolean>\",\n    \"disable_heuristics\": \"<boolean>\",\n    \"specialized_chart_parsing\": \"agentic_plus\",\n    \"cost_optimizer\": {\n      \"enable\": \"<boolean>\"\n    },\n    \"auto_mode_configuration\": [\n      {\n        \"parsing_conf\": {\n          \"tier\": \"agentic\",\n          \"version\": \"2025-12-11\",\n          \"custom_prompt\": \"<string>\",\n          \"ignore\": {\n            \"ignore_diagonal_text\": \"<boolean>\",\n            \"ignore_hidden_text\": \"<boolean>\"\n          },\n          \"aggressive_table_extraction\": \"<boolean>\",\n          \"outlined_table_extraction\": \"<boolean>\",\n          \"adaptive_long_table\": \"<boolean>\",\n          \"extract_layout\": \"<boolean>\",\n          \"specialized_chart_parsing\": \"agentic\",\n          \"high_res_ocr\": \"<boolean>\",\n          \"language\": \"<string>\",\n          \"crop_box\": {\n            \"bottom\": \"<number>\",\n            \"left\": \"<number>\",\n            \"right\": \"<number>\",\n            \"top\": \"<number>\"\n          },\n          \"spatial_text\": {\n            \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n            \"preserve_very_small_text\": \"<boolean>\",\n            \"do_not_unroll_columns\": \"<boolean>\"\n          },\n          \"presentation\": {\n            \"out_of_bounds_content\": \"<boolean>\",\n            \"skip_embedded_data\": \"<boolean>\"\n          }\n        },\n        \"trigger_mode\": \"<string>\",\n        \"page_md_error\": \"<boolean>\",\n        \"text_in_page\": \"<string>\",\n        \"table_in_page\": \"<boolean>\",\n        \"image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page_threshold\": \"<number>\",\n        \"filename_regexp\": \"<string>\",\n        \"filename_regexp_mode\": \"<string>\",\n        \"filename_match_glob\": \"<string>\",\n        \"filename_match_glob_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"page_longer_than_n_chars\": \"<integer>\",\n        \"page_shorter_than_n_chars\": \"<integer>\",\n        \"page_contains_at_least_n_words\": \"<integer>\",\n        \"page_contains_at_most_n_words\": \"<integer>\",\n        \"page_contains_at_least_n_lines\": \"<integer>\",\n        \"page_contains_at_most_n_lines\": \"<integer>\",\n        \"page_contains_at_least_n_images\": \"<integer>\",\n        \"page_contains_at_most_n_images\": \"<integer>\",\n        \"page_contains_at_least_n_tables\": \"<integer>\",\n        \"page_contains_at_most_n_tables\": \"<integer>\",\n        \"page_contains_at_least_n_links\": \"<integer>\",\n        \"page_contains_at_most_n_links\": \"<integer>\",\n        \"page_contains_at_least_n_charts\": \"<integer>\",\n        \"page_contains_at_most_n_charts\": \"<integer>\",\n        \"page_contains_at_least_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_most_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_least_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_least_n_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_numbers\": \"<integer>\",\n        \"regexp_in_page\": \"<string>\",\n        \"regexp_in_page_mode\": \"<string>\",\n        \"layout_element_in_page\": \"<string>\",\n        \"layout_element_in_page_confidence_threshold\": \"<number>\"\n      },\n      {\n        \"parsing_conf\": {\n          \"tier\": \"fast\",\n          \"version\": \"latest\",\n          \"custom_prompt\": \"<string>\",\n          \"ignore\": {\n            \"ignore_diagonal_text\": \"<boolean>\",\n            \"ignore_hidden_text\": \"<boolean>\"\n          },\n          \"aggressive_table_extraction\": \"<boolean>\",\n          \"outlined_table_extraction\": \"<boolean>\",\n          \"adaptive_long_table\": \"<boolean>\",\n          \"extract_layout\": \"<boolean>\",\n          \"specialized_chart_parsing\": \"agentic_plus\",\n          \"high_res_ocr\": \"<boolean>\",\n          \"language\": \"<string>\",\n          \"crop_box\": {\n            \"bottom\": \"<number>\",\n            \"left\": \"<number>\",\n            \"right\": \"<number>\",\n            \"top\": \"<number>\"\n          },\n          \"spatial_text\": {\n            \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n            \"preserve_very_small_text\": \"<boolean>\",\n            \"do_not_unroll_columns\": \"<boolean>\"\n          },\n          \"presentation\": {\n            \"out_of_bounds_content\": \"<boolean>\",\n            \"skip_embedded_data\": \"<boolean>\"\n          }\n        },\n        \"trigger_mode\": \"<string>\",\n        \"page_md_error\": \"<boolean>\",\n        \"text_in_page\": \"<string>\",\n        \"table_in_page\": \"<boolean>\",\n        \"image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page_threshold\": \"<number>\",\n        \"filename_regexp\": \"<string>\",\n        \"filename_regexp_mode\": \"<string>\",\n        \"filename_match_glob\": \"<string>\",\n        \"filename_match_glob_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"page_longer_than_n_chars\": \"<integer>\",\n        \"page_shorter_than_n_chars\": \"<integer>\",\n        \"page_contains_at_least_n_words\": \"<integer>\",\n        \"page_contains_at_most_n_words\": \"<integer>\",\n        \"page_contains_at_least_n_lines\": \"<integer>\",\n        \"page_contains_at_most_n_lines\": \"<integer>\",\n        \"page_contains_at_least_n_images\": \"<integer>\",\n        \"page_contains_at_most_n_images\": \"<integer>\",\n        \"page_contains_at_least_n_tables\": \"<integer>\",\n        \"page_contains_at_most_n_tables\": \"<integer>\",\n        \"page_contains_at_least_n_links\": \"<integer>\",\n        \"page_contains_at_most_n_links\": \"<integer>\",\n        \"page_contains_at_least_n_charts\": \"<integer>\",\n        \"page_contains_at_most_n_charts\": \"<integer>\",\n        \"page_contains_at_least_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_most_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_least_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_least_n_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_numbers\": \"<integer>\",\n        \"regexp_in_page\": \"<string>\",\n        \"regexp_in_page_mode\": \"<string>\",\n        \"layout_element_in_page\": \"<string>\",\n        \"layout_element_in_page_confidence_threshold\": \"<number>\"\n      }\n    ]\n  },\n  \"fast_options\": {},\n  \"agentic_options\": {\n    \"custom_prompt\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"ut_8\": 3477403\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    },\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"pariatur_af\": false\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    }\n  ],\n  \"input_options\": {\n    \"html\": {\n      \"make_all_elements_visible\": \"<boolean>\",\n      \"remove_fixed_elements\": \"<boolean>\",\n      \"remove_navigation_elements\": \"<boolean>\"\n    },\n    \"pdf\": {},\n    \"spreadsheet\": {\n      \"detect_sub_tables_in_sheets\": \"<boolean>\",\n      \"force_formula_computation_in_sheets\": \"<boolean>\",\n      \"include_hidden_sheets\": \"<boolean>\"\n    },\n    \"presentation\": {\n      \"out_of_bounds_content\": \"<boolean>\",\n      \"skip_embedded_data\": \"<boolean>\"\n    }\n  },\n  \"crop_box\": {\n    \"bottom\": \"<number>\",\n    \"left\": \"<number>\",\n    \"right\": \"<number>\",\n    \"top\": \"<number>\"\n  },\n  \"page_ranges\": {\n    \"max_pages\": \"<integer>\",\n    \"target_pages\": \"<string>\"\n  },\n  \"disable_cache\": \"<boolean>\",\n  \"output_options\": {\n    \"markdown\": {\n      \"annotate_links\": \"<boolean>\",\n      \"tables\": {\n        \"compact_markdown_tables\": \"<boolean>\",\n        \"output_tables_as_markdown\": \"<boolean>\",\n        \"markdown_table_multiline_separator\": \"<string>\",\n        \"merge_continued_tables\": \"<boolean>\"\n      },\n      \"inline_images\": \"<boolean>\"\n    },\n    \"spatial_text\": {\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"do_not_unroll_columns\": \"<boolean>\"\n    },\n    \"tables_as_spreadsheet\": {\n      \"enable\": \"<boolean>\",\n      \"guess_sheet_name\": true\n    },\n    \"extract_printed_page_number\": \"<boolean>\",\n    \"images_to_save\": [\n      \"screenshot\",\n      \"embedded\"\n    ],\n    \"additional_outputs\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"granular_bboxes\": [\n      \"cell\",\n      \"cell\"\n    ]\n  },\n  \"processing_control\": {\n    \"timeouts\": {\n      \"base_in_seconds\": \"<integer>\",\n      \"extra_time_per_page_in_seconds\": \"<integer>\"\n    },\n    \"job_failure_conditions\": {\n      \"allowed_page_failure_ratio\": \"<number>\",\n      \"fail_on_image_extraction_error\": \"<boolean>\",\n      \"fail_on_image_ocr_error\": \"<boolean>\",\n      \"fail_on_markdown_reconstruction_error\": \"<boolean>\",\n      \"fail_on_buggy_font\": \"<boolean>\"\n    }\n  },\n  \"file_id\": \"<string>\",\n  \"source_url\": \"https:\",\n  \"http_proxy\": \"https:\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/parse?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "parse"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Parse a file by file ID or URL.\n\nProvide either `file_id` (a previously uploaded file) or\n`source_url` (a publicly accessible URL). Configure parsing\nwith options like `tier`, `target_pages`, and `lang`.\n\n## Tiers\n\n- `fast` \u2014 rule-based, cheapest, no AI\n- `cost_effective` \u2014 balanced speed and quality\n- `agentic` \u2014 full AI-powered parsing\n- `agentic_plus` \u2014 premium AI with specialized features\n\nThe job runs asynchronously. Poll `GET /parse/{job_id}` with\n`expand=text` or `expand=markdown` to retrieve results."
+                  },
+                  "response": [
+                    {
+                      "id": "e92fc802-4a90-403d-9d0e-9fa0969eabfe",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tier\": \"agentic_plus\",\n  \"version\": \"2026-06-04\",\n  \"client_name\": \"<string>\",\n  \"processing_options\": {\n    \"ignore\": {\n      \"ignore_diagonal_text\": \"<boolean>\",\n      \"ignore_text_in_image\": \"<boolean>\",\n      \"ignore_hidden_text\": \"<boolean>\"\n    },\n    \"ocr_parameters\": {\n      \"languages\": [\n        \"hu\",\n        \"ang\"\n      ]\n    },\n    \"aggressive_table_extraction\": \"<boolean>\",\n    \"disable_heuristics\": \"<boolean>\",\n    \"specialized_chart_parsing\": \"agentic_plus\",\n    \"cost_optimizer\": {\n      \"enable\": \"<boolean>\"\n    },\n    \"auto_mode_configuration\": [\n      {\n        \"parsing_conf\": {\n          \"tier\": \"agentic\",\n          \"version\": \"2025-12-11\",\n          \"custom_prompt\": \"<string>\",\n          \"ignore\": {\n            \"ignore_diagonal_text\": \"<boolean>\",\n            \"ignore_hidden_text\": \"<boolean>\"\n          },\n          \"aggressive_table_extraction\": \"<boolean>\",\n          \"outlined_table_extraction\": \"<boolean>\",\n          \"adaptive_long_table\": \"<boolean>\",\n          \"extract_layout\": \"<boolean>\",\n          \"specialized_chart_parsing\": \"agentic\",\n          \"high_res_ocr\": \"<boolean>\",\n          \"language\": \"<string>\",\n          \"crop_box\": {\n            \"bottom\": \"<number>\",\n            \"left\": \"<number>\",\n            \"right\": \"<number>\",\n            \"top\": \"<number>\"\n          },\n          \"spatial_text\": {\n            \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n            \"preserve_very_small_text\": \"<boolean>\",\n            \"do_not_unroll_columns\": \"<boolean>\"\n          },\n          \"presentation\": {\n            \"out_of_bounds_content\": \"<boolean>\",\n            \"skip_embedded_data\": \"<boolean>\"\n          }\n        },\n        \"trigger_mode\": \"<string>\",\n        \"page_md_error\": \"<boolean>\",\n        \"text_in_page\": \"<string>\",\n        \"table_in_page\": \"<boolean>\",\n        \"image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page_threshold\": \"<number>\",\n        \"filename_regexp\": \"<string>\",\n        \"filename_regexp_mode\": \"<string>\",\n        \"filename_match_glob\": \"<string>\",\n        \"filename_match_glob_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"page_longer_than_n_chars\": \"<integer>\",\n        \"page_shorter_than_n_chars\": \"<integer>\",\n        \"page_contains_at_least_n_words\": \"<integer>\",\n        \"page_contains_at_most_n_words\": \"<integer>\",\n        \"page_contains_at_least_n_lines\": \"<integer>\",\n        \"page_contains_at_most_n_lines\": \"<integer>\",\n        \"page_contains_at_least_n_images\": \"<integer>\",\n        \"page_contains_at_most_n_images\": \"<integer>\",\n        \"page_contains_at_least_n_tables\": \"<integer>\",\n        \"page_contains_at_most_n_tables\": \"<integer>\",\n        \"page_contains_at_least_n_links\": \"<integer>\",\n        \"page_contains_at_most_n_links\": \"<integer>\",\n        \"page_contains_at_least_n_charts\": \"<integer>\",\n        \"page_contains_at_most_n_charts\": \"<integer>\",\n        \"page_contains_at_least_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_most_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_least_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_least_n_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_numbers\": \"<integer>\",\n        \"regexp_in_page\": \"<string>\",\n        \"regexp_in_page_mode\": \"<string>\",\n        \"layout_element_in_page\": \"<string>\",\n        \"layout_element_in_page_confidence_threshold\": \"<number>\"\n      },\n      {\n        \"parsing_conf\": {\n          \"tier\": \"fast\",\n          \"version\": \"latest\",\n          \"custom_prompt\": \"<string>\",\n          \"ignore\": {\n            \"ignore_diagonal_text\": \"<boolean>\",\n            \"ignore_hidden_text\": \"<boolean>\"\n          },\n          \"aggressive_table_extraction\": \"<boolean>\",\n          \"outlined_table_extraction\": \"<boolean>\",\n          \"adaptive_long_table\": \"<boolean>\",\n          \"extract_layout\": \"<boolean>\",\n          \"specialized_chart_parsing\": \"agentic_plus\",\n          \"high_res_ocr\": \"<boolean>\",\n          \"language\": \"<string>\",\n          \"crop_box\": {\n            \"bottom\": \"<number>\",\n            \"left\": \"<number>\",\n            \"right\": \"<number>\",\n            \"top\": \"<number>\"\n          },\n          \"spatial_text\": {\n            \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n            \"preserve_very_small_text\": \"<boolean>\",\n            \"do_not_unroll_columns\": \"<boolean>\"\n          },\n          \"presentation\": {\n            \"out_of_bounds_content\": \"<boolean>\",\n            \"skip_embedded_data\": \"<boolean>\"\n          }\n        },\n        \"trigger_mode\": \"<string>\",\n        \"page_md_error\": \"<boolean>\",\n        \"text_in_page\": \"<string>\",\n        \"table_in_page\": \"<boolean>\",\n        \"image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page_threshold\": \"<number>\",\n        \"filename_regexp\": \"<string>\",\n        \"filename_regexp_mode\": \"<string>\",\n        \"filename_match_glob\": \"<string>\",\n        \"filename_match_glob_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"page_longer_than_n_chars\": \"<integer>\",\n        \"page_shorter_than_n_chars\": \"<integer>\",\n        \"page_contains_at_least_n_words\": \"<integer>\",\n        \"page_contains_at_most_n_words\": \"<integer>\",\n        \"page_contains_at_least_n_lines\": \"<integer>\",\n        \"page_contains_at_most_n_lines\": \"<integer>\",\n        \"page_contains_at_least_n_images\": \"<integer>\",\n        \"page_contains_at_most_n_images\": \"<integer>\",\n        \"page_contains_at_least_n_tables\": \"<integer>\",\n        \"page_contains_at_most_n_tables\": \"<integer>\",\n        \"page_contains_at_least_n_links\": \"<integer>\",\n        \"page_contains_at_most_n_links\": \"<integer>\",\n        \"page_contains_at_least_n_charts\": \"<integer>\",\n        \"page_contains_at_most_n_charts\": \"<integer>\",\n        \"page_contains_at_least_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_most_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_least_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_least_n_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_numbers\": \"<integer>\",\n        \"regexp_in_page\": \"<string>\",\n        \"regexp_in_page_mode\": \"<string>\",\n        \"layout_element_in_page\": \"<string>\",\n        \"layout_element_in_page_confidence_threshold\": \"<number>\"\n      }\n    ]\n  },\n  \"fast_options\": {},\n  \"agentic_options\": {\n    \"custom_prompt\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"ut_8\": 3477403\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    },\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"pariatur_af\": false\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    }\n  ],\n  \"input_options\": {\n    \"html\": {\n      \"make_all_elements_visible\": \"<boolean>\",\n      \"remove_fixed_elements\": \"<boolean>\",\n      \"remove_navigation_elements\": \"<boolean>\"\n    },\n    \"pdf\": {},\n    \"spreadsheet\": {\n      \"detect_sub_tables_in_sheets\": \"<boolean>\",\n      \"force_formula_computation_in_sheets\": \"<boolean>\",\n      \"include_hidden_sheets\": \"<boolean>\"\n    },\n    \"presentation\": {\n      \"out_of_bounds_content\": \"<boolean>\",\n      \"skip_embedded_data\": \"<boolean>\"\n    }\n  },\n  \"crop_box\": {\n    \"bottom\": \"<number>\",\n    \"left\": \"<number>\",\n    \"right\": \"<number>\",\n    \"top\": \"<number>\"\n  },\n  \"page_ranges\": {\n    \"max_pages\": \"<integer>\",\n    \"target_pages\": \"<string>\"\n  },\n  \"disable_cache\": \"<boolean>\",\n  \"output_options\": {\n    \"markdown\": {\n      \"annotate_links\": \"<boolean>\",\n      \"tables\": {\n        \"compact_markdown_tables\": \"<boolean>\",\n        \"output_tables_as_markdown\": \"<boolean>\",\n        \"markdown_table_multiline_separator\": \"<string>\",\n        \"merge_continued_tables\": \"<boolean>\"\n      },\n      \"inline_images\": \"<boolean>\"\n    },\n    \"spatial_text\": {\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"do_not_unroll_columns\": \"<boolean>\"\n    },\n    \"tables_as_spreadsheet\": {\n      \"enable\": \"<boolean>\",\n      \"guess_sheet_name\": true\n    },\n    \"extract_printed_page_number\": \"<boolean>\",\n    \"images_to_save\": [\n      \"screenshot\",\n      \"embedded\"\n    ],\n    \"additional_outputs\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"granular_bboxes\": [\n      \"cell\",\n      \"cell\"\n    ]\n  },\n  \"processing_control\": {\n    \"timeouts\": {\n      \"base_in_seconds\": \"<integer>\",\n      \"extra_time_per_page_in_seconds\": \"<integer>\"\n    },\n    \"job_failure_conditions\": {\n      \"allowed_page_failure_ratio\": \"<number>\",\n      \"fail_on_image_extraction_error\": \"<boolean>\",\n      \"fail_on_image_ocr_error\": \"<boolean>\",\n      \"fail_on_markdown_reconstruction_error\": \"<boolean>\",\n      \"fail_on_buggy_font\": \"<boolean>\"\n    }\n  },\n  \"file_id\": \"<string>\",\n  \"source_url\": \"https:\",\n  \"http_proxy\": \"https:\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/parse?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "parse"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"status\": \"CANCELLED\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"error_message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"tier\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:08:35.000Z",
+                      "updatedAt": "2026-07-28T02:08:35.000Z",
+                      "uid": "35240-e92fc802-4a90-403d-9d0e-9fa0969eabfe"
+                    },
+                    {
+                      "id": "0058d2d5-6c48-4736-b704-d904257ac234",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tier\": \"agentic_plus\",\n  \"version\": \"2026-06-04\",\n  \"client_name\": \"<string>\",\n  \"processing_options\": {\n    \"ignore\": {\n      \"ignore_diagonal_text\": \"<boolean>\",\n      \"ignore_text_in_image\": \"<boolean>\",\n      \"ignore_hidden_text\": \"<boolean>\"\n    },\n    \"ocr_parameters\": {\n      \"languages\": [\n        \"hu\",\n        \"ang\"\n      ]\n    },\n    \"aggressive_table_extraction\": \"<boolean>\",\n    \"disable_heuristics\": \"<boolean>\",\n    \"specialized_chart_parsing\": \"agentic_plus\",\n    \"cost_optimizer\": {\n      \"enable\": \"<boolean>\"\n    },\n    \"auto_mode_configuration\": [\n      {\n        \"parsing_conf\": {\n          \"tier\": \"agentic\",\n          \"version\": \"2025-12-11\",\n          \"custom_prompt\": \"<string>\",\n          \"ignore\": {\n            \"ignore_diagonal_text\": \"<boolean>\",\n            \"ignore_hidden_text\": \"<boolean>\"\n          },\n          \"aggressive_table_extraction\": \"<boolean>\",\n          \"outlined_table_extraction\": \"<boolean>\",\n          \"adaptive_long_table\": \"<boolean>\",\n          \"extract_layout\": \"<boolean>\",\n          \"specialized_chart_parsing\": \"agentic\",\n          \"high_res_ocr\": \"<boolean>\",\n          \"language\": \"<string>\",\n          \"crop_box\": {\n            \"bottom\": \"<number>\",\n            \"left\": \"<number>\",\n            \"right\": \"<number>\",\n            \"top\": \"<number>\"\n          },\n          \"spatial_text\": {\n            \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n            \"preserve_very_small_text\": \"<boolean>\",\n            \"do_not_unroll_columns\": \"<boolean>\"\n          },\n          \"presentation\": {\n            \"out_of_bounds_content\": \"<boolean>\",\n            \"skip_embedded_data\": \"<boolean>\"\n          }\n        },\n        \"trigger_mode\": \"<string>\",\n        \"page_md_error\": \"<boolean>\",\n        \"text_in_page\": \"<string>\",\n        \"table_in_page\": \"<boolean>\",\n        \"image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page_threshold\": \"<number>\",\n        \"filename_regexp\": \"<string>\",\n        \"filename_regexp_mode\": \"<string>\",\n        \"filename_match_glob\": \"<string>\",\n        \"filename_match_glob_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"page_longer_than_n_chars\": \"<integer>\",\n        \"page_shorter_than_n_chars\": \"<integer>\",\n        \"page_contains_at_least_n_words\": \"<integer>\",\n        \"page_contains_at_most_n_words\": \"<integer>\",\n        \"page_contains_at_least_n_lines\": \"<integer>\",\n        \"page_contains_at_most_n_lines\": \"<integer>\",\n        \"page_contains_at_least_n_images\": \"<integer>\",\n        \"page_contains_at_most_n_images\": \"<integer>\",\n        \"page_contains_at_least_n_tables\": \"<integer>\",\n        \"page_contains_at_most_n_tables\": \"<integer>\",\n        \"page_contains_at_least_n_links\": \"<integer>\",\n        \"page_contains_at_most_n_links\": \"<integer>\",\n        \"page_contains_at_least_n_charts\": \"<integer>\",\n        \"page_contains_at_most_n_charts\": \"<integer>\",\n        \"page_contains_at_least_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_most_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_least_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_least_n_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_numbers\": \"<integer>\",\n        \"regexp_in_page\": \"<string>\",\n        \"regexp_in_page_mode\": \"<string>\",\n        \"layout_element_in_page\": \"<string>\",\n        \"layout_element_in_page_confidence_threshold\": \"<number>\"\n      },\n      {\n        \"parsing_conf\": {\n          \"tier\": \"fast\",\n          \"version\": \"latest\",\n          \"custom_prompt\": \"<string>\",\n          \"ignore\": {\n            \"ignore_diagonal_text\": \"<boolean>\",\n            \"ignore_hidden_text\": \"<boolean>\"\n          },\n          \"aggressive_table_extraction\": \"<boolean>\",\n          \"outlined_table_extraction\": \"<boolean>\",\n          \"adaptive_long_table\": \"<boolean>\",\n          \"extract_layout\": \"<boolean>\",\n          \"specialized_chart_parsing\": \"agentic_plus\",\n          \"high_res_ocr\": \"<boolean>\",\n          \"language\": \"<string>\",\n          \"crop_box\": {\n            \"bottom\": \"<number>\",\n            \"left\": \"<number>\",\n            \"right\": \"<number>\",\n            \"top\": \"<number>\"\n          },\n          \"spatial_text\": {\n            \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n            \"preserve_very_small_text\": \"<boolean>\",\n            \"do_not_unroll_columns\": \"<boolean>\"\n          },\n          \"presentation\": {\n            \"out_of_bounds_content\": \"<boolean>\",\n            \"skip_embedded_data\": \"<boolean>\"\n          }\n        },\n        \"trigger_mode\": \"<string>\",\n        \"page_md_error\": \"<boolean>\",\n        \"text_in_page\": \"<string>\",\n        \"table_in_page\": \"<boolean>\",\n        \"image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page\": \"<boolean>\",\n        \"full_page_image_in_page_threshold\": \"<number>\",\n        \"filename_regexp\": \"<string>\",\n        \"filename_regexp_mode\": \"<string>\",\n        \"filename_match_glob\": \"<string>\",\n        \"filename_match_glob_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"page_longer_than_n_chars\": \"<integer>\",\n        \"page_shorter_than_n_chars\": \"<integer>\",\n        \"page_contains_at_least_n_words\": \"<integer>\",\n        \"page_contains_at_most_n_words\": \"<integer>\",\n        \"page_contains_at_least_n_lines\": \"<integer>\",\n        \"page_contains_at_most_n_lines\": \"<integer>\",\n        \"page_contains_at_least_n_images\": \"<integer>\",\n        \"page_contains_at_most_n_images\": \"<integer>\",\n        \"page_contains_at_least_n_tables\": \"<integer>\",\n        \"page_contains_at_most_n_tables\": \"<integer>\",\n        \"page_contains_at_least_n_links\": \"<integer>\",\n        \"page_contains_at_most_n_links\": \"<integer>\",\n        \"page_contains_at_least_n_charts\": \"<integer>\",\n        \"page_contains_at_most_n_charts\": \"<integer>\",\n        \"page_contains_at_least_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_most_n_layout_elements\": \"<integer>\",\n        \"page_contains_at_least_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_percent_numbers\": \"<integer>\",\n        \"page_contains_at_least_n_numbers\": \"<integer>\",\n        \"page_contains_at_most_n_numbers\": \"<integer>\",\n        \"regexp_in_page\": \"<string>\",\n        \"regexp_in_page_mode\": \"<string>\",\n        \"layout_element_in_page\": \"<string>\",\n        \"layout_element_in_page_confidence_threshold\": \"<number>\"\n      }\n    ]\n  },\n  \"fast_options\": {},\n  \"agentic_options\": {\n    \"custom_prompt\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"ut_8\": 3477403\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    },\n    {\n      \"webhook_url\": \"https:\",\n      \"webhook_headers\": {\n        \"pariatur_af\": false\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"string\"\n    }\n  ],\n  \"input_options\": {\n    \"html\": {\n      \"make_all_elements_visible\": \"<boolean>\",\n      \"remove_fixed_elements\": \"<boolean>\",\n      \"remove_navigation_elements\": \"<boolean>\"\n    },\n    \"pdf\": {},\n    \"spreadsheet\": {\n      \"detect_sub_tables_in_sheets\": \"<boolean>\",\n      \"force_formula_computation_in_sheets\": \"<boolean>\",\n      \"include_hidden_sheets\": \"<boolean>\"\n    },\n    \"presentation\": {\n      \"out_of_bounds_content\": \"<boolean>\",\n      \"skip_embedded_data\": \"<boolean>\"\n    }\n  },\n  \"crop_box\": {\n    \"bottom\": \"<number>\",\n    \"left\": \"<number>\",\n    \"right\": \"<number>\",\n    \"top\": \"<number>\"\n  },\n  \"page_ranges\": {\n    \"max_pages\": \"<integer>\",\n    \"target_pages\": \"<string>\"\n  },\n  \"disable_cache\": \"<boolean>\",\n  \"output_options\": {\n    \"markdown\": {\n      \"annotate_links\": \"<boolean>\",\n      \"tables\": {\n        \"compact_markdown_tables\": \"<boolean>\",\n        \"output_tables_as_markdown\": \"<boolean>\",\n        \"markdown_table_multiline_separator\": \"<string>\",\n        \"merge_continued_tables\": \"<boolean>\"\n      },\n      \"inline_images\": \"<boolean>\"\n    },\n    \"spatial_text\": {\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"do_not_unroll_columns\": \"<boolean>\"\n    },\n    \"tables_as_spreadsheet\": {\n      \"enable\": \"<boolean>\",\n      \"guess_sheet_name\": true\n    },\n    \"extract_printed_page_number\": \"<boolean>\",\n    \"images_to_save\": [\n      \"screenshot\",\n      \"embedded\"\n    ],\n    \"additional_outputs\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"granular_bboxes\": [\n      \"cell\",\n      \"cell\"\n    ]\n  },\n  \"processing_control\": {\n    \"timeouts\": {\n      \"base_in_seconds\": \"<integer>\",\n      \"extra_time_per_page_in_seconds\": \"<integer>\"\n    },\n    \"job_failure_conditions\": {\n      \"allowed_page_failure_ratio\": \"<number>\",\n      \"fail_on_image_extraction_error\": \"<boolean>\",\n      \"fail_on_image_ocr_error\": \"<boolean>\",\n      \"fail_on_markdown_reconstruction_error\": \"<boolean>\",\n      \"fail_on_buggy_font\": \"<boolean>\"\n    }\n  },\n  \"file_id\": \"<string>\",\n  \"source_url\": \"https:\",\n  \"http_proxy\": \"https:\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/parse?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "parse"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:35.000Z",
+                      "updatedAt": "2026-07-28T02:08:35.000Z",
+                      "uid": "35240-0058d2d5-6c48-4736-b704-d904257ac234"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:35.000Z",
+                  "updatedAt": "2026-07-28T02:08:35.000Z",
+                  "uid": "35240-e1984aa4-305f-469b-be42-399065fce8f6"
+                },
+                {
+                  "name": "List Parse Jobs",
+                  "id": "1030349e-74b0-4696-82fa-0905c269d55f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/parse?page_size=<integer>&page_token=<string>&status=CANCELLED&job_ids=<string>&job_ids=<string>&project_id=<uuid>&organization_id=<uuid>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "parse"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of items per page",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Token for pagination",
+                          "key": "page_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)",
+                          "key": "status",
+                          "value": "CANCELLED"
+                        },
+                        {
+                          "description": "Filter by specific job IDs",
+                          "key": "job_ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by specific job IDs",
+                          "key": "job_ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Include items created at or after this timestamp (inclusive)",
+                          "key": "created_at_on_or_after",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Include items created at or before this timestamp (inclusive)",
+                          "key": "created_at_on_or_before",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    },
+                    "description": "List parse jobs for the current project.\n\nFilter by `status` or creation date range. Results are\npaginated \u2014 use `page_token` from the response to fetch\nsubsequent pages."
+                  },
+                  "response": [
+                    {
+                      "id": "ff7676c6-6b61-4541-b140-2236e18a37f5",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/parse?page_size=<integer>&page_token=<string>&status=CANCELLED&job_ids=<string>&project_id=<uuid>&organization_id=<uuid>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "parse"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of items per page",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Token for pagination",
+                              "key": "page_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)",
+                              "key": "status",
+                              "value": "CANCELLED"
+                            },
+                            {
+                              "description": "Filter by specific job IDs",
+                              "key": "job_ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Include items created at or after this timestamp (inclusive)",
+                              "key": "created_at_on_or_after",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Include items created at or before this timestamp (inclusive)",
+                              "key": "created_at_on_or_before",
+                              "value": "<dateTime>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"status\": \"CANCELLED\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"error_message\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tier\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"status\": \"PENDING\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"error_message\": \"<string>\",\n      \"name\": \"<string>\",\n      \"tier\": \"<string>\"\n    }\n  ],\n  \"next_page_token\": \"<string>\",\n  \"total_size\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:08:35.000Z",
+                      "updatedAt": "2026-07-28T02:08:35.000Z",
+                      "uid": "35240-ff7676c6-6b61-4541-b140-2236e18a37f5"
+                    },
+                    {
+                      "id": "c2538278-e1ac-430f-b792-a17ca728bfd3",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/parse?page_size=<integer>&page_token=<string>&status=CANCELLED&job_ids=<string>&project_id=<uuid>&organization_id=<uuid>&created_at_on_or_after=<dateTime>&created_at_on_or_before=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "parse"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of items per page",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Token for pagination",
+                              "key": "page_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)",
+                              "key": "status",
+                              "value": "CANCELLED"
+                            },
+                            {
+                              "description": "Filter by specific job IDs",
+                              "key": "job_ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Include items created at or after this timestamp (inclusive)",
+                              "key": "created_at_on_or_after",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Include items created at or before this timestamp (inclusive)",
+                              "key": "created_at_on_or_before",
+                              "value": "<dateTime>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:08:35.000Z",
+                      "updatedAt": "2026-07-28T02:08:35.000Z",
+                      "uid": "35240-c2538278-e1ac-430f-b792-a17ca728bfd3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:08:35.000Z",
+                  "updatedAt": "2026-07-28T02:08:35.000Z",
+                  "uid": "35240-1030349e-74b0-4696-82fa-0905c269d55f"
+                }
+              ],
+              "id": "05a3650c-5777-4982-9d0d-7005bde18c14",
+              "createdAt": "2026-07-28T02:08:35.000Z",
+              "updatedAt": "2026-07-28T02:08:35.000Z",
+              "uid": "35240-05a3650c-5777-4982-9d0d-7005bde18c14"
+            }
+          ],
+          "id": "1f38beb9-0cb1-43b8-adf9-c564a17f9e6c",
+          "createdAt": "2026-07-28T02:08:35.000Z",
+          "updatedAt": "2026-07-28T02:08:35.000Z",
+          "uid": "35240-1f38beb9-0cb1-43b8-adf9-c564a17f9e6c"
+        }
+      ],
+      "id": "fb8641e5-a53a-40f9-be6f-65e1772f65ac",
+      "createdAt": "2026-07-28T02:08:35.000Z",
+      "updatedAt": "2026-07-28T02:08:35.000Z",
+      "uid": "35240-fb8641e5-a53a-40f9-be6f-65e1772f65ac"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

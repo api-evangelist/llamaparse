@@ -1,0 +1,908 @@
+{
+  "info": {
+    "_postman_id": "d254a273-b95e-43fe-8aad-42b70559f8b5",
+    "name": "Llama Platform Agent Data Data Sinks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:07:45.000Z",
+    "updatedAt": "2026-07-28T02:07:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d254a273-b95e-43fe-8aad-42b70559f8b5"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "data-sinks",
+              "item": [
+                {
+                  "name": "{data_sink_id}",
+                  "item": [
+                    {
+                      "name": "Get Data Sink",
+                      "id": "365faaa1-2e74-450f-97bc-b2faed85268b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sinks",
+                            ":data_sink_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "41f2db55-82bf-4b39-b4c0-8652f3f7c6c9",
+                              "key": "data_sink_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get a data sink by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "bb121af9-a0b0-4089-808a-349c8fc6c8b0",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sinks",
+                                ":data_sink_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_sink_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"sink_type\": \"MONGODB_ATLAS\",\n  \"component\": {\n    \"eiusmod_e51\": true,\n    \"et_2\": 31918703.553113207,\n    \"velit_8\": false\n  },\n  \"project_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:07:46.000Z",
+                          "updatedAt": "2026-07-28T02:07:46.000Z",
+                          "uid": "35240-bb121af9-a0b0-4089-808a-349c8fc6c8b0"
+                        },
+                        {
+                          "id": "203698b9-5ace-4e48-bbe1-d1e900708123",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sinks",
+                                ":data_sink_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_sink_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:46.000Z",
+                          "updatedAt": "2026-07-28T02:07:46.000Z",
+                          "uid": "35240-203698b9-5ace-4e48-bbe1-d1e900708123"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:46.000Z",
+                      "updatedAt": "2026-07-28T02:07:46.000Z",
+                      "uid": "35240-365faaa1-2e74-450f-97bc-b2faed85268b"
+                    },
+                    {
+                      "name": "Update Data Sink",
+                      "id": "3a1d7b51-116b-4266-9c99-f8c2105aa891",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sink_type\": \"MILVUS\",\n  \"name\": \"<string>\",\n  \"component\": {\n    \"esse_8\": 3487573.4281896204\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sinks",
+                            ":data_sink_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "57a51c6e-69da-4566-b6b6-cd0c687865a8",
+                              "key": "data_sink_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update a data sink by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "8a41f5e8-e650-4348-8caf-81c97685e083",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sink_type\": \"MILVUS\",\n  \"name\": \"<string>\",\n  \"component\": {\n    \"esse_8\": 3487573.4281896204\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sinks",
+                                ":data_sink_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_sink_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"sink_type\": \"MONGODB_ATLAS\",\n  \"component\": {\n    \"eiusmod_e51\": true,\n    \"et_2\": 31918703.553113207,\n    \"velit_8\": false\n  },\n  \"project_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:07:46.000Z",
+                          "updatedAt": "2026-07-28T02:07:46.000Z",
+                          "uid": "35240-8a41f5e8-e650-4348-8caf-81c97685e083"
+                        },
+                        {
+                          "id": "618ec7f0-49fe-41cb-ba2b-ee374045fb08",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sink_type\": \"MILVUS\",\n  \"name\": \"<string>\",\n  \"component\": {\n    \"esse_8\": 3487573.4281896204\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sinks",
+                                ":data_sink_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_sink_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:46.000Z",
+                          "updatedAt": "2026-07-28T02:07:46.000Z",
+                          "uid": "35240-618ec7f0-49fe-41cb-ba2b-ee374045fb08"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:46.000Z",
+                      "updatedAt": "2026-07-28T02:07:46.000Z",
+                      "uid": "35240-3a1d7b51-116b-4266-9c99-f8c2105aa891"
+                    },
+                    {
+                      "name": "Delete Data Sink",
+                      "id": "f98ee705-fb54-495f-9431-44e834084118",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sinks",
+                            ":data_sink_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "58e35c7d-9274-48f5-a316-72a7ed7f03bb",
+                              "key": "data_sink_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a data sink by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "7d57dd50-986e-4eb0-8f91-f30e4266bad8",
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sinks",
+                                ":data_sink_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_sink_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:07:46.000Z",
+                          "updatedAt": "2026-07-28T02:07:46.000Z",
+                          "uid": "35240-7d57dd50-986e-4eb0-8f91-f30e4266bad8"
+                        },
+                        {
+                          "id": "14a6f9a5-7546-491d-a13c-babdbfe73d5d",
+                          "name": "Validation Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/data-sinks/:data_sink_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "data-sinks",
+                                ":data_sink_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "data_sink_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:07:46.000Z",
+                          "updatedAt": "2026-07-28T02:07:46.000Z",
+                          "uid": "35240-14a6f9a5-7546-491d-a13c-babdbfe73d5d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:07:46.000Z",
+                      "updatedAt": "2026-07-28T02:07:46.000Z",
+                      "uid": "35240-f98ee705-fb54-495f-9431-44e834084118"
+                    }
+                  ],
+                  "id": "b390ae96-283d-442a-82a5-f2ef9a310218",
+                  "createdAt": "2026-07-28T02:07:46.000Z",
+                  "updatedAt": "2026-07-28T02:07:46.000Z",
+                  "uid": "35240-b390ae96-283d-442a-82a5-f2ef9a310218"
+                },
+                {
+                  "name": "List Data Sinks",
+                  "id": "55b6cbc1-54ff-4342-8a0d-e8cca84ce172",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/data-sinks?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "data-sinks"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "List data sinks for a given project."
+                  },
+                  "response": [
+                    {
+                      "id": "eee3e90f-9719-40c8-b41b-a9a3b2e3237e",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sinks?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sinks"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"sink_type\": \"MILVUS\",\n    \"component\": {\n      \"amet_93b\": true,\n      \"ut_fd\": 37319780.66569209,\n      \"incididunt_75\": \"nulla id in qui\"\n    },\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"sink_type\": \"PINECONE\",\n    \"component\": {\n      \"quis_14\": \"est nostrud elit laborum veniam\",\n      \"laborum_f8\": \"Lorem Ut dolore\"\n    },\n    \"project_id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-07-28T02:07:46.000Z",
+                      "updatedAt": "2026-07-28T02:07:46.000Z",
+                      "uid": "35240-eee3e90f-9719-40c8-b41b-a9a3b2e3237e"
+                    },
+                    {
+                      "id": "e853fd49-dc0a-4f39-9339-3bab6de44600",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sinks?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sinks"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:46.000Z",
+                      "updatedAt": "2026-07-28T02:07:46.000Z",
+                      "uid": "35240-e853fd49-dc0a-4f39-9339-3bab6de44600"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:07:46.000Z",
+                  "updatedAt": "2026-07-28T02:07:46.000Z",
+                  "uid": "35240-55b6cbc1-54ff-4342-8a0d-e8cca84ce172"
+                },
+                {
+                  "name": "Create Data Sink",
+                  "id": "324595e1-2e13-416c-b192-05efa5e706eb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"sink_type\": \"POSTGRES\",\n  \"component\": {\n    \"laborum_5b\": 75856620.79844809,\n    \"nostrud62e\": false,\n    \"voluptate6\": -46846848.85324177\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/data-sinks?project_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "data-sinks"
+                      ],
+                      "query": [
+                        {
+                          "key": "project_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    },
+                    "description": "Create a new data sink."
+                  },
+                  "response": [
+                    {
+                      "id": "edbe1b1a-28b8-40ec-8ee7-695b973613d8",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"sink_type\": \"POSTGRES\",\n  \"component\": {\n    \"laborum_5b\": 75856620.79844809,\n    \"nostrud62e\": false,\n    \"voluptate6\": -46846848.85324177\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sinks?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sinks"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"sink_type\": \"MONGODB_ATLAS\",\n  \"component\": {\n    \"eiusmod_e51\": true,\n    \"et_2\": 31918703.553113207,\n    \"velit_8\": false\n  },\n  \"project_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:07:46.000Z",
+                      "updatedAt": "2026-07-28T02:07:46.000Z",
+                      "uid": "35240-edbe1b1a-28b8-40ec-8ee7-695b973613d8"
+                    },
+                    {
+                      "id": "ca75d1c2-7ece-40bc-85d6-6fbce95c0830",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"sink_type\": \"POSTGRES\",\n  \"component\": {\n    \"laborum_5b\": 75856620.79844809,\n    \"nostrud62e\": false,\n    \"voluptate6\": -46846848.85324177\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/data-sinks?project_id=<uuid>&organization_id=<uuid>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "data-sinks"
+                          ],
+                          "query": [
+                            {
+                              "key": "project_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "organization_id",
+                              "value": "<uuid>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\",\n      \"input\": {\n        \"title\": \"Input\"\n      },\n      \"ctx\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:07:46.000Z",
+                      "updatedAt": "2026-07-28T02:07:46.000Z",
+                      "uid": "35240-ca75d1c2-7ece-40bc-85d6-6fbce95c0830"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:07:46.000Z",
+                  "updatedAt": "2026-07-28T02:07:46.000Z",
+                  "uid": "35240-324595e1-2e13-416c-b192-05efa5e706eb"
+                }
+              ],
+              "id": "4d17415a-0cbd-4978-950b-4dc7c18c5962",
+              "createdAt": "2026-07-28T02:07:46.000Z",
+              "updatedAt": "2026-07-28T02:07:46.000Z",
+              "uid": "35240-4d17415a-0cbd-4978-950b-4dc7c18c5962"
+            }
+          ],
+          "id": "c906e304-547c-4093-b907-47fae85eafeb",
+          "createdAt": "2026-07-28T02:07:46.000Z",
+          "updatedAt": "2026-07-28T02:07:46.000Z",
+          "uid": "35240-c906e304-547c-4093-b907-47fae85eafeb"
+        }
+      ],
+      "id": "3d234fed-48fd-42e2-a754-5338ae3b45f9",
+      "createdAt": "2026-07-28T02:07:46.000Z",
+      "updatedAt": "2026-07-28T02:07:46.000Z",
+      "uid": "35240-3d234fed-48fd-42e2-a754-5338ae3b45f9"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}
