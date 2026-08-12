@@ -684,6 +684,17 @@ apis:
   - type: Tiers
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
 common:
+  - type: IssueTracker
+    url: https://github.com/run-llama/llama-parse-py/issues
+  - type: Releases
+    url: https://github.com/run-llama/llama-parse-py/releases
+  - type: SecurityPolicy
+    url: https://github.com/run-llama/llama-parse-py/blob/main/SECURITY.md
+  - type: ContributionGuide
+    url: https://github.com/run-llama/llama-parse-py/blob/main/CONTRIBUTING.md
+  - type: License
+    name: MIT
+    url: https://github.com/run-llama/llama-parse-py/blob/main/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/llamaparse/overview
   - type: AgenticAccess
@@ -727,7 +738,7 @@ common:
   - type: FinOps
     url: finops/llamaparse-finops.yml
   - type: OpenAPI
-    url: openapi/llamaparse-llamacloud-openapi.yml
+    url: openapi/_original/llamaparse-llamacloud-openapi.yml
   - type: Vocabulary
     url: vocabulary/llamaparse-vocabulary.yml
   - type: JSONLDContext
