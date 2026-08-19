@@ -1,0 +1,294 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Llama Platform Agent Data Extract API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extract",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate Extraction Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/extract/schema/validation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Validate a JSON schema for extraction."
+        },
+        {
+          "info": {
+            "name": "Generate Extraction Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/extract/schema/generate",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate a JSON schema and return a product configuration request."
+        },
+        {
+          "info": {
+            "name": "List Extract Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/extract",
+            "params": [
+              {
+                "name": "document_input_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document input type (file_id or parse_job_id)"
+              },
+              {
+                "name": "file_input",
+                "value": "",
+                "type": "query",
+                "description": "Filter by file input value"
+              },
+              {
+                "name": "document_input_value",
+                "value": "",
+                "type": "query",
+                "description": "Deprecated: use file_input instead"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination"
+              },
+              {
+                "name": "job_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific job IDs"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Additional fields to include: configuration, extract_metadata"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "configuration_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by configuration ID"
+              },
+              {
+                "name": "created_at_on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "Include items created at or after this timestamp (inclusive)"
+              },
+              {
+                "name": "created_at_on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "Include items created at or before this timestamp (inclusive)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List extraction jobs with optional filtering and pagination.\n\nFilter by `configuration_id`, `status`, `file_input`,\nor creation date range. Results are returned newest-first.\nUse `expand=configuration` to include the full configuration used,\nand `expand=extract_metadata` for per-field metadata."
+        },
+        {
+          "info": {
+            "name": "Create Extract Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/extract",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create an extraction job.\n\nExtracts structured data from a document using either a saved\nconfiguration or an inline JSON Schema.\n\n## Input\n\nProvide exactly one of:\n- `configuration_id` — reference a saved extraction config\n- `configuration` — inline configuration with a `data_schema`\n\n## Document input\n\nSet `file_input` to a file ID (`dfl-...`) or a\ncompleted parse job ID (`pjb-...`).\n\nThe job runs asynchronously. Poll `GET /extract/{job_id}` or\nregister a webhook to monitor completion."
+        },
+        {
+          "info": {
+            "name": "Get Extract Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/extract/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Additional fields to include: configuration, extract_metadata"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a single extraction job by ID.\n\nReturns the job status and results when complete.\nUse `expand=configuration` to include the full configuration used,\nand `expand=extract_metadata` for per-field metadata."
+        },
+        {
+          "info": {
+            "name": "Delete Extract Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v2/extract/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an extraction job and its results."
+        },
+        {
+          "info": {
+            "name": "Cancel Extract Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/extract/:job_id/cancel",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel a running extraction job.\n\nStops processing and marks the job as CANCELLED. Returns the updated job. Jobs already in a terminal state (COMPLETED, FAILED, CANCELLED) cannot be cancelled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

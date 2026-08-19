@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Llama Platform Agent Data Classify API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classify",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Classify Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/classify",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job status"
+              },
+              {
+                "name": "job_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific job IDs"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "configuration_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by configuration ID"
+              },
+              {
+                "name": "created_at_on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "Include items created at or after this timestamp (inclusive)"
+              },
+              {
+                "name": "created_at_on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "Include items created at or before this timestamp (inclusive)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List classify jobs with optional filtering and pagination.\n\nFilter by `status`, `configuration_id`, specific `job_ids`,\nor creation date range."
+        },
+        {
+          "info": {
+            "name": "Create Classify Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/classify",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a classify job.\n\nClassifies a document against a set of rules. Set `file_input`\nto a file ID (`dfl-...`) or parse job ID (`pjb-...`), and provide\neither inline `configuration` with rules or a `configuration_id`\nreferencing a saved preset.\n\nEach rule has a `type` (the label to assign) and a `description`\n(natural language criteria). The classifier returns the best\nmatching rule with a confidence score.\n\nThe job runs asynchronously. Poll `GET /classify/{job_id}` to\ncheck status and retrieve"
+        },
+        {
+          "info": {
+            "name": "Get Classify Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/classify/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a classify job by ID.\n\nReturns the job status, configuration, and classify result\nwhen complete. The result includes the matched document type,\nconfidence score, and reasoning."
+        },
+        {
+          "info": {
+            "name": "Cancel Classify Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/classify/:job_id/cancel",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel a running classify job.\n\nStops processing and marks the job as CANCELLED. Returns the updated job. Jobs already in a terminal state (COMPLETED, FAILED, CANCELLED) cannot be cancelled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

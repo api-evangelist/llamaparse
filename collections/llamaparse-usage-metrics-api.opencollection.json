@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Llama Platform Agent Data Usage Metrics API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Usage Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Usage Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/beta/usage-metrics",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination"
+              },
+              {
+                "name": "include_total",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user ID"
+              },
+              {
+                "name": "event_types",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event types"
+              },
+              {
+                "name": "days",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific days (YYYY-MM-DD)"
+              },
+              {
+                "name": "day_on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "Filter by days on or before this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "day_on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter by days on or after this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "event_aggregation_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event aggregation type"
+              },
+              {
+                "name": "event_aggregation_key",
+                "value": "",
+                "type": "query",
+                "description": "Filter by event aggregation key"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List usage metrics with filtering and pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

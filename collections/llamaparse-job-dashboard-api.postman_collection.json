@@ -1,0 +1,308 @@
+{
+  "item": [
+    {
+      "id": "02ee7448-c38c-4bb6-80cc-09490f6a761e",
+      "name": "Job Dashboard",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8677a8a6-930c-46d3-924f-295cb07e9be9",
+          "name": "Query project job data points",
+          "request": {
+            "name": "Query project job data points",
+            "description": {
+              "content": "Returns paginated job data points for the current project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "job-data-points"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "job_type",
+                  "value": "<string>",
+                  "description": "(Required) Job type to query."
+                },
+                {
+                  "disabled": false,
+                  "key": "hours",
+                  "value": "1",
+                  "description": "Hours of history to include."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Cursor token for the next page."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_on_or_after",
+                  "value": "<dateTime>",
+                  "description": "Include items created at or after this timestamp (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_on_or_before",
+                  "value": "<dateTime>",
+                  "description": "Include items created at or before this timestamp (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0855a7df-e997-4082-b7b7-0b2c477969d3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "job-data-points"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hours",
+                      "value": "1"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_on_or_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_on_or_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"project_id\": \"string\",\n      \"created_at\": \"1997-01-14T04:32:26.264Z\",\n      \"updated_at\": \"2018-12-17T01:06:09.887Z\",\n      \"status\": \"string\",\n      \"custom_tag\": \"string\",\n      \"error_message\": \"string\",\n      \"state_transitions\": {\n        \"pending_at\": \"1976-09-16T17:21:02.803Z\",\n        \"throttled_at\": \"2003-11-28T07:00:44.428Z\",\n        \"running_at\": \"2001-07-18T17:51:38.064Z\",\n        \"completed_at\": \"1992-12-26T15:06:23.407Z\",\n        \"failed_at\": \"1959-03-23T00:44:14.875Z\",\n        \"cancelled_at\": \"1971-05-29T01:00:57.774Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"project_id\": \"string\",\n      \"created_at\": \"1982-11-03T09:12:30.839Z\",\n      \"updated_at\": \"1991-04-29T07:01:19.257Z\",\n      \"status\": \"string\",\n      \"custom_tag\": \"string\",\n      \"error_message\": \"string\",\n      \"state_transitions\": {\n        \"pending_at\": \"2006-04-02T22:38:50.935Z\",\n        \"throttled_at\": \"1988-02-01T00:45:23.430Z\",\n        \"running_at\": \"2013-01-18T15:49:35.250Z\",\n        \"completed_at\": \"1981-11-18T08:45:34.541Z\",\n        \"failed_at\": \"1974-09-02T05:17:14.686Z\",\n        \"cancelled_at\": \"1983-01-02T11:56:05.754Z\"\n      }\n    }\n  ],\n  \"next_page_token\": \"string\",\n  \"total_size\": 2161\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48cc5d7c-c56a-4498-8106-fea7329ad9d5",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "job-data-points"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hours",
+                      "value": "1"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_on_or_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_on_or_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "04840589-834e-4a2a-8de4-ca4c786639ce",
+    "name": "Llama Platform Agent Data Job Dashboard API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

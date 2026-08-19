@@ -1,0 +1,1544 @@
+{
+  "item": [
+    {
+      "id": "8a3432f4-e451-47cf-9cd7-af60945dc2b8",
+      "name": "Extract",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a3510f9-d343-4b0a-984f-ca58b7dc3c1d",
+          "name": "Validate Extraction Schema",
+          "request": {
+            "name": "Validate Extraction Schema",
+            "description": {
+              "content": "Validate a JSON schema for extraction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "extract",
+                "schema",
+                "validation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": \"string\",\n      \"key_1\": 7196\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7603b888-172f-4491-98ec-b226cf85183c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    "schema",
+                    "validation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 5936\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": true\n    },\n    \"key_1\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efd859f9-b183-41fe-a573-80bad7ee7590",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    "schema",
+                    "validation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 5936\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a9be0d1-f529-4b9c-ac49-131f49022e82",
+          "name": "Generate Extraction Schema",
+          "request": {
+            "name": "Generate Extraction Schema",
+            "description": {
+              "content": "Generate a JSON schema and return a product configuration request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "extract",
+                "schema",
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": true\n    },\n    \"key_1\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e110e52c-e6b1-44a7-9abc-9a3c0e4f3b9e",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    "schema",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": \"string\",\n      \"key_1\": 8126.043667083116,\n      \"key_2\": 3705.40760622055\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"parameters\": {\n    \"categories\": [\n      {\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    ],\n    \"product_type\": \"string\",\n    \"splitting_strategy\": {\n      \"allow_uncategorized\": \"include\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "471d266d-0af2-45d6-8cac-d7563cad986c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    "schema",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": \"string\",\n      \"key_1\": 8126.043667083116,\n      \"key_2\": 3705.40760622055\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "580d9496-2b3c-4d25-8794-05a1e35f5542",
+          "name": "Create Extract Job",
+          "request": {
+            "name": "Create Extract Job",
+            "description": {
+              "content": "Create an extraction job.\n\nExtracts structured data from a document using either a saved\nconfiguration or an inline JSON Schema.\n\n## Input\n\nProvide exactly one of:\n- `configuration_id` — reference a saved extraction config\n- `configuration` — inline configuration with a `data_schema`\n\n## Document input\n\nSet `file_input` to a file ID (`dfl-...`) or a\ncompleted parse job ID (`pjb-...`).\n\nThe job runs asynchronously. Poll `GET /extract/{job_id}` or\nregister a webhook to monitor completion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "extract"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_input\": \"<string>\",\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": true\n      },\n      \"key_1\": {\n        \"key_0\": true\n      },\n      \"key_2\": {\n        \"key_0\": 5510.022941059537\n      },\n      \"key_3\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"target_pages\": \"<string>\",\n    \"max_pages\": \"<integer>\",\n    \"tier\": \"cost_effective\",\n    \"version\": \"latest\",\n    \"extraction_target\": \"per_doc\",\n    \"system_prompt\": \"<string>\",\n    \"cite_sources\": false,\n    \"confidence_scores\": false,\n    \"parse_tier\": \"<string>\",\n    \"parse_config_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ece0e730-4399-4c0f-be27-e617ed9c6352",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_input\": \"<string>\",\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 8885.994385064669\n      }\n    },\n    \"target_pages\": \"<string>\",\n    \"max_pages\": \"<integer>\",\n    \"tier\": \"cost_effective\",\n    \"version\": \"latest\",\n    \"extraction_target\": \"per_doc\",\n    \"system_prompt\": \"<string>\",\n    \"cite_sources\": false,\n    \"confidence_scores\": false,\n    \"parse_tier\": \"<string>\",\n    \"parse_config_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"file_input\": \"string\",\n  \"id\": \"string\",\n  \"project_id\": \"string\",\n  \"status\": \"string\",\n  \"created_at\": \"2020-09-27T01:12:41.432Z\",\n  \"updated_at\": \"1999-12-28T02:32:08.646Z\",\n  \"configuration_id\": \"string\",\n  \"configuration\": {\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": 3165\n      }\n    },\n    \"target_pages\": \"<string>\",\n    \"max_pages\": \"<integer>\",\n    \"tier\": \"cost_effective\",\n    \"version\": \"latest\",\n    \"extraction_target\": \"per_doc\",\n    \"system_prompt\": \"<string>\",\n    \"cite_sources\": false,\n    \"confidence_scores\": false,\n    \"parse_tier\": \"<string>\",\n    \"parse_config_id\": \"<string>\"\n  },\n  \"error_message\": \"string\",\n  \"extract_result\": {\n    \"key_0\": {\n      \"key_0\": 7402,\n      \"key_1\": 9112.810020974124\n    },\n    \"key_1\": {\n      \"key_0\": 3959,\n      \"key_1\": 6538\n    }\n  },\n  \"extract_metadata\": {\n    \"field_metadata\": {\n      \"document_metadata\": {\n        \"key_0\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"page_metadata\": [\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"row_metadata\": [\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"parse_job_id\": \"string\",\n    \"parse_tier\": \"string\"\n  },\n  \"metadata\": {\n    \"usage\": {\n      \"num_pages_extracted\": 112\n    },\n    \"key_0\": 873.2323026617705\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef4135b8-2b53-4492-b0df-69380c2fda1f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_input\": \"<string>\",\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 8885.994385064669\n      }\n    },\n    \"target_pages\": \"<string>\",\n    \"max_pages\": \"<integer>\",\n    \"tier\": \"cost_effective\",\n    \"version\": \"latest\",\n    \"extraction_target\": \"per_doc\",\n    \"system_prompt\": \"<string>\",\n    \"cite_sources\": false,\n    \"confidence_scores\": false,\n    \"parse_tier\": \"<string>\",\n    \"parse_config_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be3f9c81-fd79-4514-8f93-217359fc4ae7",
+          "name": "List Extract Jobs",
+          "request": {
+            "name": "List Extract Jobs",
+            "description": {
+              "content": "List extraction jobs with optional filtering and pagination.\n\nFilter by `configuration_id`, `status`, `file_input`,\nor creation date range. Results are returned newest-first.\nUse `expand=configuration` to include the full configuration used,\nand `expand=extract_metadata` for per-field metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "extract"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "document_input_type",
+                  "value": "<string>",
+                  "description": "Filter by document input type (file_id or parse_job_id)"
+                },
+                {
+                  "disabled": false,
+                  "key": "file_input",
+                  "value": "<string>",
+                  "description": "Filter by file input value"
+                },
+                {
+                  "disabled": false,
+                  "key": "document_input_value",
+                  "value": "<string>",
+                  "description": "Deprecated: use file_input instead"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "job_ids",
+                  "value": "<string>",
+                  "description": "Filter by specific job IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "job_ids",
+                  "value": "<string>",
+                  "description": "Filter by specific job IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Additional fields to include: configuration, extract_metadata"
+                },
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Additional fields to include: configuration, extract_metadata"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "configuration_id",
+                  "value": "<string>",
+                  "description": "Filter by configuration ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_on_or_after",
+                  "value": "<dateTime>",
+                  "description": "Include items created at or after this timestamp (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_on_or_before",
+                  "value": "<dateTime>",
+                  "description": "Include items created at or before this timestamp (inclusive)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "281f8819-fd93-4ba8-ab96-ea8ff7f63120",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "document_input_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "file_input",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "document_input_value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "configuration_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_on_or_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_on_or_before",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"file_input\": \"string\",\n      \"id\": \"string\",\n      \"project_id\": \"string\",\n      \"status\": \"string\",\n      \"created_at\": \"1972-07-22T00:02:42.208Z\",\n      \"updated_at\": \"1998-05-26T17:20:50.962Z\",\n      \"configuration_id\": \"string\",\n      \"configuration\": {\n        \"data_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": 6225.144322053582,\n            \"key_1\": true,\n            \"key_2\": 8875\n          },\n          \"key_2\": {\n            \"key_0\": 7317,\n            \"key_1\": false,\n            \"key_2\": 8347\n          },\n          \"key_3\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"key_4\": {\n            \"key_0\": 4992.471647777185,\n            \"key_1\": 6734.972332506805\n          }\n        },\n        \"target_pages\": \"<string>\",\n        \"max_pages\": \"<integer>\",\n        \"tier\": \"cost_effective\",\n        \"version\": \"latest\",\n        \"extraction_target\": \"per_doc\",\n        \"system_prompt\": \"<string>\",\n        \"cite_sources\": false,\n        \"confidence_scores\": false,\n        \"parse_tier\": \"<string>\",\n        \"parse_config_id\": \"<string>\"\n      },\n      \"error_message\": \"string\",\n      \"extract_result\": {\n        \"key_0\": {\n          \"key_0\": false,\n          \"key_1\": \"string\"\n        }\n      },\n      \"extract_metadata\": {\n        \"field_metadata\": {\n          \"document_metadata\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_metadata\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"row_metadata\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"parse_job_id\": \"string\",\n        \"parse_tier\": \"string\"\n      },\n      \"metadata\": {\n        \"usage\": {\n          \"num_pages_extracted\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": 1630\n      }\n    },\n    {\n      \"file_input\": \"string\",\n      \"id\": \"string\",\n      \"project_id\": \"string\",\n      \"status\": \"string\",\n      \"created_at\": \"2017-08-28T17:17:28.247Z\",\n      \"updated_at\": \"1972-06-09T22:04:46.683Z\",\n      \"configuration_id\": \"string\",\n      \"configuration\": {\n        \"data_schema\": {\n          \"key_0\": {\n            \"key_0\": 7809,\n            \"key_1\": false,\n            \"key_2\": true\n          },\n          \"key_1\": {\n            \"key_0\": 3965.0861905855572\n          },\n          \"key_2\": {\n            \"key_0\": 9782.239819076345,\n            \"key_1\": \"string\"\n          }\n        },\n        \"target_pages\": \"<string>\",\n        \"max_pages\": \"<integer>\",\n        \"tier\": \"cost_effective\",\n        \"version\": \"latest\",\n        \"extraction_target\": \"per_doc\",\n        \"system_prompt\": \"<string>\",\n        \"cite_sources\": false,\n        \"confidence_scores\": false,\n        \"parse_tier\": \"<string>\",\n        \"parse_config_id\": \"<string>\"\n      },\n      \"error_message\": \"string\",\n      \"extract_result\": {\n        \"key_0\": {\n          \"key_0\": 460.1267879052617\n        }\n      },\n      \"extract_metadata\": {\n        \"field_metadata\": {\n          \"document_metadata\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_metadata\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"row_metadata\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"parse_job_id\": \"string\",\n        \"parse_tier\": \"string\"\n      },\n      \"metadata\": {\n        \"usage\": {\n          \"num_pages_extracted\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      }\n    }\n  ],\n  \"next_page_token\": \"string\",\n  \"total_size\": 7253\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b196202-d0cb-4cfa-bf2f-1a403b1bc64a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "document_input_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "file_input",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "document_input_value",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "configuration_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_on_or_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_on_or_before",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04141de7-771a-4ca0-9c35-eb5f8ce04e72",
+          "name": "Get Extract Job",
+          "request": {
+            "name": "Get Extract Job",
+            "description": {
+              "content": "Get a single extraction job by ID.\n\nReturns the job status and results when complete.\nUse `expand=configuration` to include the full configuration used,\nand `expand=extract_metadata` for per-field metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "extract",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Additional fields to include: configuration, extract_metadata"
+                },
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Additional fields to include: configuration, extract_metadata"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8a808006-0e46-45a5-a26d-200ac8df57ee",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"file_input\": \"string\",\n  \"id\": \"string\",\n  \"project_id\": \"string\",\n  \"status\": \"string\",\n  \"created_at\": \"1984-11-14T21:58:10.574Z\",\n  \"updated_at\": \"2021-07-11T10:33:25.844Z\",\n  \"configuration_id\": \"string\",\n  \"configuration\": {\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 3817.9194574251783\n      }\n    },\n    \"target_pages\": \"<string>\",\n    \"max_pages\": \"<integer>\",\n    \"tier\": \"cost_effective\",\n    \"version\": \"latest\",\n    \"extraction_target\": \"per_doc\",\n    \"system_prompt\": \"<string>\",\n    \"cite_sources\": false,\n    \"confidence_scores\": false,\n    \"parse_tier\": \"<string>\",\n    \"parse_config_id\": \"<string>\"\n  },\n  \"error_message\": \"string\",\n  \"extract_result\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 9821.368312357965\n    }\n  },\n  \"extract_metadata\": {\n    \"field_metadata\": {\n      \"document_metadata\": {\n        \"key_0\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"page_metadata\": [\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"row_metadata\": [\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"parse_job_id\": \"string\",\n    \"parse_tier\": \"string\"\n  },\n  \"metadata\": {\n    \"usage\": {\n      \"num_pages_extracted\": 4583\n    },\n    \"key_0\": 6170.159429029657,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d73b71f-3fd8-4585-9a0b-68a9da030fe4",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e81256b5-aa49-4e98-82c8-d5ffc1d7333c",
+          "name": "Delete Extract Job",
+          "request": {
+            "name": "Delete Extract Job",
+            "description": {
+              "content": "Delete an extraction job and its results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "extract",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "01c0220c-c844-47e3-8a30-e40cb24129b6",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7535dc7-ec6d-4c66-aed6-ee36f2a3a5bc",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbf83392-5151-4eee-a726-ceeafc5e9ddf",
+          "name": "Cancel Extract Job",
+          "request": {
+            "name": "Cancel Extract Job",
+            "description": {
+              "content": "Cancel a running extraction job.\n\nStops processing and marks the job as CANCELLED. Returns the updated job. Jobs already in a terminal state (COMPLETED, FAILED, CANCELLED) cannot be cancelled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "extract",
+                ":job_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc8c8edf-8289-425d-b859-71226c141139",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    ":job_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"file_input\": \"string\",\n  \"id\": \"string\",\n  \"project_id\": \"string\",\n  \"status\": \"string\",\n  \"created_at\": \"1984-11-14T21:58:10.574Z\",\n  \"updated_at\": \"2021-07-11T10:33:25.844Z\",\n  \"configuration_id\": \"string\",\n  \"configuration\": {\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 3817.9194574251783\n      }\n    },\n    \"target_pages\": \"<string>\",\n    \"max_pages\": \"<integer>\",\n    \"tier\": \"cost_effective\",\n    \"version\": \"latest\",\n    \"extraction_target\": \"per_doc\",\n    \"system_prompt\": \"<string>\",\n    \"cite_sources\": false,\n    \"confidence_scores\": false,\n    \"parse_tier\": \"<string>\",\n    \"parse_config_id\": \"<string>\"\n  },\n  \"error_message\": \"string\",\n  \"extract_result\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 9821.368312357965\n    }\n  },\n  \"extract_metadata\": {\n    \"field_metadata\": {\n      \"document_metadata\": {\n        \"key_0\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"page_metadata\": [\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"row_metadata\": [\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"parse_job_id\": \"string\",\n    \"parse_tier\": \"string\"\n  },\n  \"metadata\": {\n    \"usage\": {\n      \"num_pages_extracted\": 4583\n    },\n    \"key_0\": 6170.159429029657,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6646173-5d86-497c-a244-17e0f2f86d0f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "extract",
+                    ":job_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "268e0fec-d443-46b6-99e1-eb232715e659",
+    "name": "Llama Platform Agent Data Extract API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

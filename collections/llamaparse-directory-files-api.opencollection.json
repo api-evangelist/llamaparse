@@ -1,0 +1,336 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Llama Platform Agent Data Directory Files API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Directory Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Directory Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/beta/directories/:directory_id/files",
+            "params": [
+              {
+                "name": "directory_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Fields to expand on each directory file."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "display_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "display_name_contains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "unique_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updated_at_on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "Include items updated at or after this timestamp (inclusive)"
+              },
+              {
+                "name": "updated_at_on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "Include items updated at or before this timestamp (inclusive)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all files within the specified directory with optional filtering and pagination."
+        },
+        {
+          "info": {
+            "name": "Add Directory File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/beta/directories/:directory_id/files",
+            "params": [
+              {
+                "name": "directory_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new file within the specified directory; the directory must exist in the project and `file_id` must reference an existing file."
+        },
+        {
+          "info": {
+            "name": "Upload File To Directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/beta/directories/:directory_id/files/upload",
+            "params": [
+              {
+                "name": "directory_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Upload a file and create its directory entry in one call; `unique_id` / `display_name` default to values derived from file metadata."
+        },
+        {
+          "info": {
+            "name": "Get Directory File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/beta/directories/:directory_id/files/:directory_file_id",
+            "params": [
+              {
+                "name": "directory_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "directory_file_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Fields to expand."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a directory file by `directory_file_id`; to look up by `unique_id`, use the list endpoint with a filter."
+        },
+        {
+          "info": {
+            "name": "Update Directory File",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/beta/directories/:directory_id/files/:directory_file_id",
+            "params": [
+              {
+                "name": "directory_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "directory_file_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update directory-file metadata by `directory_file_id`; set `directory_id` to move the file to a different directory. To resolve from `unique_id`, list with a filter first."
+        },
+        {
+          "info": {
+            "name": "Delete Directory File",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/beta/directories/:directory_id/files/:directory_file_id",
+            "params": [
+              {
+                "name": "directory_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "directory_file_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a directory file by `directory_file_id`; to resolve from `unique_id`, list with a filter first."
+        },
+        {
+          "info": {
+            "name": "Bulk Delete Directory Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/beta/directories/:directory_id/files/bulk-delete",
+            "params": [
+              {
+                "name": "directory_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete up to 100 files from the specified directory; all must belong to it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

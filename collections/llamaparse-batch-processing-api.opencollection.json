@@ -1,0 +1,274 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Llama Platform Agent Data Batch Processing API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batch Processing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Batch Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/beta/batch-processing",
+            "params": [
+              {
+                "name": "directory_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by directory ID"
+              },
+              {
+                "name": "job_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job type (PARSE, EXTRACT, CLASSIFY)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of jobs to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of jobs to skip for pagination"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List batch processing jobs with optional filtering.\n\nFilter by `directory_id`, `job_type`, or `status`. Results\nare paginated with configurable `limit` and `offset`."
+        },
+        {
+          "info": {
+            "name": "Create Batch Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/beta/batch-processing",
+            "headers": [
+              {
+                "name": "temporal-namespace",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a batch processing job.\n\nProcesses files from a directory or a specific list of item IDs.\nSupports batch parsing and classification operations.\n\nProvide either `directory_id` to process all files in a directory,\nor `item_ids` for specific items. The job runs asynchronously —\npoll `GET /batch/{job_id}` for progress."
+        },
+        {
+          "info": {
+            "name": "Get Batch Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get detailed status of a batch processing job.\n\nReturns current progress percentage, file counts (total,\nprocessed, failed, skipped), and timestamps."
+        },
+        {
+          "info": {
+            "name": "List Batch Job Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id/items",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter items by status"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List items in a batch job with optional status filtering.\n\nUseful for finding failed items, viewing completed items,\nor debugging processing issues."
+        },
+        {
+          "info": {
+            "name": "Cancel Batch Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/beta/batch-processing/:job_id/cancel",
+            "headers": [
+              {
+                "name": "temporal-namespace",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel a running batch processing job.\n\nStops processing and marks pending items as cancelled.\nItems currently being processed may still complete."
+        },
+        {
+          "info": {
+            "name": "Get Item Processing Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/beta/batch-processing/items/:item_id/processing-results",
+            "params": [
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "job_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by job type"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all processing results for a specific item.\n\nReturns the complete processing history for an item including\nwhat operations were performed, parameters used, and where\noutputs are stored. Optionally filter by `job_type`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

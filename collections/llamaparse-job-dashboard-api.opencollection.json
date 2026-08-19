@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Llama Platform Agent Data Job Dashboard API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job Dashboard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query project job data points",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/job-data-points",
+            "params": [
+              {
+                "name": "job_type",
+                "value": "",
+                "type": "query",
+                "description": "Job type to query."
+              },
+              {
+                "name": "hours",
+                "value": "",
+                "type": "query",
+                "description": "Hours of history to include."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page."
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Cursor token for the next page."
+              },
+              {
+                "name": "created_at_on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "Include items created at or after this timestamp (inclusive)"
+              },
+              {
+                "name": "created_at_on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "Include items created at or before this timestamp (inclusive)"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns paginated job data points for the current project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

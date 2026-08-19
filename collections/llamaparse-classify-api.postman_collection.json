@@ -1,0 +1,886 @@
+{
+  "item": [
+    {
+      "id": "0a36949f-631f-4e7d-94e8-8fe0f5524437",
+      "name": "Classify",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7fab85a2-f2e7-4120-9f26-74895f72be74",
+          "name": "Create Classify Job",
+          "request": {
+            "name": "Create Classify Job",
+            "description": {
+              "content": "Create a classify job.\n\nClassifies a document against a set of rules. Set `file_input`\nto a file ID (`dfl-...`) or parse job ID (`pjb-...`), and provide\neither inline `configuration` with rules or a `configuration_id`\nreferencing a saved preset.\n\nEach rule has a `type` (the label to assign) and a `description`\n(natural language criteria). The classifier returns the best\nmatching rule with a confidence score.\n\nThe job runs asynchronously. Poll `GET /classify/{job_id}` to\ncheck status and retrieve results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "classify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"rules\": [\n      {\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"mode\": \"FAST\",\n    \"parsing_configuration\": {\n      \"lang\": \"en\",\n      \"target_pages\": \"<string>\",\n      \"max_pages\": \"<integer>\"\n    }\n  },\n  \"file_input\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"parse_job_id\": \"<string>\",\n  \"transaction_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "49491d1a-446d-4db1-9c5a-482c2edba1a8",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"rules\": [\n      {\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"mode\": \"FAST\",\n    \"parsing_configuration\": {\n      \"lang\": \"en\",\n      \"target_pages\": \"<string>\",\n      \"max_pages\": \"<integer>\"\n    }\n  },\n  \"file_input\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"parse_job_id\": \"<string>\",\n  \"transaction_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"file_input\": \"string\",\n  \"project_id\": \"string\",\n  \"user_id\": \"string\",\n  \"status\": \"RUNNING\",\n  \"document_input_type\": \"url\",\n  \"configuration\": {\n    \"rules\": [\n      {\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"mode\": \"FAST\",\n    \"parsing_configuration\": {\n      \"lang\": \"en\",\n      \"target_pages\": \"<string>\",\n      \"max_pages\": \"<integer>\"\n    }\n  },\n  \"created_at\": \"1973-08-24T10:56:45.898Z\",\n  \"updated_at\": \"1989-03-19T13:31:45.727Z\",\n  \"result\": {\n    \"reasoning\": \"string\",\n    \"confidence\": 0.2952799630761471,\n    \"type\": \"string\"\n  },\n  \"error_message\": \"string\",\n  \"configuration_id\": \"string\",\n  \"transaction_id\": \"string\",\n  \"parse_job_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "439b2a6e-b2a8-4366-b69c-6399afdcb22e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"configuration_id\": \"<string>\",\n  \"configuration\": {\n    \"rules\": [\n      {\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"mode\": \"FAST\",\n    \"parsing_configuration\": {\n      \"lang\": \"en\",\n      \"target_pages\": \"<string>\",\n      \"max_pages\": \"<integer>\"\n    }\n  },\n  \"file_input\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"parse_job_id\": \"<string>\",\n  \"transaction_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7417ce1-1650-49c5-a08e-581317fe2773",
+          "name": "List Classify Jobs",
+          "request": {
+            "name": "List Classify Jobs",
+            "description": {
+              "content": "List classify jobs with optional filtering and pagination.\n\nFilter by `status`, `configuration_id`, specific `job_ids`,\nor creation date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "classify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>",
+                  "description": "Token for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by job status"
+                },
+                {
+                  "disabled": false,
+                  "key": "job_ids",
+                  "value": "<string>",
+                  "description": "Filter by specific job IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "job_ids",
+                  "value": "<string>",
+                  "description": "Filter by specific job IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "configuration_id",
+                  "value": "<string>",
+                  "description": "Filter by configuration ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_on_or_after",
+                  "value": "<dateTime>",
+                  "description": "Include items created at or after this timestamp (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_on_or_before",
+                  "value": "<dateTime>",
+                  "description": "Include items created at or before this timestamp (inclusive)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "786fb116-f474-4c71-96f3-f74e0721ff90",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "configuration_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_on_or_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_on_or_before",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"file_input\": \"string\",\n      \"project_id\": \"string\",\n      \"user_id\": \"string\",\n      \"status\": \"COMPLETED\",\n      \"document_input_type\": \"file_id\",\n      \"configuration\": {\n        \"rules\": [\n          {\n            \"type\": \"<string>\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"mode\": \"FAST\",\n        \"parsing_configuration\": {\n          \"lang\": \"en\",\n          \"target_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"created_at\": \"2004-07-22T08:08:46.677Z\",\n      \"updated_at\": \"1998-04-05T06:27:00.789Z\",\n      \"result\": {\n        \"reasoning\": \"string\",\n        \"confidence\": 0.49977244116841424,\n        \"type\": \"string\"\n      },\n      \"error_message\": \"string\",\n      \"configuration_id\": \"string\",\n      \"transaction_id\": \"string\",\n      \"parse_job_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"file_input\": \"string\",\n      \"project_id\": \"string\",\n      \"user_id\": \"string\",\n      \"status\": \"FAILED\",\n      \"document_input_type\": \"parse_job_id\",\n      \"configuration\": {\n        \"rules\": [\n          {\n            \"type\": \"<string>\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"mode\": \"FAST\",\n        \"parsing_configuration\": {\n          \"lang\": \"en\",\n          \"target_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"created_at\": \"2001-05-26T17:37:30.121Z\",\n      \"updated_at\": \"1964-08-23T12:46:41.735Z\",\n      \"result\": {\n        \"reasoning\": \"string\",\n        \"confidence\": 0.7665096952271657,\n        \"type\": \"string\"\n      },\n      \"error_message\": \"string\",\n      \"configuration_id\": \"string\",\n      \"transaction_id\": \"string\",\n      \"parse_job_id\": \"string\"\n    }\n  ],\n  \"next_page_token\": \"string\",\n  \"total_size\": 2299\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1b7bcfa-b5a5-42d8-9bef-b7af70f66acd",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "configuration_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_on_or_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_on_or_before",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1df7d7a4-5389-451a-be1f-bf126c43dc74",
+          "name": "Get Classify Job",
+          "request": {
+            "name": "Get Classify Job",
+            "description": {
+              "content": "Get a classify job by ID.\n\nReturns the job status, configuration, and classify result\nwhen complete. The result includes the matched document type,\nconfidence score, and reasoning.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "classify",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f6c59ffb-7318-41e8-a24f-bda20895d597",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "classify",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"file_input\": \"string\",\n  \"project_id\": \"string\",\n  \"user_id\": \"string\",\n  \"status\": \"RUNNING\",\n  \"document_input_type\": \"url\",\n  \"configuration\": {\n    \"rules\": [\n      {\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"mode\": \"FAST\",\n    \"parsing_configuration\": {\n      \"lang\": \"en\",\n      \"target_pages\": \"<string>\",\n      \"max_pages\": \"<integer>\"\n    }\n  },\n  \"created_at\": \"1973-08-24T10:56:45.898Z\",\n  \"updated_at\": \"1989-03-19T13:31:45.727Z\",\n  \"result\": {\n    \"reasoning\": \"string\",\n    \"confidence\": 0.2952799630761471,\n    \"type\": \"string\"\n  },\n  \"error_message\": \"string\",\n  \"configuration_id\": \"string\",\n  \"transaction_id\": \"string\",\n  \"parse_job_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0db2502c-94eb-48d7-9d6c-7e113eecb2e6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "classify",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6322aa5-160b-4f05-8f2c-6cbc8c2dfeca",
+          "name": "Cancel Classify Job",
+          "request": {
+            "name": "Cancel Classify Job",
+            "description": {
+              "content": "Cancel a running classify job.\n\nStops processing and marks the job as CANCELLED. Returns the updated job. Jobs already in a terminal state (COMPLETED, FAILED, CANCELLED) cannot be cancelled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "classify",
+                ":job_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "253ec139-b73f-44df-9856-275302f8a5c8",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "classify",
+                    ":job_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"file_input\": \"string\",\n  \"project_id\": \"string\",\n  \"user_id\": \"string\",\n  \"status\": \"RUNNING\",\n  \"document_input_type\": \"url\",\n  \"configuration\": {\n    \"rules\": [\n      {\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"mode\": \"FAST\",\n    \"parsing_configuration\": {\n      \"lang\": \"en\",\n      \"target_pages\": \"<string>\",\n      \"max_pages\": \"<integer>\"\n    }\n  },\n  \"created_at\": \"1973-08-24T10:56:45.898Z\",\n  \"updated_at\": \"1989-03-19T13:31:45.727Z\",\n  \"result\": {\n    \"reasoning\": \"string\",\n    \"confidence\": 0.2952799630761471,\n    \"type\": \"string\"\n  },\n  \"error_message\": \"string\",\n  \"configuration_id\": \"string\",\n  \"transaction_id\": \"string\",\n  \"parse_job_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e901db74-60bb-40b8-8ae4-f81f3b9acf31",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "classify",
+                    ":job_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b9ac2da6-5464-4dee-b953-2a57a1eee23a",
+    "name": "Llama Platform Agent Data Classify API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

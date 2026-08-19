@@ -1,0 +1,1374 @@
+{
+  "item": [
+    {
+      "id": "05697a98-e052-431e-9ff6-8d9d30a12e4e",
+      "name": "Batch Processing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77614f93-977c-40b0-9f71-a6415cd15ac2",
+          "name": "Create Batch Job",
+          "request": {
+            "name": "Create Batch Job",
+            "description": {
+              "content": "Create a batch processing job.\n\nProcesses files from a directory or a specific list of item IDs.\nSupports batch parsing and classification operations.\n\nProvide either `directory_id` to process all files in a directory,\nor `item_ids` for specific items. The job runs asynchronously —\npoll `GET /batch/{job_id}` for progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "beta",
+                "batch-processing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "temporal-namespace",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_config\": {\n    \"job_name\": \"parse_raw_file_job\",\n    \"partitions\": {\n      \"key_0\": \"<uuid>\",\n      \"key_1\": \"<uuid>\"\n    },\n    \"parameters\": {\n      \"webhook_configurations\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"priority\": \"<string>\",\n      \"custom_metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1015.2583930717274,\n        \"key_2\": 6389.763996002137,\n        \"key_3\": \"string\"\n      },\n      \"resource_info\": {\n        \"key_0\": 1857,\n        \"key_1\": \"string\",\n        \"key_2\": true\n      },\n      \"languages\": [\n        \"<string>\"\n      ],\n      \"parsing_instruction\": \"<string>\",\n      \"disable_ocr\": \"<boolean>\",\n      \"annotate_links\": \"<boolean>\",\n      \"adaptive_long_table\": \"<boolean>\",\n      \"compact_markdown_table\": \"<boolean>\",\n      \"disable_reconstruction\": \"<boolean>\",\n      \"disable_image_extraction\": \"<boolean>\",\n      \"invalidate_cache\": \"<boolean>\",\n      \"outlined_table_extraction\": \"<boolean>\",\n      \"aggressive_table_extraction\": \"<boolean>\",\n      \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n      \"output_pdf_of_document\": \"<boolean>\",\n      \"do_not_cache\": \"<boolean>\",\n      \"fast_mode\": \"<boolean>\",\n      \"skip_diagonal_text\": \"<boolean>\",\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"gpt4o_mode\": \"<boolean>\",\n      \"gpt4o_api_key\": \"<string>\",\n      \"do_not_unroll_columns\": \"<boolean>\",\n      \"extract_layout\": \"<boolean>\",\n      \"high_res_ocr\": \"<boolean>\",\n      \"html_make_all_elements_visible\": \"<boolean>\",\n      \"layout_aware\": \"<boolean>\",\n      \"specialized_chart_parsing_agentic\": \"<boolean>\",\n      \"specialized_chart_parsing_plus\": \"<boolean>\",\n      \"specialized_chart_parsing_efficient\": \"<boolean>\",\n      \"specialized_image_parsing\": \"<boolean>\",\n      \"precise_bounding_box\": \"<boolean>\",\n      \"line_level_bounding_box\": \"<boolean>\",\n      \"html_remove_navigation_elements\": \"<boolean>\",\n      \"html_remove_fixed_elements\": \"<boolean>\",\n      \"guess_xlsx_sheet_name\": \"<boolean>\",\n      \"page_separator\": \"<string>\",\n      \"bounding_box\": \"<string>\",\n      \"bbox_top\": \"<number>\",\n      \"bbox_right\": \"<number>\",\n      \"bbox_bottom\": \"<number>\",\n      \"bbox_left\": \"<number>\",\n      \"target_pages\": \"<string>\",\n      \"use_vendor_multimodal_model\": \"<boolean>\",\n      \"vendor_multimodal_model_name\": \"<string>\",\n      \"model\": \"<string>\",\n      \"vendor_multimodal_api_key\": \"<string>\",\n      \"page_prefix\": \"<string>\",\n      \"page_suffix\": \"<string>\",\n      \"webhook_url\": \"<string>\",\n      \"preset\": \"<string>\",\n      \"take_screenshot\": \"<boolean>\",\n      \"is_formatting_instruction\": \"<boolean>\",\n      \"premium_mode\": \"<boolean>\",\n      \"continuous_mode\": \"<boolean>\",\n      \"input_s3_path\": \"<string>\",\n      \"input_s3_region\": \"<string>\",\n      \"output_s3_path_prefix\": \"<string>\",\n      \"output_s3_region\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"azure_openai_deployment_name\": \"<string>\",\n      \"azure_openai_endpoint\": \"<string>\",\n      \"azure_openai_api_version\": \"<string>\",\n      \"azure_openai_key\": \"<string>\",\n      \"input_url\": \"<string>\",\n      \"http_proxy\": \"<string>\",\n      \"auto_mode\": \"<boolean>\",\n      \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n      \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n      \"auto_mode_configuration_json\": \"<string>\",\n      \"structured_output\": \"<boolean>\",\n      \"structured_output_json_schema\": \"<string>\",\n      \"structured_output_json_schema_name\": \"<string>\",\n      \"max_pages\": \"<integer>\",\n      \"max_pages_enforced\": \"<integer>\",\n      \"extract_charts\": \"<boolean>\",\n      \"formatting_instruction\": \"<string>\",\n      \"complemental_formatting_instruction\": \"<string>\",\n      \"content_guideline_instruction\": \"<string>\",\n      \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n      \"spreadsheet_force_formula_computation\": \"<boolean>\",\n      \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n      \"inline_images_in_markdown\": \"<boolean>\",\n      \"job_timeout_in_seconds\": \"<number>\",\n      \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n      \"strict_mode_image_extraction\": \"<boolean>\",\n      \"strict_mode_image_ocr\": \"<boolean>\",\n      \"strict_mode_reconstruction\": \"<boolean>\",\n      \"strict_mode_buggy_font\": \"<boolean>\",\n      \"save_images\": \"<boolean>\",\n      \"images_to_save\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hide_headers\": \"<boolean>\",\n      \"hide_footers\": \"<boolean>\",\n      \"page_header_prefix\": \"<string>\",\n      \"page_header_suffix\": \"<string>\",\n      \"page_footer_prefix\": \"<string>\",\n      \"page_footer_suffix\": \"<string>\",\n      \"remove_hidden_text\": \"<boolean>\",\n      \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n      \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n      \"output_tables_as_HTML\": \"<boolean>\",\n      \"internal_is_screenshot_job\": \"<boolean>\",\n      \"parse_mode\": \"<string>\",\n      \"system_prompt\": \"<string>\",\n      \"system_prompt_append\": \"<string>\",\n      \"user_prompt\": \"<string>\",\n      \"page_error_tolerance\": \"<number>\",\n      \"replace_failed_page_mode\": \"<string>\",\n      \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n      \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n      \"markdown_table_multiline_header_separator\": \"<string>\",\n      \"presentation_out_of_bounds_content\": \"<boolean>\",\n      \"presentation_skip_embedded_data\": \"<boolean>\",\n      \"tier\": \"<string>\",\n      \"version\": \"<string>\",\n      \"extract_printed_page_number\": \"<boolean>\",\n      \"enable_cost_optimizer\": \"<boolean>\",\n      \"type\": \"parse\",\n      \"lang\": \"en\",\n      \"outputBucket\": \"<string>\",\n      \"pipeline_id\": \"<string>\"\n    },\n    \"session_id\": \"<uuid>\",\n    \"correlation_id\": \"<uuid>\",\n    \"parent_job_execution_id\": \"<uuid>\",\n    \"user_id\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"webhook_url\": \"<string>\"\n  },\n  \"directory_id\": \"<string>\",\n  \"item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_size\": 100,\n  \"continue_as_new_threshold\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eebf1086-0645-4f1c-b9b0-14bf10b45969",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "temporal-namespace",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_config\": {\n    \"job_name\": \"parse_raw_file_job\",\n    \"partitions\": {\n      \"key_0\": \"<uuid>\",\n      \"key_1\": \"<uuid>\"\n    },\n    \"parameters\": {\n      \"webhook_configurations\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"priority\": \"<string>\",\n      \"custom_metadata\": {\n        \"key_0\": 5013.031071243644\n      },\n      \"resource_info\": {\n        \"key_0\": true\n      },\n      \"languages\": [\n        \"<string>\"\n      ],\n      \"parsing_instruction\": \"<string>\",\n      \"disable_ocr\": \"<boolean>\",\n      \"annotate_links\": \"<boolean>\",\n      \"adaptive_long_table\": \"<boolean>\",\n      \"compact_markdown_table\": \"<boolean>\",\n      \"disable_reconstruction\": \"<boolean>\",\n      \"disable_image_extraction\": \"<boolean>\",\n      \"invalidate_cache\": \"<boolean>\",\n      \"outlined_table_extraction\": \"<boolean>\",\n      \"aggressive_table_extraction\": \"<boolean>\",\n      \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n      \"output_pdf_of_document\": \"<boolean>\",\n      \"do_not_cache\": \"<boolean>\",\n      \"fast_mode\": \"<boolean>\",\n      \"skip_diagonal_text\": \"<boolean>\",\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"gpt4o_mode\": \"<boolean>\",\n      \"gpt4o_api_key\": \"<string>\",\n      \"do_not_unroll_columns\": \"<boolean>\",\n      \"extract_layout\": \"<boolean>\",\n      \"high_res_ocr\": \"<boolean>\",\n      \"html_make_all_elements_visible\": \"<boolean>\",\n      \"layout_aware\": \"<boolean>\",\n      \"specialized_chart_parsing_agentic\": \"<boolean>\",\n      \"specialized_chart_parsing_plus\": \"<boolean>\",\n      \"specialized_chart_parsing_efficient\": \"<boolean>\",\n      \"specialized_image_parsing\": \"<boolean>\",\n      \"precise_bounding_box\": \"<boolean>\",\n      \"line_level_bounding_box\": \"<boolean>\",\n      \"html_remove_navigation_elements\": \"<boolean>\",\n      \"html_remove_fixed_elements\": \"<boolean>\",\n      \"guess_xlsx_sheet_name\": \"<boolean>\",\n      \"page_separator\": \"<string>\",\n      \"bounding_box\": \"<string>\",\n      \"bbox_top\": \"<number>\",\n      \"bbox_right\": \"<number>\",\n      \"bbox_bottom\": \"<number>\",\n      \"bbox_left\": \"<number>\",\n      \"target_pages\": \"<string>\",\n      \"use_vendor_multimodal_model\": \"<boolean>\",\n      \"vendor_multimodal_model_name\": \"<string>\",\n      \"model\": \"<string>\",\n      \"vendor_multimodal_api_key\": \"<string>\",\n      \"page_prefix\": \"<string>\",\n      \"page_suffix\": \"<string>\",\n      \"webhook_url\": \"<string>\",\n      \"preset\": \"<string>\",\n      \"take_screenshot\": \"<boolean>\",\n      \"is_formatting_instruction\": \"<boolean>\",\n      \"premium_mode\": \"<boolean>\",\n      \"continuous_mode\": \"<boolean>\",\n      \"input_s3_path\": \"<string>\",\n      \"input_s3_region\": \"<string>\",\n      \"output_s3_path_prefix\": \"<string>\",\n      \"output_s3_region\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"azure_openai_deployment_name\": \"<string>\",\n      \"azure_openai_endpoint\": \"<string>\",\n      \"azure_openai_api_version\": \"<string>\",\n      \"azure_openai_key\": \"<string>\",\n      \"input_url\": \"<string>\",\n      \"http_proxy\": \"<string>\",\n      \"auto_mode\": \"<boolean>\",\n      \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n      \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n      \"auto_mode_configuration_json\": \"<string>\",\n      \"structured_output\": \"<boolean>\",\n      \"structured_output_json_schema\": \"<string>\",\n      \"structured_output_json_schema_name\": \"<string>\",\n      \"max_pages\": \"<integer>\",\n      \"max_pages_enforced\": \"<integer>\",\n      \"extract_charts\": \"<boolean>\",\n      \"formatting_instruction\": \"<string>\",\n      \"complemental_formatting_instruction\": \"<string>\",\n      \"content_guideline_instruction\": \"<string>\",\n      \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n      \"spreadsheet_force_formula_computation\": \"<boolean>\",\n      \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n      \"inline_images_in_markdown\": \"<boolean>\",\n      \"job_timeout_in_seconds\": \"<number>\",\n      \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n      \"strict_mode_image_extraction\": \"<boolean>\",\n      \"strict_mode_image_ocr\": \"<boolean>\",\n      \"strict_mode_reconstruction\": \"<boolean>\",\n      \"strict_mode_buggy_font\": \"<boolean>\",\n      \"save_images\": \"<boolean>\",\n      \"images_to_save\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hide_headers\": \"<boolean>\",\n      \"hide_footers\": \"<boolean>\",\n      \"page_header_prefix\": \"<string>\",\n      \"page_header_suffix\": \"<string>\",\n      \"page_footer_prefix\": \"<string>\",\n      \"page_footer_suffix\": \"<string>\",\n      \"remove_hidden_text\": \"<boolean>\",\n      \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n      \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n      \"output_tables_as_HTML\": \"<boolean>\",\n      \"internal_is_screenshot_job\": \"<boolean>\",\n      \"parse_mode\": \"<string>\",\n      \"system_prompt\": \"<string>\",\n      \"system_prompt_append\": \"<string>\",\n      \"user_prompt\": \"<string>\",\n      \"page_error_tolerance\": \"<number>\",\n      \"replace_failed_page_mode\": \"<string>\",\n      \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n      \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n      \"markdown_table_multiline_header_separator\": \"<string>\",\n      \"presentation_out_of_bounds_content\": \"<boolean>\",\n      \"presentation_skip_embedded_data\": \"<boolean>\",\n      \"tier\": \"<string>\",\n      \"version\": \"<string>\",\n      \"extract_printed_page_number\": \"<boolean>\",\n      \"enable_cost_optimizer\": \"<boolean>\",\n      \"type\": \"parse\",\n      \"lang\": \"en\",\n      \"outputBucket\": \"<string>\",\n      \"pipeline_id\": \"<string>\"\n    },\n    \"session_id\": \"<uuid>\",\n    \"correlation_id\": \"<uuid>\",\n    \"parent_job_execution_id\": \"<uuid>\",\n    \"user_id\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"webhook_url\": \"<string>\"\n  },\n  \"directory_id\": \"<string>\",\n  \"item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_size\": 100,\n  \"continue_as_new_threshold\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"dispatched\",\n  \"id\": \"string\",\n  \"project_id\": \"string\",\n  \"job_type\": \"parse\",\n  \"total_items\": 4077,\n  \"effective_at\": \"1956-12-12T05:11:41.595Z\",\n  \"job_record_id\": \"string\",\n  \"error_message\": \"string\",\n  \"created_at\": \"2011-11-21T16:24:09.241Z\",\n  \"updated_at\": \"1958-05-27T12:07:26.603Z\",\n  \"directory_id\": \"string\",\n  \"processed_items\": 0,\n  \"failed_items\": 0,\n  \"skipped_items\": 0,\n  \"workflow_id\": \"string\",\n  \"started_at\": \"1954-11-10T13:00:37.511Z\",\n  \"completed_at\": \"1961-10-06T09:26:44.485Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28bd9f1c-ffda-499a-814f-424474e35f93",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "temporal-namespace",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_config\": {\n    \"job_name\": \"parse_raw_file_job\",\n    \"partitions\": {\n      \"key_0\": \"<uuid>\",\n      \"key_1\": \"<uuid>\"\n    },\n    \"parameters\": {\n      \"webhook_configurations\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"priority\": \"<string>\",\n      \"custom_metadata\": {\n        \"key_0\": 5013.031071243644\n      },\n      \"resource_info\": {\n        \"key_0\": true\n      },\n      \"languages\": [\n        \"<string>\"\n      ],\n      \"parsing_instruction\": \"<string>\",\n      \"disable_ocr\": \"<boolean>\",\n      \"annotate_links\": \"<boolean>\",\n      \"adaptive_long_table\": \"<boolean>\",\n      \"compact_markdown_table\": \"<boolean>\",\n      \"disable_reconstruction\": \"<boolean>\",\n      \"disable_image_extraction\": \"<boolean>\",\n      \"invalidate_cache\": \"<boolean>\",\n      \"outlined_table_extraction\": \"<boolean>\",\n      \"aggressive_table_extraction\": \"<boolean>\",\n      \"merge_tables_across_pages_in_markdown\": \"<boolean>\",\n      \"output_pdf_of_document\": \"<boolean>\",\n      \"do_not_cache\": \"<boolean>\",\n      \"fast_mode\": \"<boolean>\",\n      \"skip_diagonal_text\": \"<boolean>\",\n      \"preserve_layout_alignment_across_pages\": \"<boolean>\",\n      \"preserve_very_small_text\": \"<boolean>\",\n      \"gpt4o_mode\": \"<boolean>\",\n      \"gpt4o_api_key\": \"<string>\",\n      \"do_not_unroll_columns\": \"<boolean>\",\n      \"extract_layout\": \"<boolean>\",\n      \"high_res_ocr\": \"<boolean>\",\n      \"html_make_all_elements_visible\": \"<boolean>\",\n      \"layout_aware\": \"<boolean>\",\n      \"specialized_chart_parsing_agentic\": \"<boolean>\",\n      \"specialized_chart_parsing_plus\": \"<boolean>\",\n      \"specialized_chart_parsing_efficient\": \"<boolean>\",\n      \"specialized_image_parsing\": \"<boolean>\",\n      \"precise_bounding_box\": \"<boolean>\",\n      \"line_level_bounding_box\": \"<boolean>\",\n      \"html_remove_navigation_elements\": \"<boolean>\",\n      \"html_remove_fixed_elements\": \"<boolean>\",\n      \"guess_xlsx_sheet_name\": \"<boolean>\",\n      \"page_separator\": \"<string>\",\n      \"bounding_box\": \"<string>\",\n      \"bbox_top\": \"<number>\",\n      \"bbox_right\": \"<number>\",\n      \"bbox_bottom\": \"<number>\",\n      \"bbox_left\": \"<number>\",\n      \"target_pages\": \"<string>\",\n      \"use_vendor_multimodal_model\": \"<boolean>\",\n      \"vendor_multimodal_model_name\": \"<string>\",\n      \"model\": \"<string>\",\n      \"vendor_multimodal_api_key\": \"<string>\",\n      \"page_prefix\": \"<string>\",\n      \"page_suffix\": \"<string>\",\n      \"webhook_url\": \"<string>\",\n      \"preset\": \"<string>\",\n      \"take_screenshot\": \"<boolean>\",\n      \"is_formatting_instruction\": \"<boolean>\",\n      \"premium_mode\": \"<boolean>\",\n      \"continuous_mode\": \"<boolean>\",\n      \"input_s3_path\": \"<string>\",\n      \"input_s3_region\": \"<string>\",\n      \"output_s3_path_prefix\": \"<string>\",\n      \"output_s3_region\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"azure_openai_deployment_name\": \"<string>\",\n      \"azure_openai_endpoint\": \"<string>\",\n      \"azure_openai_api_version\": \"<string>\",\n      \"azure_openai_key\": \"<string>\",\n      \"input_url\": \"<string>\",\n      \"http_proxy\": \"<string>\",\n      \"auto_mode\": \"<boolean>\",\n      \"auto_mode_trigger_on_regexp_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_text_in_page\": \"<string>\",\n      \"auto_mode_trigger_on_table_in_page\": \"<boolean>\",\n      \"auto_mode_trigger_on_image_in_page\": \"<boolean>\",\n      \"auto_mode_configuration_json\": \"<string>\",\n      \"structured_output\": \"<boolean>\",\n      \"structured_output_json_schema\": \"<string>\",\n      \"structured_output_json_schema_name\": \"<string>\",\n      \"max_pages\": \"<integer>\",\n      \"max_pages_enforced\": \"<integer>\",\n      \"extract_charts\": \"<boolean>\",\n      \"formatting_instruction\": \"<string>\",\n      \"complemental_formatting_instruction\": \"<string>\",\n      \"content_guideline_instruction\": \"<string>\",\n      \"spreadsheet_extract_sub_tables\": \"<boolean>\",\n      \"spreadsheet_force_formula_computation\": \"<boolean>\",\n      \"spreadsheet_include_hidden_sheets\": \"<boolean>\",\n      \"inline_images_in_markdown\": \"<boolean>\",\n      \"job_timeout_in_seconds\": \"<number>\",\n      \"job_timeout_extra_time_per_page_in_seconds\": \"<number>\",\n      \"strict_mode_image_extraction\": \"<boolean>\",\n      \"strict_mode_image_ocr\": \"<boolean>\",\n      \"strict_mode_reconstruction\": \"<boolean>\",\n      \"strict_mode_buggy_font\": \"<boolean>\",\n      \"save_images\": \"<boolean>\",\n      \"images_to_save\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hide_headers\": \"<boolean>\",\n      \"hide_footers\": \"<boolean>\",\n      \"page_header_prefix\": \"<string>\",\n      \"page_header_suffix\": \"<string>\",\n      \"page_footer_prefix\": \"<string>\",\n      \"page_footer_suffix\": \"<string>\",\n      \"remove_hidden_text\": \"<boolean>\",\n      \"keep_page_separator_when_merging_tables\": \"<boolean>\",\n      \"ignore_document_elements_for_layout_detection\": \"<boolean>\",\n      \"output_tables_as_HTML\": \"<boolean>\",\n      \"internal_is_screenshot_job\": \"<boolean>\",\n      \"parse_mode\": \"<string>\",\n      \"system_prompt\": \"<string>\",\n      \"system_prompt_append\": \"<string>\",\n      \"user_prompt\": \"<string>\",\n      \"page_error_tolerance\": \"<number>\",\n      \"replace_failed_page_mode\": \"<string>\",\n      \"replace_failed_page_with_error_message_prefix\": \"<string>\",\n      \"replace_failed_page_with_error_message_suffix\": \"<string>\",\n      \"markdown_table_multiline_header_separator\": \"<string>\",\n      \"presentation_out_of_bounds_content\": \"<boolean>\",\n      \"presentation_skip_embedded_data\": \"<boolean>\",\n      \"tier\": \"<string>\",\n      \"version\": \"<string>\",\n      \"extract_printed_page_number\": \"<boolean>\",\n      \"enable_cost_optimizer\": \"<boolean>\",\n      \"type\": \"parse\",\n      \"lang\": \"en\",\n      \"outputBucket\": \"<string>\",\n      \"pipeline_id\": \"<string>\"\n    },\n    \"session_id\": \"<uuid>\",\n    \"correlation_id\": \"<uuid>\",\n    \"parent_job_execution_id\": \"<uuid>\",\n    \"user_id\": \"<string>\",\n    \"project_id\": \"<uuid>\",\n    \"webhook_url\": \"<string>\"\n  },\n  \"directory_id\": \"<string>\",\n  \"item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_size\": 100,\n  \"continue_as_new_threshold\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78184e19-3fe4-426a-8be6-6da4e8d6979d",
+          "name": "List Batch Jobs",
+          "request": {
+            "name": "List Batch Jobs",
+            "description": {
+              "content": "List batch processing jobs with optional filtering.\n\nFilter by `directory_id`, `job_type`, or `status`. Results\nare paginated with configurable `limit` and `offset`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "beta",
+                "batch-processing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "directory_id",
+                  "value": "<string>",
+                  "description": "Filter by directory ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "job_type",
+                  "value": "<string>",
+                  "description": "Filter by job type (PARSE, EXTRACT, CLASSIFY)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of jobs to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of jobs to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4dad1d71-a1d4-4ce1-b744-c78719c10ae5",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "directory_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"status\": \"<string>\",\n      \"id\": \"string\",\n      \"project_id\": \"string\",\n      \"job_type\": \"<string>\",\n      \"total_items\": 2386,\n      \"effective_at\": \"2025-10-12T08:39:10.743Z\",\n      \"job_record_id\": \"string\",\n      \"error_message\": \"string\",\n      \"created_at\": \"2026-02-26T10:53:13.020Z\",\n      \"updated_at\": \"2014-11-13T01:08:49.242Z\",\n      \"directory_id\": \"string\",\n      \"processed_items\": 0,\n      \"failed_items\": 0,\n      \"skipped_items\": 0,\n      \"workflow_id\": \"string\",\n      \"started_at\": \"2016-05-23T11:50:09.990Z\",\n      \"completed_at\": \"1963-12-24T08:33:57.790Z\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"id\": \"string\",\n      \"project_id\": \"string\",\n      \"job_type\": \"<string>\",\n      \"total_items\": 5465,\n      \"effective_at\": \"1999-12-04T17:56:32.718Z\",\n      \"job_record_id\": \"string\",\n      \"error_message\": \"string\",\n      \"created_at\": \"2005-01-15T21:09:00.490Z\",\n      \"updated_at\": \"2013-08-27T17:10:19.132Z\",\n      \"directory_id\": \"string\",\n      \"processed_items\": 0,\n      \"failed_items\": 0,\n      \"skipped_items\": 0,\n      \"workflow_id\": \"string\",\n      \"started_at\": \"2008-12-07T06:10:57.662Z\",\n      \"completed_at\": \"2005-10-22T22:04:54.133Z\"\n    }\n  ],\n  \"next_page_token\": \"string\",\n  \"total_size\": 3398\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a28dddb1-463c-4c00-87a7-d5387978d889",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "directory_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad099b5e-4a58-41f2-ae1f-d3dc78c938d3",
+          "name": "Get Batch Job Status",
+          "request": {
+            "name": "Get Batch Job Status",
+            "description": {
+              "content": "Get detailed status of a batch processing job.\n\nReturns current progress percentage, file counts (total,\nprocessed, failed, skipped), and timestamps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "beta",
+                "batch-processing",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5eb29317-5fef-4817-a7fe-447e0ee6d822",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job\": {\n    \"status\": \"<string>\",\n    \"id\": \"string\",\n    \"project_id\": \"string\",\n    \"job_type\": \"<string>\",\n    \"total_items\": 1639,\n    \"effective_at\": \"1965-05-12T09:52:09.529Z\",\n    \"job_record_id\": \"string\",\n    \"error_message\": \"string\",\n    \"created_at\": \"1968-10-05T16:21:38.938Z\",\n    \"updated_at\": \"2019-04-13T18:51:37.725Z\",\n    \"directory_id\": \"string\",\n    \"processed_items\": 0,\n    \"failed_items\": 0,\n    \"skipped_items\": 0,\n    \"workflow_id\": \"string\",\n    \"started_at\": \"1947-02-03T01:07:18.765Z\",\n    \"completed_at\": \"1968-10-22T18:27:54.763Z\"\n  },\n  \"progress_percentage\": 58.05173727842819\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6152f517-4493-4b92-8bf5-b7b6dd7c2e1b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06280771-f61e-4b9e-ab39-7911ada79a06",
+          "name": "List Batch Job Items",
+          "request": {
+            "name": "List Batch Job Items",
+            "description": {
+              "content": "List items in a batch job with optional status filtering.\n\nUseful for finding failed items, viewing completed items,\nor debugging processing issues.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "beta",
+                "batch-processing",
+                ":job_id",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter items by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dbb21771-7979-4fc3-b422-cc10785e621d",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing",
+                    ":job_id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"status\": \"<string>\",\n      \"item_id\": \"string\",\n      \"item_name\": \"string\",\n      \"effective_at\": \"1994-01-01T04:39:30.218Z\",\n      \"job_record_id\": \"string\",\n      \"error_message\": \"string\",\n      \"job_id\": \"string\",\n      \"skip_reason\": \"string\",\n      \"started_at\": \"1995-11-08T02:19:53.791Z\",\n      \"completed_at\": \"1991-08-01T08:45:44.814Z\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"item_id\": \"string\",\n      \"item_name\": \"string\",\n      \"effective_at\": \"2012-12-19T21:24:38.978Z\",\n      \"job_record_id\": \"string\",\n      \"error_message\": \"string\",\n      \"job_id\": \"string\",\n      \"skip_reason\": \"string\",\n      \"started_at\": \"2004-05-27T05:48:54.026Z\",\n      \"completed_at\": \"1976-01-26T05:02:32.686Z\"\n    }\n  ],\n  \"next_page_token\": \"string\",\n  \"total_size\": 7690\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10cf229c-c01e-424d-a831-b704c88b6212",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing",
+                    ":job_id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efdb6527-0820-4a34-8052-19313efa38bd",
+          "name": "Cancel Batch Job",
+          "request": {
+            "name": "Cancel Batch Job",
+            "description": {
+              "content": "Cancel a running batch processing job.\n\nStops processing and marks pending items as cancelled.\nItems currently being processed may still complete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "beta",
+                "batch-processing",
+                ":job_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "temporal-namespace",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e9c2bbf9-a2e2-4d39-9bd9-6232905a2ea9",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing",
+                    ":job_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "temporal-namespace",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"status\": \"<string>\",\n  \"processed_items\": 680,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8185f180-48bf-4597-ae70-3840231b0588",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing",
+                    ":job_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "temporal-namespace",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f9973e5-5b55-458f-8c95-a3f4735ab9b7",
+          "name": "Get Item Processing Results",
+          "request": {
+            "name": "Get Item Processing Results",
+            "description": {
+              "content": "Get all processing results for a specific item.\n\nReturns the complete processing history for an item including\nwhat operations were performed, parameters used, and where\noutputs are stored. Optionally filter by `job_type`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "beta",
+                "batch-processing",
+                "items",
+                ":item_id",
+                "processing-results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "job_type",
+                  "value": "<string>",
+                  "description": "Filter results by job type"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "item_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98f3a4d4-74ed-44ca-85f2-3ccc89ea3e73",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing",
+                    "items",
+                    ":item_id",
+                    "processing-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "item_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item_id\": \"string\",\n  \"item_name\": \"string\",\n  \"processing_results\": [\n    {\n      \"result_id\": \"string\",\n      \"item_id\": \"string\",\n      \"job_type\": \"<string>\",\n      \"job_config\": {\n        \"job_name\": \"parse_raw_file_job\",\n        \"partitions\": {\n          \"key_0\": \"<uuid>\",\n          \"key_1\": \"<uuid>\",\n          \"key_2\": \"<uuid>\"\n        },\n        \"parameters\": {\n          \"webhook_configurations\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"priority\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"custom_metadata\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resource_info\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"languages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parsing_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disable_ocr\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"annotate_links\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"adaptive_long_table\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"compact_markdown_table\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disable_reconstruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disable_image_extraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"invalidate_cache\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outlined_table_extraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"aggressive_table_extraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"merge_tables_across_pages_in_markdown\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_pdf_of_document\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"do_not_cache\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fast_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"skip_diagonal_text\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"preserve_layout_alignment_across_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"preserve_very_small_text\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gpt4o_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gpt4o_api_key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"do_not_unroll_columns\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"extract_layout\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"high_res_ocr\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html_make_all_elements_visible\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"layout_aware\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specialized_chart_parsing_agentic\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specialized_chart_parsing_plus\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specialized_chart_parsing_efficient\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specialized_image_parsing\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"precise_bounding_box\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"line_level_bounding_box\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html_remove_navigation_elements\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html_remove_fixed_elements\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"guess_xlsx_sheet_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_separator\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bounding_box\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bbox_top\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bbox_right\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bbox_bottom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bbox_left\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"use_vendor_multimodal_model\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_multimodal_model_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"model\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_multimodal_api_key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"webhook_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"preset\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"take_screenshot\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_formatting_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"premium_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"continuous_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input_s3_path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input_s3_region\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_s3_path_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_s3_region\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"project_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"azure_openai_deployment_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"azure_openai_endpoint\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"azure_openai_api_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"azure_openai_key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"http_proxy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_trigger_on_regexp_in_page\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_trigger_on_text_in_page\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_trigger_on_table_in_page\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_trigger_on_image_in_page\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_configuration_json\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structured_output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structured_output_json_schema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structured_output_json_schema_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_pages_enforced\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"extract_charts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formatting_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"complemental_formatting_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_guideline_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spreadsheet_extract_sub_tables\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spreadsheet_force_formula_computation\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spreadsheet_include_hidden_sheets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inline_images_in_markdown\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job_timeout_in_seconds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job_timeout_extra_time_per_page_in_seconds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"strict_mode_image_extraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"strict_mode_image_ocr\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"strict_mode_reconstruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"strict_mode_buggy_font\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"save_images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"images_to_save\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hide_headers\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hide_footers\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_header_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_header_suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_footer_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_footer_suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"remove_hidden_text\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"keep_page_separator_when_merging_tables\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ignore_document_elements_for_layout_detection\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_tables_as_HTML\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"internal_is_screenshot_job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parse_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"system_prompt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"system_prompt_append\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"user_prompt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_error_tolerance\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"replace_failed_page_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"replace_failed_page_with_error_message_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"replace_failed_page_with_error_message_suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"markdown_table_multiline_header_separator\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"presentation_out_of_bounds_content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"presentation_skip_embedded_data\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"tier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"extract_printed_page_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"enable_cost_optimizer\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"lang\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outputBucket\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pipeline_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"session_id\": \"<uuid>\",\n        \"correlation_id\": \"<uuid>\",\n        \"parent_job_execution_id\": \"<uuid>\",\n        \"user_id\": \"<string>\",\n        \"project_id\": \"<uuid>\",\n        \"webhook_url\": \"<string>\"\n      },\n      \"parameters_hash\": \"string\",\n      \"output_s3_path\": \"string\",\n      \"processed_at\": \"1974-09-04T07:00:15.641Z\",\n      \"output_metadata\": {}\n    },\n    {\n      \"result_id\": \"string\",\n      \"item_id\": \"string\",\n      \"job_type\": \"<string>\",\n      \"job_config\": {\n        \"job_name\": \"parse_raw_file_job\",\n        \"partitions\": {\n          \"key_0\": \"<uuid>\",\n          \"key_1\": \"<uuid>\"\n        },\n        \"parameters\": {\n          \"webhook_configurations\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"priority\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"custom_metadata\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"resource_info\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"languages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parsing_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disable_ocr\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"annotate_links\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"adaptive_long_table\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"compact_markdown_table\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disable_reconstruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"disable_image_extraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"invalidate_cache\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outlined_table_extraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"aggressive_table_extraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"merge_tables_across_pages_in_markdown\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_pdf_of_document\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"do_not_cache\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fast_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"skip_diagonal_text\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"preserve_layout_alignment_across_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"preserve_very_small_text\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gpt4o_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gpt4o_api_key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"do_not_unroll_columns\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"extract_layout\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"high_res_ocr\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html_make_all_elements_visible\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"layout_aware\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specialized_chart_parsing_agentic\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specialized_chart_parsing_plus\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specialized_chart_parsing_efficient\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"specialized_image_parsing\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"precise_bounding_box\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"line_level_bounding_box\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html_remove_navigation_elements\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html_remove_fixed_elements\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"guess_xlsx_sheet_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_separator\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bounding_box\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bbox_top\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bbox_right\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bbox_bottom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bbox_left\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"target_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"use_vendor_multimodal_model\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_multimodal_model_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"model\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_multimodal_api_key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"webhook_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"preset\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"take_screenshot\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_formatting_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"premium_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"continuous_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input_s3_path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input_s3_region\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_s3_path_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_s3_region\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"project_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"azure_openai_deployment_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"azure_openai_endpoint\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"azure_openai_api_version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"azure_openai_key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"http_proxy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_trigger_on_regexp_in_page\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_trigger_on_text_in_page\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_trigger_on_table_in_page\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_trigger_on_image_in_page\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"auto_mode_configuration_json\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structured_output\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structured_output_json_schema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"structured_output_json_schema_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_pages\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"max_pages_enforced\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"extract_charts\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"formatting_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"complemental_formatting_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_guideline_instruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spreadsheet_extract_sub_tables\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spreadsheet_force_formula_computation\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"spreadsheet_include_hidden_sheets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inline_images_in_markdown\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job_timeout_in_seconds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"job_timeout_extra_time_per_page_in_seconds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"strict_mode_image_extraction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"strict_mode_image_ocr\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"strict_mode_reconstruction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"strict_mode_buggy_font\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"save_images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"images_to_save\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hide_headers\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hide_footers\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_header_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_header_suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_footer_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_footer_suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"remove_hidden_text\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"keep_page_separator_when_merging_tables\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ignore_document_elements_for_layout_detection\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"output_tables_as_HTML\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"internal_is_screenshot_job\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parse_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"system_prompt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"system_prompt_append\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"user_prompt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"page_error_tolerance\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"replace_failed_page_mode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"replace_failed_page_with_error_message_prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"replace_failed_page_with_error_message_suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"markdown_table_multiline_header_separator\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"presentation_out_of_bounds_content\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"presentation_skip_embedded_data\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"tier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"version\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"extract_printed_page_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"enable_cost_optimizer\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"lang\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"outputBucket\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pipeline_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"session_id\": \"<uuid>\",\n        \"correlation_id\": \"<uuid>\",\n        \"parent_job_execution_id\": \"<uuid>\",\n        \"user_id\": \"<string>\",\n        \"project_id\": \"<uuid>\",\n        \"webhook_url\": \"<string>\"\n      },\n      \"parameters_hash\": \"string\",\n      \"output_s3_path\": \"string\",\n      \"processed_at\": \"2005-10-24T04:37:11.428Z\",\n      \"output_metadata\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9067ba6-fc56-4dc1-80fd-4f6df569c2fa",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "beta",
+                    "batch-processing",
+                    "items",
+                    ":item_id",
+                    "processing-results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "job_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "item_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c6c91933-516c-4ce4-955b-c004424df0d1",
+    "name": "Llama Platform Agent Data Batch Processing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

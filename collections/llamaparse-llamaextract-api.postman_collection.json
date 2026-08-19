@@ -1,0 +1,3927 @@
+{
+  "item": [
+    {
+      "id": "5d2362d3-189d-4813-b302-f34bbfb6a78e",
+      "name": "LlamaExtract",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4204c2ac-929d-4dc9-9fb2-cf44cb3c6359",
+          "name": "List Jobs",
+          "request": {
+            "name": "List Jobs",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "extraction_agent_id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4f238b38-49b5-431a-ba1c-73a612e9ba8e",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extraction_agent_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"63dffbef-f238-79a9-3f41-ce7f24ee62f5\",\n    \"extraction_agent\": {\n      \"id\": \"e42d98de-0128-a031-6085-7ced8ef82340\",\n      \"name\": \"string\",\n      \"project_id\": \"afb979e8-c4e1-e80b-c5c3-97e1d01d89a1\",\n      \"data_schema\": {\n        \"key_0\": {\n          \"key_0\": 9475.414514622094,\n          \"key_1\": false,\n          \"key_2\": 7843,\n          \"key_3\": 3023\n        },\n        \"key_1\": {\n          \"key_0\": true,\n          \"key_1\": 7307.590546198396\n        },\n        \"key_2\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"config\": {\n        \"priority\": \"high\",\n        \"extraction_target\": \"PER_TABLE_ROW\",\n        \"extraction_mode\": \"PREMIUM\",\n        \"parse_model\": \"openai-gpt-5-mini\",\n        \"extract_model\": \"openai-gpt-5-mini\",\n        \"multimodal_fast_mode\": false,\n        \"system_prompt\": \"string\",\n        \"use_reasoning\": false,\n        \"cite_sources\": false,\n        \"citation_bbox\": false,\n        \"confidence_scores\": false,\n        \"chunk_mode\": \"PAGE\",\n        \"high_resolution_mode\": false,\n        \"invalidate_cache\": false,\n        \"num_pages_context\": 8801,\n        \"page_range\": \"string\"\n      },\n      \"custom_configuration\": \"string\",\n      \"created_at\": \"1966-09-29T15:00:09.616Z\",\n      \"updated_at\": \"1961-05-03T06:54:41.319Z\"\n    },\n    \"status\": \"PARTIAL_SUCCESS\",\n    \"error\": \"string\",\n    \"file_id\": \"19d725bf-0d37-7393-15cf-049a29467bec\",\n    \"file\": {\n      \"id\": \"4aa6d366-71d4-c232-7c82-53b6a5f09128\",\n      \"name\": \"string\",\n      \"project_id\": \"527e82c3-a79a-f186-a594-bb8d3d18ffd0\",\n      \"created_at\": \"1990-02-10T02:38:53.138Z\",\n      \"updated_at\": \"1955-06-08T02:17:53.235Z\",\n      \"external_file_id\": \"string\",\n      \"file_size\": 442,\n      \"file_type\": \"string\",\n      \"last_modified_at\": \"2014-08-05T12:46:02.355Z\",\n      \"resource_info\": {\n        \"key_0\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"permission_info\": {\n        \"key_0\": {\n          \"key_0\": 8807\n        }\n      },\n      \"data_source_id\": \"a40071a7-a5cc-c2e9-a832-70204cbf8a24\",\n      \"expires_at\": \"1951-06-03T05:54:40.076Z\",\n      \"purpose\": \"string\"\n    }\n  },\n  {\n    \"id\": \"ed1c8be2-fdc5-a9d5-c767-efb78c36f396\",\n    \"extraction_agent\": {\n      \"id\": \"cdf7d7f2-0229-0343-5e7f-3a50c91d870f\",\n      \"name\": \"string\",\n      \"project_id\": \"8b41ee25-0f70-3b5c-371a-6750cde8aa0d\",\n      \"data_schema\": {\n        \"key_0\": {\n          \"key_0\": false\n        },\n        \"key_1\": {\n          \"key_0\": 3848\n        },\n        \"key_2\": {\n          \"key_0\": 6400,\n          \"key_1\": 7056.516287283083,\n          \"key_2\": \"string\"\n        },\n        \"key_3\": {\n          \"key_0\": 20,\n          \"key_1\": true\n        }\n      },\n      \"config\": {\n        \"priority\": \"critical\",\n        \"extraction_target\": \"PER_DOC\",\n        \"extraction_mode\": \"BALANCED\",\n        \"parse_model\": \"openai-text-embedding-3-small\",\n        \"extract_model\": \"gemini-2.5-flash-lite\",\n        \"multimodal_fast_mode\": false,\n        \"system_prompt\": \"string\",\n        \"use_reasoning\": false,\n        \"cite_sources\": false,\n        \"citation_bbox\": false,\n        \"confidence_scores\": false,\n        \"chunk_mode\": \"SECTION\",\n        \"high_resolution_mode\": false,\n        \"invalidate_cache\": false,\n        \"num_pages_context\": 4128,\n        \"page_range\": \"string\"\n      },\n      \"custom_configuration\": \"string\",\n      \"created_at\": \"2005-04-17T05:35:37.371Z\",\n      \"updated_at\": \"2008-03-23T00:49:47.436Z\"\n    },\n    \"status\": \"CANCELLED\",\n    \"error\": \"string\",\n    \"file_id\": \"455a6a4b-4ac1-c565-5c22-380a1769b7b9\",\n    \"file\": {\n      \"id\": \"c16c0ddb-eb69-0d8d-e425-275d958f46dd\",\n      \"name\": \"string\",\n      \"project_id\": \"933d6aa3-badd-84c9-6b33-8f824ef19115\",\n      \"created_at\": \"2001-03-26T09:00:05.092Z\",\n      \"updated_at\": \"1957-05-13T15:49:37.957Z\",\n      \"external_file_id\": \"string\",\n      \"file_size\": 81,\n      \"file_type\": \"string\",\n      \"last_modified_at\": \"2015-01-31T20:41:22.869Z\",\n      \"resource_info\": {\n        \"key_0\": {\n          \"key_0\": true\n        },\n        \"key_1\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"permission_info\": {\n        \"key_0\": {\n          \"key_0\": 3212.184383955895\n        },\n        \"key_1\": {\n          \"key_0\": 9362,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      },\n      \"data_source_id\": \"192f0174-37a8-1b90-b7e1-519c5edc05d8\",\n      \"expires_at\": \"1954-10-19T21:35:03.139Z\",\n      \"purpose\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5346496-b002-4235-9dfd-1c06b729aa45",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extraction_agent_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc7db786-5ec4-4c4f-9f14-0276d11ae979",
+          "name": "Run Job",
+          "request": {
+            "name": "Run Job",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_ui",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"extraction_agent_id\": \"<uuid>\",\n  \"file_id\": \"<uuid>\",\n  \"priority\": \"<string>\",\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"data_schema_override\": {\n    \"key_0\": {\n      \"key_0\": 9842.981094682484,\n      \"key_1\": 9420.900747767793,\n      \"key_2\": false\n    },\n    \"key_1\": {\n      \"key_0\": 4305\n    }\n  },\n  \"config_override\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e693b0b-ed49-4b3d-b886-e9b590af8603",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_ui",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"extraction_agent_id\": \"<uuid>\",\n  \"file_id\": \"<uuid>\",\n  \"priority\": \"<string>\",\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\",\n        \"key_4\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"data_schema_override\": {\n    \"key_0\": {\n      \"key_0\": 276,\n      \"key_1\": 5377,\n      \"key_2\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 7639.629632834712\n    },\n    \"key_2\": {\n      \"key_0\": 6625,\n      \"key_1\": 8258.139706808\n    },\n    \"key_3\": {\n      \"key_0\": false,\n      \"key_1\": 6927.718738597393,\n      \"key_2\": false\n    }\n  },\n  \"config_override\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"f474fda7-ce81-576c-6f43-932098455418\",\n  \"extraction_agent\": {\n    \"id\": \"a17a98f7-bbb6-60f0-00cb-edc9a360fc59\",\n    \"name\": \"string\",\n    \"project_id\": \"25230bb5-4a52-db59-77b9-81359b86d225\",\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 8544.096303165938\n      },\n      \"key_1\": {\n        \"key_0\": 6809\n      }\n    },\n    \"config\": {\n      \"priority\": \"<string>\",\n      \"extraction_target\": \"<string>\",\n      \"extraction_mode\": \"<string>\",\n      \"parse_model\": \"<string>\",\n      \"extract_model\": \"<string>\",\n      \"multimodal_fast_mode\": false,\n      \"system_prompt\": \"<string>\",\n      \"use_reasoning\": false,\n      \"cite_sources\": false,\n      \"citation_bbox\": false,\n      \"confidence_scores\": false,\n      \"chunk_mode\": \"<string>\",\n      \"high_resolution_mode\": false,\n      \"invalidate_cache\": false,\n      \"num_pages_context\": \"<integer>\",\n      \"page_range\": \"<string>\"\n    },\n    \"custom_configuration\": \"string\",\n    \"created_at\": \"1986-07-12T19:40:22.196Z\",\n    \"updated_at\": \"1986-10-15T12:07:46.235Z\"\n  },\n  \"status\": \"SUCCESS\",\n  \"error\": \"string\",\n  \"file_id\": \"3eb2773b-cc2d-27bf-9fbf-43651c48c2d9\",\n  \"file\": {\n    \"id\": \"ddd451a5-1f70-d991-4a9e-78c85e496109\",\n    \"name\": \"string\",\n    \"project_id\": \"9ca45b10-7c6d-62ad-d680-2f24933580f8\",\n    \"created_at\": \"1964-02-29T17:38:47.947Z\",\n    \"updated_at\": \"1977-12-06T17:33:24.970Z\",\n    \"external_file_id\": \"string\",\n    \"file_size\": 8680,\n    \"file_type\": \"string\",\n    \"last_modified_at\": \"1961-05-18T22:49:24.807Z\",\n    \"resource_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1765.7078282549387\n      },\n      \"key_1\": {\n        \"key_0\": true\n      }\n    },\n    \"permission_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"data_source_id\": \"52b0f1cd-36c7-c84e-733b-cdd6a96e2bdc\",\n    \"expires_at\": \"2012-09-04T19:07:13.494Z\",\n    \"purpose\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "213c5448-c3be-4dc5-889e-4cb3a6458da4",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_ui",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"extraction_agent_id\": \"<uuid>\",\n  \"file_id\": \"<uuid>\",\n  \"priority\": \"<string>\",\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\",\n        \"key_4\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"data_schema_override\": {\n    \"key_0\": {\n      \"key_0\": 276,\n      \"key_1\": 5377,\n      \"key_2\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 7639.629632834712\n    },\n    \"key_2\": {\n      \"key_0\": 6625,\n      \"key_1\": 8258.139706808\n    },\n    \"key_3\": {\n      \"key_0\": false,\n      \"key_1\": 6927.718738597393,\n      \"key_2\": false\n    }\n  },\n  \"config_override\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4e310c9-09b6-4452-9a46-9e7a285017cb",
+          "name": "Get Job",
+          "request": {
+            "name": "Get Job",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "jobs",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b5ce5ab1-1879-4585-b2b7-196adc200684",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"f474fda7-ce81-576c-6f43-932098455418\",\n  \"extraction_agent\": {\n    \"id\": \"a17a98f7-bbb6-60f0-00cb-edc9a360fc59\",\n    \"name\": \"string\",\n    \"project_id\": \"25230bb5-4a52-db59-77b9-81359b86d225\",\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 8544.096303165938\n      },\n      \"key_1\": {\n        \"key_0\": 6809\n      }\n    },\n    \"config\": {\n      \"priority\": \"<string>\",\n      \"extraction_target\": \"<string>\",\n      \"extraction_mode\": \"<string>\",\n      \"parse_model\": \"<string>\",\n      \"extract_model\": \"<string>\",\n      \"multimodal_fast_mode\": false,\n      \"system_prompt\": \"<string>\",\n      \"use_reasoning\": false,\n      \"cite_sources\": false,\n      \"citation_bbox\": false,\n      \"confidence_scores\": false,\n      \"chunk_mode\": \"<string>\",\n      \"high_resolution_mode\": false,\n      \"invalidate_cache\": false,\n      \"num_pages_context\": \"<integer>\",\n      \"page_range\": \"<string>\"\n    },\n    \"custom_configuration\": \"string\",\n    \"created_at\": \"1986-07-12T19:40:22.196Z\",\n    \"updated_at\": \"1986-10-15T12:07:46.235Z\"\n  },\n  \"status\": \"SUCCESS\",\n  \"error\": \"string\",\n  \"file_id\": \"3eb2773b-cc2d-27bf-9fbf-43651c48c2d9\",\n  \"file\": {\n    \"id\": \"ddd451a5-1f70-d991-4a9e-78c85e496109\",\n    \"name\": \"string\",\n    \"project_id\": \"9ca45b10-7c6d-62ad-d680-2f24933580f8\",\n    \"created_at\": \"1964-02-29T17:38:47.947Z\",\n    \"updated_at\": \"1977-12-06T17:33:24.970Z\",\n    \"external_file_id\": \"string\",\n    \"file_size\": 8680,\n    \"file_type\": \"string\",\n    \"last_modified_at\": \"1961-05-18T22:49:24.807Z\",\n    \"resource_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1765.7078282549387\n      },\n      \"key_1\": {\n        \"key_0\": true\n      }\n    },\n    \"permission_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"data_source_id\": \"52b0f1cd-36c7-c84e-733b-cdd6a96e2bdc\",\n    \"expires_at\": \"2012-09-04T19:07:13.494Z\",\n    \"purpose\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b7679fc-9d23-4695-94f1-6f6d04f5f7c6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93eaa9c5-c496-495c-bb0d-dc3bde06dcd6",
+          "name": "Run Job On File",
+          "request": {
+            "name": "Run Job On File",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "jobs",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_ui",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "extraction_agent_id",
+                  "value": "<uuid>",
+                  "type": "text",
+                  "description": "(Required) The id of the extraction agent"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The file to run the job on"
+                },
+                {
+                  "key": "data_schema_override",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The data schema to override the extraction agent's data schema with as a JSON string"
+                },
+                {
+                  "key": "config_override",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The config to override the extraction agent's config with as a JSON string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eae2266f-d5e6-4a71-a235-b298f6b9a3e2",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_ui",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The id of the extraction agent",
+                        "type": "text/plain"
+                      },
+                      "key": "extraction_agent_id",
+                      "value": "<uuid>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The file to run the job on",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The data schema to override the extraction agent's data schema with as a JSON string",
+                        "type": "text/plain"
+                      },
+                      "key": "data_schema_override",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The config to override the extraction agent's config with as a JSON string",
+                        "type": "text/plain"
+                      },
+                      "key": "config_override",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"f474fda7-ce81-576c-6f43-932098455418\",\n  \"extraction_agent\": {\n    \"id\": \"a17a98f7-bbb6-60f0-00cb-edc9a360fc59\",\n    \"name\": \"string\",\n    \"project_id\": \"25230bb5-4a52-db59-77b9-81359b86d225\",\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 8544.096303165938\n      },\n      \"key_1\": {\n        \"key_0\": 6809\n      }\n    },\n    \"config\": {\n      \"priority\": \"<string>\",\n      \"extraction_target\": \"<string>\",\n      \"extraction_mode\": \"<string>\",\n      \"parse_model\": \"<string>\",\n      \"extract_model\": \"<string>\",\n      \"multimodal_fast_mode\": false,\n      \"system_prompt\": \"<string>\",\n      \"use_reasoning\": false,\n      \"cite_sources\": false,\n      \"citation_bbox\": false,\n      \"confidence_scores\": false,\n      \"chunk_mode\": \"<string>\",\n      \"high_resolution_mode\": false,\n      \"invalidate_cache\": false,\n      \"num_pages_context\": \"<integer>\",\n      \"page_range\": \"<string>\"\n    },\n    \"custom_configuration\": \"string\",\n    \"created_at\": \"1986-07-12T19:40:22.196Z\",\n    \"updated_at\": \"1986-10-15T12:07:46.235Z\"\n  },\n  \"status\": \"SUCCESS\",\n  \"error\": \"string\",\n  \"file_id\": \"3eb2773b-cc2d-27bf-9fbf-43651c48c2d9\",\n  \"file\": {\n    \"id\": \"ddd451a5-1f70-d991-4a9e-78c85e496109\",\n    \"name\": \"string\",\n    \"project_id\": \"9ca45b10-7c6d-62ad-d680-2f24933580f8\",\n    \"created_at\": \"1964-02-29T17:38:47.947Z\",\n    \"updated_at\": \"1977-12-06T17:33:24.970Z\",\n    \"external_file_id\": \"string\",\n    \"file_size\": 8680,\n    \"file_type\": \"string\",\n    \"last_modified_at\": \"1961-05-18T22:49:24.807Z\",\n    \"resource_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1765.7078282549387\n      },\n      \"key_1\": {\n        \"key_0\": true\n      }\n    },\n    \"permission_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"data_source_id\": \"52b0f1cd-36c7-c84e-733b-cdd6a96e2bdc\",\n    \"expires_at\": \"2012-09-04T19:07:13.494Z\",\n    \"purpose\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ebdc2c7-233d-4fac-a51c-293b655fc1c3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_ui",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The id of the extraction agent",
+                        "type": "text/plain"
+                      },
+                      "key": "extraction_agent_id",
+                      "value": "<uuid>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The file to run the job on",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The data schema to override the extraction agent's data schema with as a JSON string",
+                        "type": "text/plain"
+                      },
+                      "key": "data_schema_override",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The config to override the extraction agent's config with as a JSON string",
+                        "type": "text/plain"
+                      },
+                      "key": "config_override",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf662743-23e1-4bfb-b659-6aa28a688c5a",
+          "name": "Run Batch Jobs",
+          "request": {
+            "name": "Run Batch Jobs",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "jobs",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_ui",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"extraction_agent_id\": \"<uuid>\",\n  \"file_ids\": [\n    \"<uuid>\"\n  ],\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"data_schema_override\": {\n    \"key_0\": {\n      \"key_0\": false\n    }\n  },\n  \"config_override\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81668bdc-e888-4751-95c3-c9ed436df9c4",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_ui",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"extraction_agent_id\": \"<uuid>\",\n  \"file_ids\": [\n    \"<uuid>\"\n  ],\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"data_schema_override\": {\n    \"key_0\": {\n      \"key_0\": true,\n      \"key_1\": 2446.366718994716,\n      \"key_2\": 426,\n      \"key_3\": 8681\n    },\n    \"key_1\": {\n      \"key_0\": false\n    }\n  },\n  \"config_override\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"85a79dad-4a26-a334-0cfe-6bcd4772b8d8\",\n    \"extraction_agent\": {\n      \"id\": \"dac9f4ec-fff9-75a3-6dd6-37276e96f857\",\n      \"name\": \"string\",\n      \"project_id\": \"7bc92ace-7c01-c11c-c2c1-60cbd496b9c7\",\n      \"data_schema\": {\n        \"key_0\": {\n          \"key_0\": true,\n          \"key_1\": 5312.0501874186,\n          \"key_2\": true\n        }\n      },\n      \"config\": {\n        \"priority\": \"<string>\",\n        \"extraction_target\": \"<string>\",\n        \"extraction_mode\": \"<string>\",\n        \"parse_model\": \"<string>\",\n        \"extract_model\": \"<string>\",\n        \"multimodal_fast_mode\": false,\n        \"system_prompt\": \"<string>\",\n        \"use_reasoning\": false,\n        \"cite_sources\": false,\n        \"citation_bbox\": false,\n        \"confidence_scores\": false,\n        \"chunk_mode\": \"<string>\",\n        \"high_resolution_mode\": false,\n        \"invalidate_cache\": false,\n        \"num_pages_context\": \"<integer>\",\n        \"page_range\": \"<string>\"\n      },\n      \"custom_configuration\": \"string\",\n      \"created_at\": \"1979-11-26T15:22:37.150Z\",\n      \"updated_at\": \"2019-03-19T00:49:35.199Z\"\n    },\n    \"status\": \"SUCCESS\",\n    \"error\": \"string\",\n    \"file_id\": \"765ec438-eac8-9645-ae2a-98a39649a072\",\n    \"file\": {\n      \"id\": \"acfbe16e-da88-b1df-1a43-42fb6846c86a\",\n      \"name\": \"string\",\n      \"project_id\": \"0047abc3-0857-fc05-f0b7-c3418bfdebcc\",\n      \"created_at\": \"1985-09-09T14:42:45.258Z\",\n      \"updated_at\": \"2015-05-16T03:38:09.141Z\",\n      \"external_file_id\": \"string\",\n      \"file_size\": 166,\n      \"file_type\": \"string\",\n      \"last_modified_at\": \"1959-03-29T00:03:03.138Z\",\n      \"resource_info\": {\n        \"key_0\": {\n          \"key_0\": 5725,\n          \"key_1\": \"string\"\n        }\n      },\n      \"permission_info\": {\n        \"key_0\": {\n          \"key_0\": 6057,\n          \"key_1\": 3437,\n          \"key_2\": 2848,\n          \"key_3\": 3923\n        },\n        \"key_1\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": 6515.404453792121,\n          \"key_3\": \"string\"\n        }\n      },\n      \"data_source_id\": \"909da52c-1451-bf5d-79ac-8a14d91871e1\",\n      \"expires_at\": \"2003-05-20T13:10:36.295Z\",\n      \"purpose\": \"string\"\n    }\n  },\n  {\n    \"id\": \"d21c278f-fa64-653c-2524-ff478a08cae1\",\n    \"extraction_agent\": {\n      \"id\": \"279eaeb3-c253-f232-6673-8da909b2669f\",\n      \"name\": \"string\",\n      \"project_id\": \"fa7775bc-5515-c237-a037-bb82e5451dd0\",\n      \"data_schema\": {\n        \"key_0\": {\n          \"key_0\": 9431,\n          \"key_1\": true\n        },\n        \"key_1\": {\n          \"key_0\": \"string\",\n          \"key_1\": false\n        }\n      },\n      \"config\": {\n        \"priority\": \"<string>\",\n        \"extraction_target\": \"<string>\",\n        \"extraction_mode\": \"<string>\",\n        \"parse_model\": \"<string>\",\n        \"extract_model\": \"<string>\",\n        \"multimodal_fast_mode\": false,\n        \"system_prompt\": \"<string>\",\n        \"use_reasoning\": false,\n        \"cite_sources\": false,\n        \"citation_bbox\": false,\n        \"confidence_scores\": false,\n        \"chunk_mode\": \"<string>\",\n        \"high_resolution_mode\": false,\n        \"invalidate_cache\": false,\n        \"num_pages_context\": \"<integer>\",\n        \"page_range\": \"<string>\"\n      },\n      \"custom_configuration\": \"string\",\n      \"created_at\": \"1952-12-07T19:20:38.707Z\",\n      \"updated_at\": \"2014-06-13T01:27:55.356Z\"\n    },\n    \"status\": \"PENDING\",\n    \"error\": \"string\",\n    \"file_id\": \"f74ad498-190f-621b-d2b6-06486824e76e\",\n    \"file\": {\n      \"id\": \"69ede9d5-5cf4-ab46-42d6-6a0fad36fe60\",\n      \"name\": \"string\",\n      \"project_id\": \"b970d0c3-6731-8710-e594-0e7caedae93b\",\n      \"created_at\": \"2000-12-27T03:50:39.280Z\",\n      \"updated_at\": \"1960-06-10T12:20:12.588Z\",\n      \"external_file_id\": \"string\",\n      \"file_size\": 7568,\n      \"file_type\": \"string\",\n      \"last_modified_at\": \"1983-01-13T23:25:30.025Z\",\n      \"resource_info\": {\n        \"key_0\": {\n          \"key_0\": 3135\n        }\n      },\n      \"permission_info\": {\n        \"key_0\": {\n          \"key_0\": \"string\",\n          \"key_1\": false\n        }\n      },\n      \"data_source_id\": \"b0252331-01e9-0c67-52fb-fa8a1de8e25e\",\n      \"expires_at\": \"1981-09-25T23:06:29.022Z\",\n      \"purpose\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe3edb16-db93-4d50-b589-c9f7490cd5f1",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_ui",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"extraction_agent_id\": \"<uuid>\",\n  \"file_ids\": [\n    \"<uuid>\"\n  ],\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"data_schema_override\": {\n    \"key_0\": {\n      \"key_0\": true,\n      \"key_1\": 2446.366718994716,\n      \"key_2\": 426,\n      \"key_3\": 8681\n    },\n    \"key_1\": {\n      \"key_0\": false\n    }\n  },\n  \"config_override\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f994ae1f-8198-4d89-bbb3-662c01d3cd91",
+          "name": "Get Job Result",
+          "request": {
+            "name": "Get Job Result",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "jobs",
+                ":job_id",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8d0c1224-4b52-4f18-a657-9878a28e6ed0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs",
+                    ":job_id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"run_id\": \"cfe449e4-bd15-8048-5e2e-83807e14c21d\",\n  \"extraction_agent_id\": \"9a377723-6478-77d0-e0da-3ff2b6827db4\",\n  \"data\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": 1849\n    },\n    \"key_1\": {\n      \"key_0\": true\n    }\n  },\n  \"extraction_metadata\": {\n    \"key_0\": {\n      \"key_0\": 2203.2464943189443\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da4eb935-8c09-4ffb-9e73-3a5b55865306",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "jobs",
+                    ":job_id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1243058-e1bf-468a-8856-cd63b98a98a8",
+          "name": "List Extract Runs",
+          "request": {
+            "name": "List Extract Runs",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "extraction_agent_id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "run_id",
+                  "value": "<string>",
+                  "description": "Filter by run ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b28f3bc5-e5b6-4714-8218-1bf902ed93fd",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extraction_agent_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "run_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"3d8cd3db-ca5d-11b8-6515-401ae87d45a7\",\n      \"project_id\": \"142a5f13-8aea-f7a3-b2ba-51f1b94d00aa\",\n      \"extraction_agent_id\": \"f08db6ea-bbdd-acbb-46f2-21dc6d7b0171\",\n      \"data_schema\": {\n        \"key_0\": {\n          \"key_0\": 7085.725569310472,\n          \"key_1\": false,\n          \"key_2\": 5998.173650548845\n        },\n        \"key_1\": {\n          \"key_0\": 942.7193191717165,\n          \"key_1\": 2335\n        }\n      },\n      \"config\": {\n        \"priority\": \"<string>\",\n        \"extraction_target\": \"<string>\",\n        \"extraction_mode\": \"<string>\",\n        \"parse_model\": \"<string>\",\n        \"extract_model\": \"<string>\",\n        \"multimodal_fast_mode\": false,\n        \"system_prompt\": \"<string>\",\n        \"use_reasoning\": false,\n        \"cite_sources\": false,\n        \"citation_bbox\": false,\n        \"confidence_scores\": false,\n        \"chunk_mode\": \"<string>\",\n        \"high_resolution_mode\": false,\n        \"invalidate_cache\": false,\n        \"num_pages_context\": \"<integer>\",\n        \"page_range\": \"<string>\"\n      },\n      \"status\": \"PENDING\",\n      \"from_ui\": true,\n      \"created_at\": \"2002-11-19T10:13:40.314Z\",\n      \"updated_at\": \"1970-03-28T23:23:57.779Z\",\n      \"file_id\": \"ae68e44b-7bc6-bfd4-b31d-ef11ef712073\",\n      \"file\": {\n        \"id\": \"13b0e5a9-fac2-b81d-22db-782e2089f1bf\",\n        \"name\": \"string\",\n        \"project_id\": \"e6604c3f-5f00-8863-6584-51100178dc29\",\n        \"created_at\": \"2012-08-24T15:08:07.715Z\",\n        \"updated_at\": \"1971-12-01T11:03:29.309Z\",\n        \"external_file_id\": \"string\",\n        \"file_size\": 7304,\n        \"file_type\": \"string\",\n        \"last_modified_at\": \"2011-03-16T07:39:48.699Z\",\n        \"resource_info\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"permission_info\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"data_source_id\": \"3c3e8a1b-43ec-d193-22d6-a76b7bbf5677\",\n        \"expires_at\": \"2011-10-11T02:43:08.714Z\",\n        \"purpose\": \"string\"\n      },\n      \"error\": \"string\",\n      \"job_id\": \"cdb37a96-ce34-3dd7-871f-d275e847cb5b\",\n      \"data\": {\n        \"key_0\": {\n          \"key_0\": 6100.843048704665,\n          \"key_1\": 39\n        }\n      },\n      \"extraction_metadata\": {\n        \"key_0\": {\n          \"key_0\": true,\n          \"key_1\": 1059,\n          \"key_2\": 173.05568626285185\n        },\n        \"key_1\": {\n          \"key_0\": true\n        },\n        \"key_2\": {\n          \"key_0\": 1379,\n          \"key_1\": true\n        },\n        \"key_3\": {\n          \"key_0\": true,\n          \"key_1\": 9912.672723938673,\n          \"key_2\": 6099.744611543225\n        }\n      }\n    },\n    {\n      \"id\": \"049604fc-b81f-91b2-adf0-3f35987b2bbb\",\n      \"project_id\": \"8382f193-5d48-4fb0-c01a-e87e0f48f384\",\n      \"extraction_agent_id\": \"c5d6611f-7ae9-d454-104f-e87493b0b24b\",\n      \"data_schema\": {\n        \"key_0\": {\n          \"key_0\": false\n        },\n        \"key_1\": {\n          \"key_0\": 3494,\n          \"key_1\": 7901.694035667965\n        }\n      },\n      \"config\": {\n        \"priority\": \"<string>\",\n        \"extraction_target\": \"<string>\",\n        \"extraction_mode\": \"<string>\",\n        \"parse_model\": \"<string>\",\n        \"extract_model\": \"<string>\",\n        \"multimodal_fast_mode\": false,\n        \"system_prompt\": \"<string>\",\n        \"use_reasoning\": false,\n        \"cite_sources\": false,\n        \"citation_bbox\": false,\n        \"confidence_scores\": false,\n        \"chunk_mode\": \"<string>\",\n        \"high_resolution_mode\": false,\n        \"invalidate_cache\": false,\n        \"num_pages_context\": \"<integer>\",\n        \"page_range\": \"<string>\"\n      },\n      \"status\": \"PENDING\",\n      \"from_ui\": true,\n      \"created_at\": \"1950-11-18T12:10:27.899Z\",\n      \"updated_at\": \"1960-11-26T01:41:08.105Z\",\n      \"file_id\": \"a2758fda-a6ce-2d6e-a7c5-f29b2ce88d3f\",\n      \"file\": {\n        \"id\": \"8ed0301b-5f0e-e759-5143-423284a21369\",\n        \"name\": \"string\",\n        \"project_id\": \"2b871812-b4a0-c691-352f-886e90ffc1c8\",\n        \"created_at\": \"1968-05-07T16:10:32.869Z\",\n        \"updated_at\": \"1992-07-27T13:39:38.749Z\",\n        \"external_file_id\": \"string\",\n        \"file_size\": 7906,\n        \"file_type\": \"string\",\n        \"last_modified_at\": \"1973-06-21T12:34:34.129Z\",\n        \"resource_info\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"permission_info\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"data_source_id\": \"73d6cda2-6465-ff4a-ce02-2e3458b8c0d0\",\n        \"expires_at\": \"1964-09-11T13:20:46.963Z\",\n        \"purpose\": \"string\"\n      },\n      \"error\": \"string\",\n      \"job_id\": \"bac1c2c7-b195-c503-d202-d44ac6623928\",\n      \"data\": {\n        \"key_0\": {\n          \"key_0\": 1410\n        }\n      },\n      \"extraction_metadata\": {\n        \"key_0\": {\n          \"key_0\": 4702,\n          \"key_1\": true,\n          \"key_2\": 9431\n        },\n        \"key_1\": {\n          \"key_0\": 3826,\n          \"key_1\": 5240.6614794297275\n        }\n      }\n    }\n  ],\n  \"total\": 4731,\n  \"skip\": 9392,\n  \"limit\": 5517\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0879b21a-6ed0-4533-b06f-134638e16047",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extraction_agent_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "run_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86009ed2-a311-4f08-b914-a23587707cac",
+          "name": "Get Latest Run From Ui",
+          "request": {
+            "name": "Get Latest Run From Ui",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "runs",
+                "latest-from-ui"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "extraction_agent_id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe6562fe-9112-4a2f-88e1-14aa5afe8e56",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs",
+                    "latest-from-ui"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extraction_agent_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"67c6534f-b1a1-81e4-5c80-8584575df03a\",\n  \"project_id\": \"e9d3d998-5f5c-09ec-86fc-1b7513a2a1f8\",\n  \"extraction_agent_id\": \"486b77db-bcc1-e521-8a75-eb35fe374cf0\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 8032\n    },\n    \"key_1\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"status\": \"SUCCESS\",\n  \"from_ui\": false,\n  \"created_at\": \"2005-03-05T15:00:04.376Z\",\n  \"updated_at\": \"2011-11-20T08:25:08.838Z\",\n  \"file_id\": \"55d56d75-44ff-42a2-0b9b-226151c20b50\",\n  \"file\": {\n    \"id\": \"09859216-a954-75cf-9154-5098a6796366\",\n    \"name\": \"string\",\n    \"project_id\": \"83d39e72-f94b-5b62-3f03-6b1fda61890a\",\n    \"created_at\": \"2023-01-14T10:56:04.174Z\",\n    \"updated_at\": \"1990-12-14T23:36:40.704Z\",\n    \"external_file_id\": \"string\",\n    \"file_size\": 4231,\n    \"file_type\": \"string\",\n    \"last_modified_at\": \"2013-12-19T19:24:24.067Z\",\n    \"resource_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": true\n      }\n    },\n    \"permission_info\": {\n      \"key_0\": {\n        \"key_0\": false,\n        \"key_1\": false\n      },\n      \"key_1\": {\n        \"key_0\": \"string\",\n        \"key_1\": 9975.56218389368\n      }\n    },\n    \"data_source_id\": \"96399236-6708-4a3a-566c-8b488a0c9741\",\n    \"expires_at\": \"1974-05-18T03:32:00.485Z\",\n    \"purpose\": \"string\"\n  },\n  \"error\": \"string\",\n  \"job_id\": \"cab54d9c-c3dd-ac73-1ff0-c8873795dac4\",\n  \"data\": {\n    \"key_0\": {\n      \"key_0\": true,\n      \"key_1\": 31.703651783298035,\n      \"key_2\": 4001\n    }\n  },\n  \"extraction_metadata\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 6445.1559517790465\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6bba700-8d67-4ea3-96c7-e0e535e2c958",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs",
+                    "latest-from-ui"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extraction_agent_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c81655c9-8d40-4a08-83e2-8bc18005f392",
+          "name": "Get Run By Job Id",
+          "request": {
+            "name": "Get Run By Job Id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "runs",
+                "by-job",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0b4e6c22-9024-4a07-a301-fbdf2906b486",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs",
+                    "by-job",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"67c6534f-b1a1-81e4-5c80-8584575df03a\",\n  \"project_id\": \"e9d3d998-5f5c-09ec-86fc-1b7513a2a1f8\",\n  \"extraction_agent_id\": \"486b77db-bcc1-e521-8a75-eb35fe374cf0\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 8032\n    },\n    \"key_1\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"status\": \"SUCCESS\",\n  \"from_ui\": false,\n  \"created_at\": \"2005-03-05T15:00:04.376Z\",\n  \"updated_at\": \"2011-11-20T08:25:08.838Z\",\n  \"file_id\": \"55d56d75-44ff-42a2-0b9b-226151c20b50\",\n  \"file\": {\n    \"id\": \"09859216-a954-75cf-9154-5098a6796366\",\n    \"name\": \"string\",\n    \"project_id\": \"83d39e72-f94b-5b62-3f03-6b1fda61890a\",\n    \"created_at\": \"2023-01-14T10:56:04.174Z\",\n    \"updated_at\": \"1990-12-14T23:36:40.704Z\",\n    \"external_file_id\": \"string\",\n    \"file_size\": 4231,\n    \"file_type\": \"string\",\n    \"last_modified_at\": \"2013-12-19T19:24:24.067Z\",\n    \"resource_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": true\n      }\n    },\n    \"permission_info\": {\n      \"key_0\": {\n        \"key_0\": false,\n        \"key_1\": false\n      },\n      \"key_1\": {\n        \"key_0\": \"string\",\n        \"key_1\": 9975.56218389368\n      }\n    },\n    \"data_source_id\": \"96399236-6708-4a3a-566c-8b488a0c9741\",\n    \"expires_at\": \"1974-05-18T03:32:00.485Z\",\n    \"purpose\": \"string\"\n  },\n  \"error\": \"string\",\n  \"job_id\": \"cab54d9c-c3dd-ac73-1ff0-c8873795dac4\",\n  \"data\": {\n    \"key_0\": {\n      \"key_0\": true,\n      \"key_1\": 31.703651783298035,\n      \"key_2\": 4001\n    }\n  },\n  \"extraction_metadata\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 6445.1559517790465\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f70aec5d-b879-43d0-97f2-958724901496",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs",
+                    "by-job",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cd4091c-a356-499e-94c7-6cf7b06c3174",
+          "name": "Get Run",
+          "request": {
+            "name": "Get Run",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "runs",
+                ":run_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "run_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98c5998d-2923-44cc-837f-4781390b4684",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs",
+                    ":run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "run_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"67c6534f-b1a1-81e4-5c80-8584575df03a\",\n  \"project_id\": \"e9d3d998-5f5c-09ec-86fc-1b7513a2a1f8\",\n  \"extraction_agent_id\": \"486b77db-bcc1-e521-8a75-eb35fe374cf0\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 8032\n    },\n    \"key_1\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"status\": \"SUCCESS\",\n  \"from_ui\": false,\n  \"created_at\": \"2005-03-05T15:00:04.376Z\",\n  \"updated_at\": \"2011-11-20T08:25:08.838Z\",\n  \"file_id\": \"55d56d75-44ff-42a2-0b9b-226151c20b50\",\n  \"file\": {\n    \"id\": \"09859216-a954-75cf-9154-5098a6796366\",\n    \"name\": \"string\",\n    \"project_id\": \"83d39e72-f94b-5b62-3f03-6b1fda61890a\",\n    \"created_at\": \"2023-01-14T10:56:04.174Z\",\n    \"updated_at\": \"1990-12-14T23:36:40.704Z\",\n    \"external_file_id\": \"string\",\n    \"file_size\": 4231,\n    \"file_type\": \"string\",\n    \"last_modified_at\": \"2013-12-19T19:24:24.067Z\",\n    \"resource_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": true\n      }\n    },\n    \"permission_info\": {\n      \"key_0\": {\n        \"key_0\": false,\n        \"key_1\": false\n      },\n      \"key_1\": {\n        \"key_0\": \"string\",\n        \"key_1\": 9975.56218389368\n      }\n    },\n    \"data_source_id\": \"96399236-6708-4a3a-566c-8b488a0c9741\",\n    \"expires_at\": \"1974-05-18T03:32:00.485Z\",\n    \"purpose\": \"string\"\n  },\n  \"error\": \"string\",\n  \"job_id\": \"cab54d9c-c3dd-ac73-1ff0-c8873795dac4\",\n  \"data\": {\n    \"key_0\": {\n      \"key_0\": true,\n      \"key_1\": 31.703651783298035,\n      \"key_2\": 4001\n    }\n  },\n  \"extraction_metadata\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 6445.1559517790465\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71f30e40-5b3b-4f9f-9bbc-1812107acc85",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs",
+                    ":run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "run_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93f8706a-b04c-4285-b954-f0ea62b0000a",
+          "name": "Delete Extraction Run",
+          "request": {
+            "name": "Delete Extraction Run",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "runs",
+                ":run_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "run_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8fb1c60a-ccf3-4f2a-958c-81027c539646",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs",
+                    ":run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "run_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df88d737-6dfe-4446-b57e-4974b7c8b958",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "runs",
+                    ":run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "run_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3baf48e9-cb2d-4cf9-a4bf-46865c84d64f",
+          "name": "Extract Stateless",
+          "request": {
+            "name": "Extract Stateless",
+            "description": {
+              "content": "Stateless extraction using a default agent in the user's default project; requires `data_schema`, `config`, and one of `file_id` / `text` / base64 file data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 6188,\n      \"key_1\": 8757,\n      \"key_2\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"file_id\": \"<uuid>\",\n  \"text\": \"<string>\",\n  \"file\": {\n    \"data\": \"<string>\",\n    \"mime_type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c60150a-22e8-4e6e-a659-3aaa0bd4653d",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": 4353.46115172286,\n      \"key_2\": 3720\n    },\n    \"key_1\": {\n      \"key_0\": 8884,\n      \"key_1\": 7812.692619860454\n    },\n    \"key_2\": {\n      \"key_0\": \"string\"\n    },\n    \"key_3\": {\n      \"key_0\": 9691.844876718096,\n      \"key_1\": 8798\n    },\n    \"key_4\": {\n      \"key_0\": 5922,\n      \"key_1\": 7839\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"file_id\": \"<uuid>\",\n  \"text\": \"<string>\",\n  \"file\": {\n    \"data\": \"<string>\",\n    \"mime_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"f474fda7-ce81-576c-6f43-932098455418\",\n  \"extraction_agent\": {\n    \"id\": \"a17a98f7-bbb6-60f0-00cb-edc9a360fc59\",\n    \"name\": \"string\",\n    \"project_id\": \"25230bb5-4a52-db59-77b9-81359b86d225\",\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 8544.096303165938\n      },\n      \"key_1\": {\n        \"key_0\": 6809\n      }\n    },\n    \"config\": {\n      \"priority\": \"<string>\",\n      \"extraction_target\": \"<string>\",\n      \"extraction_mode\": \"<string>\",\n      \"parse_model\": \"<string>\",\n      \"extract_model\": \"<string>\",\n      \"multimodal_fast_mode\": false,\n      \"system_prompt\": \"<string>\",\n      \"use_reasoning\": false,\n      \"cite_sources\": false,\n      \"citation_bbox\": false,\n      \"confidence_scores\": false,\n      \"chunk_mode\": \"<string>\",\n      \"high_resolution_mode\": false,\n      \"invalidate_cache\": false,\n      \"num_pages_context\": \"<integer>\",\n      \"page_range\": \"<string>\"\n    },\n    \"custom_configuration\": \"string\",\n    \"created_at\": \"1986-07-12T19:40:22.196Z\",\n    \"updated_at\": \"1986-10-15T12:07:46.235Z\"\n  },\n  \"status\": \"SUCCESS\",\n  \"error\": \"string\",\n  \"file_id\": \"3eb2773b-cc2d-27bf-9fbf-43651c48c2d9\",\n  \"file\": {\n    \"id\": \"ddd451a5-1f70-d991-4a9e-78c85e496109\",\n    \"name\": \"string\",\n    \"project_id\": \"9ca45b10-7c6d-62ad-d680-2f24933580f8\",\n    \"created_at\": \"1964-02-29T17:38:47.947Z\",\n    \"updated_at\": \"1977-12-06T17:33:24.970Z\",\n    \"external_file_id\": \"string\",\n    \"file_size\": 8680,\n    \"file_type\": \"string\",\n    \"last_modified_at\": \"1961-05-18T22:49:24.807Z\",\n    \"resource_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1765.7078282549387\n      },\n      \"key_1\": {\n        \"key_0\": true\n      }\n    },\n    \"permission_info\": {\n      \"key_0\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"data_source_id\": \"52b0f1cd-36c7-c84e-733b-cdd6a96e2bdc\",\n    \"expires_at\": \"2012-09-04T19:07:13.494Z\",\n    \"purpose\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3671246-c599-42b5-abf9-f07a049587bf",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": 4353.46115172286,\n      \"key_2\": 3720\n    },\n    \"key_1\": {\n      \"key_0\": 8884,\n      \"key_1\": 7812.692619860454\n    },\n    \"key_2\": {\n      \"key_0\": \"string\"\n    },\n    \"key_3\": {\n      \"key_0\": 9691.844876718096,\n      \"key_1\": 8798\n    },\n    \"key_4\": {\n      \"key_0\": 5922,\n      \"key_1\": 7839\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"webhook_configurations\": [\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    },\n    {\n      \"webhook_url\": \"<string>\",\n      \"webhook_headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"webhook_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"webhook_output_format\": \"<string>\"\n    }\n  ],\n  \"file_id\": \"<uuid>\",\n  \"text\": \"<string>\",\n  \"file\": {\n    \"data\": \"<string>\",\n    \"mime_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b62259fb-72cd-40d7-ad1b-6fd944ddcc0b",
+          "name": "Create Extraction Agent",
+          "request": {
+            "name": "Create Extraction Agent",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 8787\n    },\n    \"key_1\": {\n      \"key_0\": 9782.74802528321\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1fdb5c3a-9103-47d7-93ac-fd18c5db5b00",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 7037,\n      \"key_1\": 6598\n    },\n    \"key_1\": {\n      \"key_0\": false,\n      \"key_1\": false,\n      \"key_2\": 5425,\n      \"key_3\": \"string\"\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"938796d9-5caa-1948-3cbe-1e772b33b9db\",\n  \"name\": \"string\",\n  \"project_id\": \"1b1307f6-ac99-4772-a5fc-0224ffda82c5\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 2512,\n      \"key_1\": 1185.8577785732527,\n      \"key_2\": \"string\",\n      \"key_3\": 3087.057923448426\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"custom_configuration\": \"string\",\n  \"created_at\": \"1989-10-22T19:27:47.117Z\",\n  \"updated_at\": \"2008-08-25T14:05:13.666Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8a477ce-0fde-4768-9103-43bc4fee6133",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 7037,\n      \"key_1\": 6598\n    },\n    \"key_1\": {\n      \"key_0\": false,\n      \"key_1\": false,\n      \"key_2\": 5425,\n      \"key_3\": \"string\"\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c113d552-dc84-44c2-b5c8-3df7782e994a",
+          "name": "List Extraction Agents",
+          "request": {
+            "name": "List Extraction Agents",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_default",
+                  "value": "false",
+                  "description": "Whether to include default agents in the results"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd02b294-2c56-47ae-a5b8-2445bce98c62",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_default",
+                      "value": "false"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"6b85058f-bd2e-afca-f13d-7271434f80c9\",\n    \"name\": \"string\",\n    \"project_id\": \"167f719d-d8a9-84e4-8695-e8c6d8c2eb1c\",\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 4618,\n        \"key_1\": 368.4902624831632,\n        \"key_2\": 1701\n      },\n      \"key_1\": {\n        \"key_0\": true,\n        \"key_1\": 8505\n      }\n    },\n    \"config\": {\n      \"priority\": \"<string>\",\n      \"extraction_target\": \"<string>\",\n      \"extraction_mode\": \"<string>\",\n      \"parse_model\": \"<string>\",\n      \"extract_model\": \"<string>\",\n      \"multimodal_fast_mode\": false,\n      \"system_prompt\": \"<string>\",\n      \"use_reasoning\": false,\n      \"cite_sources\": false,\n      \"citation_bbox\": false,\n      \"confidence_scores\": false,\n      \"chunk_mode\": \"<string>\",\n      \"high_resolution_mode\": false,\n      \"invalidate_cache\": false,\n      \"num_pages_context\": \"<integer>\",\n      \"page_range\": \"<string>\"\n    },\n    \"custom_configuration\": \"string\",\n    \"created_at\": \"1972-11-20T15:37:52.941Z\",\n    \"updated_at\": \"1977-01-13T07:16:12.461Z\"\n  },\n  {\n    \"id\": \"1c7de9db-f0d7-67c0-fb1b-7b075b731ad4\",\n    \"name\": \"string\",\n    \"project_id\": \"28955b04-7004-2e98-d833-70c800c7e2d7\",\n    \"data_schema\": {\n      \"key_0\": {\n        \"key_0\": 252,\n        \"key_1\": true\n      },\n      \"key_1\": {\n        \"key_0\": 2251.9699830371433,\n        \"key_1\": false,\n        \"key_2\": 4280\n      },\n      \"key_2\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": false\n      }\n    },\n    \"config\": {\n      \"priority\": \"<string>\",\n      \"extraction_target\": \"<string>\",\n      \"extraction_mode\": \"<string>\",\n      \"parse_model\": \"<string>\",\n      \"extract_model\": \"<string>\",\n      \"multimodal_fast_mode\": false,\n      \"system_prompt\": \"<string>\",\n      \"use_reasoning\": false,\n      \"cite_sources\": false,\n      \"citation_bbox\": false,\n      \"confidence_scores\": false,\n      \"chunk_mode\": \"<string>\",\n      \"high_resolution_mode\": false,\n      \"invalidate_cache\": false,\n      \"num_pages_context\": \"<integer>\",\n      \"page_range\": \"<string>\"\n    },\n    \"custom_configuration\": \"string\",\n    \"created_at\": \"2015-12-23T18:47:26.278Z\",\n    \"updated_at\": \"1953-05-31T22:52:47.630Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d792d7fb-cb5b-4b3b-b274-b3345fcf8c5b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_default",
+                      "value": "false"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a65e07de-c447-46b6-8e20-2e06d71f7164",
+          "name": "Validate Extraction Schema",
+          "request": {
+            "name": "Validate Extraction Schema",
+            "description": {
+              "content": "Validate an extraction agent schema; returns the normalized schema or raises 400.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents",
+                "schema",
+                "validation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 3173,\n      \"key_1\": true,\n      \"key_2\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 4623.912755314194\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9179cac8-8847-4619-bf57-bf3db08d2505",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    "schema",
+                    "validation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 406,\n      \"key_1\": \"string\",\n      \"key_2\": 3970.9517912288807\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": true,\n      \"key_1\": 7498.433236593607,\n      \"key_2\": 8291\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "104f2a15-a599-4205-a59c-0a3885159536",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    "schema",
+                    "validation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 406,\n      \"key_1\": \"string\",\n      \"key_2\": 3970.9517912288807\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9abd39c9-31ef-478f-a81d-cc74aa50adc2",
+          "name": "Generate Extraction Schema",
+          "request": {
+            "name": "Generate Extraction Schema",
+            "description": {
+              "content": "Generate or refine an extraction agent schema from a file, natural-language prompt, or existing schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents",
+                "schema",
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"file_id\": \"<uuid>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 4985,\n      \"key_1\": 502.2583633677491\n    },\n    \"key_1\": {\n      \"key_0\": 3898.202618589366\n    },\n    \"key_2\": {\n      \"key_0\": true,\n      \"key_1\": 6038\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f81d737e-b279-4efa-807b-b4fd3835b596",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    "schema",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"<string>\",\n  \"file_id\": \"<uuid>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 4591,\n      \"key_1\": 1918.1567542194423\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3247623-617b-4c93-9438-51d9f2f8b579",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    "schema",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"<string>\",\n  \"file_id\": \"<uuid>\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d8004f4-d2d0-416b-8c8e-dd662c10328b",
+          "name": "Get Extraction Agent By Name",
+          "request": {
+            "name": "Get Extraction Agent By Name",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents",
+                "by-name",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a999ce7-ebe8-4628-8a37-2bbede068ad3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    "by-name",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"938796d9-5caa-1948-3cbe-1e772b33b9db\",\n  \"name\": \"string\",\n  \"project_id\": \"1b1307f6-ac99-4772-a5fc-0224ffda82c5\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 2512,\n      \"key_1\": 1185.8577785732527,\n      \"key_2\": \"string\",\n      \"key_3\": 3087.057923448426\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"custom_configuration\": \"string\",\n  \"created_at\": \"1989-10-22T19:27:47.117Z\",\n  \"updated_at\": \"2008-08-25T14:05:13.666Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e729ae62-23af-49a2-a6ca-9c7423e9c818",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    "by-name",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "398b63f0-7fff-4fde-b397-80ffd3c4d81b",
+          "name": "Get Or Create Default Extraction Agent",
+          "request": {
+            "name": "Get Or Create Default Extraction Agent",
+            "description": {
+              "content": "Get or create the default extraction agent for the current project (empty schema, default config).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12471279-63f5-4613-8d05-cb89ba74935a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"938796d9-5caa-1948-3cbe-1e772b33b9db\",\n  \"name\": \"string\",\n  \"project_id\": \"1b1307f6-ac99-4772-a5fc-0224ffda82c5\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 2512,\n      \"key_1\": 1185.8577785732527,\n      \"key_2\": \"string\",\n      \"key_3\": 3087.057923448426\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"custom_configuration\": \"string\",\n  \"created_at\": \"1989-10-22T19:27:47.117Z\",\n  \"updated_at\": \"2008-08-25T14:05:13.666Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "722027ae-8605-46b9-8fb5-326472f11e18",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fff3f2f4-4358-4242-bd57-c5e95931b318",
+          "name": "Get Extraction Agent",
+          "request": {
+            "name": "Get Extraction Agent",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents",
+                ":extraction_agent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "extraction_agent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "82ac2af5-bb6e-425d-899f-a3892c065fee",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    ":extraction_agent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "extraction_agent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"938796d9-5caa-1948-3cbe-1e772b33b9db\",\n  \"name\": \"string\",\n  \"project_id\": \"1b1307f6-ac99-4772-a5fc-0224ffda82c5\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 2512,\n      \"key_1\": 1185.8577785732527,\n      \"key_2\": \"string\",\n      \"key_3\": 3087.057923448426\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"custom_configuration\": \"string\",\n  \"created_at\": \"1989-10-22T19:27:47.117Z\",\n  \"updated_at\": \"2008-08-25T14:05:13.666Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42210d63-5d1b-4eb2-b364-7e383fd1328a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    ":extraction_agent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "extraction_agent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f8c5c4e-9518-4ba7-bcdf-746c267594fd",
+          "name": "Delete Extraction Agent",
+          "request": {
+            "name": "Delete Extraction Agent",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents",
+                ":extraction_agent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "extraction_agent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e9db0106-da69-4c5a-8b2d-5d0ee35ed53a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    ":extraction_agent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "extraction_agent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3204d82c-a039-4c9d-826b-a25dbc617b58",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    ":extraction_agent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "extraction_agent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4078fc93-7b37-4762-b762-7d5935a0e28d",
+          "name": "Update Extraction Agent",
+          "request": {
+            "name": "Update Extraction Agent",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "extraction",
+                "extraction-agents",
+                ":extraction_agent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "extraction_agent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 4171\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b53440f-bd94-4931-ab20-51a647040955",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    ":extraction_agent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "extraction_agent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 5731,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 2620.176519451587\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"938796d9-5caa-1948-3cbe-1e772b33b9db\",\n  \"name\": \"string\",\n  \"project_id\": \"1b1307f6-ac99-4772-a5fc-0224ffda82c5\",\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 2512,\n      \"key_1\": 1185.8577785732527,\n      \"key_2\": \"string\",\n      \"key_3\": 3087.057923448426\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  },\n  \"custom_configuration\": \"string\",\n  \"created_at\": \"1989-10-22T19:27:47.117Z\",\n  \"updated_at\": \"2008-08-25T14:05:13.666Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74240790-852c-48d2-b56d-5f3005d08890",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "extraction",
+                    "extraction-agents",
+                    ":extraction_agent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "extraction_agent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_schema\": {\n    \"key_0\": {\n      \"key_0\": 5731,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 2620.176519451587\n    }\n  },\n  \"config\": {\n    \"priority\": \"<string>\",\n    \"extraction_target\": \"<string>\",\n    \"extraction_mode\": \"<string>\",\n    \"parse_model\": \"<string>\",\n    \"extract_model\": \"<string>\",\n    \"multimodal_fast_mode\": false,\n    \"system_prompt\": \"<string>\",\n    \"use_reasoning\": false,\n    \"cite_sources\": false,\n    \"citation_bbox\": false,\n    \"confidence_scores\": false,\n    \"chunk_mode\": \"<string>\",\n    \"high_resolution_mode\": false,\n    \"invalidate_cache\": false,\n    \"num_pages_context\": \"<integer>\",\n    \"page_range\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "819d5a6e-a125-44bb-ba51-ca050ab6ad86",
+    "name": "Llama Platform Agent Data LlamaExtract API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

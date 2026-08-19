@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Llama Platform Agent Data Parse API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Parse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload File Multipart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/parse/upload",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Upload and parse a file using multipart/form-data.\n\nSend the file as a `file` field and parsing configuration as a\n`configuration` JSON string field.\n\nThe job runs asynchronously. Poll `GET /parse/{job_id}` with\n`expand` to retrieve results."
+        },
+        {
+          "info": {
+            "name": "List Parse Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/parse",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job status (PENDING, RUNNING, COMPLETED, FAILED, CANCELLED)"
+              },
+              {
+                "name": "job_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific job IDs"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_at_on_or_after",
+                "value": "",
+                "type": "query",
+                "description": "Include items created at or after this timestamp (inclusive)"
+              },
+              {
+                "name": "created_at_on_or_before",
+                "value": "",
+                "type": "query",
+                "description": "Include items created at or before this timestamp (inclusive)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List parse jobs for the current project.\n\nFilter by `status` or creation date range. Results are\npaginated — use `page_token` from the response to fetch\nsubsequent pages."
+        },
+        {
+          "info": {
+            "name": "Parse File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/parse",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Parse a file by file ID or URL.\n\nProvide either `file_id` (a previously uploaded file) or\n`source_url` (a publicly accessible URL). Configure parsing\nwith options like `tier`, `target_pages`, and `lang`.\n\n## Tiers\n\n- `fast` — rule-based, cheapest, no AI\n- `cost_effective` — balanced speed and quality\n- `agentic` — full AI-powered parsing\n- `agentic_plus` — premium AI with specialized features\n\nThe job runs asynchronously. Poll `GET /parse/{job_id}` with\n`expand=text` or `expand=markdown` to retr"
+        },
+        {
+          "info": {
+            "name": "List Parse Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/parse/versions"
+          },
+          "docs": "List the parse versions accepted by each tier."
+        },
+        {
+          "info": {
+            "name": "Get Parse Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v2/parse/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Fields to include: text, markdown, items, metadata, job_metadata, text_content_metadata, markdown_content_metadata, items_content_metadata, metadata_content_metadata, raw_words_content_metadata, xlsx_content_metadata, output_pdf_content_metadata, images_content_metadata. Metadata fields include presigned URLs."
+              },
+              {
+                "name": "image_filenames",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific image filenames (optional). Example: image_0.png,image_1.jpg"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a parse job with optional expanded content.\n\nBy default returns job metadata only. Use `expand` to include\nparsed content:\n\n- `text` — plain text output\n- `markdown` — markdown output\n- `items` — structured page-by-page output\n- `job_metadata` — usage and processing details\n\nContent metadata fields (e.g. `text_content_metadata`) return\npresigned URLs for downloading large results."
+        },
+        {
+          "info": {
+            "name": "Cancel Parse Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/parse/:job_id/cancel",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel a running parse job.\n\nStops processing and marks the job as CANCELLED. Returns the updated job. Jobs already in a terminal state (COMPLETED, FAILED, CANCELLED) cannot be cancelled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

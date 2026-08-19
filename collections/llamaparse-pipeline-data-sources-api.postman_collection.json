@@ -1,0 +1,1022 @@
+{
+  "item": [
+    {
+      "id": "daf42f8f-afb8-4346-953c-65662301112f",
+      "name": "Pipeline Data Sources",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "030ebd73-d6f6-4c0f-a4c3-4669b5fa3a98",
+          "name": "List Pipeline Data Sources",
+          "request": {
+            "name": "List Pipeline Data Sources",
+            "description": {
+              "content": "Get data sources for a pipeline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "pipelines",
+                ":pipeline_id",
+                "data-sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pipeline_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a794f56c-8dad-4d65-8783-883a0201a843",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"d6cb7388-77a5-1e31-5ea9-aa3be6e00897\",\n    \"name\": \"string\",\n    \"source_type\": \"NOTION_PAGE\",\n    \"component\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3850,\n      \"key_2\": true\n    },\n    \"project_id\": \"9979ac4f-cac5-9141-8648-0add275169bc\",\n    \"data_source_id\": \"59920faf-76bf-f05d-d689-1d887e725e9c\",\n    \"pipeline_id\": \"1b80a6bf-6421-5225-f26f-07ced066d14d\",\n    \"last_synced_at\": \"1953-04-24T17:33:55.044Z\",\n    \"created_at\": \"2019-03-08T07:17:52.375Z\",\n    \"updated_at\": \"2018-05-27T19:02:39.794Z\",\n    \"custom_metadata\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"2.1\"\n    },\n    \"sync_interval\": 6459.858306301243,\n    \"sync_schedule_set_by\": \"string\",\n    \"status\": \"ERROR\",\n    \"status_updated_at\": \"1984-12-03T11:05:20.067Z\"\n  },\n  {\n    \"id\": \"b18e7d67-0fbf-cae2-3f25-9502c0879263\",\n    \"name\": \"string\",\n    \"source_type\": \"SLACK\",\n    \"component\": {\n      \"key_0\": true\n    },\n    \"project_id\": \"ddadbcf1-bd79-7fbd-90db-ae6458752f4e\",\n    \"data_source_id\": \"e4aac6d5-d2eb-13f4-c111-abf1cf4dc864\",\n    \"pipeline_id\": \"de7ced52-e127-15b9-d5ce-afe4560779ca\",\n    \"last_synced_at\": \"2003-05-17T12:18:49.848Z\",\n    \"created_at\": \"2007-06-12T14:20:28.614Z\",\n    \"updated_at\": \"2001-10-31T13:56:47.370Z\",\n    \"custom_metadata\": {\n      \"key_0\": {\n        \"key_0\": 1976.3626329888007,\n        \"key_1\": 3431\n      },\n      \"key_1\": {\n        \"key_0\": 6710.937787409253\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"2.1\"\n    },\n    \"sync_interval\": 9265.868200521682,\n    \"sync_schedule_set_by\": \"string\",\n    \"status\": \"CANCELLED\",\n    \"status_updated_at\": \"1972-01-13T15:57:11.054Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de08e15d-3dbb-4086-a0f5-858cfa041afa",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80e255e5-bf1b-47ea-ab03-585157387b00",
+          "name": "Add Data Sources To Pipeline",
+          "request": {
+            "name": "Add Data Sources To Pipeline",
+            "description": {
+              "content": "Add data sources to a pipeline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "pipelines",
+                ":pipeline_id",
+                "data-sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pipeline_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  },\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3b95738-1955-4f55-94cc-288c4d68efc6",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  },\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"b3e34516-f001-bea2-b779-a406c71d0236\",\n    \"name\": \"string\",\n    \"source_type\": \"SLACK\",\n    \"component\": {\n      \"key_0\": \"string\"\n    },\n    \"project_id\": \"4919b2ce-0563-645d-d1a3-16a1acba99b9\",\n    \"data_source_id\": \"fa7e176c-3eb0-24ee-5f5a-12f0f9cd8890\",\n    \"pipeline_id\": \"677734d2-75a5-b2a4-4632-aaeb325e6808\",\n    \"last_synced_at\": \"2005-12-01T18:06:06.320Z\",\n    \"created_at\": \"2003-12-19T11:45:04.977Z\",\n    \"updated_at\": \"2025-10-02T10:06:59.102Z\",\n    \"custom_metadata\": {\n      \"key_0\": {\n        \"key_0\": true,\n        \"key_1\": 6732,\n        \"key_2\": 1713\n      },\n      \"key_1\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": false\n      },\n      \"key_2\": {\n        \"key_0\": 9557.625897615995,\n        \"key_1\": \"string\"\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"2.1\"\n    },\n    \"sync_interval\": 9421.601084008153,\n    \"sync_schedule_set_by\": \"string\",\n    \"status\": \"IN_PROGRESS\",\n    \"status_updated_at\": \"2011-12-08T20:03:56.731Z\"\n  },\n  {\n    \"id\": \"ac89b839-9332-094f-3857-9cab2c6c2d30\",\n    \"name\": \"string\",\n    \"source_type\": \"MICROSOFT_ONEDRIVE\",\n    \"component\": {\n      \"key_0\": \"string\",\n      \"key_1\": 2350,\n      \"key_2\": 1609\n    },\n    \"project_id\": \"b0930896-6644-733f-9e66-db1ee690d869\",\n    \"data_source_id\": \"502831bd-98d2-d9e2-ecd3-e672b8d36ac6\",\n    \"pipeline_id\": \"26f58e7b-d413-4791-2bd1-48cbf3fdf5ba\",\n    \"last_synced_at\": \"2004-12-23T18:28:59.537Z\",\n    \"created_at\": \"1982-06-26T12:26:44.056Z\",\n    \"updated_at\": \"1985-09-14T17:44:58.402Z\",\n    \"custom_metadata\": {\n      \"key_0\": {\n        \"key_0\": 187\n      }\n    },\n    \"version_metadata\": {\n      \"reader_version\": \"2.1\"\n    },\n    \"sync_interval\": 2930.5023399808283,\n    \"sync_schedule_set_by\": \"string\",\n    \"status\": \"NOT_STARTED\",\n    \"status_updated_at\": \"2001-03-21T15:32:20.133Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f566de7a-3f0f-4d59-a2de-e46d1738e3ae",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  },\n  {\n    \"data_source_id\": \"<uuid>\",\n    \"sync_interval\": \"<number>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f7e2793-7554-40c4-9c4e-04ceb7bbc926",
+          "name": "Update Pipeline Data Source",
+          "request": {
+            "name": "Update Pipeline Data Source",
+            "description": {
+              "content": "Update the configuration of a data source in a pipeline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "pipelines",
+                ":pipeline_id",
+                "data-sources",
+                ":data_source_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "data_source_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pipeline_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sync_interval\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74ca490d-8691-40d6-95e5-fb83a151b825",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources",
+                    ":data_source_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sync_interval\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8f092538-5d58-acc6-06b2-5652e9f834e3\",\n  \"name\": \"string\",\n  \"source_type\": \"BOX\",\n  \"component\": {\n    \"key_0\": false\n  },\n  \"project_id\": \"a82a2a27-864e-d439-51e9-16ab8b24e8b0\",\n  \"data_source_id\": \"089055be-ddba-df9e-bfb1-556c3fa90973\",\n  \"pipeline_id\": \"44b10aac-ff16-77ff-3938-474db5a3bf0a\",\n  \"last_synced_at\": \"1982-04-29T12:44:14.771Z\",\n  \"created_at\": \"2004-09-24T13:22:56.917Z\",\n  \"updated_at\": \"1983-04-14T11:19:27.218Z\",\n  \"custom_metadata\": {\n    \"key_0\": {\n      \"key_0\": false\n    }\n  },\n  \"version_metadata\": {\n    \"reader_version\": \"2.1\"\n  },\n  \"sync_interval\": 6228.881698637114,\n  \"sync_schedule_set_by\": \"string\",\n  \"status\": \"NOT_STARTED\",\n  \"status_updated_at\": \"2007-05-24T07:31:09.050Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0c78003-9e84-432f-ad16-882f365d9b7e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources",
+                    ":data_source_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sync_interval\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8982ebf-9de5-4fa7-8853-2e5b8c6e2afd",
+          "name": "Sync Pipeline Data Source",
+          "request": {
+            "name": "Sync Pipeline Data Source",
+            "description": {
+              "content": "Run incremental ingestion: pull upstream changes from the data source into the data sink.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "pipelines",
+                ":pipeline_id",
+                "data-sources",
+                ":data_source_id",
+                "sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "data_source_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pipeline_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipeline_file_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b908a0ae-3843-4ede-80ac-0dae37eed1bc",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources",
+                    ":data_source_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipeline_file_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"31b7216f-eddb-ecbd-a1d1-288fb2430df7\",\n  \"name\": \"string\",\n  \"project_id\": \"caf3b5e0-5c2d-0926-d8ab-c11c10ead806\",\n  \"embedding_config\": {\n    \"type\": \"MANAGED_OPENAI_EMBEDDING\",\n    \"component\": {\n      \"model_name\": \"openai-text-embedding-3-small\",\n      \"embed_batch_size\": 10,\n      \"num_workers\": 820,\n      \"class_name\": \"ManagedOpenAIEmbedding\"\n    }\n  },\n  \"created_at\": \"1952-11-22T17:37:27.180Z\",\n  \"updated_at\": \"2017-03-14T02:31:41.820Z\",\n  \"embedding_model_config_id\": \"88f631d2-7353-b4af-5790-daa4b170e917\",\n  \"embedding_model_config\": {\n    \"id\": \"f95e7ec4-a675-6b18-0952-5e7167fbbbd5\",\n    \"name\": \"string\",\n    \"embedding_config\": {\n      \"type\": \"AZURE_EMBEDDING\",\n      \"component\": {\n        \"model_name\": \"text-embedding-ada-002\",\n        \"embed_batch_size\": 10,\n        \"num_workers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"additional_kwargs\": {\n          \"key_0\": \"string\"\n        },\n        \"api_key\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"api_base\": \"\",\n        \"api_version\": \"\",\n        \"max_retries\": 10,\n        \"timeout\": 60,\n        \"default_headers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reuse_client\": true,\n        \"dimensions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"azure_endpoint\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"azure_deployment\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"class_name\": \"AzureOpenAIEmbedding\"\n      }\n    },\n    \"project_id\": \"e93b2c18-6ba4-7726-c469-6fb1b7efb7e3\",\n    \"created_at\": \"1983-03-11T19:22:30.755Z\",\n    \"updated_at\": \"1953-09-25T19:11:49.194Z\"\n  },\n  \"pipeline_type\": \"MANAGED\",\n  \"managed_pipeline_id\": \"c747f5fd-2887-86df-142c-f3ef1125ffc7\",\n  \"sparse_model_config\": {\n    \"model_type\": \"splade\",\n    \"class_name\": \"SparseModelConfig\"\n  },\n  \"config_hash\": {\n    \"embedding_config_hash\": \"string\",\n    \"parsing_config_hash\": \"string\",\n    \"transform_config_hash\": \"string\"\n  },\n  \"transform_config\": {\n    \"mode\": \"auto\",\n    \"chunk_size\": 1024,\n    \"chunk_overlap\": 200\n  },\n  \"preset_retrieval_parameters\": {\n    \"dense_similarity_top_k\": 76,\n    \"dense_similarity_cutoff\": 0.9768873865181378,\n    \"sparse_similarity_top_k\": 53,\n    \"enable_reranking\": true,\n    \"rerank_top_n\": 20,\n    \"alpha\": 0.2922115020231201,\n    \"search_filters\": {\n      \"filters\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"operator\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"operator\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"condition\": \"and\"\n    },\n    \"search_filters_inference_schema\": {\n      \"key_0\": {\n        \"key_0\": 263,\n        \"key_1\": 9116.764684845322\n      },\n      \"key_1\": {\n        \"key_0\": 2184\n      }\n    },\n    \"files_top_k\": 4,\n    \"retrieval_mode\": \"chunks\",\n    \"retrieve_image_nodes\": false,\n    \"retrieve_page_screenshot_nodes\": false,\n    \"retrieve_page_figure_nodes\": false,\n    \"class_name\": \"base_component\"\n  },\n  \"llama_parse_parameters\": {\n    \"webhook_configurations\": [\n      {\n        \"webhook_url\": \"string\",\n        \"webhook_headers\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"webhook_events\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"webhook_output_format\": \"string\"\n      },\n      {\n        \"webhook_url\": \"string\",\n        \"webhook_headers\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"webhook_events\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"webhook_output_format\": \"string\"\n      }\n    ],\n    \"priority\": \"critical\",\n    \"languages\": [\n      \"pi\"\n    ],\n    \"parsing_instruction\": \"string\",\n    \"disable_ocr\": false,\n    \"annotate_links\": true,\n    \"adaptive_long_table\": false,\n    \"compact_markdown_table\": false,\n    \"disable_reconstruction\": false,\n    \"disable_image_extraction\": true,\n    \"invalidate_cache\": false,\n    \"outlined_table_extraction\": true,\n    \"aggressive_table_extraction\": false,\n    \"merge_tables_across_pages_in_markdown\": true,\n    \"output_pdf_of_document\": false,\n    \"do_not_cache\": true,\n    \"fast_mode\": true,\n    \"skip_diagonal_text\": false,\n    \"preserve_layout_alignment_across_pages\": false,\n    \"preserve_very_small_text\": true,\n    \"gpt4o_mode\": false,\n    \"gpt4o_api_key\": \"string\",\n    \"do_not_unroll_columns\": false,\n    \"extract_layout\": true,\n    \"high_res_ocr\": true,\n    \"html_make_all_elements_visible\": true,\n    \"layout_aware\": false,\n    \"specialized_chart_parsing_agentic\": true,\n    \"specialized_chart_parsing_plus\": false,\n    \"specialized_chart_parsing_efficient\": true,\n    \"specialized_image_parsing\": false,\n    \"precise_bounding_box\": false,\n    \"line_level_bounding_box\": true,\n    \"html_remove_navigation_elements\": false,\n    \"html_remove_fixed_elements\": false,\n    \"guess_xlsx_sheet_name\": false,\n    \"page_separator\": \"string\",\n    \"bounding_box\": \"string\",\n    \"bbox_top\": 5846.266242859981,\n    \"bbox_right\": 2264.8697130042783,\n    \"bbox_bottom\": 2266.9780034764876,\n    \"bbox_left\": 6798.309753923054,\n    \"target_pages\": \"string\",\n    \"use_vendor_multimodal_model\": true,\n    \"vendor_multimodal_model_name\": \"string\",\n    \"model\": \"string\",\n    \"vendor_multimodal_api_key\": \"string\",\n    \"page_prefix\": \"string\",\n    \"page_suffix\": \"string\",\n    \"webhook_url\": \"string\",\n    \"preset\": \"string\",\n    \"take_screenshot\": false,\n    \"is_formatting_instruction\": false,\n    \"premium_mode\": false,\n    \"continuous_mode\": false,\n    \"input_s3_path\": \"string\",\n    \"input_s3_region\": \"string\",\n    \"output_s3_path_prefix\": \"string\",\n    \"output_s3_region\": \"string\",\n    \"project_id\": \"string\",\n    \"azure_openai_deployment_name\": \"string\",\n    \"azure_openai_endpoint\": \"string\",\n    \"azure_openai_api_version\": \"string\",\n    \"azure_openai_key\": \"string\",\n    \"input_url\": \"string\",\n    \"http_proxy\": \"string\",\n    \"auto_mode\": true,\n    \"auto_mode_trigger_on_regexp_in_page\": \"string\",\n    \"auto_mode_trigger_on_text_in_page\": \"string\",\n    \"auto_mode_trigger_on_table_in_page\": false,\n    \"auto_mode_trigger_on_image_in_page\": true,\n    \"auto_mode_configuration_json\": \"string\",\n    \"structured_output\": false,\n    \"structured_output_json_schema\": \"string\",\n    \"structured_output_json_schema_name\": \"string\",\n    \"max_pages\": 1578,\n    \"max_pages_enforced\": 3108,\n    \"extract_charts\": false,\n    \"formatting_instruction\": \"string\",\n    \"complemental_formatting_instruction\": \"string\",\n    \"content_guideline_instruction\": \"string\",\n    \"spreadsheet_extract_sub_tables\": false,\n    \"spreadsheet_force_formula_computation\": false,\n    \"spreadsheet_include_hidden_sheets\": false,\n    \"inline_images_in_markdown\": false,\n    \"job_timeout_in_seconds\": 7050.153556039104,\n    \"job_timeout_extra_time_per_page_in_seconds\": 1418.6078150183068,\n    \"strict_mode_image_extraction\": true,\n    \"strict_mode_image_ocr\": false,\n    \"strict_mode_reconstruction\": false,\n    \"strict_mode_buggy_font\": false,\n    \"save_images\": false,\n    \"images_to_save\": [\n      \"embedded\",\n      \"screenshot\"\n    ],\n    \"hide_headers\": true,\n    \"hide_footers\": true,\n    \"page_header_prefix\": \"string\",\n    \"page_header_suffix\": \"string\",\n    \"page_footer_prefix\": \"string\",\n    \"page_footer_suffix\": \"string\",\n    \"remove_hidden_text\": false,\n    \"keep_page_separator_when_merging_tables\": true,\n    \"ignore_document_elements_for_layout_detection\": true,\n    \"output_tables_as_HTML\": false,\n    \"internal_is_screenshot_job\": false,\n    \"parse_mode\": \"parse_document_with_agent\",\n    \"system_prompt\": \"string\",\n    \"system_prompt_append\": \"string\",\n    \"user_prompt\": \"string\",\n    \"page_error_tolerance\": 8253.313849915943,\n    \"replace_failed_page_mode\": \"error_message\",\n    \"replace_failed_page_with_error_message_prefix\": \"string\",\n    \"replace_failed_page_with_error_message_suffix\": \"string\",\n    \"markdown_table_multiline_header_separator\": \"string\",\n    \"presentation_out_of_bounds_content\": true,\n    \"presentation_skip_embedded_data\": true,\n    \"tier\": \"string\",\n    \"version\": \"string\",\n    \"extract_printed_page_number\": true,\n    \"enable_cost_optimizer\": false\n  },\n  \"data_sink\": {\n    \"id\": \"3ef5854a-ab03-07d9-0193-f46584117e75\",\n    \"name\": \"string\",\n    \"sink_type\": \"POSTGRES\",\n    \"component\": {\n      \"key_0\": \"string\"\n    },\n    \"project_id\": \"7d33b51c-e788-829f-c805-9267e62482b0\",\n    \"created_at\": \"1977-08-10T03:14:57.462Z\",\n    \"updated_at\": \"1967-08-28T00:59:12.592Z\"\n  },\n  \"status\": \"DELETING\",\n  \"metadata_config\": {\n    \"excluded_embed_metadata_keys\": [\n      \"string\",\n      \"string\"\n    ],\n    \"excluded_llm_metadata_keys\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10331937-5d7c-40e1-a405-1d59d42ae639",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources",
+                    ":data_source_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipeline_file_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa207c79-dae5-488b-a991-95574abf5e66",
+          "name": "Get Pipeline Data Source Status",
+          "request": {
+            "name": "Get Pipeline Data Source Status",
+            "description": {
+              "content": "Get the status of a data source for a pipeline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "pipelines",
+                ":pipeline_id",
+                "data-sources",
+                ":data_source_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "data_source_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pipeline_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e62f29b1-96f6-4139-87c2-160381c35064",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources",
+                    ":data_source_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"SUCCESS\",\n  \"job_id\": \"0318b11b-8426-4a0f-9786-e9868b003b3a\",\n  \"deployment_date\": \"2020-06-17T00:59:00.591Z\",\n  \"error\": [\n    {\n      \"job_id\": \"bcb126be-5162-98b3-3bbb-71e59cc7883f\",\n      \"message\": \"string\",\n      \"step\": \"METADATA_UPDATE\"\n    },\n    {\n      \"job_id\": \"0d8f4a42-493c-434e-d372-ed7118ce54bc\",\n      \"message\": \"string\",\n      \"step\": \"INGESTION\"\n    }\n  ],\n  \"effective_at\": \"1948-03-16T08:35:38.694Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "968b6d52-4493-49c6-bd63-829d38e6b192",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "pipelines",
+                    ":pipeline_id",
+                    "data-sources",
+                    ":data_source_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "data_source_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pipeline_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5de76b53-2833-43c1-b81c-1895204d8319",
+    "name": "Llama Platform Agent Data Pipeline Data Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

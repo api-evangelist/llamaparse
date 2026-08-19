@@ -1,0 +1,1612 @@
+{
+  "item": [
+    {
+      "id": "a80b5b45-ea2a-47af-a052-fbb6c053d905",
+      "name": "Retrievers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "840e94a7-86a0-4aee-ae63-b68fc7e6b40f",
+          "name": "Create Retriever",
+          "request": {
+            "name": "Create Retriever",
+            "description": {
+              "content": "Create a new Retriever.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "retrievers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 8279,\n            \"key_1\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": 9524.275551334347,\n            \"key_1\": 1947\n          },\n          \"key_2\": {\n            \"key_0\": 6825.035843286746\n          },\n          \"key_3\": {\n            \"key_0\": false,\n            \"key_1\": true,\n            \"key_2\": false,\n            \"key_3\": \"string\"\n          },\n          \"key_4\": {\n            \"key_0\": 1841\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": 434,\n            \"key_1\": 1535\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "076942df-6144-48e4-bf6f-4b7315bf8d0d",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": 4971.3767297873055,\n            \"key_2\": true\n          },\n          \"key_1\": {\n            \"key_0\": 3951.6415557824857,\n            \"key_1\": 7346.3606850730075\n          },\n          \"key_2\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"id\": \"571af2e0-ec3d-8c3a-a522-94da008a882e\",\n  \"project_id\": \"b20ac78c-3c4e-b475-83ab-17c44c19dd6c\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": 6621\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 755,\n            \"key_1\": 8833.543831583855\n          },\n          \"key_1\": {\n            \"key_0\": 6454\n          },\n          \"key_2\": {\n            \"key_0\": true,\n            \"key_1\": 8265,\n            \"key_2\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"created_at\": \"1950-05-20T09:02:02.421Z\",\n  \"updated_at\": \"2018-09-02T10:06:31.154Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc338843-1557-4c1c-98eb-be1ddd375fdb",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": 4971.3767297873055,\n            \"key_2\": true\n          },\n          \"key_1\": {\n            \"key_0\": 3951.6415557824857,\n            \"key_1\": 7346.3606850730075\n          },\n          \"key_2\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bf1bf88-5596-4199-9881-6008a2d6f3d3",
+          "name": "Upsert Retriever",
+          "request": {
+            "name": "Upsert Retriever",
+            "description": {
+              "content": "Upsert a new Retriever.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "retrievers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": 7370.501077246634\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 2271,\n            \"key_1\": \"string\",\n            \"key_2\": false\n          },\n          \"key_1\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f19e61a4-20ee-4deb-ad5b-a6d9a17771d0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": 4971.3767297873055,\n            \"key_2\": true\n          },\n          \"key_1\": {\n            \"key_0\": 3951.6415557824857,\n            \"key_1\": 7346.3606850730075\n          },\n          \"key_2\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"id\": \"d2832c4d-188a-c595-4420-4ed33eadf8e0\",\n  \"project_id\": \"2a339262-2398-9e7d-cbab-21d111a3f0ad\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\",\n            \"key_1\": true,\n            \"key_2\": \"string\"\n          },\n          \"key_2\": {\n            \"key_0\": false\n          },\n          \"key_3\": {\n            \"key_0\": 3059.8684210357974,\n            \"key_1\": 3239\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": true\n          },\n          \"key_1\": {\n            \"key_0\": true,\n            \"key_1\": 7945\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"created_at\": \"1991-08-31T23:10:13.319Z\",\n  \"updated_at\": \"1968-11-06T14:47:11.940Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21cddddd-c7fb-42c3-90e5-6fa11b6d2194",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": 4971.3767297873055,\n            \"key_2\": true\n          },\n          \"key_1\": {\n            \"key_0\": 3951.6415557824857,\n            \"key_1\": 7346.3606850730075\n          },\n          \"key_2\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9de02b7-14df-49a1-aea4-121f4d589402",
+          "name": "List Retrievers",
+          "request": {
+            "name": "List Retrievers",
+            "description": {
+              "content": "List Retrievers for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "retrievers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c14b9093-6ef4-468a-9185-70ac8f8656c9",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"id\": \"1c874a71-193c-f7f2-ec41-39634f9d2ef1\",\n    \"project_id\": \"da4f9699-278a-1e70-109d-a1b58e7b14a5\",\n    \"pipelines\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"preset_retrieval_parameters\": {\n          \"dense_similarity_top_k\": \"<integer>\",\n          \"dense_similarity_cutoff\": \"<number>\",\n          \"sparse_similarity_top_k\": \"<integer>\",\n          \"enable_reranking\": \"<boolean>\",\n          \"rerank_top_n\": \"<integer>\",\n          \"alpha\": \"<number>\",\n          \"search_filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"search_filters_inference_schema\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"files_top_k\": \"<integer>\",\n          \"retrieval_mode\": \"<string>\",\n          \"retrieve_image_nodes\": false,\n          \"retrieve_page_screenshot_nodes\": false,\n          \"retrieve_page_figure_nodes\": false,\n          \"class_name\": \"base_component\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"preset_retrieval_parameters\": {\n          \"dense_similarity_top_k\": \"<integer>\",\n          \"dense_similarity_cutoff\": \"<number>\",\n          \"sparse_similarity_top_k\": \"<integer>\",\n          \"enable_reranking\": \"<boolean>\",\n          \"rerank_top_n\": \"<integer>\",\n          \"alpha\": \"<number>\",\n          \"search_filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"search_filters_inference_schema\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"files_top_k\": \"<integer>\",\n          \"retrieval_mode\": \"<string>\",\n          \"retrieve_image_nodes\": false,\n          \"retrieve_page_screenshot_nodes\": false,\n          \"retrieve_page_figure_nodes\": false,\n          \"class_name\": \"base_component\"\n        }\n      }\n    ],\n    \"created_at\": \"2007-07-14T06:34:38.237Z\",\n    \"updated_at\": \"1969-09-27T19:29:35.183Z\"\n  },\n  {\n    \"name\": \"string\",\n    \"id\": \"d326a98a-b68f-c6b6-770a-98dcf79650ca\",\n    \"project_id\": \"57ee183d-6515-9cb9-f167-a57e2dad98f8\",\n    \"pipelines\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"preset_retrieval_parameters\": {\n          \"dense_similarity_top_k\": \"<integer>\",\n          \"dense_similarity_cutoff\": \"<number>\",\n          \"sparse_similarity_top_k\": \"<integer>\",\n          \"enable_reranking\": \"<boolean>\",\n          \"rerank_top_n\": \"<integer>\",\n          \"alpha\": \"<number>\",\n          \"search_filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"search_filters_inference_schema\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"files_top_k\": \"<integer>\",\n          \"retrieval_mode\": \"<string>\",\n          \"retrieve_image_nodes\": false,\n          \"retrieve_page_screenshot_nodes\": false,\n          \"retrieve_page_figure_nodes\": false,\n          \"class_name\": \"base_component\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"pipeline_id\": \"<uuid>\",\n        \"preset_retrieval_parameters\": {\n          \"dense_similarity_top_k\": \"<integer>\",\n          \"dense_similarity_cutoff\": \"<number>\",\n          \"sparse_similarity_top_k\": \"<integer>\",\n          \"enable_reranking\": \"<boolean>\",\n          \"rerank_top_n\": \"<integer>\",\n          \"alpha\": \"<number>\",\n          \"search_filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"search_filters_inference_schema\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_3\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"files_top_k\": \"<integer>\",\n          \"retrieval_mode\": \"<string>\",\n          \"retrieve_image_nodes\": false,\n          \"retrieve_page_screenshot_nodes\": false,\n          \"retrieve_page_figure_nodes\": false,\n          \"class_name\": \"base_component\"\n        }\n      }\n    ],\n    \"created_at\": \"1960-11-21T11:40:08.411Z\",\n    \"updated_at\": \"2013-08-06T18:56:37.014Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52bc4bf3-6e58-4004-ae8a-56320e4df0ba",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6832d5a7-ed9b-46ac-beb7-9b7e5caeff79",
+          "name": "Get Retriever",
+          "request": {
+            "name": "Get Retriever",
+            "description": {
+              "content": "Get a Retriever by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "retrievers",
+                ":retriever_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "retriever_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e4f1d5c-b04f-4202-80ec-bd05078bd4b5",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    ":retriever_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "retriever_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"id\": \"d2832c4d-188a-c595-4420-4ed33eadf8e0\",\n  \"project_id\": \"2a339262-2398-9e7d-cbab-21d111a3f0ad\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\",\n            \"key_1\": true,\n            \"key_2\": \"string\"\n          },\n          \"key_2\": {\n            \"key_0\": false\n          },\n          \"key_3\": {\n            \"key_0\": 3059.8684210357974,\n            \"key_1\": 3239\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": true\n          },\n          \"key_1\": {\n            \"key_0\": true,\n            \"key_1\": 7945\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"created_at\": \"1991-08-31T23:10:13.319Z\",\n  \"updated_at\": \"1968-11-06T14:47:11.940Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e7920e9-5aaa-42ce-bb06-e67720bb07e3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    ":retriever_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "retriever_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cca7271-e893-4dc0-98a2-dba9155119b8",
+          "name": "Update Retriever",
+          "request": {
+            "name": "Update Retriever",
+            "description": {
+              "content": "Update an existing Retriever.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "retrievers",
+                ":retriever_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "retriever_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "803e45e1-7553-4595-a6ee-2e887c17490b",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    ":retriever_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "retriever_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"id\": \"d2832c4d-188a-c595-4420-4ed33eadf8e0\",\n  \"project_id\": \"2a339262-2398-9e7d-cbab-21d111a3f0ad\",\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\",\n            \"key_1\": true,\n            \"key_2\": \"string\"\n          },\n          \"key_2\": {\n            \"key_0\": false\n          },\n          \"key_3\": {\n            \"key_0\": 3059.8684210357974,\n            \"key_1\": 3239\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": \"string\",\n            \"key_1\": true\n          },\n          \"key_1\": {\n            \"key_0\": true,\n            \"key_1\": 7945\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"created_at\": \"1991-08-31T23:10:13.319Z\",\n  \"updated_at\": \"1968-11-06T14:47:11.940Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47efd44a-d22f-4c52-b9e5-4bbc7c2427f7",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    ":retriever_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "retriever_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ],\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7f3e4d3-6459-4dfb-8a97-30c850bbeedb",
+          "name": "Delete Retriever",
+          "request": {
+            "name": "Delete Retriever",
+            "description": {
+              "content": "Delete a Retriever by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "retrievers",
+                ":retriever_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "retriever_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5de8dc9d-451d-4563-94f6-dc4298316e83",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    ":retriever_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "retriever_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e6a54f0-86fb-4fa9-bc41-823967c6ab26",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    ":retriever_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "retriever_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10bdfe50-167c-4f82-9a4e-7ef9d7e1564c",
+          "name": "Retrieve",
+          "request": {
+            "name": "Retrieve",
+            "description": {
+              "content": "Retrieve data using a Retriever.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "retrievers",
+                ":retriever_id",
+                "retrieve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "retriever_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2bec7520-81af-4b52-a0f1-29855431a04f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    ":retriever_id",
+                    "retrieve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "retriever_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nodes\": [\n    {\n      \"node\": {\n        \"id\": \"8719bf96-469d-2b6f-72f6-c293c0a159c4\",\n        \"retriever_id\": \"9f3bffac-920e-7f3d-8715-ba8acf7386d2\",\n        \"retriever_pipeline_name\": \"string\",\n        \"pipeline_id\": \"9da9ae53-f253-b194-eec8-627b2b559b8c\",\n        \"text\": \"string\",\n        \"start_char_idx\": 3197,\n        \"end_char_idx\": 5860,\n        \"metadata\": {\n          \"key_0\": 2454\n        }\n      },\n      \"score\": 9618.89296302132,\n      \"class_name\": \"CompositeRetrievedTextNodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"id\": \"066e5162-c26a-2cc1-b9ba-56f95792a063\",\n        \"retriever_id\": \"c674e0ce-ffee-5667-cc9b-b87b43eead1f\",\n        \"retriever_pipeline_name\": \"string\",\n        \"pipeline_id\": \"bbc1b997-25da-33db-1e0b-854d81449da4\",\n        \"text\": \"string\",\n        \"start_char_idx\": 2387,\n        \"end_char_idx\": 6605,\n        \"metadata\": {\n          \"key_0\": 1977\n        }\n      },\n      \"score\": 9529.861385940067,\n      \"class_name\": \"CompositeRetrievedTextNodeWithScore\"\n    }\n  ],\n  \"image_nodes\": [\n    {\n      \"node\": {\n        \"page_index\": 1049,\n        \"file_id\": \"7726334a-ba38-26ec-c385-328f66c2073c\",\n        \"image_size\": 9498,\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"score\": 7925.1428609471395,\n      \"class_name\": \"NodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"page_index\": 6925,\n        \"file_id\": \"1cac2c23-0d45-8827-fc24-6006452a29d3\",\n        \"image_size\": 9658,\n        \"metadata\": {\n          \"key_0\": 2760\n        }\n      },\n      \"score\": 8892.475373508663,\n      \"class_name\": \"NodeWithScore\"\n    }\n  ],\n  \"page_figure_nodes\": [\n    {\n      \"node\": {\n        \"figure_name\": \"string\",\n        \"file_id\": \"06ea052b-50c0-bfb7-b864-f33f56c6c5d0\",\n        \"page_index\": 2280,\n        \"figure_size\": 565,\n        \"confidence\": 0.5888626593354603,\n        \"is_likely_noise\": false,\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"score\": 4683.951496210931,\n      \"class_name\": \"PageFigureNodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"figure_name\": \"string\",\n        \"file_id\": \"09a9e025-3dd8-87cc-ddaf-44a1a504112c\",\n        \"page_index\": 3064,\n        \"figure_size\": 3719,\n        \"confidence\": 0.3458680560386943,\n        \"is_likely_noise\": false,\n        \"metadata\": {\n          \"key_0\": 8155\n        }\n      },\n      \"score\": 2293.3881569253035,\n      \"class_name\": \"PageFigureNodeWithScore\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad576910-f1c7-4b7b-836f-8080768b849f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    ":retriever_id",
+                    "retrieve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "retriever_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c9b6d02-b877-43ab-8938-6675f18ba210",
+          "name": "Direct Retrieve",
+          "request": {
+            "name": "Direct Retrieve",
+            "description": {
+              "content": "Retrieve data using specified pipelines without creating a persistent retriever.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "retrievers",
+                "retrieve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"<string>\"\n  },\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 9101\n          },\n          \"key_1\": {\n            \"key_0\": 6869.645159954795\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 9818.431473626255\n          },\n          \"key_1\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f08acafe-fcff-4b86-88fc-b6e4419c87f3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    "retrieve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"<string>\"\n  },\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 1480.749512473183\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 5349,\n            \"key_1\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\",\n            \"key_1\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nodes\": [\n    {\n      \"node\": {\n        \"id\": \"b7eb8c86-37ff-911e-8770-f3afd817f049\",\n        \"retriever_id\": \"9bee16d8-1703-dfa2-302f-87e3351cdf34\",\n        \"retriever_pipeline_name\": \"string\",\n        \"pipeline_id\": \"74430bb4-51ad-8294-cf32-a386bb237959\",\n        \"text\": \"string\",\n        \"start_char_idx\": 6036,\n        \"end_char_idx\": 2612,\n        \"metadata\": {\n          \"key_0\": false,\n          \"key_1\": \"string\",\n          \"key_2\": 3542.3112822854296\n        }\n      },\n      \"score\": 6039.318217005925,\n      \"class_name\": \"CompositeRetrievedTextNodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"id\": \"45350fb6-3773-1951-ab04-cd75b223f88f\",\n        \"retriever_id\": \"54f118be-8904-9012-d901-5bfcea5333fc\",\n        \"retriever_pipeline_name\": \"string\",\n        \"pipeline_id\": \"55ce2292-201d-1dd9-a015-2f6a18d4eaa6\",\n        \"text\": \"string\",\n        \"start_char_idx\": 5038,\n        \"end_char_idx\": 312,\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": 2363\n        }\n      },\n      \"score\": 8003.262343362707,\n      \"class_name\": \"CompositeRetrievedTextNodeWithScore\"\n    }\n  ],\n  \"image_nodes\": [\n    {\n      \"node\": {\n        \"page_index\": 9075,\n        \"file_id\": \"8bed0889-987f-30a4-2c5e-f4a8b501cb83\",\n        \"image_size\": 9690,\n        \"metadata\": {\n          \"key_0\": true,\n          \"key_1\": 6338,\n          \"key_2\": \"string\",\n          \"key_3\": false\n        }\n      },\n      \"score\": 3537.226336054714,\n      \"class_name\": \"NodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"page_index\": 7007,\n        \"file_id\": \"657c0dd2-0642-662d-ec8a-449cd24ec020\",\n        \"image_size\": 2642,\n        \"metadata\": {\n          \"key_0\": true\n        }\n      },\n      \"score\": 8182.426143780014,\n      \"class_name\": \"NodeWithScore\"\n    }\n  ],\n  \"page_figure_nodes\": [\n    {\n      \"node\": {\n        \"figure_name\": \"string\",\n        \"file_id\": \"fedff488-345e-3861-c610-c5a4b6381f89\",\n        \"page_index\": 7975,\n        \"figure_size\": 3860,\n        \"confidence\": 0.634074222753721,\n        \"is_likely_noise\": false,\n        \"metadata\": {\n          \"key_0\": true,\n          \"key_1\": true\n        }\n      },\n      \"score\": 9970.26081343045,\n      \"class_name\": \"PageFigureNodeWithScore\"\n    },\n    {\n      \"node\": {\n        \"figure_name\": \"string\",\n        \"file_id\": \"34c6ca8a-a8bc-fc21-4c30-dae69459f885\",\n        \"page_index\": 7179,\n        \"figure_size\": 723,\n        \"confidence\": 0.335668826847875,\n        \"is_likely_noise\": false,\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"score\": 2225.1616494020723,\n      \"class_name\": \"PageFigureNodeWithScore\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f63f7236-3123-4e25-82bb-813018ba0e09",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "retrievers",
+                    "retrieve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"rerank_top_n\": \"<integer>\",\n  \"rerank_config\": {\n    \"top_n\": 6,\n    \"type\": \"<string>\"\n  },\n  \"pipelines\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 1480.749512473183\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"pipeline_id\": \"<uuid>\",\n      \"preset_retrieval_parameters\": {\n        \"dense_similarity_top_k\": \"<integer>\",\n        \"dense_similarity_cutoff\": \"<number>\",\n        \"sparse_similarity_top_k\": \"<integer>\",\n        \"enable_reranking\": \"<boolean>\",\n        \"rerank_top_n\": \"<integer>\",\n        \"alpha\": \"<number>\",\n        \"search_filters\": {\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"condition\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"search_filters_inference_schema\": {\n          \"key_0\": {\n            \"key_0\": 5349,\n            \"key_1\": \"string\"\n          },\n          \"key_1\": {\n            \"key_0\": \"string\",\n            \"key_1\": false\n          }\n        },\n        \"files_top_k\": \"<integer>\",\n        \"retrieval_mode\": \"<string>\",\n        \"retrieve_image_nodes\": false,\n        \"retrieve_page_screenshot_nodes\": false,\n        \"retrieve_page_figure_nodes\": false,\n        \"class_name\": \"base_component\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1da0fa18-221d-445a-81ab-e8593de63e27",
+    "name": "Llama Platform Agent Data Retrievers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
