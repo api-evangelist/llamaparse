@@ -36,7 +36,7 @@ url: https://raw.githubusercontent.com/api-evangelist/llamaparse/refs/heads/main
 created: '2026-06-12'
 modified: '2026-06-12'
 
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 
 apis:
 - aid: llamaparse-extract-api
