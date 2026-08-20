@@ -29,6 +29,15 @@ tags:
   - PDF
   - LLM
   - RAG
+  - Artificial Intelligence
+  - Document Intelligence
+  - Structured Data Extraction
+tags_raw:
+  - Document Parsing
+  - OCR
+  - PDF
+  - LLM
+  - RAG
   - AI
   - Document Intelligence
   - Structured Data Extraction
@@ -64,6 +73,10 @@ apis:
   humanURL: https://developers.llamaindex.ai/llamaparse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
+  - Classification
+  - Documents
+  - Artificial Intelligence
+  tags_raw:
   - Classification
   - Documents
   - AI
@@ -346,6 +359,8 @@ apis:
   humanURL: https://developers.llamaindex.ai/llamaparse/parse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -418,6 +433,8 @@ apis:
   humanURL: https://developers.llamaindex.ai/llamaparse/parse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -563,6 +580,8 @@ apis:
   humanURL: https://developers.llamaindex.ai/llamaparse/parse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
