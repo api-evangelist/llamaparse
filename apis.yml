@@ -9,6 +9,20 @@ description: >
   layout for high-fidelity RAG and document AI workflows. Developers access the platform through Python
   and TypeScript SDKs or directly via the LlamaCloud REST API, with EU-region hosting available.
 type: Index
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
