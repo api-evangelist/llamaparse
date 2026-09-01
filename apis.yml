@@ -704,6 +704,8 @@ apis:
   humanURL: https://developers.llamaindex.ai/llamaparse/parse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
+  - v2
+  tags_raw:
   - V2
   properties:
   - type: OpenAPI
