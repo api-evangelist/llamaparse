@@ -1,13 +1,14 @@
 aid: llamaparse
 name: LlamaParse
-description: >
-  LlamaParse is an enterprise document parsing and AI pipeline platform from LlamaIndex that converts
-  complex PDFs, Office files, and 130+ document formats into LLM-ready structured outputs. The platform
-  offers six composable products under a single API key: Parse (agentic OCR), Extract (structured data
-  extraction), Classify, Split, Sheets, and Index. Parse supports tier-based processing from fast and
-  cost-effective modes to advanced agentic and agentic-plus tiers that preserve tables, figures, and
+description: 'LlamaParse is an enterprise document parsing and AI pipeline platform from LlamaIndex that
+  converts complex PDFs, Office files, and 130+ document formats into LLM-ready structured outputs. The
+  platform offers six composable products under a single API key: Parse (agentic OCR), Extract (structured
+  data extraction), Classify, Split, Sheets, and Index. Parse supports tier-based processing from fast
+  and cost-effective modes to advanced agentic and agentic-plus tiers that preserve tables, figures, and
   layout for high-fidelity RAG and document AI workflows. Developers access the platform through Python
   and TypeScript SDKs or directly via the LlamaCloud REST API, with EU-region hosting available.
+
+  '
 type: Index
 deliveryModel:
   model: open-core
@@ -39,36 +40,35 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/llamaparse.png
 tags:
-  - Document Parsing
-  - OCR
-  - PDF
-  - LLM
-  - RAG
-  - Artificial Intelligence
-  - Document Intelligence
-  - Structured Data Extraction
+- Document Parsing
+- OCR
+- PDF
+- LLM
+- RAG
+- Artificial Intelligence
+- Document Intelligence
+- Structured Data Extraction
 tags_raw:
-  - Document Parsing
-  - OCR
-  - PDF
-  - LLM
-  - RAG
-  - AI
-  - Document Intelligence
-  - Structured Data Extraction
+- Document Parsing
+- OCR
+- PDF
+- LLM
+- RAG
+- AI
+- Document Intelligence
+- Structured Data Extraction
 url: https://raw.githubusercontent.com/api-evangelist/llamaparse/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
-
 specificationVersion: '0.23'
-
 apis:
-- aid: llamaparse-extract-api
+- aid: llamaparse:llamaparse-extract-api
   name: LlamaParse Extract API
-  description: >
-    Structured data extraction API that pulls typed JSON output from unstructured documents using developer-defined
-    schemas. Supports cost-effective and agentic tiers; composable with Parse to reduce per-page costs
-    when re-extracting previously parsed documents.
+  description: 'Structured data extraction API that pulls typed JSON output from unstructured documents
+    using developer-defined schemas. Supports cost-effective and agentic tiers; composable with Parse
+    to reduce per-page costs when re-extracting previously parsed documents.
+
+    '
   humanURL: https://developers.llamaindex.ai/llamaparse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -79,12 +79,13 @@ apis:
   properties:
   - type: Documentation
     url: https://developers.llamaindex.ai/llamaparse/
-- aid: llamaparse-classify-api
+- aid: llamaparse:llamaparse-classify-api
   name: LlamaParse Classify API
-  description: >
-    Document classification API that categorizes uploaded files by type or content. Available in fast
-    (1 credit/page) and multimodal (2 credits/page) modes; useful for pre-filtering before invoking higher-cost
-    parse or extract operations.
+  description: 'Document classification API that categorizes uploaded files by type or content. Available
+    in fast (1 credit/page) and multimodal (2 credits/page) modes; useful for pre-filtering before invoking
+    higher-cost parse or extract operations.
+
+    '
   humanURL: https://developers.llamaindex.ai/llamaparse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -98,12 +99,13 @@ apis:
   properties:
   - type: Documentation
     url: https://developers.llamaindex.ai/llamaparse/
-- aid: llamaparse-index-api
+- aid: llamaparse:llamaparse-index-api
   name: LlamaCloud Index API
-  description: >
-    Managed vector index API for ingesting parsed documents into searchable LlamaCloud indexes. Supports
-    standard (1 credit/page), spreadsheet (2 credits/page), and multi-modal (2 credits/page) indexing
-    modes with real-time status monitoring.
+  description: 'Managed vector index API for ingesting parsed documents into searchable LlamaCloud indexes.
+    Supports standard (1 credit/page), spreadsheet (2 credits/page), and multi-modal (2 credits/page)
+    indexing modes with real-time status monitoring.
+
+    '
   humanURL: https://developers.llamaindex.ai/llamaparse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -333,8 +335,7 @@ apis:
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
 - aid: llamaparse:llamaparse-embedding-model-configs-api
   name: LlamaParse Embedding Model Configs API
-  description: >-
-    The Embedding Model Configs API from LlamaParse — 2 operation(s) for embedding model configs.
+  description: The Embedding Model Configs API from LlamaParse — 2 operation(s) for embedding model configs.
   humanURL: https://developers.llamaindex.ai/llamaparse/parse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -536,8 +537,7 @@ apis:
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
 - aid: llamaparse:llamaparse-pipeline-data-sources-api
   name: LlamaParse Pipeline Data Sources API
-  description: >-
-    The Pipeline Data Sources API from LlamaParse — 4 operation(s) for pipeline data sources.
+  description: The Pipeline Data Sources API from LlamaParse — 4 operation(s) for pipeline data sources.
   humanURL: https://developers.llamaindex.ai/llamaparse/parse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -720,66 +720,65 @@ apis:
   - type: Tiers
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
 common:
-  - type: IssueTracker
-    url: https://github.com/run-llama/llama-parse-py/issues
-  - type: Releases
-    url: https://github.com/run-llama/llama-parse-py/releases
-  - type: SecurityPolicy
-    url: https://github.com/run-llama/llama-parse-py/blob/main/SECURITY.md
-  - type: ContributionGuide
-    url: https://github.com/run-llama/llama-parse-py/blob/main/CONTRIBUTING.md
-  - type: License
-    name: MIT
-    url: https://github.com/run-llama/llama-parse-py/blob/main/LICENSE
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/llamaparse/overview
-  - type: AgenticAccess
-    url: agentic-access/llamaparse-agentic-access.yml
-  - type: DomainSecurity
-    url: security/llamaparse-domain-security.yml
-  - type: Authentication
-    url: authentication/llamaparse-authentication.yml
-  - type: Website
-    url: https://www.llamaindex.ai/
-  - type: Documentation
-    url: https://developers.llamaindex.ai/llamaparse/
-  - type: APIReference
-    url: https://developers.llamaindex.ai/llamaparse/parse/guides/api-reference/
-  - type: GitHubOrganization
-    url: https://github.com/run-llama
-  - type: GitHubRepository
-    url: https://github.com/run-llama/llama-parse-py
-  - type: GitHubRepository
-    url: https://github.com/run-llama/llama-cloud-ts
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/llamaindex
-  - type: X
-    url: https://twitter.com/llama_index
-  - type: Blog
-    url: https://www.llamaindex.ai/blog
-  - type: ChangeLog
-    url: https://developers.llamaindex.ai/python/framework/changelog/
-  - type: Pricing
-    url: https://www.llamaindex.ai/pricing
-  - type: StatusPage
-    url: https://llamaindex.statuspage.io/
-  - type: PythonSDK
-    url: https://pypi.org/project/llama-cloud/
-  - type: TypeScriptSDK
-    url: https://www.npmjs.com/package/@llamaindex/llama-cloud
-  - type: Plans
-    url: plans/llamaparse-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/llamaparse-rate-limits.yml
-  - type: FinOps
-    url: finops/llamaparse-finops.yml
-  - type: OpenAPI
-    url: openapi/_original/llamaparse-llamacloud-openapi.yml
-  - type: Vocabulary
-    url: vocabulary/llamaparse-vocabulary.yml
-  - type: JSONLDContext
-    url: json-ld/llamaparse-context.jsonld
-
+- type: IssueTracker
+  url: https://github.com/run-llama/llama-parse-py/issues
+- type: Releases
+  url: https://github.com/run-llama/llama-parse-py/releases
+- type: SecurityPolicy
+  url: https://github.com/run-llama/llama-parse-py/blob/main/SECURITY.md
+- type: ContributionGuide
+  url: https://github.com/run-llama/llama-parse-py/blob/main/CONTRIBUTING.md
+- type: License
+  name: MIT
+  url: https://github.com/run-llama/llama-parse-py/blob/main/LICENSE
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/llamaparse/overview
+- type: AgenticAccess
+  url: agentic-access/llamaparse-agentic-access.yml
+- type: DomainSecurity
+  url: security/llamaparse-domain-security.yml
+- type: Authentication
+  url: authentication/llamaparse-authentication.yml
+- type: Website
+  url: https://www.llamaindex.ai/
+- type: Documentation
+  url: https://developers.llamaindex.ai/llamaparse/
+- type: APIReference
+  url: https://developers.llamaindex.ai/llamaparse/parse/guides/api-reference/
+- type: GitHubOrganization
+  url: https://github.com/run-llama
+- type: GitHubRepository
+  url: https://github.com/run-llama/llama-parse-py
+- type: GitHubRepository
+  url: https://github.com/run-llama/llama-cloud-ts
+- type: LinkedIn
+  url: https://www.linkedin.com/company/llamaindex
+- type: X
+  url: https://twitter.com/llama_index
+- type: Blog
+  url: https://www.llamaindex.ai/blog
+- type: ChangeLog
+  url: https://developers.llamaindex.ai/python/framework/changelog/
+- type: Pricing
+  url: https://www.llamaindex.ai/pricing
+- type: StatusPage
+  url: https://llamaindex.statuspage.io/
+- type: PythonSDK
+  url: https://pypi.org/project/llama-cloud/
+- type: TypeScriptSDK
+  url: https://www.npmjs.com/package/@llamaindex/llama-cloud
+- type: Plans
+  url: plans/llamaparse-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/llamaparse-rate-limits.yml
+- type: FinOps
+  url: finops/llamaparse-finops.yml
+- type: OpenAPI
+  url: openapi/_original/llamaparse-llamacloud-openapi.yml
+- type: Vocabulary
+  url: vocabulary/llamaparse-vocabulary.yml
+- type: JSONLDContext
+  url: json-ld/llamaparse-context.jsonld
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
