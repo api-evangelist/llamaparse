@@ -2,15 +2,16 @@
 kin_checks:
   slug: llamaparse
   schema_version: 0.22.0
-  scored_at: '2026-09-15'
-  run_ts: 2026-09-15T230249
-  note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.22.0.yml; counts below let you verify that.
+  scored_at: '2026-09-17'
+  run_ts: 2026-09-17T233623
+  note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
+    apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
+    below let you verify that.
   counts:
     total: 136
-    earned: 50
+    earned: 48
     partial: 11
-    missed: 53
+    missed: 55
     na: 22
   checks:
   - id: multiple_apis
@@ -30,6 +31,11 @@ kin_checks:
   - id: info_complete
     status: missed
     detail: 0 of 33 openapi documents pass
+  - id: servers_defined
+    status: missed
+    detail: 0 of 33 openapi documents pass
+  - id: servers_resolvable
+    status: missed
   - id: examples_present
     status: missed
   - id: webhooks_or_callbacks
@@ -163,3 +169,26 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: documented'
+  na:
+  - asyncapi_3_x
+  - channels_defined
+  - contract_self_operated
+  - fhir_capability_statement
+  - fhir_resource_coverage
+  - graphql_descriptions
+  - graphql_sdl_present
+  - graphql_type_depth
+  - inbound_contract_published
+  - messages_with_schema
+  - reg_camara_conformance
+  - reg_certification_signal
+  - reg_consent_model
+  - reg_entitlement_terms
+  - reg_fapi_profile
+  - reg_mandate_verified
+  - reg_named_standard_conformance
+  - reg_pci_sca
+  - reg_smart_configuration
+  - reg_write_surface
+  - security_schemes
+  - server_bindings
