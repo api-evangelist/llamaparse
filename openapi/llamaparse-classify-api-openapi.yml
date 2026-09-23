@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data Classify API
+  title: Llama Platform Classify API
   version: 0.1.0
 tags:
 - name: Classify
@@ -339,153 +339,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ClassifyV2Rule:
-      properties:
-        type:
-          type: string
-          maxLength: 50
-          minLength: 1
-          title: Type
-          description: Document type to assign when rule matches
-          examples:
-          - invoice
-          - receipt
-          - contract
-          - report
-          - proposal
-        description:
-          type: string
-          maxLength: 500
-          minLength: 10
-          title: Description
-          description: Natural language criteria for matching this rule
-          examples:
-          - contains invoice number, line items, and total amount
-          - purchase receipt with transaction info and merchant details
-          - legal contract with terms, conditions, and signatures
-      type: object
-      required:
-      - type
-      - description
-      title: ClassifyV2Rule
-      description: A rule for classifying documents.
-    ClassifyV2JobQueryResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ClassifyV2JobResponse'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: ClassifyV2JobQueryResponse
-      description: Response schema for paginated classify job queries.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    WebhookConfiguration:
-      properties:
-        webhook_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Webhook Url
-          description: URL to receive webhook POST notifications
-          examples:
-          - https://example.com/webhooks/llamacloud
-        webhook_headers:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Webhook Headers
-          description: Custom HTTP headers sent with each webhook request (e.g. auth tokens)
-          examples:
-          - Authorization: Bearer sk-...
-        webhook_events:
-          anyOf:
-          - items:
-              type: string
-              enum:
-              - extract.pending
-              - extract.success
-              - extract.error
-              - extract.partial_success
-              - extract.cancelled
-              - parse.pending
-              - parse.running
-              - parse.success
-              - parse.error
-              - parse.partial_success
-              - parse.cancelled
-              - classify.pending
-              - classify.running
-              - classify.success
-              - classify.error
-              - classify.partial_success
-              - classify.cancelled
-              - sheets.pending
-              - sheets.success
-              - sheets.error
-              - sheets.partial_success
-              - sheets.cancelled
-              - unmapped_event
-            type: array
-          - type: 'null'
-          title: Webhook Events
-          description: Events to subscribe to (e.g. 'parse.success', 'extract.error'). If null, all events are delivered.
-          examples:
-          - - parse.success
-            - parse.error
-        webhook_output_format:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Webhook Output Format
-          description: 'Response format sent to the webhook: ''string'' (default) or ''json'''
-          examples:
-          - json
-      type: object
-      title: WebhookConfiguration
-      description: Configuration for a single outbound webhook endpoint.
     ClassifyV2JobResponse:
       properties:
         id:
@@ -581,31 +434,6 @@ components:
       - configuration
       title: ClassifyV2JobResponse
       description: Response for a classify job.
-    ClassifyV2Result:
-      properties:
-        reasoning:
-          type: string
-          title: Reasoning
-          description: Why the document matched (or didn't match) the returned rule
-        confidence:
-          type: number
-          maximum: 1.0
-          minimum: 0.0
-          title: Confidence
-          description: Confidence score between 0.0 and 1.0
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-          description: Matched rule type, or null if no rule matched
-      type: object
-      required:
-      - reasoning
-      - confidence
-      - type
-      title: ClassifyV2Result
-      description: Result of classifying a document.
     ClassifyV2Configuration:
       properties:
         rules:
@@ -631,6 +459,219 @@ components:
       - rules
       title: ClassifyV2Configuration
       description: Configuration for a classify job.
+    ClassifyV2JobQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ClassifyV2JobResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: ClassifyV2JobQueryResponse
+      description: Response schema for paginated classify job queries.
+    ClassifyV2Result:
+      properties:
+        reasoning:
+          type: string
+          title: Reasoning
+          description: Why the document matched (or didn't match) the returned rule
+        confidence:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Confidence
+          description: Confidence score between 0.0 and 1.0
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Type
+          description: Matched rule type, or null if no rule matched
+      type: object
+      required:
+      - reasoning
+      - confidence
+      - type
+      title: ClassifyV2Result
+      description: Result of classifying a document.
+    ClassifyV2Rule:
+      properties:
+        type:
+          type: string
+          maxLength: 50
+          minLength: 1
+          title: Type
+          description: Document type to assign when rule matches
+          examples:
+          - invoice
+          - receipt
+          - contract
+          - report
+          - proposal
+        description:
+          type: string
+          maxLength: 500
+          minLength: 10
+          title: Description
+          description: Natural language criteria for matching this rule
+          examples:
+          - contains invoice number, line items, and total amount
+          - purchase receipt with transaction info and merchant details
+          - legal contract with terms, conditions, and signatures
+      type: object
+      required:
+      - type
+      - description
+      title: ClassifyV2Rule
+      description: A rule for classifying documents.
+    WebhookConfiguration:
+      properties:
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+          description: URL to receive webhook POST notifications
+          examples:
+          - https://example.com/webhooks/llamacloud
+        webhook_headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Webhook Headers
+          description: Custom HTTP headers sent with each webhook request (e.g. auth tokens)
+          examples:
+          - Authorization: Bearer sk-...
+        webhook_events:
+          anyOf:
+          - items:
+              type: string
+              enum:
+              - extract.pending
+              - extract.success
+              - extract.error
+              - extract.partial_success
+              - extract.cancelled
+              - parse.pending
+              - parse.running
+              - parse.success
+              - parse.error
+              - parse.partial_success
+              - parse.cancelled
+              - classify.pending
+              - classify.running
+              - classify.success
+              - classify.error
+              - classify.partial_success
+              - classify.cancelled
+              - sheets.pending
+              - sheets.success
+              - sheets.error
+              - sheets.partial_success
+              - sheets.cancelled
+              - unmapped_event
+            type: array
+          - type: 'null'
+          title: Webhook Events
+          description: Events to subscribe to (e.g. 'parse.success', 'extract.error'). If null, all events are delivered.
+          examples:
+          - - parse.success
+            - parse.error
+        webhook_output_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Output Format
+          description: 'Response format sent to the webhook: ''string'' (default) or ''json'''
+          examples:
+          - json
+      type: object
+      title: WebhookConfiguration
+      description: Configuration for a single outbound webhook endpoint.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ClassifyV2ParsingConfiguration:
+      properties:
+        lang:
+          type: string
+          title: Lang
+          description: ISO 639-1 language code for the document
+          default: en
+          examples:
+          - en
+          - es
+          - zh
+        target_pages:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Pages
+          description: Comma-separated page numbers or ranges to process (1-based). Omit to process all pages.
+          examples:
+          - 1,3,5-7
+          - 1-3,8-10
+        max_pages:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Max Pages
+          description: Maximum number of pages to process. Omit for no limit.
+          examples:
+          - 10
+      type: object
+      title: ClassifyV2ParsingConfiguration
+      description: Parsing configuration for classify jobs.
     ClassifyV2JobCreateRequest:
       properties:
         webhook_configurations:
@@ -692,47 +733,6 @@ components:
       type: object
       title: ClassifyV2JobCreateRequest
       description: Request to create a classify job.
-    ClassifyV2ParsingConfiguration:
-      properties:
-        lang:
-          type: string
-          title: Lang
-          description: ISO 639-1 language code for the document
-          default: en
-          examples:
-          - en
-          - es
-          - zh
-        target_pages:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Target Pages
-          description: Comma-separated page numbers or ranges to process (1-based). Omit to process all pages.
-          examples:
-          - 1,3,5-7
-          - 1-3,8-10
-        max_pages:
-          anyOf:
-          - type: integer
-            minimum: 1.0
-          - type: 'null'
-          title: Max Pages
-          description: Maximum number of pages to process. Omit for no limit.
-          examples:
-          - 10
-      type: object
-      title: ClassifyV2ParsingConfiguration
-      description: Parsing configuration for classify jobs.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

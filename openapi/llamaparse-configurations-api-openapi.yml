@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data Configurations API
+  title: Llama Platform Configurations API
   version: 0.1.0
 tags:
 - name: Configurations
@@ -333,6 +333,610 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    AutoModeCropBox:
+      properties:
+        bottom:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Bottom
+          description: Bottom boundary of crop box as ratio (0-1)
+        left:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Left
+          description: Left boundary of crop box as ratio (0-1)
+        right:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Right
+          description: Right boundary of crop box as ratio (0-1)
+        top:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Top
+          description: Top boundary of crop box as ratio (0-1)
+      additionalProperties: false
+      type: object
+      title: AutoModeCropBox
+      description: Crop box options for auto mode parsing configuration.
+    ClassifyV2Parameters:
+      properties:
+        rules:
+          items:
+            $ref: '#/components/schemas/ClassifyV2Rule'
+          type: array
+          minItems: 1
+          title: Rules
+          description: Classify rules to evaluate against the document (at least one required)
+        mode:
+          type: string
+          const: FAST
+          title: Mode
+          description: Classify execution mode
+          default: FAST
+        parsing_configuration:
+          anyOf:
+          - $ref: '#/components/schemas/ClassifyV2ParsingConfiguration'
+          - type: 'null'
+          description: Parsing configuration for controlling which pages are read
+        product_type:
+          type: string
+          const: classify_v2
+          title: Product Type
+          description: Product type.
+      type: object
+      required:
+      - rules
+      - product_type
+      title: ClassifyV2Parameters
+      description: Typed parameters for a *classify v2* product configuration.
+    ParserLanguages:
+      type: string
+      enum:
+      - af
+      - az
+      - bs
+      - cs
+      - cy
+      - da
+      - de
+      - en
+      - es
+      - et
+      - fr
+      - ga
+      - hr
+      - hu
+      - id
+      - is
+      - it
+      - ku
+      - la
+      - lt
+      - lv
+      - mi
+      - ms
+      - mt
+      - nl
+      - 'no'
+      - oc
+      - pi
+      - pl
+      - pt
+      - ro
+      - rs_latin
+      - sk
+      - sl
+      - sq
+      - sv
+      - sw
+      - tl
+      - tr
+      - uz
+      - vi
+      - ar
+      - fa
+      - ug
+      - ur
+      - bn
+      - as
+      - mni
+      - ru
+      - rs_cyrillic
+      - be
+      - bg
+      - uk
+      - mn
+      - abq
+      - ady
+      - kbd
+      - ava
+      - dar
+      - inh
+      - che
+      - lbe
+      - lez
+      - tab
+      - tjk
+      - hi
+      - mr
+      - ne
+      - bh
+      - mai
+      - ang
+      - bho
+      - mah
+      - sck
+      - new
+      - gom
+      - sa
+      - bgc
+      - th
+      - ch_sim
+      - ch_tra
+      - ja
+      - ko
+      - ta
+      - te
+      - kn
+      title: ParserLanguages
+      description: Enum for representing the languages supported by the parser.
+    LlamaParseTimeouts:
+      properties:
+        base_in_seconds:
+          anyOf:
+          - type: integer
+            maximum: 7200.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Base In Seconds
+          description: Base timeout for the job in seconds (max 7200 = 2 hours). This is the minimum time allowed regardless of document size
+        extra_time_per_page_in_seconds:
+          anyOf:
+          - type: integer
+            maximum: 300.0
+            exclusiveMinimum: 0.0
+          - type: 'null'
+          title: Extra Time Per Page In Seconds
+          description: Additional timeout per page in seconds (max 300 = 5 minutes). Total timeout = base + (this value × page count)
+      additionalProperties: false
+      type: object
+      title: LlamaParseTimeouts
+      description: 'Job timeout configuration.
+
+
+        Total timeout = base_in_seconds + (extra_time_per_page_in_seconds × page_count).
+
+        Use these settings for large documents or complex parsing that needs more time.'
+    ConfigurationQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ConfigurationResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: ConfigurationQueryResponse
+      description: Paginated list of product configurations.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    UntypedParameters:
+      properties:
+        product_type:
+          type: string
+          const: unknown
+          title: Product Type
+          description: Product type.
+      additionalProperties: true
+      type: object
+      required:
+      - product_type
+      title: UntypedParameters
+      description: 'Catch-all for configurations without a dedicated typed schema.
+
+
+        Accepts arbitrary JSON fields alongside ``product_type``.'
+    LlamaParseAgenticOptions:
+      properties:
+        custom_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Custom Prompt
+          description: 'Custom instructions for the AI parser. Use to guide extraction behavior, specify output formatting, or provide domain-specific context. Example: ''Extract financial tables with currency symbols. Format dates as YYYY-MM-DD.'''
+      additionalProperties: false
+      type: object
+      title: LlamaParseAgenticOptions
+      description: 'Options for AI-powered parsing tiers (cost_effective, agentic, agentic_plus).
+
+
+        These options customize how the AI processes and interprets document content.
+
+        Only applicable when using non-fast tiers.'
+    ClassifyV2ParsingConfiguration:
+      properties:
+        lang:
+          type: string
+          title: Lang
+          description: ISO 639-1 language code for the document
+          default: en
+          examples:
+          - en
+          - es
+          - zh
+        target_pages:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Pages
+          description: Comma-separated page numbers or ranges to process (1-based). Omit to process all pages.
+          examples:
+          - 1,3,5-7
+          - 1-3,8-10
+        max_pages:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Max Pages
+          description: Maximum number of pages to process. Omit for no limit.
+          examples:
+          - 10
+      type: object
+      title: ClassifyV2ParsingConfiguration
+      description: Parsing configuration for classify jobs.
+    LlamaParsePresentationOptions:
+      properties:
+        out_of_bounds_content:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Out Of Bounds Content
+          description: Extract content positioned outside the visible slide area. Some presentations have hidden notes or content that extends beyond slide boundaries
+        skip_embedded_data:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Skip Embedded Data
+          description: Skip extraction of embedded chart data tables. When true, only the visual representation of charts is captured, not the underlying data
+      additionalProperties: false
+      type: object
+      title: LlamaParsePresentationOptions
+      description: Presentation (PowerPoint, Keynote, ODP) parsing options.
+    LlamaParseIgnoreOptions:
+      properties:
+        ignore_diagonal_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Diagonal Text
+          description: Skip text rotated at an angle (not horizontal/vertical). Useful for ignoring watermarks or decorative angled text
+        ignore_text_in_image:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Text In Image
+          description: Skip OCR text extraction from embedded images. Use when images contain irrelevant text (watermarks, logos) that shouldn't be in the output
+        ignore_hidden_text:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Ignore Hidden Text
+          description: Skip text marked as hidden in the document structure. Some PDFs contain invisible text layers used for accessibility or search indexing
+      additionalProperties: false
+      type: object
+      title: LlamaParseIgnoreOptions
+      description: Options for ignoring specific types of text during extraction.
+    LlamaParseHtmlOptions:
+      properties:
+        make_all_elements_visible:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Make All Elements Visible
+          description: Force all HTML elements to be visible by overriding CSS display/visibility properties. Useful for parsing pages with hidden content or collapsed sections
+        remove_fixed_elements:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Remove Fixed Elements
+          description: Remove fixed-position elements (headers, footers, floating buttons) that appear on every page render
+        remove_navigation_elements:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Remove Navigation Elements
+          description: Remove navigation elements (nav bars, sidebars, menus) to focus on main content
+      additionalProperties: false
+      type: object
+      title: LlamaParseHtmlOptions
+      description: HTML/web page parsing options.
+    LlamaParseProcessingOptions:
+      properties:
+        ignore:
+          $ref: '#/components/schemas/LlamaParseIgnoreOptions'
+          description: Options for ignoring specific text types (diagonal, hidden, text in images)
+        ocr_parameters:
+          $ref: '#/components/schemas/LlamaParseOcrParameters'
+          description: OCR configuration including language detection settings
+        aggressive_table_extraction:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Aggressive Table Extraction
+          description: Use aggressive heuristics to detect table boundaries, even without visible borders. Useful for documents with borderless or complex tables
+        disable_heuristics:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Heuristics
+          description: Disable automatic heuristics including outlined table extraction and adaptive long table handling. Use when heuristics produce incorrect results
+        specialized_chart_parsing:
+          anyOf:
+          - type: string
+            enum:
+            - agentic_plus
+            - agentic
+            - efficient
+          - type: 'null'
+          title: Specialized Chart Parsing
+          description: 'Enable AI-powered chart analysis. Modes: ''efficient'' (fast, lower cost), ''agentic'' (balanced), ''agentic_plus'' (highest accuracy). Automatically enables extract_layout and precise_bounding_box when set'
+        cost_optimizer:
+          anyOf:
+          - $ref: '#/components/schemas/LlamaParseCostOptimizerParameters'
+          - type: 'null'
+          description: Cost optimization settings. Only available with 'agentic' or 'agentic_plus' tiers
+        auto_mode_configuration:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AutoModeConfigurationEntry'
+            type: array
+          - type: 'null'
+          title: Auto Mode Configuration
+          description: Conditional processing rules that apply different parsing options based on page content, document structure, or filename patterns. Each entry defines trigger conditions and the parsing configuration to apply when triggered
+      additionalProperties: false
+      type: object
+      title: LlamaParseProcessingOptions
+      description: 'Processing options shared across all parsing tiers.
+
+
+        These options control how documents are analyzed and processed regardless of the selected tier.
+
+        Some options automatically enable additional behaviors (e.g., specialized_chart_parsing
+
+        enables extract_layout and precise_bounding_box).'
+    ParseV2Parameters:
+      properties:
+        tier:
+          type: string
+          enum:
+          - fast
+          - cost_effective
+          - agentic
+          - agentic_plus
+          title: Tier
+          description: 'Parsing tier: ''fast'' (rule-based, cheapest), ''cost_effective'' (balanced), ''agentic'' (AI-powered with custom prompts), or ''agentic_plus'' (premium AI with highest accuracy)'
+        version:
+          anyOf:
+          - type: string
+            enum:
+            - latest
+            - '2026-06-05'
+            - '2026-06-04'
+            - '2025-12-11'
+            x-enum-order-preserved: true
+          - type: string
+          title: Version
+          description: 'Version for the selected tier. Use `latest`, or pin one of that tier''s dated versions.
+
+
+            Current `latest` by tier:
+
+            - `fast`: `2025-12-11`
+
+            - `cost_effective`: `2026-06-05`
+
+            - `agentic`: `2026-06-04`
+
+            - `agentic_plus`: `2026-06-04`
+
+
+            Full list: `GET /api/v2/parse/versions`.'
+        client_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Name
+          description: 'Identifier for the client/application making the request. Used for analytics and debugging. Example: ''my-app-v2'''
+        processing_options:
+          $ref: '#/components/schemas/LlamaParseProcessingOptions'
+          description: Document processing options including OCR, table extraction, and chart parsing
+        fast_options:
+          anyOf:
+          - $ref: '#/components/schemas/LlamaParseFastOptions'
+          - type: 'null'
+          description: Fast tier configuration options. Auto-initialized when tier='fast'. Cannot be used with other tiers
+        agentic_options:
+          anyOf:
+          - $ref: '#/components/schemas/LlamaParseAgenticOptions'
+          - type: 'null'
+          description: AI-powered tier configuration (custom prompts). Auto-initialized for cost_effective/agentic/agentic_plus tiers. Cannot be used with fast tier
+        webhook_configurations:
+          items:
+            $ref: '#/components/schemas/LlamaParseWebhookConfiguration'
+          type: array
+          title: Webhook Configurations
+          description: Webhook endpoints for job status notifications. Multiple webhooks can be configured for different events or services
+        input_options:
+          $ref: '#/components/schemas/LlamaParseInputOptions'
+          description: Format-specific options (HTML, PDF, spreadsheet, presentation). Applied based on detected input file type
+        crop_box:
+          $ref: '#/components/schemas/LlamaParseCropBox'
+          description: Crop boundaries to process only a portion of each page. Values are ratios 0-1 from page edges
+        page_ranges:
+          $ref: '#/components/schemas/LlamaParsePageRanges'
+          description: 'Page selection: limit total pages or specify exact pages to process'
+        disable_cache:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disable Cache
+          description: Bypass result caching and force re-parsing. Use when document content may have changed or you need fresh results
+        output_options:
+          $ref: '#/components/schemas/LlamaParseOutputOptions'
+          description: Output formatting options for markdown, text, and extracted images
+        processing_control:
+          $ref: '#/components/schemas/LlamaParseProcessingControl'
+          description: Job execution controls including timeouts and failure thresholds
+        product_type:
+          type: string
+          const: parse_v2
+          title: Product Type
+          description: Product type.
+      type: object
+      required:
+      - tier
+      - version
+      - product_type
+      title: ParseV2Parameters
+      description: 'Configuration for LlamaParse v2 document parsing.
+
+
+        Includes tier selection, processing options, output formatting,
+
+        page targeting, and webhook delivery. Refer to the LlamaParse
+
+        documentation for details on each field.'
+    SpreadsheetV1Parameters:
+      properties:
+        sheet_names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Sheet Names
+          description: The names of the sheets to extract regions from. If empty, all sheets will be processed.
+        include_hidden_cells:
+          type: boolean
+          title: Include Hidden Cells
+          description: Whether to include hidden cells when extracting regions from the spreadsheet.
+          default: true
+        extraction_range:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Extraction Range
+          description: A1 notation of the range to extract a single region from. If None, the entire sheet is used.
+        generate_additional_metadata:
+          type: boolean
+          title: Generate Additional Metadata
+          description: Whether to generate additional metadata (title, description) for each extracted region.
+          default: true
+        use_experimental_processing:
+          type: boolean
+          title: Use Experimental Processing
+          description: Enables experimental processing. Accuracy may be impacted.
+          default: false
+        flatten_hierarchical_tables:
+          type: boolean
+          title: Flatten Hierarchical Tables
+          description: Return a flattened dataframe when a detected table is recognized as hierarchical.
+          default: false
+        table_merge_sensitivity:
+          type: string
+          enum:
+          - strong
+          - weak
+          title: Table Merge Sensitivity
+          description: Influences how likely similar-looking regions are merged into a single table. Useful for spreadsheets that either have sparse tables (strong merging) or many distinct tables close together (weak merging).
+          default: strong
+        specialization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specialization
+          description: 'Optional specialization mode for domain-specific extraction. Supported values: ''financial-standard'', ''financial-enhanced'', ''financial-precise''. Default None uses the general-purpose pipeline.'
+        product_type:
+          type: string
+          const: spreadsheet_v1
+          title: Product Type
+          description: Product type.
+      type: object
+      required:
+      - product_type
+      title: SpreadsheetV1Parameters
+      description: Typed parameters for a *spreadsheet v1* product configuration.
+    LlamaParseCostOptimizerParameters:
+      properties:
+        enable:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable
+          description: 'Enable cost-optimized parsing. Routes simpler pages to faster processing while complex pages use full AI analysis. May reduce speed on some documents. IMPORTANT: Only available with ''agentic'' or ''agentic_plus'' tiers'
+      additionalProperties: false
+      type: object
+      title: LlamaParseCostOptimizerParameters
+      description: 'Cost optimizer configuration for reducing parsing costs on simpler pages.
+
+
+        When enabled, the parser analyzes each page and routes simpler pages to faster,
+
+        cheaper processing while preserving quality for complex pages. Only works with
+
+        ''agentic'' or ''agentic_plus'' tiers.'
     ExtractV2Parameters:
       properties:
         target_pages:
@@ -445,76 +1049,6 @@ components:
       - product_type
       title: ExtractV2Parameters
       description: Typed parameters for an *extract v2* product configuration.
-    SplitV1Parameters:
-      properties:
-        categories:
-          items:
-            $ref: '#/components/schemas/SplitCategory'
-          type: array
-          maxItems: 50
-          minItems: 1
-          title: Categories
-          description: Categories to split documents into.
-        splitting_strategy:
-          $ref: '#/components/schemas/SplitStrategy'
-          description: Strategy for splitting documents.
-        product_type:
-          type: string
-          const: split_v1
-          title: Product Type
-          description: Product type.
-      type: object
-      required:
-      - categories
-      - product_type
-      title: SplitV1Parameters
-      description: Typed parameters for a *split v1* product configuration.
-    ClassifyV2Rule:
-      properties:
-        type:
-          type: string
-          maxLength: 50
-          minLength: 1
-          title: Type
-          description: Document type to assign when rule matches
-          examples:
-          - invoice
-          - receipt
-          - contract
-          - report
-          - proposal
-        description:
-          type: string
-          maxLength: 500
-          minLength: 10
-          title: Description
-          description: Natural language criteria for matching this rule
-          examples:
-          - contains invoice number, line items, and total amount
-          - purchase receipt with transaction info and merchant details
-          - legal contract with terms, conditions, and signatures
-      type: object
-      required:
-      - type
-      - description
-      title: ClassifyV2Rule
-      description: A rule for classifying documents.
-    UntypedParameters:
-      properties:
-        product_type:
-          type: string
-          const: unknown
-          title: Product Type
-          description: Product type.
-      additionalProperties: true
-      type: object
-      required:
-      - product_type
-      title: UntypedParameters
-      description: 'Catch-all for configurations without a dedicated typed schema.
-
-
-        Accepts arbitrary JSON fields alongside ``product_type``.'
     LlamaParseSpatialTextOptions:
       properties:
         preserve_layout_alignment_across_pages:
@@ -544,56 +1078,6 @@ components:
         Spatial text maintains the visual positioning of text elements, useful for
 
         documents where layout conveys meaning (forms, tables, multi-column layouts).'
-    LlamaParseProcessingControl:
-      properties:
-        timeouts:
-          $ref: '#/components/schemas/LlamaParseTimeouts'
-          description: Timeout settings for job execution. Increase for large or complex documents
-        job_failure_conditions:
-          $ref: '#/components/schemas/LlamaParseJobFailureConditions'
-          description: Quality thresholds that determine when a job should fail vs complete with partial results
-      additionalProperties: false
-      type: object
-      title: LlamaParseProcessingControl
-      description: Job processing controls for timeouts and failure handling.
-    LlamaParseFastOptions:
-      properties: {}
-      additionalProperties: false
-      type: object
-      title: LlamaParseFastOptions
-      description: 'Options for fast tier parsing (rule-based, no AI).
-
-
-        Fast tier uses deterministic algorithms for text extraction without AI enhancement.
-
-        It''s the fastest and most cost-effective option, best suited for simple documents
-
-        with standard layouts. Currently has no configurable options but reserved for
-
-        future expansion.'
-    LlamaParseInputOptions:
-      properties:
-        html:
-          $ref: '#/components/schemas/LlamaParseHtmlOptions'
-          description: HTML/web page parsing options (applies to .html, .htm files)
-        pdf:
-          $ref: '#/components/schemas/LlamaParsePdfOptions'
-          description: PDF-specific parsing options (applies to .pdf files)
-        spreadsheet:
-          $ref: '#/components/schemas/LlamaParseSpreadsheetOptions'
-          description: Spreadsheet parsing options (applies to .xlsx, .xls, .csv, .ods files)
-        presentation:
-          $ref: '#/components/schemas/LlamaParsePresentationOptions'
-          description: Presentation parsing options (applies to .pptx, .ppt, .odp, .key files)
-      additionalProperties: false
-      type: object
-      title: LlamaParseInputOptions
-      description: 'Input format-specific parsing options.
-
-
-        These options only apply when parsing documents of the corresponding format.
-
-        LlamaParse automatically detects the input format based on file extension and content.'
     HTTPValidationError:
       properties:
         detail:
@@ -603,6 +1087,20 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    SplitStrategy:
+      properties:
+        allow_uncategorized:
+          type: string
+          enum:
+          - include
+          - forbid
+          - omit
+          title: Allow Uncategorized
+          description: 'Controls handling of pages that don''t match any category. ''include'': pages can be grouped as ''uncategorized'' and included in results. ''forbid'': all pages must be assigned to a defined category. ''omit'': pages can be classified as ''uncategorized'' but are excluded from results.'
+          default: include
+      type: object
+      title: SplitStrategy
+      description: Configuration for how to split the document.
     LlamaParseTables:
       properties:
         compact_markdown_tables:
@@ -633,148 +1131,51 @@ components:
       type: object
       title: LlamaParseTables
       description: Table formatting options for markdown output.
-    LlamaParsePresentationOptions:
+    LlamaParseCropBox:
       properties:
-        out_of_bounds_content:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Out Of Bounds Content
-          description: Extract content positioned outside the visible slide area. Some presentations have hidden notes or content that extends beyond slide boundaries
-        skip_embedded_data:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Skip Embedded Data
-          description: Skip extraction of embedded chart data tables. When true, only the visual representation of charts is captured, not the underlying data
-      additionalProperties: false
-      type: object
-      title: LlamaParsePresentationOptions
-      description: Presentation (PowerPoint, Keynote, ODP) parsing options.
-    LlamaParseJobFailureConditions:
-      properties:
-        allowed_page_failure_ratio:
+        bottom:
           anyOf:
           - type: number
             maximum: 1.0
-            exclusiveMinimum: 0.0
+            minimum: 0.0
           - type: 'null'
-          title: Allowed Page Failure Ratio
-          description: 'Maximum ratio of pages allowed to fail before the job fails (0-1). Example: 0.1 means job fails if more than 10% of pages fail. Default is 0.05 (5%)'
-        fail_on_image_extraction_error:
+          title: Bottom
+          description: Bottom boundary as ratio (0-1). 0=top edge, 1=bottom edge. Content below this line is excluded
+        left:
           anyOf:
-          - type: boolean
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
           - type: 'null'
-          title: Fail On Image Extraction Error
-          description: Fail the entire job if any embedded image cannot be extracted. By default, image extraction errors are logged but don't fail the job
-        fail_on_image_ocr_error:
+          title: Left
+          description: Left boundary as ratio (0-1). 0=left edge, 1=right edge. Content left of this line is excluded
+        right:
           anyOf:
-          - type: boolean
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
           - type: 'null'
-          title: Fail On Image Ocr Error
-          description: Fail the entire job if OCR fails on any image. By default, OCR errors result in empty text for that image
-        fail_on_markdown_reconstruction_error:
+          title: Right
+          description: Right boundary as ratio (0-1). 0=left edge, 1=right edge. Content right of this line is excluded
+        top:
           anyOf:
-          - type: boolean
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
           - type: 'null'
-          title: Fail On Markdown Reconstruction Error
-          description: Fail the entire job if markdown cannot be reconstructed for any page. By default, failed pages use fallback text extraction
-        fail_on_buggy_font:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Fail On Buggy Font
-          description: Fail the job if a problematic font is detected that may cause incorrect text extraction. Buggy fonts can produce garbled or missing characters
+          title: Top
+          description: Top boundary as ratio (0-1). 0=top edge, 1=bottom edge. Content above this line is excluded
       additionalProperties: false
       type: object
-      title: LlamaParseJobFailureConditions
-      description: 'Conditions that determine when a parsing job should fail vs complete with partial results.
+      title: LlamaParseCropBox
+      description: 'Crop box boundaries for processing only a portion of each page.
 
 
-        By default, jobs complete successfully even if some pages fail to parse.
+        All values are ratios from 0 to 1, where (0,0) is the top-left corner and (1,1) is
 
-        Use these settings to enforce stricter quality requirements.'
-    ConfigurationResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: Unique configuration ID.
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation timestamp.
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Last update timestamp.
-        name:
-          type: string
-          title: Name
-          description: Configuration name.
-        product_type:
-          type: string
-          enum:
-          - split_v1
-          - extract_v2
-          - classify_v2
-          - parse_v2
-          - spreadsheet_v1
-          - unknown
-          title: Product Type
-          description: Product type.
-        version:
-          type: string
-          title: Version
-          description: Version identifier (datetime string).
-        parameters:
-          oneOf:
-          - $ref: '#/components/schemas/SplitV1Parameters'
-          - $ref: '#/components/schemas/ExtractV2Parameters'
-          - $ref: '#/components/schemas/ClassifyV2Parameters'
-          - $ref: '#/components/schemas/ParseV2Parameters'
-          - $ref: '#/components/schemas/SpreadsheetV1Parameters'
-          - $ref: '#/components/schemas/UntypedParameters'
-          title: Parameters
-          description: Product-specific configuration parameters.
-          discriminator:
-            propertyName: product_type
-            mapping:
-              classify_v2: '#/components/schemas/ClassifyV2Parameters'
-              extract_v2: '#/components/schemas/ExtractV2Parameters'
-              parse_v2: '#/components/schemas/ParseV2Parameters'
-              split_v1: '#/components/schemas/SplitV1Parameters'
-              spreadsheet_v1: '#/components/schemas/SpreadsheetV1Parameters'
-              unknown: '#/components/schemas/UntypedParameters'
-      type: object
-      required:
-      - id
-      - name
-      - product_type
-      - version
-      - parameters
-      title: ConfigurationResponse
-      description: Response schema for a single product configuration.
-    LlamaParseOcrParameters:
-      properties:
-        languages:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/ParserLanguages'
-            type: array
-          - type: 'null'
-          title: Languages
-          description: 'Languages to use for OCR text recognition. Specify multiple languages if document contains mixed-language content. Order matters - put primary language first. Example: [''en'', ''es''] for English with Spanish'
-      additionalProperties: false
-      type: object
-      title: LlamaParseOcrParameters
-      description: OCR (Optical Character Recognition) configuration parameters.
+        the bottom-right corner. For example, to process only the top half of each page,
+
+        set bottom=0.5 (keeping top=0, left=0, right=1).'
     AutoModeIgnoreOptions:
       properties:
         ignore_diagonal_text:
@@ -793,110 +1194,6 @@ components:
       type: object
       title: AutoModeIgnoreOptions
       description: Ignore options for auto mode parsing configuration.
-    AutoModePresentationOptions:
-      properties:
-        out_of_bounds_content:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Out Of Bounds Content
-          description: Extract out of bounds content in presentation slides
-        skip_embedded_data:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Skip Embedded Data
-          description: Skip extraction of embedded data for charts in presentation slides
-      additionalProperties: false
-      type: object
-      title: AutoModePresentationOptions
-      description: Presentation-specific options for auto mode parsing configuration.
-    AutoModeCropBox:
-      properties:
-        bottom:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Bottom
-          description: Bottom boundary of crop box as ratio (0-1)
-        left:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Left
-          description: Left boundary of crop box as ratio (0-1)
-        right:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Right
-          description: Right boundary of crop box as ratio (0-1)
-        top:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Top
-          description: Top boundary of crop box as ratio (0-1)
-      additionalProperties: false
-      type: object
-      title: AutoModeCropBox
-      description: Crop box options for auto mode parsing configuration.
-    LlamaParseTablesAsSpreadsheetOptions:
-      properties:
-        enable:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Enable
-          description: Whether this option is enabled
-        guess_sheet_name:
-          type: boolean
-          title: Guess Sheet Name
-          description: Automatically generate descriptive sheet names from table context (headers, surrounding text) instead of using generic names like 'Table_1'
-          default: true
-      additionalProperties: false
-      type: object
-      title: LlamaParseTablesAsSpreadsheetOptions
-      description: Options for exporting extracted tables as XLSX spreadsheet files.
-    ClassifyV2Parameters:
-      properties:
-        rules:
-          items:
-            $ref: '#/components/schemas/ClassifyV2Rule'
-          type: array
-          minItems: 1
-          title: Rules
-          description: Classify rules to evaluate against the document (at least one required)
-        mode:
-          type: string
-          const: FAST
-          title: Mode
-          description: Classify execution mode
-          default: FAST
-        parsing_configuration:
-          anyOf:
-          - $ref: '#/components/schemas/ClassifyV2ParsingConfiguration'
-          - type: 'null'
-          description: Parsing configuration for controlling which pages are read
-        product_type:
-          type: string
-          const: classify_v2
-          title: Product Type
-          description: Product type.
-      type: object
-      required:
-      - rules
-      - product_type
-      title: ClassifyV2Parameters
-      description: Typed parameters for a *classify v2* product configuration.
     AutoModeParsingConf:
       properties:
         tier:
@@ -1020,30 +1317,417 @@ components:
         are satisfied. Only specify fields you want to override - unset fields inherit
 
         from the base configuration.'
-    LlamaParseIgnoreOptions:
+    ConfigurationResponse:
       properties:
-        ignore_diagonal_text:
+        id:
+          type: string
+          title: Id
+          description: Unique configuration ID.
+        created_at:
           anyOf:
-          - type: boolean
+          - type: string
+            format: date-time
           - type: 'null'
-          title: Ignore Diagonal Text
-          description: Skip text rotated at an angle (not horizontal/vertical). Useful for ignoring watermarks or decorative angled text
-        ignore_text_in_image:
+          title: Created At
+          description: Creation timestamp.
+        updated_at:
           anyOf:
-          - type: boolean
+          - type: string
+            format: date-time
           - type: 'null'
-          title: Ignore Text In Image
-          description: Skip OCR text extraction from embedded images. Use when images contain irrelevant text (watermarks, logos) that shouldn't be in the output
-        ignore_hidden_text:
+          title: Updated At
+          description: Last update timestamp.
+        name:
+          type: string
+          title: Name
+          description: Configuration name.
+        product_type:
+          type: string
+          enum:
+          - split_v1
+          - extract_v2
+          - classify_v2
+          - parse_v2
+          - spreadsheet_v1
+          - unknown
+          title: Product Type
+          description: Product type.
+        version:
+          type: string
+          title: Version
+          description: Version identifier (datetime string).
+        parameters:
+          oneOf:
+          - $ref: '#/components/schemas/SplitV1Parameters'
+          - $ref: '#/components/schemas/ExtractV2Parameters'
+          - $ref: '#/components/schemas/ClassifyV2Parameters'
+          - $ref: '#/components/schemas/ParseV2Parameters'
+          - $ref: '#/components/schemas/SpreadsheetV1Parameters'
+          - $ref: '#/components/schemas/UntypedParameters'
+          title: Parameters
+          description: Product-specific configuration parameters.
+          discriminator:
+            propertyName: product_type
+            mapping:
+              classify_v2: '#/components/schemas/ClassifyV2Parameters'
+              extract_v2: '#/components/schemas/ExtractV2Parameters'
+              parse_v2: '#/components/schemas/ParseV2Parameters'
+              split_v1: '#/components/schemas/SplitV1Parameters'
+              spreadsheet_v1: '#/components/schemas/SpreadsheetV1Parameters'
+              unknown: '#/components/schemas/UntypedParameters'
+      type: object
+      required:
+      - id
+      - name
+      - product_type
+      - version
+      - parameters
+      title: ConfigurationResponse
+      description: Response schema for a single product configuration.
+    LlamaParseWebhookConfiguration:
+      properties:
+        webhook_url:
           anyOf:
-          - type: boolean
+          - type: string
+            pattern: '^https?:'
           - type: 'null'
-          title: Ignore Hidden Text
-          description: Skip text marked as hidden in the document structure. Some PDFs contain invisible text layers used for accessibility or search indexing
+          title: Webhook Url
+          description: HTTPS URL to receive webhook POST requests. Must be publicly accessible
+        webhook_headers:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Webhook Headers
+          description: 'Custom HTTP headers to include in webhook requests. Use for authentication tokens or custom routing. Example: {''Authorization'': ''Bearer xyz''}'
+        webhook_events:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Webhook Events
+          description: 'Events that trigger this webhook. Options: ''parse.success'' (job completed), ''parse.error'' (job failed), ''parse.partial_success'' (some pages failed), ''parse.pending'', ''parse.running'', ''parse.cancelled''. If not specified, webhook fires for all events'
+          examples:
+          - - parse.success
+            - parse.error
+        webhook_output_format:
+          anyOf:
+          - type: string
+            enum:
+            - string
+            - json
+          - type: 'null'
+          title: Webhook Output Format
+          description: Format of the webhook payload body. 'string' (default) sends the payload as a JSON-encoded string; 'json' sends it as a JSON object.
+          examples:
+          - json
       additionalProperties: false
       type: object
-      title: LlamaParseIgnoreOptions
-      description: Options for ignoring specific types of text during extraction.
+      title: LlamaParseWebhookConfiguration
+      description: 'Webhook configuration for receiving parsing job notifications.
+
+
+        Webhooks are called when specified events occur during job processing.
+
+        Configure multiple webhook configurations to send to different endpoints.'
+    LlamaParseFastOptions:
+      properties: {}
+      additionalProperties: false
+      type: object
+      title: LlamaParseFastOptions
+      description: 'Options for fast tier parsing (rule-based, no AI).
+
+
+        Fast tier uses deterministic algorithms for text extraction without AI enhancement.
+
+        It''s the fastest and most cost-effective option, best suited for simple documents
+
+        with standard layouts. Currently has no configurable options but reserved for
+
+        future expansion.'
+    ConfigurationUpdateRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 255
+            minLength: 1
+          - type: 'null'
+          title: Name
+          description: Updated name (omit to leave unchanged).
+        parameters:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/SplitV1Parameters'
+            - $ref: '#/components/schemas/ExtractV2Parameters'
+            - $ref: '#/components/schemas/ClassifyV2Parameters'
+            - $ref: '#/components/schemas/ParseV2Parameters'
+            - $ref: '#/components/schemas/SpreadsheetV1Parameters'
+            - $ref: '#/components/schemas/UntypedParameters'
+            discriminator:
+              propertyName: product_type
+              mapping:
+                classify_v2: '#/components/schemas/ClassifyV2Parameters'
+                extract_v2: '#/components/schemas/ExtractV2Parameters'
+                parse_v2: '#/components/schemas/ParseV2Parameters'
+                split_v1: '#/components/schemas/SplitV1Parameters'
+                spreadsheet_v1: '#/components/schemas/SpreadsheetV1Parameters'
+                unknown: '#/components/schemas/UntypedParameters'
+          - type: 'null'
+          title: Parameters
+          description: Updated parameters (omit to leave unchanged).
+      type: object
+      title: ConfigurationUpdateRequest
+      description: Request body for updating a product configuration.
+    LlamaParseInputOptions:
+      properties:
+        html:
+          $ref: '#/components/schemas/LlamaParseHtmlOptions'
+          description: HTML/web page parsing options (applies to .html, .htm files)
+        pdf:
+          $ref: '#/components/schemas/LlamaParsePdfOptions'
+          description: PDF-specific parsing options (applies to .pdf files)
+        spreadsheet:
+          $ref: '#/components/schemas/LlamaParseSpreadsheetOptions'
+          description: Spreadsheet parsing options (applies to .xlsx, .xls, .csv, .ods files)
+        presentation:
+          $ref: '#/components/schemas/LlamaParsePresentationOptions'
+          description: Presentation parsing options (applies to .pptx, .ppt, .odp, .key files)
+      additionalProperties: false
+      type: object
+      title: LlamaParseInputOptions
+      description: 'Input format-specific parsing options.
+
+
+        These options only apply when parsing documents of the corresponding format.
+
+        LlamaParse automatically detects the input format based on file extension and content.'
+    AutoModePresentationOptions:
+      properties:
+        out_of_bounds_content:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Out Of Bounds Content
+          description: Extract out of bounds content in presentation slides
+        skip_embedded_data:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Skip Embedded Data
+          description: Skip extraction of embedded data for charts in presentation slides
+      additionalProperties: false
+      type: object
+      title: AutoModePresentationOptions
+      description: Presentation-specific options for auto mode parsing configuration.
+    LlamaParseTablesAsSpreadsheetOptions:
+      properties:
+        enable:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enable
+          description: Whether this option is enabled
+        guess_sheet_name:
+          type: boolean
+          title: Guess Sheet Name
+          description: Automatically generate descriptive sheet names from table context (headers, surrounding text) instead of using generic names like 'Table_1'
+          default: true
+      additionalProperties: false
+      type: object
+      title: LlamaParseTablesAsSpreadsheetOptions
+      description: Options for exporting extracted tables as XLSX spreadsheet files.
+    SplitV1Parameters:
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/SplitCategory'
+          type: array
+          maxItems: 50
+          minItems: 1
+          title: Categories
+          description: Categories to split documents into.
+        splitting_strategy:
+          $ref: '#/components/schemas/SplitStrategy'
+          description: Strategy for splitting documents.
+        product_type:
+          type: string
+          const: split_v1
+          title: Product Type
+          description: Product type.
+      type: object
+      required:
+      - categories
+      - product_type
+      title: SplitV1Parameters
+      description: Typed parameters for a *split v1* product configuration.
+    LlamaParsePageRanges:
+      properties:
+        max_pages:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Max Pages
+          description: Maximum number of pages to process. Pages are processed in order starting from page 1. If both max_pages and target_pages are set, target_pages takes precedence
+        target_pages:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Pages
+          description: 'Comma-separated list of specific pages to process using 1-based indexing. Supports individual pages and ranges. Examples: ''1,3,5'' (pages 1, 3, 5), ''1-5'' (pages 1 through 5 inclusive), ''1,3,5-8,10'' (pages 1, 3, 5-8, and 10). Pages are sorted and deduplicated automatically. Duplicate pages cause an error'
+      additionalProperties: false
+      type: object
+      title: LlamaParsePageRanges
+      description: Page selection options for processing specific pages or limiting page count.
+    LlamaParsePdfOptions:
+      properties: {}
+      additionalProperties: false
+      type: object
+      title: LlamaParsePdfOptions
+    SplitCategory:
+      properties:
+        name:
+          type: string
+          maxLength: 200
+          minLength: 1
+          title: Name
+          description: Name of the category.
+        description:
+          anyOf:
+          - type: string
+            maxLength: 2000
+            minLength: 1
+          - type: 'null'
+          title: Description
+          description: Optional description of what content belongs in this category.
+      type: object
+      required:
+      - name
+      title: SplitCategory
+      description: Category definition for document splitting.
+    LlamaParseOutputOptions:
+      properties:
+        markdown:
+          $ref: '#/components/schemas/LlamaParseMarkdownOptions'
+          description: Markdown formatting options including table styles and link annotations
+        spatial_text:
+          $ref: '#/components/schemas/LlamaParseSpatialTextOptions'
+          description: Spatial text output options for preserving document layout structure
+        tables_as_spreadsheet:
+          $ref: '#/components/schemas/LlamaParseTablesAsSpreadsheetOptions'
+          description: Options for exporting tables as XLSX spreadsheets
+        extract_printed_page_number:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Extract Printed Page Number
+          description: Extract the printed page number as it appears in the document (e.g., 'Page 5 of 10', 'v', 'A-3'). Useful for referencing original page numbers
+        images_to_save:
+          items:
+            type: string
+            enum:
+            - screenshot
+            - embedded
+            - layout
+          type: array
+          title: Images To Save
+          description: 'Image categories to extract and save. Options: ''screenshot'' (full page renders useful for visual QA), ''embedded'' (images found within the document), ''layout'' (cropped regions from layout detection like figures and diagrams). Empty list saves no images'
+        additional_outputs:
+          items:
+            type: string
+          type: array
+          title: Additional Outputs
+          description: 'Optional additional output artifacts to save alongside the primary parse output. Each value opts in to generating and persisting one extra file; the empty list (default) saves none. The three accepted values are: ''stripped_md'' — per-page markdown stripped of formatting (links, bold/italic, images, HTML), saved as JSON for full-text-search indexing; fetch via `expand=stripped_markdown_content_metadata`. ''concatenated_stripped_txt'' — all stripped pages concatenated into a single plain-text file with `\n\n---\n\n` between pages, useful for feeding the document into search or embedding pipelines as one blob; fetch via `expand=concatenated_stripped_markdown_content_metadata`. ''word_bbox'' — raw word-level bounding boxes (one JSON object per word, with page number and x/y/w/h coordinates) saved as JSONL, useful for highlighting or grounding extracted answers back to the source document; fetch via `expand=raw_words_content_metadata`.'
+          examples:
+          - - stripped_md
+            - concatenated_stripped_txt
+            - word_bbox
+        granular_bboxes:
+          items:
+            type: string
+            enum:
+            - cell
+            - line
+            - word
+          type: array
+          title: Granular Bboxes
+          description: Bounding-box granularity levels to compute for the parse. 'word' computes one bounding box per detected word; 'line' computes one per text line; 'cell' computes one per table cell. Multiple levels can be requested. Empty list (default) disables granular bboxes — only item-level layout boxes are returned on the result. When set, the computed boxes are not inlined on the result items; they are written to a separate `grounded_items` sidecar (JSONL, one row per page) and exposed as `result_content_metadata.grounded_items` (a presigned download URL) on the parse result. Each row matches the `GroundedJsonItem` shape.
+          examples:
+          - - word
+            - line
+            - cell
+      additionalProperties: false
+      type: object
+      title: LlamaParseOutputOptions
+      description: 'Output formatting and content extraction options.
+
+
+        Controls how parsed content is formatted and what additional data is extracted.'
+    ConfigurationCreateRequest:
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+          title: Name
+          description: Human-readable name for this configuration.
+        parameters:
+          oneOf:
+          - $ref: '#/components/schemas/SplitV1Parameters'
+          - $ref: '#/components/schemas/ExtractV2Parameters'
+          - $ref: '#/components/schemas/ClassifyV2Parameters'
+          - $ref: '#/components/schemas/ParseV2Parameters'
+          - $ref: '#/components/schemas/SpreadsheetV1Parameters'
+          - $ref: '#/components/schemas/UntypedParameters'
+          title: Parameters
+          description: Product-specific configuration parameters.
+          discriminator:
+            propertyName: product_type
+            mapping:
+              classify_v2: '#/components/schemas/ClassifyV2Parameters'
+              extract_v2: '#/components/schemas/ExtractV2Parameters'
+              parse_v2: '#/components/schemas/ParseV2Parameters'
+              split_v1: '#/components/schemas/SplitV1Parameters'
+              spreadsheet_v1: '#/components/schemas/SpreadsheetV1Parameters'
+              unknown: '#/components/schemas/UntypedParameters'
+      type: object
+      required:
+      - name
+      - parameters
+      title: ConfigurationCreateRequest
+      description: Request body for creating a product configuration.
+    ClassifyV2Rule:
+      properties:
+        type:
+          type: string
+          maxLength: 50
+          minLength: 1
+          title: Type
+          description: Document type to assign when rule matches
+          examples:
+          - invoice
+          - receipt
+          - contract
+          - report
+          - proposal
+        description:
+          type: string
+          maxLength: 500
+          minLength: 10
+          title: Description
+          description: Natural language criteria for matching this rule
+          examples:
+          - contains invoice number, line items, and total amount
+          - purchase receipt with transaction info and merchant details
+          - legal contract with terms, conditions, and signatures
+      type: object
+      required:
+      - type
+      - description
+      title: ClassifyV2Rule
+      description: A rule for classifying documents.
     AutoModeConfigurationEntry:
       properties:
         parsing_conf:
@@ -1309,97 +1993,20 @@ components:
         parsing_conf:
           tier: fast
           version: latest
-    ConfigurationCreateRequest:
+    LlamaParseOcrParameters:
       properties:
-        name:
-          type: string
-          maxLength: 255
-          minLength: 1
-          title: Name
-          description: Human-readable name for this configuration.
-        parameters:
-          oneOf:
-          - $ref: '#/components/schemas/SplitV1Parameters'
-          - $ref: '#/components/schemas/ExtractV2Parameters'
-          - $ref: '#/components/schemas/ClassifyV2Parameters'
-          - $ref: '#/components/schemas/ParseV2Parameters'
-          - $ref: '#/components/schemas/SpreadsheetV1Parameters'
-          - $ref: '#/components/schemas/UntypedParameters'
-          title: Parameters
-          description: Product-specific configuration parameters.
-          discriminator:
-            propertyName: product_type
-            mapping:
-              classify_v2: '#/components/schemas/ClassifyV2Parameters'
-              extract_v2: '#/components/schemas/ExtractV2Parameters'
-              parse_v2: '#/components/schemas/ParseV2Parameters'
-              split_v1: '#/components/schemas/SplitV1Parameters'
-              spreadsheet_v1: '#/components/schemas/SpreadsheetV1Parameters'
-              unknown: '#/components/schemas/UntypedParameters'
-      type: object
-      required:
-      - name
-      - parameters
-      title: ConfigurationCreateRequest
-      description: Request body for creating a product configuration.
-    LlamaParseOutputOptions:
-      properties:
-        markdown:
-          $ref: '#/components/schemas/LlamaParseMarkdownOptions'
-          description: Markdown formatting options including table styles and link annotations
-        spatial_text:
-          $ref: '#/components/schemas/LlamaParseSpatialTextOptions'
-          description: Spatial text output options for preserving document layout structure
-        tables_as_spreadsheet:
-          $ref: '#/components/schemas/LlamaParseTablesAsSpreadsheetOptions'
-          description: Options for exporting tables as XLSX spreadsheets
-        extract_printed_page_number:
+        languages:
           anyOf:
-          - type: boolean
+          - items:
+              $ref: '#/components/schemas/ParserLanguages'
+            type: array
           - type: 'null'
-          title: Extract Printed Page Number
-          description: Extract the printed page number as it appears in the document (e.g., 'Page 5 of 10', 'v', 'A-3'). Useful for referencing original page numbers
-        images_to_save:
-          items:
-            type: string
-            enum:
-            - screenshot
-            - embedded
-            - layout
-          type: array
-          title: Images To Save
-          description: 'Image categories to extract and save. Options: ''screenshot'' (full page renders useful for visual QA), ''embedded'' (images found within the document), ''layout'' (cropped regions from layout detection like figures and diagrams). Empty list saves no images'
-        additional_outputs:
-          items:
-            type: string
-          type: array
-          title: Additional Outputs
-          description: 'Optional additional output artifacts to save alongside the primary parse output. Each value opts in to generating and persisting one extra file; the empty list (default) saves none. The three accepted values are: ''stripped_md'' — per-page markdown stripped of formatting (links, bold/italic, images, HTML), saved as JSON for full-text-search indexing; fetch via `expand=stripped_markdown_content_metadata`. ''concatenated_stripped_txt'' — all stripped pages concatenated into a single plain-text file with `\n\n---\n\n` between pages, useful for feeding the document into search or embedding pipelines as one blob; fetch via `expand=concatenated_stripped_markdown_content_metadata`. ''word_bbox'' — raw word-level bounding boxes (one JSON object per word, with page number and x/y/w/h coordinates) saved as JSONL, useful for highlighting or grounding extracted answers back to the source document; fetch via `expand=raw_words_content_metadata`.'
-          examples:
-          - - stripped_md
-            - concatenated_stripped_txt
-            - word_bbox
-        granular_bboxes:
-          items:
-            type: string
-            enum:
-            - cell
-            - line
-            - word
-          type: array
-          title: Granular Bboxes
-          description: Bounding-box granularity levels to compute for the parse. 'word' computes one bounding box per detected word; 'line' computes one per text line; 'cell' computes one per table cell. Multiple levels can be requested. Empty list (default) disables granular bboxes — only item-level layout boxes are returned on the result. When set, the computed boxes are not inlined on the result items; they are written to a separate `grounded_items` sidecar (JSONL, one row per page) and exposed as `result_content_metadata.grounded_items` (a presigned download URL) on the parse result. Each row matches the `GroundedJsonItem` shape.
-          examples:
-          - - word
-            - line
-            - cell
+          title: Languages
+          description: 'Languages to use for OCR text recognition. Specify multiple languages if document contains mixed-language content. Order matters - put primary language first. Example: [''en'', ''es''] for English with Spanish'
       additionalProperties: false
       type: object
-      title: LlamaParseOutputOptions
-      description: 'Output formatting and content extraction options.
-
-
-        Controls how parsed content is formatted and what additional data is extracted.'
+      title: LlamaParseOcrParameters
+      description: OCR (Optical Character Recognition) configuration parameters.
     LlamaParseMarkdownOptions:
       properties:
         annotate_links:
@@ -1421,567 +2028,18 @@ components:
       type: object
       title: LlamaParseMarkdownOptions
       description: Markdown output formatting options.
-    LlamaParseAgenticOptions:
+    LlamaParseProcessingControl:
       properties:
-        custom_prompt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Custom Prompt
-          description: 'Custom instructions for the AI parser. Use to guide extraction behavior, specify output formatting, or provide domain-specific context. Example: ''Extract financial tables with currency symbols. Format dates as YYYY-MM-DD.'''
+        timeouts:
+          $ref: '#/components/schemas/LlamaParseTimeouts'
+          description: Timeout settings for job execution. Increase for large or complex documents
+        job_failure_conditions:
+          $ref: '#/components/schemas/LlamaParseJobFailureConditions'
+          description: Quality thresholds that determine when a job should fail vs complete with partial results
       additionalProperties: false
       type: object
-      title: LlamaParseAgenticOptions
-      description: 'Options for AI-powered parsing tiers (cost_effective, agentic, agentic_plus).
-
-
-        These options customize how the AI processes and interprets document content.
-
-        Only applicable when using non-fast tiers.'
-    SplitCategory:
-      properties:
-        name:
-          type: string
-          maxLength: 200
-          minLength: 1
-          title: Name
-          description: Name of the category.
-        description:
-          anyOf:
-          - type: string
-            maxLength: 2000
-            minLength: 1
-          - type: 'null'
-          title: Description
-          description: Optional description of what content belongs in this category.
-      type: object
-      required:
-      - name
-      title: SplitCategory
-      description: Category definition for document splitting.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ConfigurationUpdateRequest:
-      properties:
-        name:
-          anyOf:
-          - type: string
-            maxLength: 255
-            minLength: 1
-          - type: 'null'
-          title: Name
-          description: Updated name (omit to leave unchanged).
-        parameters:
-          anyOf:
-          - oneOf:
-            - $ref: '#/components/schemas/SplitV1Parameters'
-            - $ref: '#/components/schemas/ExtractV2Parameters'
-            - $ref: '#/components/schemas/ClassifyV2Parameters'
-            - $ref: '#/components/schemas/ParseV2Parameters'
-            - $ref: '#/components/schemas/SpreadsheetV1Parameters'
-            - $ref: '#/components/schemas/UntypedParameters'
-            discriminator:
-              propertyName: product_type
-              mapping:
-                classify_v2: '#/components/schemas/ClassifyV2Parameters'
-                extract_v2: '#/components/schemas/ExtractV2Parameters'
-                parse_v2: '#/components/schemas/ParseV2Parameters'
-                split_v1: '#/components/schemas/SplitV1Parameters'
-                spreadsheet_v1: '#/components/schemas/SpreadsheetV1Parameters'
-                unknown: '#/components/schemas/UntypedParameters'
-          - type: 'null'
-          title: Parameters
-          description: Updated parameters (omit to leave unchanged).
-      type: object
-      title: ConfigurationUpdateRequest
-      description: Request body for updating a product configuration.
-    ParseV2Parameters:
-      properties:
-        tier:
-          type: string
-          enum:
-          - fast
-          - cost_effective
-          - agentic
-          - agentic_plus
-          title: Tier
-          description: 'Parsing tier: ''fast'' (rule-based, cheapest), ''cost_effective'' (balanced), ''agentic'' (AI-powered with custom prompts), or ''agentic_plus'' (premium AI with highest accuracy)'
-        version:
-          anyOf:
-          - type: string
-            enum:
-            - latest
-            - '2026-06-05'
-            - '2026-06-04'
-            - '2025-12-11'
-            x-enum-order-preserved: true
-          - type: string
-          title: Version
-          description: 'Version for the selected tier. Use `latest`, or pin one of that tier''s dated versions.
-
-
-            Current `latest` by tier:
-
-            - `fast`: `2025-12-11`
-
-            - `cost_effective`: `2026-06-05`
-
-            - `agentic`: `2026-06-04`
-
-            - `agentic_plus`: `2026-06-04`
-
-
-            Full list: `GET /api/v2/parse/versions`.'
-        client_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Client Name
-          description: 'Identifier for the client/application making the request. Used for analytics and debugging. Example: ''my-app-v2'''
-        processing_options:
-          $ref: '#/components/schemas/LlamaParseProcessingOptions'
-          description: Document processing options including OCR, table extraction, and chart parsing
-        fast_options:
-          anyOf:
-          - $ref: '#/components/schemas/LlamaParseFastOptions'
-          - type: 'null'
-          description: Fast tier configuration options. Auto-initialized when tier='fast'. Cannot be used with other tiers
-        agentic_options:
-          anyOf:
-          - $ref: '#/components/schemas/LlamaParseAgenticOptions'
-          - type: 'null'
-          description: AI-powered tier configuration (custom prompts). Auto-initialized for cost_effective/agentic/agentic_plus tiers. Cannot be used with fast tier
-        webhook_configurations:
-          items:
-            $ref: '#/components/schemas/LlamaParseWebhookConfiguration'
-          type: array
-          title: Webhook Configurations
-          description: Webhook endpoints for job status notifications. Multiple webhooks can be configured for different events or services
-        input_options:
-          $ref: '#/components/schemas/LlamaParseInputOptions'
-          description: Format-specific options (HTML, PDF, spreadsheet, presentation). Applied based on detected input file type
-        crop_box:
-          $ref: '#/components/schemas/LlamaParseCropBox'
-          description: Crop boundaries to process only a portion of each page. Values are ratios 0-1 from page edges
-        page_ranges:
-          $ref: '#/components/schemas/LlamaParsePageRanges'
-          description: 'Page selection: limit total pages or specify exact pages to process'
-        disable_cache:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Disable Cache
-          description: Bypass result caching and force re-parsing. Use when document content may have changed or you need fresh results
-        output_options:
-          $ref: '#/components/schemas/LlamaParseOutputOptions'
-          description: Output formatting options for markdown, text, and extracted images
-        processing_control:
-          $ref: '#/components/schemas/LlamaParseProcessingControl'
-          description: Job execution controls including timeouts and failure thresholds
-        product_type:
-          type: string
-          const: parse_v2
-          title: Product Type
-          description: Product type.
-      type: object
-      required:
-      - tier
-      - version
-      - product_type
-      title: ParseV2Parameters
-      description: 'Configuration for LlamaParse v2 document parsing.
-
-
-        Includes tier selection, processing options, output formatting,
-
-        page targeting, and webhook delivery. Refer to the LlamaParse
-
-        documentation for details on each field.'
-    LlamaParseHtmlOptions:
-      properties:
-        make_all_elements_visible:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Make All Elements Visible
-          description: Force all HTML elements to be visible by overriding CSS display/visibility properties. Useful for parsing pages with hidden content or collapsed sections
-        remove_fixed_elements:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Remove Fixed Elements
-          description: Remove fixed-position elements (headers, footers, floating buttons) that appear on every page render
-        remove_navigation_elements:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Remove Navigation Elements
-          description: Remove navigation elements (nav bars, sidebars, menus) to focus on main content
-      additionalProperties: false
-      type: object
-      title: LlamaParseHtmlOptions
-      description: HTML/web page parsing options.
-    LlamaParseWebhookConfiguration:
-      properties:
-        webhook_url:
-          anyOf:
-          - type: string
-            pattern: '^https?:'
-          - type: 'null'
-          title: Webhook Url
-          description: HTTPS URL to receive webhook POST requests. Must be publicly accessible
-        webhook_headers:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Webhook Headers
-          description: 'Custom HTTP headers to include in webhook requests. Use for authentication tokens or custom routing. Example: {''Authorization'': ''Bearer xyz''}'
-        webhook_events:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Webhook Events
-          description: 'Events that trigger this webhook. Options: ''parse.success'' (job completed), ''parse.error'' (job failed), ''parse.partial_success'' (some pages failed), ''parse.pending'', ''parse.running'', ''parse.cancelled''. If not specified, webhook fires for all events'
-          examples:
-          - - parse.success
-            - parse.error
-        webhook_output_format:
-          anyOf:
-          - type: string
-            enum:
-            - string
-            - json
-          - type: 'null'
-          title: Webhook Output Format
-          description: Format of the webhook payload body. 'string' (default) sends the payload as a JSON-encoded string; 'json' sends it as a JSON object.
-          examples:
-          - json
-      additionalProperties: false
-      type: object
-      title: LlamaParseWebhookConfiguration
-      description: 'Webhook configuration for receiving parsing job notifications.
-
-
-        Webhooks are called when specified events occur during job processing.
-
-        Configure multiple webhook configurations to send to different endpoints.'
-    ConfigurationQueryResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ConfigurationResponse'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: ConfigurationQueryResponse
-      description: Paginated list of product configurations.
-    LlamaParseCropBox:
-      properties:
-        bottom:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Bottom
-          description: Bottom boundary as ratio (0-1). 0=top edge, 1=bottom edge. Content below this line is excluded
-        left:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Left
-          description: Left boundary as ratio (0-1). 0=left edge, 1=right edge. Content left of this line is excluded
-        right:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Right
-          description: Right boundary as ratio (0-1). 0=left edge, 1=right edge. Content right of this line is excluded
-        top:
-          anyOf:
-          - type: number
-            maximum: 1.0
-            minimum: 0.0
-          - type: 'null'
-          title: Top
-          description: Top boundary as ratio (0-1). 0=top edge, 1=bottom edge. Content above this line is excluded
-      additionalProperties: false
-      type: object
-      title: LlamaParseCropBox
-      description: 'Crop box boundaries for processing only a portion of each page.
-
-
-        All values are ratios from 0 to 1, where (0,0) is the top-left corner and (1,1) is
-
-        the bottom-right corner. For example, to process only the top half of each page,
-
-        set bottom=0.5 (keeping top=0, left=0, right=1).'
-    ClassifyV2ParsingConfiguration:
-      properties:
-        lang:
-          type: string
-          title: Lang
-          description: ISO 639-1 language code for the document
-          default: en
-          examples:
-          - en
-          - es
-          - zh
-        target_pages:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Target Pages
-          description: Comma-separated page numbers or ranges to process (1-based). Omit to process all pages.
-          examples:
-          - 1,3,5-7
-          - 1-3,8-10
-        max_pages:
-          anyOf:
-          - type: integer
-            minimum: 1.0
-          - type: 'null'
-          title: Max Pages
-          description: Maximum number of pages to process. Omit for no limit.
-          examples:
-          - 10
-      type: object
-      title: ClassifyV2ParsingConfiguration
-      description: Parsing configuration for classify jobs.
-    ParserLanguages:
-      type: string
-      enum:
-      - af
-      - az
-      - bs
-      - cs
-      - cy
-      - da
-      - de
-      - en
-      - es
-      - et
-      - fr
-      - ga
-      - hr
-      - hu
-      - id
-      - is
-      - it
-      - ku
-      - la
-      - lt
-      - lv
-      - mi
-      - ms
-      - mt
-      - nl
-      - 'no'
-      - oc
-      - pi
-      - pl
-      - pt
-      - ro
-      - rs_latin
-      - sk
-      - sl
-      - sq
-      - sv
-      - sw
-      - tl
-      - tr
-      - uz
-      - vi
-      - ar
-      - fa
-      - ug
-      - ur
-      - bn
-      - as
-      - mni
-      - ru
-      - rs_cyrillic
-      - be
-      - bg
-      - uk
-      - mn
-      - abq
-      - ady
-      - kbd
-      - ava
-      - dar
-      - inh
-      - che
-      - lbe
-      - lez
-      - tab
-      - tjk
-      - hi
-      - mr
-      - ne
-      - bh
-      - mai
-      - ang
-      - bho
-      - mah
-      - sck
-      - new
-      - gom
-      - sa
-      - bgc
-      - th
-      - ch_sim
-      - ch_tra
-      - ja
-      - ko
-      - ta
-      - te
-      - kn
-      title: ParserLanguages
-      description: Enum for representing the languages supported by the parser.
-    LlamaParseProcessingOptions:
-      properties:
-        ignore:
-          $ref: '#/components/schemas/LlamaParseIgnoreOptions'
-          description: Options for ignoring specific text types (diagonal, hidden, text in images)
-        ocr_parameters:
-          $ref: '#/components/schemas/LlamaParseOcrParameters'
-          description: OCR configuration including language detection settings
-        aggressive_table_extraction:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Aggressive Table Extraction
-          description: Use aggressive heuristics to detect table boundaries, even without visible borders. Useful for documents with borderless or complex tables
-        disable_heuristics:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Disable Heuristics
-          description: Disable automatic heuristics including outlined table extraction and adaptive long table handling. Use when heuristics produce incorrect results
-        specialized_chart_parsing:
-          anyOf:
-          - type: string
-            enum:
-            - agentic_plus
-            - agentic
-            - efficient
-          - type: 'null'
-          title: Specialized Chart Parsing
-          description: 'Enable AI-powered chart analysis. Modes: ''efficient'' (fast, lower cost), ''agentic'' (balanced), ''agentic_plus'' (highest accuracy). Automatically enables extract_layout and precise_bounding_box when set'
-        cost_optimizer:
-          anyOf:
-          - $ref: '#/components/schemas/LlamaParseCostOptimizerParameters'
-          - type: 'null'
-          description: Cost optimization settings. Only available with 'agentic' or 'agentic_plus' tiers
-        auto_mode_configuration:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/AutoModeConfigurationEntry'
-            type: array
-          - type: 'null'
-          title: Auto Mode Configuration
-          description: Conditional processing rules that apply different parsing options based on page content, document structure, or filename patterns. Each entry defines trigger conditions and the parsing configuration to apply when triggered
-      additionalProperties: false
-      type: object
-      title: LlamaParseProcessingOptions
-      description: 'Processing options shared across all parsing tiers.
-
-
-        These options control how documents are analyzed and processed regardless of the selected tier.
-
-        Some options automatically enable additional behaviors (e.g., specialized_chart_parsing
-
-        enables extract_layout and precise_bounding_box).'
-    LlamaParseCostOptimizerParameters:
-      properties:
-        enable:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Enable
-          description: 'Enable cost-optimized parsing. Routes simpler pages to faster processing while complex pages use full AI analysis. May reduce speed on some documents. IMPORTANT: Only available with ''agentic'' or ''agentic_plus'' tiers'
-      additionalProperties: false
-      type: object
-      title: LlamaParseCostOptimizerParameters
-      description: 'Cost optimizer configuration for reducing parsing costs on simpler pages.
-
-
-        When enabled, the parser analyzes each page and routes simpler pages to faster,
-
-        cheaper processing while preserving quality for complex pages. Only works with
-
-        ''agentic'' or ''agentic_plus'' tiers.'
-    LlamaParseSpreadsheetOptions:
-      properties:
-        detect_sub_tables_in_sheets:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Detect Sub Tables In Sheets
-          description: Detect and extract multiple tables within a single sheet. Useful when spreadsheets contain several data regions separated by blank rows/columns
-        force_formula_computation_in_sheets:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Force Formula Computation In Sheets
-          description: Compute formula results instead of extracting formula text. Use when you need calculated values rather than formula definitions
-        include_hidden_sheets:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Include Hidden Sheets
-          description: Parse hidden sheets in addition to visible ones. By default, hidden sheets are skipped
-      additionalProperties: false
-      type: object
-      title: LlamaParseSpreadsheetOptions
-      description: Spreadsheet (Excel, CSV, ODS) parsing options.
+      title: LlamaParseProcessingControl
+      description: Job processing controls for timeouts and failure handling.
     AutoModeSpatialTextOptions:
       properties:
         preserve_layout_alignment_across_pages:
@@ -2006,131 +2064,73 @@ components:
       type: object
       title: AutoModeSpatialTextOptions
       description: Spatial text options for auto mode parsing configuration.
-    SpreadsheetV1Parameters:
+    LlamaParseSpreadsheetOptions:
       properties:
-        sheet_names:
+        detect_sub_tables_in_sheets:
           anyOf:
-          - items:
-              type: string
-            type: array
+          - type: boolean
           - type: 'null'
-          title: Sheet Names
-          description: The names of the sheets to extract regions from. If empty, all sheets will be processed.
-        include_hidden_cells:
-          type: boolean
-          title: Include Hidden Cells
-          description: Whether to include hidden cells when extracting regions from the spreadsheet.
-          default: true
-        extraction_range:
+          title: Detect Sub Tables In Sheets
+          description: Detect and extract multiple tables within a single sheet. Useful when spreadsheets contain several data regions separated by blank rows/columns
+        force_formula_computation_in_sheets:
           anyOf:
-          - type: string
+          - type: boolean
           - type: 'null'
-          title: Extraction Range
-          description: A1 notation of the range to extract a single region from. If None, the entire sheet is used.
-        generate_additional_metadata:
-          type: boolean
-          title: Generate Additional Metadata
-          description: Whether to generate additional metadata (title, description) for each extracted region.
-          default: true
-        use_experimental_processing:
-          type: boolean
-          title: Use Experimental Processing
-          description: Enables experimental processing. Accuracy may be impacted.
-          default: false
-        flatten_hierarchical_tables:
-          type: boolean
-          title: Flatten Hierarchical Tables
-          description: Return a flattened dataframe when a detected table is recognized as hierarchical.
-          default: false
-        table_merge_sensitivity:
-          type: string
-          enum:
-          - strong
-          - weak
-          title: Table Merge Sensitivity
-          description: Influences how likely similar-looking regions are merged into a single table. Useful for spreadsheets that either have sparse tables (strong merging) or many distinct tables close together (weak merging).
-          default: strong
-        specialization:
+          title: Force Formula Computation In Sheets
+          description: Compute formula results instead of extracting formula text. Use when you need calculated values rather than formula definitions
+        include_hidden_sheets:
           anyOf:
-          - type: string
+          - type: boolean
           - type: 'null'
-          title: Specialization
-          description: 'Optional specialization mode for domain-specific extraction. Supported values: ''financial-standard'', ''financial-enhanced'', ''financial-precise''. Default None uses the general-purpose pipeline.'
-        product_type:
-          type: string
-          const: spreadsheet_v1
-          title: Product Type
-          description: Product type.
-      type: object
-      required:
-      - product_type
-      title: SpreadsheetV1Parameters
-      description: Typed parameters for a *spreadsheet v1* product configuration.
-    LlamaParsePageRanges:
-      properties:
-        max_pages:
-          anyOf:
-          - type: integer
-            minimum: 1.0
-          - type: 'null'
-          title: Max Pages
-          description: Maximum number of pages to process. Pages are processed in order starting from page 1. If both max_pages and target_pages are set, target_pages takes precedence
-        target_pages:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Target Pages
-          description: 'Comma-separated list of specific pages to process using 1-based indexing. Supports individual pages and ranges. Examples: ''1,3,5'' (pages 1, 3, 5), ''1-5'' (pages 1 through 5 inclusive), ''1,3,5-8,10'' (pages 1, 3, 5-8, and 10). Pages are sorted and deduplicated automatically. Duplicate pages cause an error'
+          title: Include Hidden Sheets
+          description: Parse hidden sheets in addition to visible ones. By default, hidden sheets are skipped
       additionalProperties: false
       type: object
-      title: LlamaParsePageRanges
-      description: Page selection options for processing specific pages or limiting page count.
-    LlamaParsePdfOptions:
-      properties: {}
-      additionalProperties: false
-      type: object
-      title: LlamaParsePdfOptions
-    SplitStrategy:
+      title: LlamaParseSpreadsheetOptions
+      description: Spreadsheet (Excel, CSV, ODS) parsing options.
+    LlamaParseJobFailureConditions:
       properties:
-        allow_uncategorized:
-          type: string
-          enum:
-          - include
-          - forbid
-          - omit
-          title: Allow Uncategorized
-          description: 'Controls handling of pages that don''t match any category. ''include'': pages can be grouped as ''uncategorized'' and included in results. ''forbid'': all pages must be assigned to a defined category. ''omit'': pages can be classified as ''uncategorized'' but are excluded from results.'
-          default: include
-      type: object
-      title: SplitStrategy
-      description: Configuration for how to split the document.
-    LlamaParseTimeouts:
-      properties:
-        base_in_seconds:
+        allowed_page_failure_ratio:
           anyOf:
-          - type: integer
-            maximum: 7200.0
+          - type: number
+            maximum: 1.0
             exclusiveMinimum: 0.0
           - type: 'null'
-          title: Base In Seconds
-          description: Base timeout for the job in seconds (max 7200 = 2 hours). This is the minimum time allowed regardless of document size
-        extra_time_per_page_in_seconds:
+          title: Allowed Page Failure Ratio
+          description: 'Maximum ratio of pages allowed to fail before the job fails (0-1). Example: 0.1 means job fails if more than 10% of pages fail. Default is 0.05 (5%)'
+        fail_on_image_extraction_error:
           anyOf:
-          - type: integer
-            maximum: 300.0
-            exclusiveMinimum: 0.0
+          - type: boolean
           - type: 'null'
-          title: Extra Time Per Page In Seconds
-          description: Additional timeout per page in seconds (max 300 = 5 minutes). Total timeout = base + (this value × page count)
+          title: Fail On Image Extraction Error
+          description: Fail the entire job if any embedded image cannot be extracted. By default, image extraction errors are logged but don't fail the job
+        fail_on_image_ocr_error:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fail On Image Ocr Error
+          description: Fail the entire job if OCR fails on any image. By default, OCR errors result in empty text for that image
+        fail_on_markdown_reconstruction_error:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fail On Markdown Reconstruction Error
+          description: Fail the entire job if markdown cannot be reconstructed for any page. By default, failed pages use fallback text extraction
+        fail_on_buggy_font:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fail On Buggy Font
+          description: Fail the job if a problematic font is detected that may cause incorrect text extraction. Buggy fonts can produce garbled or missing characters
       additionalProperties: false
       type: object
-      title: LlamaParseTimeouts
-      description: 'Job timeout configuration.
+      title: LlamaParseJobFailureConditions
+      description: 'Conditions that determine when a parsing job should fail vs complete with partial results.
 
 
-        Total timeout = base_in_seconds + (extra_time_per_page_in_seconds × page_count).
+        By default, jobs complete successfully even if some pages fail to parse.
 
-        Use these settings for large documents or complex parsing that needs more time.'
+        Use these settings to enforce stricter quality requirements.'
   securitySchemes:
     HTTPBearer:
       type: http

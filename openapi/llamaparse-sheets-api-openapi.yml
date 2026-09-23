@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data Sheets API
+  title: Llama Platform Sheets API
   version: 0.1.0
 tags:
 - name: Sheets
@@ -398,6 +398,80 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    PaginatedResponse_SpreadsheetJob_:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SpreadsheetJob'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: PaginatedResponse[SpreadsheetJob]
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    WorksheetMetadata:
+      properties:
+        sheet_name:
+          type: string
+          title: Sheet Name
+          description: Name of the worksheet
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+          description: Generated title for the worksheet
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Generated description of the worksheet
+      type: object
+      required:
+      - sheet_name
+      title: WorksheetMetadata
+      description: Metadata about a worksheet in a spreadsheet
     SpreadsheetJob:
       properties:
         id:
@@ -505,59 +579,6 @@ components:
       - file_id
       title: SpreadsheetJob
       description: A spreadsheet parsing job.
-    SpreadsheetParsingConfig:
-      properties:
-        sheet_names:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Sheet Names
-          description: The names of the sheets to extract regions from. If empty, all sheets will be processed.
-        include_hidden_cells:
-          type: boolean
-          title: Include Hidden Cells
-          description: Whether to include hidden cells when extracting regions from the spreadsheet.
-          default: true
-        extraction_range:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Extraction Range
-          description: A1 notation of the range to extract a single region from. If None, the entire sheet is used.
-        generate_additional_metadata:
-          type: boolean
-          title: Generate Additional Metadata
-          description: Whether to generate additional metadata (title, description) for each extracted region.
-          default: true
-        use_experimental_processing:
-          type: boolean
-          title: Use Experimental Processing
-          description: Enables experimental processing. Accuracy may be impacted.
-          default: false
-        flatten_hierarchical_tables:
-          type: boolean
-          title: Flatten Hierarchical Tables
-          description: Return a flattened dataframe when a detected table is recognized as hierarchical.
-          default: false
-        table_merge_sensitivity:
-          type: string
-          enum:
-          - strong
-          - weak
-          title: Table Merge Sensitivity
-          description: Influences how likely similar-looking regions are merged into a single table. Useful for spreadsheets that either have sparse tables (strong merging) or many distinct tables close together (weak merging).
-          default: strong
-        specialization:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specialization
-          description: 'Optional specialization mode for domain-specific extraction. Supported values: ''financial-standard'', ''financial-enhanced'', ''financial-precise''. Default None uses the general-purpose pipeline.'
-      type: object
-      title: SpreadsheetParsingConfig
-      description: Configuration for spreadsheet parsing and region extraction
     File:
       properties:
         id:
@@ -678,8 +699,21 @@ components:
       - project_id
       title: File
       description: Schema for a file.
-    SpreadsheetJobParameters:
+    SpreadsheetJobCreate:
       properties:
+        configuration_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Configuration Id
+          description: Saved configuration ID
+          examples:
+          - cfg-11111111-2222-3333-4444-555555555555
+        configuration:
+          anyOf:
+          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          - type: 'null'
+          description: Inline configuration
         webhook_configurations:
           anyOf:
           - items:
@@ -687,63 +721,83 @@ components:
             type: array
           - type: 'null'
           title: Webhook Configurations
-          description: Webhook configurations for job status notifications.
-      type: object
-      title: SpreadsheetJobParameters
-      description: Job-time parameters returned on a spreadsheet job response.
-    PresignedUrl:
-      properties:
-        url:
-          type: string
-          minLength: 1
-          format: uri
-          title: Url
-          description: A presigned URL for IO operations against a private file
-        expires_at:
-          type: string
-          format: date-time
-          title: Expires At
-          description: The time at which the presigned URL expires
-        form_fields:
+          description: Outbound webhook endpoints to notify on job status changes
+        config:
           anyOf:
-          - additionalProperties:
-              type: string
-            type: object
+          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
           - type: 'null'
-          title: Form Fields
-          description: Form fields for a presigned POST request
+          description: 'Deprecated: use `configuration` instead.'
+          deprecated: true
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file to parse
       type: object
       required:
-      - url
-      - expires_at
-      title: PresignedUrl
-      description: Schema for a presigned URL.
-    ValidationError:
+      - file_id
+      title: SpreadsheetJobCreate
+      description: 'Request to create a spreadsheet parsing job.
+
+
+        Provide at most one of `configuration` (inline) or `configuration_id`
+
+        (saved preset). If neither is provided, a default inline configuration is
+
+        used.'
+    SpreadsheetParsingConfig:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        sheet_names:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Sheet Names
+          description: The names of the sheets to extract regions from. If empty, all sheets will be processed.
+        include_hidden_cells:
+          type: boolean
+          title: Include Hidden Cells
+          description: Whether to include hidden cells when extracting regions from the spreadsheet.
+          default: true
+        extraction_range:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Extraction Range
+          description: A1 notation of the range to extract a single region from. If None, the entire sheet is used.
+        generate_additional_metadata:
+          type: boolean
+          title: Generate Additional Metadata
+          description: Whether to generate additional metadata (title, description) for each extracted region.
+          default: true
+        use_experimental_processing:
+          type: boolean
+          title: Use Experimental Processing
+          description: Enables experimental processing. Accuracy may be impacted.
+          default: false
+        flatten_hierarchical_tables:
+          type: boolean
+          title: Flatten Hierarchical Tables
+          description: Return a flattened dataframe when a detected table is recognized as hierarchical.
+          default: false
+        table_merge_sensitivity:
           type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
+          enum:
+          - strong
+          - weak
+          title: Table Merge Sensitivity
+          description: Influences how likely similar-looking regions are merged into a single table. Useful for spreadsheets that either have sparse tables (strong merging) or many distinct tables close together (weak merging).
+          default: strong
+        specialization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specialization
+          description: 'Optional specialization mode for domain-specific extraction. Supported values: ''financial-standard'', ''financial-enhanced'', ''financial-precise''. Default None uses the general-purpose pipeline.'
       type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      title: SpreadsheetParsingConfig
+      description: Configuration for spreadsheet parsing and region extraction
     WebhookConfiguration:
       properties:
         webhook_url:
@@ -810,83 +864,32 @@ components:
       type: object
       title: WebhookConfiguration
       description: Configuration for a single outbound webhook endpoint.
-    SpreadsheetJobCreate:
+    ValidationError:
       properties:
-        configuration_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Configuration Id
-          description: Saved configuration ID
-          examples:
-          - cfg-11111111-2222-3333-4444-555555555555
-        configuration:
-          anyOf:
-          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
-          - type: 'null'
-          description: Inline configuration
-        webhook_configurations:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/WebhookConfiguration'
-            type: array
-          - type: 'null'
-          title: Webhook Configurations
-          description: Outbound webhook endpoints to notify on job status changes
-        config:
-          anyOf:
-          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
-          - type: 'null'
-          description: 'Deprecated: use `configuration` instead.'
-          deprecated: true
-        file_id:
-          type: string
-          format: uuid
-          title: File Id
-          description: The ID of the file to parse
-      type: object
-      required:
-      - file_id
-      title: SpreadsheetJobCreate
-      description: 'Request to create a spreadsheet parsing job.
-
-
-        Provide at most one of `configuration` (inline) or `configuration_id`
-
-        (saved preset). If neither is provided, a default inline configuration is
-
-        used.'
-    PaginatedResponse_SpreadsheetJob_:
-      properties:
-        items:
+        loc:
           items:
-            $ref: '#/components/schemas/SpreadsheetJob'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
       required:
-      - items
-      title: PaginatedResponse[SpreadsheetJob]
-    SpreadsheetResultType:
-      type: string
-      enum:
-      - table
-      - extra
-      - cell_metadata
-      title: SpreadsheetResultType
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ExtractedRegionSummary:
       properties:
         region_id:
@@ -924,29 +927,6 @@ components:
       - region_type
       title: ExtractedRegionSummary
       description: A summary of a single extracted region from a spreadsheet
-    WorksheetMetadata:
-      properties:
-        sheet_name:
-          type: string
-          title: Sheet Name
-          description: Name of the worksheet
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-          description: Generated title for the worksheet
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-          description: Generated description of the worksheet
-      type: object
-      required:
-      - sheet_name
-      title: WorksheetMetadata
-      description: Metadata about a worksheet in a spreadsheet
     HTTPValidationError:
       properties:
         detail:
@@ -956,6 +936,26 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    SpreadsheetResultType:
+      type: string
+      enum:
+      - table
+      - extra
+      - cell_metadata
+      title: SpreadsheetResultType
+    SpreadsheetJobParameters:
+      properties:
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Webhook configurations for job status notifications.
+      type: object
+      title: SpreadsheetJobParameters
+      description: Job-time parameters returned on a spreadsheet job response.
   securitySchemes:
     HTTPBearer:
       type: http

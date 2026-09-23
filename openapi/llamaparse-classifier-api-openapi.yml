@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data Classifier API
+  title: Llama Platform Classifier API
   version: 0.1.0
 tags:
 - name: Classifier
@@ -262,6 +262,162 @@ components:
       required:
       - items
       title: PaginatedResponse[ClassifyJob]
+    ClassifyJobResults:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FileClassification'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: ClassifyJobResults
+      description: Response model for the classify endpoint following AIP-132 pagination standard.
+    FileClassification:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        classify_job_id:
+          type: string
+          format: uuid
+          title: Classify Job Id
+          description: The ID of the classify job
+        file_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+          description: The ID of the classified file
+        result:
+          anyOf:
+          - $ref: '#/components/schemas/ClassificationResult'
+          - type: 'null'
+          description: The classification result
+      type: object
+      required:
+      - id
+      - classify_job_id
+      title: FileClassification
+      description: A file classification.
+    ClassifyJobCreate:
+      properties:
+        rules:
+          items:
+            $ref: '#/components/schemas/ClassifierRule'
+          type: array
+          minItems: 1
+          title: Rules
+          description: The rules to classify the files
+        mode:
+          $ref: '#/components/schemas/ClassifyMode'
+          description: The classification mode to use
+          default: FAST
+        file_ids:
+          items:
+            type: string
+            format: uuid
+          type: array
+          maxItems: 500
+          minItems: 1
+          title: File Ids
+          description: The IDs of the files to classify
+        parsing_configuration:
+          $ref: '#/components/schemas/ClassifyParsingConfiguration'
+          description: The configuration for the parsing job
+          default:
+            lang: en
+            max_pages: 5
+        webhook_configurations:
+          items:
+            $ref: '#/components/schemas/LlamaParseWebhookConfiguration'
+          type: array
+          title: Webhook Configurations
+          description: List of webhook configurations for notifications
+      type: object
+      required:
+      - rules
+      - file_ids
+      title: ClassifyJobCreate
+      description: A classify job.
+    LlamaParseWebhookConfiguration:
+      properties:
+        webhook_url:
+          anyOf:
+          - type: string
+            pattern: '^https?:'
+          - type: 'null'
+          title: Webhook Url
+          description: HTTPS URL to receive webhook POST requests. Must be publicly accessible
+        webhook_headers:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Webhook Headers
+          description: 'Custom HTTP headers to include in webhook requests. Use for authentication tokens or custom routing. Example: {''Authorization'': ''Bearer xyz''}'
+        webhook_events:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Webhook Events
+          description: 'Events that trigger this webhook. Options: ''parse.success'' (job completed), ''parse.error'' (job failed), ''parse.partial_success'' (some pages failed), ''parse.pending'', ''parse.running'', ''parse.cancelled''. If not specified, webhook fires for all events'
+          examples:
+          - - parse.success
+            - parse.error
+        webhook_output_format:
+          anyOf:
+          - type: string
+            enum:
+            - string
+            - json
+          - type: 'null'
+          title: Webhook Output Format
+          description: Format of the webhook payload body. 'string' (default) sends the payload as a JSON-encoded string; 'json' sends it as a JSON object.
+          examples:
+          - json
+      additionalProperties: false
+      type: object
+      title: LlamaParseWebhookConfiguration
+      description: 'Webhook configuration for receiving parsing job notifications.
+
+
+        Webhooks are called when specified events occur during job processing.
+
+        Configure multiple webhook configurations to send to different endpoints.'
     ParserLanguages:
       type: string
       enum:
@@ -353,6 +509,13 @@ components:
       - kn
       title: ParserLanguages
       description: Enum for representing the languages supported by the parser.
+    ClassifyMode:
+      type: string
+      enum:
+      - FAST
+      - MULTIMODAL
+      title: ClassifyMode
+      description: Supported classification execution modes.
     StatusEnum:
       type: string
       enum:
@@ -363,63 +526,6 @@ components:
       - CANCELLED
       title: StatusEnum
       description: Enum for representing the status of a job
-    ClassificationResult:
-      properties:
-        reasoning:
-          type: string
-          title: Reasoning
-          description: Step-by-step explanation of why this classification was chosen and the confidence score assigned
-        confidence:
-          type: number
-          maximum: 1.0
-          minimum: 0.0
-          title: Confidence
-          description: Confidence score of the classification (0.0-1.0)
-        type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Type
-          description: The document type that best matches, or null if no match.
-      type: object
-      required:
-      - reasoning
-      - confidence
-      - type
-      title: ClassificationResult
-      description: Result of classifying a single file.
-    ClassifyJobResults:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/FileClassification'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: ClassifyJobResults
-      description: Response model for the classify endpoint following AIP-132 pagination standard.
-    ClassifyMode:
-      type: string
-      enum:
-      - FAST
-      - MULTIMODAL
-      title: ClassifyMode
-      description: Supported classification execution modes.
     ValidationError:
       properties:
         loc:
@@ -446,97 +552,100 @@ components:
       - msg
       - type
       title: ValidationError
-    FileClassification:
+    HTTPValidationError:
       properties:
-        id:
-          type: string
-          format: uuid
-          title: Id
-          description: Unique identifier
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation datetime
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Update datetime
-        classify_job_id:
-          type: string
-          format: uuid
-          title: Classify Job Id
-          description: The ID of the classify job
-        file_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: File Id
-          description: The ID of the classified file
-        result:
-          anyOf:
-          - $ref: '#/components/schemas/ClassificationResult'
-          - type: 'null'
-          description: The classification result
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - id
-      - classify_job_id
-      title: FileClassification
-      description: A file classification.
-    LlamaParseWebhookConfiguration:
+      title: HTTPValidationError
+    ClassifyParsingConfiguration:
       properties:
-        webhook_url:
+        lang:
+          $ref: '#/components/schemas/ParserLanguages'
+          description: The language to parse the files in
+          default: en
+        max_pages:
           anyOf:
-          - type: string
-            pattern: '^https?:'
+          - type: integer
           - type: 'null'
-          title: Webhook Url
-          description: HTTPS URL to receive webhook POST requests. Must be publicly accessible
-        webhook_headers:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Webhook Headers
-          description: 'Custom HTTP headers to include in webhook requests. Use for authentication tokens or custom routing. Example: {''Authorization'': ''Bearer xyz''}'
-        webhook_events:
+          title: Max Pages
+          description: The maximum number of pages to parse
+          default: 5
+        target_pages:
           anyOf:
           - items:
-              type: string
+              type: integer
             type: array
+            minItems: 1
           - type: 'null'
-          title: Webhook Events
-          description: 'Events that trigger this webhook. Options: ''parse.success'' (job completed), ''parse.error'' (job failed), ''parse.partial_success'' (some pages failed), ''parse.pending'', ''parse.running'', ''parse.cancelled''. If not specified, webhook fires for all events'
+          title: Target Pages
+          description: The pages to target for parsing (0-indexed, so first page is at 0)
+      type: object
+      title: ClassifyParsingConfiguration
+      description: Parsing configuration for a classify job.
+    ClassifierRule:
+      properties:
+        type:
+          type: string
+          maxLength: 50
+          minLength: 1
+          title: Type
+          description: The document type to assign when this rule matches (e.g., 'invoice', 'receipt', 'contract')
           examples:
-          - - parse.success
-            - parse.error
-        webhook_output_format:
+          - invoice
+          - receipt
+          - contract
+          - report
+          - proposal
+        description:
+          type: string
+          maxLength: 500
+          minLength: 10
+          title: Description
+          description: Natural language description of what to classify. Be specific about the content characteristics that identify this document type.
+          examples:
+          - contains invoice number, line items, and total amount
+          - purchase receipt with transaction info and merchant details
+          - legal contract with terms, conditions, and signatures
+      type: object
+      required:
+      - type
+      - description
+      title: ClassifierRule
+      description: 'A rule for classifying documents - v0 simplified version.
+
+
+        This represents a single classification rule that will be applied to documents.
+
+        All rules are content-based and use natural language descriptions.'
+    ClassificationResult:
+      properties:
+        reasoning:
+          type: string
+          title: Reasoning
+          description: Step-by-step explanation of why this classification was chosen and the confidence score assigned
+        confidence:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Confidence
+          description: Confidence score of the classification (0.0-1.0)
+        type:
           anyOf:
           - type: string
-            enum:
-            - string
-            - json
           - type: 'null'
-          title: Webhook Output Format
-          description: Format of the webhook payload body. 'string' (default) sends the payload as a JSON-encoded string; 'json' sends it as a JSON object.
-          examples:
-          - json
-      additionalProperties: false
+          title: Type
+          description: The document type that best matches, or null if no match.
       type: object
-      title: LlamaParseWebhookConfiguration
-      description: 'Webhook configuration for receiving parsing job notifications.
-
-
-        Webhooks are called when specified events occur during job processing.
-
-        Configure multiple webhook configurations to send to different endpoints.'
+      required:
+      - reasoning
+      - confidence
+      - type
+      title: ClassificationResult
+      description: Result of classifying a single file.
     ClassifyJob:
       properties:
         status:
@@ -612,115 +721,6 @@ components:
       - project_id
       title: ClassifyJob
       description: A classify job.
-    ClassifyJobCreate:
-      properties:
-        rules:
-          items:
-            $ref: '#/components/schemas/ClassifierRule'
-          type: array
-          minItems: 1
-          title: Rules
-          description: The rules to classify the files
-        mode:
-          $ref: '#/components/schemas/ClassifyMode'
-          description: The classification mode to use
-          default: FAST
-        file_ids:
-          items:
-            type: string
-            format: uuid
-          type: array
-          maxItems: 500
-          minItems: 1
-          title: File Ids
-          description: The IDs of the files to classify
-        parsing_configuration:
-          $ref: '#/components/schemas/ClassifyParsingConfiguration'
-          description: The configuration for the parsing job
-          default:
-            lang: en
-            max_pages: 5
-        webhook_configurations:
-          items:
-            $ref: '#/components/schemas/LlamaParseWebhookConfiguration'
-          type: array
-          title: Webhook Configurations
-          description: List of webhook configurations for notifications
-      type: object
-      required:
-      - rules
-      - file_ids
-      title: ClassifyJobCreate
-      description: A classify job.
-    ClassifyParsingConfiguration:
-      properties:
-        lang:
-          $ref: '#/components/schemas/ParserLanguages'
-          description: The language to parse the files in
-          default: en
-        max_pages:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Max Pages
-          description: The maximum number of pages to parse
-          default: 5
-        target_pages:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-            minItems: 1
-          - type: 'null'
-          title: Target Pages
-          description: The pages to target for parsing (0-indexed, so first page is at 0)
-      type: object
-      title: ClassifyParsingConfiguration
-      description: Parsing configuration for a classify job.
-    ClassifierRule:
-      properties:
-        type:
-          type: string
-          maxLength: 50
-          minLength: 1
-          title: Type
-          description: The document type to assign when this rule matches (e.g., 'invoice', 'receipt', 'contract')
-          examples:
-          - invoice
-          - receipt
-          - contract
-          - report
-          - proposal
-        description:
-          type: string
-          maxLength: 500
-          minLength: 10
-          title: Description
-          description: Natural language description of what to classify. Be specific about the content characteristics that identify this document type.
-          examples:
-          - contains invoice number, line items, and total amount
-          - purchase receipt with transaction info and merchant details
-          - legal contract with terms, conditions, and signatures
-      type: object
-      required:
-      - type
-      - description
-      title: ClassifierRule
-      description: 'A rule for classifying documents - v0 simplified version.
-
-
-        This represents a single classification rule that will be applied to documents.
-
-        All rules are content-based and use natural language descriptions.'
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

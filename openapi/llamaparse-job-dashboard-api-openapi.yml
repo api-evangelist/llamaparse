@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data Job Dashboard API
+  title: Llama Platform Job Dashboard API
   version: 0.1.0
 tags:
 - name: Job Dashboard
@@ -142,91 +142,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    JobDataPointResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/JobDataPoint'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: JobDataPointResponse
-      description: Paginated list of job data points.
-    JobStateTransitions:
-      properties:
-        pending_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Pending At
-          examples:
-          - '2026-04-29T18:00:00Z'
-        throttled_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Throttled At
-          examples:
-          - '2026-04-29T18:00:02Z'
-        running_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Running At
-          examples:
-          - '2026-04-29T18:00:05Z'
-        completed_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Completed At
-          examples:
-          - '2026-04-29T18:01:00Z'
-        failed_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Failed At
-          examples:
-          - '2026-04-29T18:01:00Z'
-        cancelled_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Cancelled At
-          examples:
-          - '2026-04-29T18:01:00Z'
-      type: object
-      title: JobStateTransitions
-      description: 'State transition timestamps extracted from job_metadata.
-
-
-        Matches the shape of StateTransitionTimestamps from job_latency/base.py
-
-        with the addition of pending_at. The frontend derives queue latency,
-
-        processing time, etc. from these timestamps.'
     JobDataPoint:
       properties:
         id:
@@ -296,6 +211,31 @@ components:
           running_at: '2026-04-29T18:00:05Z'
         status: completed
         updated_at: '2026-04-29T18:01:00Z'
+    JobDataPointResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/JobDataPoint'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: JobDataPointResponse
+      description: Paginated list of job data points.
     ValidationError:
       properties:
         loc:
@@ -331,6 +271,66 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    JobStateTransitions:
+      properties:
+        pending_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Pending At
+          examples:
+          - '2026-04-29T18:00:00Z'
+        throttled_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Throttled At
+          examples:
+          - '2026-04-29T18:00:02Z'
+        running_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Running At
+          examples:
+          - '2026-04-29T18:00:05Z'
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+          examples:
+          - '2026-04-29T18:01:00Z'
+        failed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Failed At
+          examples:
+          - '2026-04-29T18:01:00Z'
+        cancelled_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Cancelled At
+          examples:
+          - '2026-04-29T18:01:00Z'
+      type: object
+      title: JobStateTransitions
+      description: 'State transition timestamps extracted from job_metadata.
+
+
+        Matches the shape of StateTransitionTimestamps from job_latency/base.py
+
+        with the addition of pending_at. The frontend derives queue latency,
+
+        processing time, etc. from these timestamps.'
   securitySchemes:
     HTTPBearer:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data LlamaExtract API
+  title: Llama Platform Llama Extract API
   version: 0.1.0
 tags:
 - name: LlamaExtract
@@ -1022,612 +1022,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ExtractModels:
-      type: string
-      enum:
-      - openai-gpt-4-1
-      - openai-gpt-4-1-mini
-      - openai-gpt-4-1-nano
-      - openai-gpt-5
-      - openai-gpt-5-mini
-      - gemini-2.0-flash
-      - gemini-2.5-flash
-      - gemini-2.5-flash-lite
-      - gemini-2.5-pro
-      - openai-gpt-4o
-      - openai-gpt-4o-mini
-      title: ExtractModels
-      description: Extract model options.
-    ExtractAgentUpdate:
-      properties:
-        data_schema:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: string
-          title: Data Schema
-          description: The schema of the data
-        config:
-          $ref: '#/components/schemas/ExtractConfig'
-          description: The configuration parameters for the extraction agent.
-      type: object
-      required:
-      - data_schema
-      - config
-      title: ExtractAgentUpdate
-      description: Settings for updating an extraction schema.
-    File:
-      properties:
-        id:
-          type: string
-          format: uuid
-          title: Id
-          description: Unique identifier
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation datetime
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Update datetime
-        name:
-          type: string
-          maxLength: 3000
-          minLength: 1
-          title: Name
-        external_file_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: External File Id
-          description: The ID of the file in the external system
-        file_size:
-          anyOf:
-          - type: integer
-            minimum: 0.0
-          - type: 'null'
-          title: File Size
-          description: Size of the file in bytes
-        file_type:
-          anyOf:
-          - type: string
-            maxLength: 3000
-            minLength: 1
-          - type: 'null'
-          title: File Type
-          description: File type (e.g. pdf, docx, etc.)
-        project_id:
-          type: string
-          format: uuid
-          title: Project Id
-          description: The ID of the project that the file belongs to
-        last_modified_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Last Modified At
-          description: The last modified time of the file
-        resource_info:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: 'null'
-          title: Resource Info
-          description: Resource information for the file
-        permission_info:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: 'null'
-          title: Permission Info
-          description: Permission information for the file
-        data_source_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Data Source Id
-          description: The ID of the data source that the file belongs to
-        expires_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Expires At
-          description: The expiration date for the file. Files past this date can be deleted.
-        purpose:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Purpose
-          description: The intended purpose of the file (e.g., 'user_data', 'parse', 'extract', 'split', 'classify')
-      type: object
-      required:
-      - id
-      - name
-      - project_id
-      title: File
-      description: Schema for a file.
-    PaginatedExtractRunsResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ExtractRun'
-          type: array
-          title: Items
-          description: The list of extraction runs
-        total:
-          type: integer
-          title: Total
-          description: The total number of extraction runs
-        skip:
-          type: integer
-          title: Skip
-          description: The number of extraction runs skipped
-        limit:
-          type: integer
-          title: Limit
-          description: The maximum number of extraction runs returned
-      type: object
-      required:
-      - items
-      - total
-      - skip
-      - limit
-      title: PaginatedExtractRunsResponse
-      description: Schema for paginated extraction runs response.
-    ExtractSchemaValidateRequest:
-      properties:
-        data_schema:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: string
-          title: Data Schema
-      type: object
-      required:
-      - data_schema
-      title: ExtractSchemaValidateRequest
-      description: Request schema for validating an extraction schema.
-    PublicModelName:
-      type: string
-      enum:
-      - openai-gpt-4o
-      - openai-gpt-4o-mini
-      - openai-gpt-4-1
-      - openai-gpt-4-1-mini
-      - openai-gpt-4-1-nano
-      - openai-gpt-5
-      - openai-gpt-5-mini
-      - openai-gpt-5-nano
-      - openai-text-embedding-3-large
-      - openai-text-embedding-3-small
-      - openai-whisper-1
-      - anthropic-sonnet-3.5
-      - anthropic-sonnet-3.5-v2
-      - anthropic-sonnet-3.7
-      - anthropic-sonnet-4.0
-      - anthropic-sonnet-4.5
-      - anthropic-haiku-3.5
-      - anthropic-haiku-4.5
-      - gemini-2.5-flash
-      - gemini-3.0-pro
-      - gemini-3.1-pro
-      - gemini-2.5-pro
-      - gemini-2.0-flash
-      - gemini-2.0-flash-lite
-      - gemini-2.5-flash-lite
-      title: PublicModelName
-      description: Public model names.
-    ExtractAgentCreate:
-      properties:
-        name:
-          type: string
-          maxLength: 3000
-          minLength: 1
-          title: Name
-          description: The name of the extraction schema
-        data_schema:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: string
-          title: Data Schema
-          description: The schema of the data.
-        config:
-          $ref: '#/components/schemas/ExtractConfig'
-          description: The configuration parameters for the extraction agent.
-      type: object
-      required:
-      - name
-      - data_schema
-      - config
-      title: ExtractAgentCreate
-      description: Settings for creating an extraction agent.
-    ExtractTarget:
-      type: string
-      enum:
-      - PER_DOC
-      - PER_PAGE
-      - PER_TABLE_ROW
-      title: ExtractTarget
-      description: Defines the extraction target scope.
-    ExtractJobCreateBatch:
-      properties:
-        webhook_configurations:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/WebhookConfiguration'
-            type: array
-          - type: 'null'
-          title: Webhook Configurations
-          description: Outbound webhook endpoints to notify on job status changes
-        extraction_agent_id:
-          type: string
-          format: uuid
-          title: Extraction Agent Id
-          description: The id of the extraction agent
-        file_ids:
-          items:
-            type: string
-            format: uuid
-          type: array
-          minItems: 1
-          title: File Ids
-          description: The ids of the files
-        data_schema_override:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: string
-          - type: 'null'
-          title: Data Schema Override
-          description: The data schema to override the extraction agent's data schema with
-        config_override:
-          anyOf:
-          - $ref: '#/components/schemas/ExtractConfig'
-          - type: 'null'
-          description: The config to override the extraction agent's config with
-      type: object
-      required:
-      - extraction_agent_id
-      - file_ids
-      title: ExtractJobCreateBatch
-      description: Schema for creating extraction jobs in batch.
-    ExtractConfig:
-      properties:
-        priority:
-          anyOf:
-          - type: string
-            enum:
-            - low
-            - medium
-            - high
-            - critical
-          - type: 'null'
-          title: Priority
-          description: The priority for the request. This field may be ignored or overwritten depending on the organization tier.
-        extraction_target:
-          $ref: '#/components/schemas/ExtractTarget'
-          description: The extraction target specified.
-          default: PER_DOC
-        extraction_mode:
-          $ref: '#/components/schemas/ExtractMode'
-          description: The extraction mode specified (FAST, BALANCED, MULTIMODAL, PREMIUM).
-          default: PREMIUM
-        parse_model:
-          anyOf:
-          - $ref: '#/components/schemas/PublicModelName'
-          - type: 'null'
-          description: The parse model to use for document parsing. If not provided, uses the default for the extraction mode.
-        extract_model:
-          anyOf:
-          - $ref: '#/components/schemas/ExtractModels'
-          - type: string
-          - type: 'null'
-          title: Extract Model
-          description: The extract model to use for data extraction. If not provided, uses the default for the extraction mode.
-        multimodal_fast_mode:
-          type: boolean
-          title: Multimodal Fast Mode
-          description: 'DEPRECATED: Whether to use fast mode for multimodal extraction.'
-          default: false
-        system_prompt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: System Prompt
-          description: The system prompt to use for the extraction.
-        use_reasoning:
-          type: boolean
-          title: Use Reasoning
-          description: Whether to use reasoning for the extraction.
-          default: false
-        cite_sources:
-          type: boolean
-          title: Cite Sources
-          description: Whether to cite sources for the extraction.
-          default: false
-        citation_bbox:
-          type: boolean
-          title: Citation Bbox
-          description: 'Whether to fetch citation bounding boxes for the extraction. Only available in PREMIUM mode. Deprecated: this is now synonymous with cite_sources.'
-          default: false
-          deprecated: true
-        confidence_scores:
-          type: boolean
-          title: Confidence Scores
-          description: Whether to fetch confidence scores for the extraction.
-          default: false
-        chunk_mode:
-          $ref: '#/components/schemas/DocumentChunkMode'
-          description: The mode to use for chunking the document.
-          default: PAGE
-        high_resolution_mode:
-          type: boolean
-          title: High Resolution Mode
-          description: Whether to use high resolution mode for the extraction.
-          default: false
-        invalidate_cache:
-          type: boolean
-          title: Invalidate Cache
-          description: Whether to invalidate the cache for the extraction.
-          default: false
-        num_pages_context:
-          anyOf:
-          - type: integer
-            minimum: 1.0
-          - type: 'null'
-          title: Num Pages Context
-          description: Number of pages to pass as context on long document extraction.
-        page_range:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Page Range
-          description: Comma-separated list of page numbers or ranges to extract from (1-based, e.g., '1,3,5-7,9' or '1-3,8-10').
-      type: object
-      title: ExtractConfig
-      description: Configuration parameters for the extraction agent.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ExtractSchemaGenerateResponse:
-      properties:
-        data_schema:
-          additionalProperties:
-            anyOf:
-            - additionalProperties: true
-              type: object
-            - items: {}
-              type: array
-            - type: string
-            - type: integer
-            - type: number
-            - type: boolean
-            - type: 'null'
-          type: object
-          title: Data Schema
-          description: The generated JSON schema
-      type: object
-      required:
-      - data_schema
-      title: ExtractSchemaGenerateResponse
-      description: Response schema for schema generation.
-    ExtractMode:
-      type: string
-      enum:
-      - FAST
-      - BALANCED
-      - PREMIUM
-      - MULTIMODAL
-      title: ExtractMode
-      description: Extraction mode options.
-    ExtractSchemaValidateResponse:
-      properties:
-        data_schema:
-          additionalProperties:
-            anyOf:
-            - additionalProperties: true
-              type: object
-            - items: {}
-              type: array
-            - type: string
-            - type: integer
-            - type: number
-            - type: boolean
-            - type: 'null'
-          type: object
-          title: Data Schema
-      type: object
-      required:
-      - data_schema
-      title: ExtractSchemaValidateResponse
-      description: Response schema for schema validation.
-    ExtractState:
-      type: string
-      enum:
-      - CREATED
-      - PENDING
-      - SUCCESS
-      - ERROR
-      title: ExtractState
-    ExtractJobCreate:
-      properties:
-        priority:
-          anyOf:
-          - type: string
-            enum:
-            - low
-            - medium
-            - high
-            - critical
-          - type: 'null'
-          title: Priority
-          description: The priority for the request. This field may be ignored or overwritten depending on the organization tier.
-        webhook_configurations:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/WebhookConfiguration'
-            type: array
-          - type: 'null'
-          title: Webhook Configurations
-          description: Outbound webhook endpoints to notify on job status changes
-        extraction_agent_id:
-          type: string
-          format: uuid
-          title: Extraction Agent Id
-          description: The id of the extraction agent
-        file_id:
-          type: string
-          format: uuid
-          title: File Id
-          description: The id of the file
-        data_schema_override:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: string
-          - type: 'null'
-          title: Data Schema Override
-          description: The data schema to override the extraction agent's data schema with
-        config_override:
-          anyOf:
-          - $ref: '#/components/schemas/ExtractConfig'
-          - type: 'null'
-          description: The config to override the extraction agent's config with
-      type: object
-      required:
-      - extraction_agent_id
-      - file_id
-      title: ExtractJobCreate
-      description: Schema for creating an extraction job.
-    FileData:
-      properties:
-        data:
-          type: string
-          title: Data
-          description: The file content as base64-encoded string
-        mime_type:
-          type: string
-          title: Mime Type
-          description: The MIME type of the file (e.g., 'application/pdf', 'text/plain')
-      type: object
-      required:
-      - data
-      - mime_type
-      title: FileData
-      description: Schema for file data with base64 content and MIME type.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     ExtractAgent:
       properties:
         id:
@@ -1692,281 +1086,23 @@ components:
       - config
       title: ExtractAgent
       description: Schema and configuration for an extraction agent.
-    ExtractStatelessRequest:
-      properties:
-        webhook_configurations:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/WebhookConfiguration'
-            type: array
-          - type: 'null'
-          title: Webhook Configurations
-          description: Outbound webhook endpoints to notify on job status changes
-        data_schema:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: string
-          title: Data Schema
-          description: The schema of the data to extract
-        config:
-          $ref: '#/components/schemas/ExtractConfig'
-          description: The configuration parameters for the extraction
-        file_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: File Id
-          description: The ID of the file to extract from
-        text:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Text
-          description: The text content to extract from
-        file:
-          anyOf:
-          - $ref: '#/components/schemas/FileData'
-          - type: 'null'
-          description: The file data with base64 content and MIME type
-      type: object
-      required:
-      - data_schema
-      - config
-      title: ExtractStatelessRequest
-      description: Schema for stateless extraction requests.
-    ExtractJob:
-      properties:
-        id:
-          type: string
-          format: uuid
-          title: Id
-          description: The id of the extraction job
-        extraction_agent:
-          $ref: '#/components/schemas/ExtractAgent'
-          description: The agent that the job was run on.
-        status:
-          type: string
-          enum:
-          - PENDING
-          - SUCCESS
-          - ERROR
-          - PARTIAL_SUCCESS
-          - CANCELLED
-          title: Status
-          description: The status of the extraction job
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-          description: The error that occurred during extraction
-        file_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: File Id
-          description: The id of the file that the extract was extracted from
-        file:
-          anyOf:
-          - $ref: '#/components/schemas/File'
-          - type: 'null'
-          description: '[DEPRECATED] The file that the extract was extracted from'
-          deprecated: true
-      type: object
-      required:
-      - id
-      - extraction_agent
-      - status
-      title: ExtractJob
-      description: Schema for an extraction job.
-    ExtractSchemaGenerateRequest:
-      properties:
-        prompt:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Prompt
-          description: Natural language description of the data structure to extract
-        file_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: File Id
-          description: Optional file ID to analyze for schema generation
-        data_schema:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: string
-          - type: 'null'
-          title: Data Schema
-          description: Optional schema to validate, refine, or extend during generation
-      type: object
-      title: ExtractSchemaGenerateRequest
-      description: Request schema for generating an extraction schema.
-    DocumentChunkMode:
+    ExtractTarget:
       type: string
       enum:
-      - PAGE
-      - SECTION
-      title: DocumentChunkMode
-      description: How to chunk documents.
-    ExtractResultset:
-      properties:
-        run_id:
-          type: string
-          format: uuid
-          title: Run Id
-          description: The id of the extraction run
-        extraction_agent_id:
-          type: string
-          format: uuid
-          title: Extraction Agent Id
-          description: The id of the extraction agent
-        data:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - items:
-              additionalProperties:
-                anyOf:
-                - additionalProperties: true
-                  type: object
-                - items: {}
-                  type: array
-                - type: string
-                - type: integer
-                - type: number
-                - type: boolean
-                - type: 'null'
-              type: object
-            type: array
-          - type: 'null'
-          title: Data
-          description: The data extracted from the file
-        extraction_metadata:
-          additionalProperties:
-            anyOf:
-            - additionalProperties: true
-              type: object
-            - items: {}
-              type: array
-            - type: string
-            - type: integer
-            - type: number
-            - type: boolean
-            - type: 'null'
-          type: object
-          title: Extraction Metadata
-          description: The metadata extracted from the file
-      type: object
-      required:
-      - run_id
-      - extraction_agent_id
-      - data
-      - extraction_metadata
-      title: ExtractResultset
-      description: Schema for an extraction resultset.
-    WebhookConfiguration:
-      properties:
-        webhook_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Webhook Url
-          description: URL to receive webhook POST notifications
-          examples:
-          - https://example.com/webhooks/llamacloud
-        webhook_headers:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Webhook Headers
-          description: Custom HTTP headers sent with each webhook request (e.g. auth tokens)
-          examples:
-          - Authorization: Bearer sk-...
-        webhook_events:
-          anyOf:
-          - items:
-              type: string
-              enum:
-              - extract.pending
-              - extract.success
-              - extract.error
-              - extract.partial_success
-              - extract.cancelled
-              - parse.pending
-              - parse.running
-              - parse.success
-              - parse.error
-              - parse.partial_success
-              - parse.cancelled
-              - classify.pending
-              - classify.running
-              - classify.success
-              - classify.error
-              - classify.partial_success
-              - classify.cancelled
-              - sheets.pending
-              - sheets.success
-              - sheets.error
-              - sheets.partial_success
-              - sheets.cancelled
-              - unmapped_event
-            type: array
-          - type: 'null'
-          title: Webhook Events
-          description: Events to subscribe to (e.g. 'parse.success', 'extract.error'). If null, all events are delivered.
-          examples:
-          - - parse.success
-            - parse.error
-        webhook_output_format:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Webhook Output Format
-          description: 'Response format sent to the webhook: ''string'' (default) or ''json'''
-          examples:
-          - json
-      type: object
-      title: WebhookConfiguration
-      description: Configuration for a single outbound webhook endpoint.
+      - PER_DOC
+      - PER_PAGE
+      - PER_TABLE_ROW
+      title: ExtractTarget
+      description: Defines the extraction target scope.
+    ExtractMode:
+      type: string
+      enum:
+      - FAST
+      - BALANCED
+      - PREMIUM
+      - MULTIMODAL
+      title: ExtractMode
+      description: Extraction mode options.
     ExtractRun:
       properties:
         id:
@@ -2108,6 +1244,870 @@ components:
       - from_ui
       title: ExtractRun
       description: Schema for an extraction run.
+    ExtractJobCreate:
+      properties:
+        priority:
+          anyOf:
+          - type: string
+            enum:
+            - low
+            - medium
+            - high
+            - critical
+          - type: 'null'
+          title: Priority
+          description: The priority for the request. This field may be ignored or overwritten depending on the organization tier.
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Outbound webhook endpoints to notify on job status changes
+        extraction_agent_id:
+          type: string
+          format: uuid
+          title: Extraction Agent Id
+          description: The id of the extraction agent
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The id of the file
+        data_schema_override:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: string
+          - type: 'null'
+          title: Data Schema Override
+          description: The data schema to override the extraction agent's data schema with
+        config_override:
+          anyOf:
+          - $ref: '#/components/schemas/ExtractConfig'
+          - type: 'null'
+          description: The config to override the extraction agent's config with
+      type: object
+      required:
+      - extraction_agent_id
+      - file_id
+      title: ExtractJobCreate
+      description: Schema for creating an extraction job.
+    WebhookConfiguration:
+      properties:
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+          description: URL to receive webhook POST notifications
+          examples:
+          - https://example.com/webhooks/llamacloud
+        webhook_headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Webhook Headers
+          description: Custom HTTP headers sent with each webhook request (e.g. auth tokens)
+          examples:
+          - Authorization: Bearer sk-...
+        webhook_events:
+          anyOf:
+          - items:
+              type: string
+              enum:
+              - extract.pending
+              - extract.success
+              - extract.error
+              - extract.partial_success
+              - extract.cancelled
+              - parse.pending
+              - parse.running
+              - parse.success
+              - parse.error
+              - parse.partial_success
+              - parse.cancelled
+              - classify.pending
+              - classify.running
+              - classify.success
+              - classify.error
+              - classify.partial_success
+              - classify.cancelled
+              - sheets.pending
+              - sheets.success
+              - sheets.error
+              - sheets.partial_success
+              - sheets.cancelled
+              - unmapped_event
+            type: array
+          - type: 'null'
+          title: Webhook Events
+          description: Events to subscribe to (e.g. 'parse.success', 'extract.error'). If null, all events are delivered.
+          examples:
+          - - parse.success
+            - parse.error
+        webhook_output_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Output Format
+          description: 'Response format sent to the webhook: ''string'' (default) or ''json'''
+          examples:
+          - json
+      type: object
+      title: WebhookConfiguration
+      description: Configuration for a single outbound webhook endpoint.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    FileData:
+      properties:
+        data:
+          type: string
+          title: Data
+          description: The file content as base64-encoded string
+        mime_type:
+          type: string
+          title: Mime Type
+          description: The MIME type of the file (e.g., 'application/pdf', 'text/plain')
+      type: object
+      required:
+      - data
+      - mime_type
+      title: FileData
+      description: Schema for file data with base64 content and MIME type.
+    ExtractAgentUpdate:
+      properties:
+        data_schema:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: string
+          title: Data Schema
+          description: The schema of the data
+        config:
+          $ref: '#/components/schemas/ExtractConfig'
+          description: The configuration parameters for the extraction agent.
+      type: object
+      required:
+      - data_schema
+      - config
+      title: ExtractAgentUpdate
+      description: Settings for updating an extraction schema.
+    ExtractConfig:
+      properties:
+        priority:
+          anyOf:
+          - type: string
+            enum:
+            - low
+            - medium
+            - high
+            - critical
+          - type: 'null'
+          title: Priority
+          description: The priority for the request. This field may be ignored or overwritten depending on the organization tier.
+        extraction_target:
+          $ref: '#/components/schemas/ExtractTarget'
+          description: The extraction target specified.
+          default: PER_DOC
+        extraction_mode:
+          $ref: '#/components/schemas/ExtractMode'
+          description: The extraction mode specified (FAST, BALANCED, MULTIMODAL, PREMIUM).
+          default: PREMIUM
+        parse_model:
+          anyOf:
+          - $ref: '#/components/schemas/PublicModelName'
+          - type: 'null'
+          description: The parse model to use for document parsing. If not provided, uses the default for the extraction mode.
+        extract_model:
+          anyOf:
+          - $ref: '#/components/schemas/ExtractModels'
+          - type: string
+          - type: 'null'
+          title: Extract Model
+          description: The extract model to use for data extraction. If not provided, uses the default for the extraction mode.
+        multimodal_fast_mode:
+          type: boolean
+          title: Multimodal Fast Mode
+          description: 'DEPRECATED: Whether to use fast mode for multimodal extraction.'
+          default: false
+        system_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: System Prompt
+          description: The system prompt to use for the extraction.
+        use_reasoning:
+          type: boolean
+          title: Use Reasoning
+          description: Whether to use reasoning for the extraction.
+          default: false
+        cite_sources:
+          type: boolean
+          title: Cite Sources
+          description: Whether to cite sources for the extraction.
+          default: false
+        citation_bbox:
+          type: boolean
+          title: Citation Bbox
+          description: 'Whether to fetch citation bounding boxes for the extraction. Only available in PREMIUM mode. Deprecated: this is now synonymous with cite_sources.'
+          default: false
+          deprecated: true
+        confidence_scores:
+          type: boolean
+          title: Confidence Scores
+          description: Whether to fetch confidence scores for the extraction.
+          default: false
+        chunk_mode:
+          $ref: '#/components/schemas/DocumentChunkMode'
+          description: The mode to use for chunking the document.
+          default: PAGE
+        high_resolution_mode:
+          type: boolean
+          title: High Resolution Mode
+          description: Whether to use high resolution mode for the extraction.
+          default: false
+        invalidate_cache:
+          type: boolean
+          title: Invalidate Cache
+          description: Whether to invalidate the cache for the extraction.
+          default: false
+        num_pages_context:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Num Pages Context
+          description: Number of pages to pass as context on long document extraction.
+        page_range:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Range
+          description: Comma-separated list of page numbers or ranges to extract from (1-based, e.g., '1,3,5-7,9' or '1-3,8-10').
+      type: object
+      title: ExtractConfig
+      description: Configuration parameters for the extraction agent.
+    ExtractSchemaValidateResponse:
+      properties:
+        data_schema:
+          additionalProperties:
+            anyOf:
+            - additionalProperties: true
+              type: object
+            - items: {}
+              type: array
+            - type: string
+            - type: integer
+            - type: number
+            - type: boolean
+            - type: 'null'
+          type: object
+          title: Data Schema
+      type: object
+      required:
+      - data_schema
+      title: ExtractSchemaValidateResponse
+      description: Response schema for schema validation.
+    File:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: The ID of the file in the external system
+        file_size:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: File Size
+          description: Size of the file in bytes
+        file_type:
+          anyOf:
+          - type: string
+            maxLength: 3000
+            minLength: 1
+          - type: 'null'
+          title: File Type
+          description: File type (e.g. pdf, docx, etc.)
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+          description: The ID of the project that the file belongs to
+        last_modified_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Modified At
+          description: The last modified time of the file
+        resource_info:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Resource Info
+          description: Resource information for the file
+        permission_info:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Permission Info
+          description: Permission information for the file
+        data_source_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+          description: The ID of the data source that the file belongs to
+        expires_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expires At
+          description: The expiration date for the file. Files past this date can be deleted.
+        purpose:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Purpose
+          description: The intended purpose of the file (e.g., 'user_data', 'parse', 'extract', 'split', 'classify')
+      type: object
+      required:
+      - id
+      - name
+      - project_id
+      title: File
+      description: Schema for a file.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ExtractSchemaGenerateResponse:
+      properties:
+        data_schema:
+          additionalProperties:
+            anyOf:
+            - additionalProperties: true
+              type: object
+            - items: {}
+              type: array
+            - type: string
+            - type: integer
+            - type: number
+            - type: boolean
+            - type: 'null'
+          type: object
+          title: Data Schema
+          description: The generated JSON schema
+      type: object
+      required:
+      - data_schema
+      title: ExtractSchemaGenerateResponse
+      description: Response schema for schema generation.
+    PublicModelName:
+      type: string
+      enum:
+      - openai-gpt-4o
+      - openai-gpt-4o-mini
+      - openai-gpt-4-1
+      - openai-gpt-4-1-mini
+      - openai-gpt-4-1-nano
+      - openai-gpt-5
+      - openai-gpt-5-mini
+      - openai-gpt-5-nano
+      - openai-text-embedding-3-large
+      - openai-text-embedding-3-small
+      - openai-whisper-1
+      - anthropic-sonnet-3.5
+      - anthropic-sonnet-3.5-v2
+      - anthropic-sonnet-3.7
+      - anthropic-sonnet-4.0
+      - anthropic-sonnet-4.5
+      - anthropic-haiku-3.5
+      - anthropic-haiku-4.5
+      - gemini-2.5-flash
+      - gemini-3.0-pro
+      - gemini-3.1-pro
+      - gemini-2.5-pro
+      - gemini-2.0-flash
+      - gemini-2.0-flash-lite
+      - gemini-2.5-flash-lite
+      title: PublicModelName
+      description: Public model names.
+    ExtractModels:
+      type: string
+      enum:
+      - openai-gpt-4-1
+      - openai-gpt-4-1-mini
+      - openai-gpt-4-1-nano
+      - openai-gpt-5
+      - openai-gpt-5-mini
+      - gemini-2.0-flash
+      - gemini-2.5-flash
+      - gemini-2.5-flash-lite
+      - gemini-2.5-pro
+      - openai-gpt-4o
+      - openai-gpt-4o-mini
+      title: ExtractModels
+      description: Extract model options.
+    PaginatedExtractRunsResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ExtractRun'
+          type: array
+          title: Items
+          description: The list of extraction runs
+        total:
+          type: integer
+          title: Total
+          description: The total number of extraction runs
+        skip:
+          type: integer
+          title: Skip
+          description: The number of extraction runs skipped
+        limit:
+          type: integer
+          title: Limit
+          description: The maximum number of extraction runs returned
+      type: object
+      required:
+      - items
+      - total
+      - skip
+      - limit
+      title: PaginatedExtractRunsResponse
+      description: Schema for paginated extraction runs response.
+    DocumentChunkMode:
+      type: string
+      enum:
+      - PAGE
+      - SECTION
+      title: DocumentChunkMode
+      description: How to chunk documents.
+    ExtractResultset:
+      properties:
+        run_id:
+          type: string
+          format: uuid
+          title: Run Id
+          description: The id of the extraction run
+        extraction_agent_id:
+          type: string
+          format: uuid
+          title: Extraction Agent Id
+          description: The id of the extraction agent
+        data:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - items:
+              additionalProperties:
+                anyOf:
+                - additionalProperties: true
+                  type: object
+                - items: {}
+                  type: array
+                - type: string
+                - type: integer
+                - type: number
+                - type: boolean
+                - type: 'null'
+              type: object
+            type: array
+          - type: 'null'
+          title: Data
+          description: The data extracted from the file
+        extraction_metadata:
+          additionalProperties:
+            anyOf:
+            - additionalProperties: true
+              type: object
+            - items: {}
+              type: array
+            - type: string
+            - type: integer
+            - type: number
+            - type: boolean
+            - type: 'null'
+          type: object
+          title: Extraction Metadata
+          description: The metadata extracted from the file
+      type: object
+      required:
+      - run_id
+      - extraction_agent_id
+      - data
+      - extraction_metadata
+      title: ExtractResultset
+      description: Schema for an extraction resultset.
+    ExtractJob:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: The id of the extraction job
+        extraction_agent:
+          $ref: '#/components/schemas/ExtractAgent'
+          description: The agent that the job was run on.
+        status:
+          type: string
+          enum:
+          - PENDING
+          - SUCCESS
+          - ERROR
+          - PARTIAL_SUCCESS
+          - CANCELLED
+          title: Status
+          description: The status of the extraction job
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+          description: The error that occurred during extraction
+        file_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+          description: The id of the file that the extract was extracted from
+        file:
+          anyOf:
+          - $ref: '#/components/schemas/File'
+          - type: 'null'
+          description: '[DEPRECATED] The file that the extract was extracted from'
+          deprecated: true
+      type: object
+      required:
+      - id
+      - extraction_agent
+      - status
+      title: ExtractJob
+      description: Schema for an extraction job.
+    ExtractSchemaValidateRequest:
+      properties:
+        data_schema:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: string
+          title: Data Schema
+      type: object
+      required:
+      - data_schema
+      title: ExtractSchemaValidateRequest
+      description: Request schema for validating an extraction schema.
+    ExtractStatelessRequest:
+      properties:
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Outbound webhook endpoints to notify on job status changes
+        data_schema:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: string
+          title: Data Schema
+          description: The schema of the data to extract
+        config:
+          $ref: '#/components/schemas/ExtractConfig'
+          description: The configuration parameters for the extraction
+        file_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+          description: The ID of the file to extract from
+        text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Text
+          description: The text content to extract from
+        file:
+          anyOf:
+          - $ref: '#/components/schemas/FileData'
+          - type: 'null'
+          description: The file data with base64 content and MIME type
+      type: object
+      required:
+      - data_schema
+      - config
+      title: ExtractStatelessRequest
+      description: Schema for stateless extraction requests.
+    ExtractState:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - SUCCESS
+      - ERROR
+      title: ExtractState
+    ExtractSchemaGenerateRequest:
+      properties:
+        prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Prompt
+          description: Natural language description of the data structure to extract
+        file_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+          description: Optional file ID to analyze for schema generation
+        data_schema:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: string
+          - type: 'null'
+          title: Data Schema
+          description: Optional schema to validate, refine, or extend during generation
+      type: object
+      title: ExtractSchemaGenerateRequest
+      description: Request schema for generating an extraction schema.
+    ExtractJobCreateBatch:
+      properties:
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Outbound webhook endpoints to notify on job status changes
+        extraction_agent_id:
+          type: string
+          format: uuid
+          title: Extraction Agent Id
+          description: The id of the extraction agent
+        file_ids:
+          items:
+            type: string
+            format: uuid
+          type: array
+          minItems: 1
+          title: File Ids
+          description: The ids of the files
+        data_schema_override:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: string
+          - type: 'null'
+          title: Data Schema Override
+          description: The data schema to override the extraction agent's data schema with
+        config_override:
+          anyOf:
+          - $ref: '#/components/schemas/ExtractConfig'
+          - type: 'null'
+          description: The config to override the extraction agent's config with
+      type: object
+      required:
+      - extraction_agent_id
+      - file_ids
+      title: ExtractJobCreateBatch
+      description: Schema for creating extraction jobs in batch.
+    ExtractAgentCreate:
+      properties:
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+          description: The name of the extraction schema
+        data_schema:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: string
+          title: Data Schema
+          description: The schema of the data.
+        config:
+          $ref: '#/components/schemas/ExtractConfig'
+          description: The configuration parameters for the extraction agent.
+      type: object
+      required:
+      - name
+      - data_schema
+      - config
+      title: ExtractAgentCreate
+      description: Settings for creating an extraction agent.
     Body_run_job_on_file_api_v1_extraction_jobs_file_post:
       properties:
         extraction_agent_id:

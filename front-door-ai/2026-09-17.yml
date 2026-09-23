@@ -1,0 +1,34 @@
+# Front Door AI Index — llamaparse — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: llamaparse
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.llamaindex.ai
+  final_host: www.llamaindex.ai
+  ownership: shared
+  owner: llamaindex
+  shares_host_with:
+  - llamaindex
+  inherited_from: null
+  verdict: scored
+  score: null
+  host_score: 32
+  density: null
+  words: 1158
+  tiers:
+    agentic: 10
+    core: 22
+    model: 0
+  ambiguous: 11
+  top_terms:
+    AI: 17
+    agent: 9
+    agentic: 6
+    LLMs: 5
+    AI agent: 2
+    RAG: 1
+    automation: 1
+    embedding: 1
+    intelligence: 1

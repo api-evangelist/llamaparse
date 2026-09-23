@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data Organizations API
+  title: Llama Platform Organizations API
   version: 0.1.0
 tags:
 - name: Organizations
@@ -179,6 +179,56 @@ components:
       - PREMIUM
       title: ParsePlanLevel
       description: Enum for the Parse plan level.
+    Organization:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          maxLength: 3000
+          minLength: 1
+          title: Name
+          description: A name for the organization.
+        parse_plan_level:
+          $ref: '#/components/schemas/ParsePlanLevel'
+          description: '[Deprecated] Whether the organization is a Parse Premium customer.'
+          default: DEFAULT
+        stripe_customer_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Stripe Customer Id
+          description: The Stripe customer ID for the organization.
+        feature_flags:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Feature Flags
+          description: Feature flags for the organization.
+      type: object
+      required:
+      - id
+      - name
+      title: Organization
+      description: Schema for an organization.
     OrganizationResponse:
       properties:
         id:
@@ -235,6 +285,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     OrganizationQueryResponse:
       properties:
         items:
@@ -260,65 +319,6 @@ components:
       - items
       title: OrganizationQueryResponse
       description: API query response schema for organizations.
-    Organization:
-      properties:
-        id:
-          type: string
-          format: uuid
-          title: Id
-          description: Unique identifier
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation datetime
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Update datetime
-        name:
-          type: string
-          maxLength: 3000
-          minLength: 1
-          title: Name
-          description: A name for the organization.
-        parse_plan_level:
-          $ref: '#/components/schemas/ParsePlanLevel'
-          description: '[Deprecated] Whether the organization is a Parse Premium customer.'
-          default: DEFAULT
-        stripe_customer_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Stripe Customer Id
-          description: The Stripe customer ID for the organization.
-        feature_flags:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Feature Flags
-          description: Feature flags for the organization.
-      type: object
-      required:
-      - id
-      - name
-      title: Organization
-      description: Schema for an organization.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

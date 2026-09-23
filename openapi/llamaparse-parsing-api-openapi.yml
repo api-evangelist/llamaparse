@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data Parsing API
+  title: Llama Platform Parsing API
   version: 0.1.0
 tags:
 - name: Parsing
@@ -739,122 +739,6 @@ components:
       - job_metadata
       title: ParsingJobJsonResult
       description: Parse job result as structured JSON pages.
-    StatusEnum:
-      type: string
-      enum:
-      - PENDING
-      - SUCCESS
-      - ERROR
-      - PARTIAL_SUCCESS
-      - CANCELLED
-      title: StatusEnum
-      description: Enum for representing the status of a job
-    ParserLanguages:
-      type: string
-      enum:
-      - af
-      - az
-      - bs
-      - cs
-      - cy
-      - da
-      - de
-      - en
-      - es
-      - et
-      - fr
-      - ga
-      - hr
-      - hu
-      - id
-      - is
-      - it
-      - ku
-      - la
-      - lt
-      - lv
-      - mi
-      - ms
-      - mt
-      - nl
-      - 'no'
-      - oc
-      - pi
-      - pl
-      - pt
-      - ro
-      - rs_latin
-      - sk
-      - sl
-      - sq
-      - sv
-      - sw
-      - tl
-      - tr
-      - uz
-      - vi
-      - ar
-      - fa
-      - ug
-      - ur
-      - bn
-      - as
-      - mni
-      - ru
-      - rs_cyrillic
-      - be
-      - bg
-      - uk
-      - mn
-      - abq
-      - ady
-      - kbd
-      - ava
-      - dar
-      - inh
-      - che
-      - lbe
-      - lez
-      - tab
-      - tjk
-      - hi
-      - mr
-      - ne
-      - bh
-      - mai
-      - ang
-      - bho
-      - mah
-      - sck
-      - new
-      - gom
-      - sa
-      - bgc
-      - th
-      - ch_sim
-      - ch_tra
-      - ja
-      - ko
-      - ta
-      - te
-      - kn
-      title: ParserLanguages
-      description: Enum for representing the languages supported by the parser.
-    ParsingJobTextResult:
-      properties:
-        text:
-          type: string
-          title: Text
-          description: Full document content as plain text (no formatting)
-        job_metadata:
-          title: Job Metadata
-          description: Job metadata including credit usage and page counts
-      type: object
-      required:
-      - text
-      - job_metadata
-      title: ParsingJobTextResult
-      description: Parse job result as plain text.
     LlamaParseSupportedFileExtensions:
       type: string
       enum:
@@ -1007,6 +891,261 @@ components:
       - .yxmd
       title: LlamaParseSupportedFileExtensions
       description: Enum for supported file extensions.
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    Body_screenshot_api_v1_parsing_screenshot_post:
+      properties:
+        file:
+          anyOf:
+          - type: string
+            format: binary
+          - type: 'null'
+          title: File
+        do_not_cache:
+          type: boolean
+          title: Do Not Cache
+          default: false
+        http_proxy:
+          type: string
+          title: Http Proxy
+        input_s3_path:
+          type: string
+          title: Input S3 Path
+          default: ''
+        input_s3_region:
+          type: string
+          title: Input S3 Region
+          default: ''
+        input_url:
+          type: string
+          title: Input Url
+        invalidate_cache:
+          type: boolean
+          title: Invalidate Cache
+          default: false
+        max_pages:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Pages
+        output_s3_path_prefix:
+          type: string
+          title: Output S3 Path Prefix
+          default: ''
+        output_s3_region:
+          type: string
+          title: Output S3 Region
+          default: ''
+        target_pages:
+          type: string
+          title: Target Pages
+          default: ''
+        webhook_url:
+          type: string
+          title: Webhook Url
+          default: ''
+        webhook_configurations:
+          type: string
+          title: Webhook Configurations
+          default: ''
+        job_timeout_in_seconds:
+          type: number
+          title: Job Timeout In Seconds
+        job_timeout_extra_time_per_page_in_seconds:
+          type: number
+          title: Job Timeout Extra Time Per Page In Seconds
+      type: object
+      title: Body_screenshot_api_v1_parsing_screenshot_post
+    ParserLanguages:
+      type: string
+      enum:
+      - af
+      - az
+      - bs
+      - cs
+      - cy
+      - da
+      - de
+      - en
+      - es
+      - et
+      - fr
+      - ga
+      - hr
+      - hu
+      - id
+      - is
+      - it
+      - ku
+      - la
+      - lt
+      - lv
+      - mi
+      - ms
+      - mt
+      - nl
+      - 'no'
+      - oc
+      - pi
+      - pl
+      - pt
+      - ro
+      - rs_latin
+      - sk
+      - sl
+      - sq
+      - sv
+      - sw
+      - tl
+      - tr
+      - uz
+      - vi
+      - ar
+      - fa
+      - ug
+      - ur
+      - bn
+      - as
+      - mni
+      - ru
+      - rs_cyrillic
+      - be
+      - bg
+      - uk
+      - mn
+      - abq
+      - ady
+      - kbd
+      - ava
+      - dar
+      - inh
+      - che
+      - lbe
+      - lez
+      - tab
+      - tjk
+      - hi
+      - mr
+      - ne
+      - bh
+      - mai
+      - ang
+      - bho
+      - mah
+      - sck
+      - new
+      - gom
+      - sa
+      - bgc
+      - th
+      - ch_sim
+      - ch_tra
+      - ja
+      - ko
+      - ta
+      - te
+      - kn
+      title: ParserLanguages
+      description: Enum for representing the languages supported by the parser.
+    StatusEnum:
+      type: string
+      enum:
+      - PENDING
+      - SUCCESS
+      - ERROR
+      - PARTIAL_SUCCESS
+      - CANCELLED
+      title: StatusEnum
+      description: Enum for representing the status of a job
+    ParsingJobMarkdownResult:
+      properties:
+        markdown:
+          type: string
+          title: Markdown
+          description: Full document content rendered as markdown
+        job_metadata:
+          title: Job Metadata
+          description: Job metadata including credit usage and page counts
+      type: object
+      required:
+      - markdown
+      - job_metadata
+      title: ParsingJobMarkdownResult
+      description: Parse job result in markdown format.
+    ParsingJobTextResult:
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Full document content as plain text (no formatting)
+        job_metadata:
+          title: Job Metadata
+          description: Job metadata including credit usage and page counts
+      type: object
+      required:
+      - text
+      - job_metadata
+      title: ParsingJobTextResult
+      description: Parse job result as plain text.
+    FailPageMode:
+      type: string
+      enum:
+      - raw_text
+      - blank_page
+      - error_message
+      title: FailPageMode
+      description: Enum for representing the different available page error handling modes.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ParsingJobStructuredResult:
       properties:
         structured:
@@ -1021,6 +1160,55 @@ components:
       - job_metadata
       title: ParsingJobStructuredResult
       description: Parse job result as structured output (custom schema).
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ParsingJob:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique parse job identifier
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+          description: Current job status
+        error_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Code
+          description: Machine-readable error code when failed
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Message
+          description: Human-readable error details when failed
+      type: object
+      required:
+      - id
+      - status
+      title: ParsingJob
+      description: A parse job (v1).
+    ParsingMode:
+      type: string
+      enum:
+      - parse_page_without_llm
+      - parse_page_with_llm
+      - parse_page_with_lvm
+      - parse_page_with_agent
+      - parse_page_with_layout_agent
+      - parse_document_with_llm
+      - parse_document_with_lvm
+      - parse_document_with_agent
+      title: ParsingMode
+      description: Enum for representing the mode of parsing to be used.
     Body_upload_file_api_v1_parsing_upload_post:
       properties:
         file:
@@ -1453,194 +1641,6 @@ components:
           title: Version
       type: object
       title: Body_upload_file_api_v1_parsing_upload_post
-    ParsingMode:
-      type: string
-      enum:
-      - parse_page_without_llm
-      - parse_page_with_llm
-      - parse_page_with_lvm
-      - parse_page_with_agent
-      - parse_page_with_layout_agent
-      - parse_document_with_llm
-      - parse_document_with_lvm
-      - parse_document_with_agent
-      title: ParsingMode
-      description: Enum for representing the mode of parsing to be used.
-    PresignedUrl:
-      properties:
-        url:
-          type: string
-          minLength: 1
-          format: uri
-          title: Url
-          description: A presigned URL for IO operations against a private file
-        expires_at:
-          type: string
-          format: date-time
-          title: Expires At
-          description: The time at which the presigned URL expires
-        form_fields:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Form Fields
-          description: Form fields for a presigned POST request
-      type: object
-      required:
-      - url
-      - expires_at
-      title: PresignedUrl
-      description: Schema for a presigned URL.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ParsingJob:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: Unique parse job identifier
-        status:
-          $ref: '#/components/schemas/StatusEnum'
-          description: Current job status
-        error_code:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error Code
-          description: Machine-readable error code when failed
-        error_message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error Message
-          description: Human-readable error details when failed
-      type: object
-      required:
-      - id
-      - status
-      title: ParsingJob
-      description: A parse job (v1).
-    FailPageMode:
-      type: string
-      enum:
-      - raw_text
-      - blank_page
-      - error_message
-      title: FailPageMode
-      description: Enum for representing the different available page error handling modes.
-    Body_screenshot_api_v1_parsing_screenshot_post:
-      properties:
-        file:
-          anyOf:
-          - type: string
-            format: binary
-          - type: 'null'
-          title: File
-        do_not_cache:
-          type: boolean
-          title: Do Not Cache
-          default: false
-        http_proxy:
-          type: string
-          title: Http Proxy
-        input_s3_path:
-          type: string
-          title: Input S3 Path
-          default: ''
-        input_s3_region:
-          type: string
-          title: Input S3 Region
-          default: ''
-        input_url:
-          type: string
-          title: Input Url
-        invalidate_cache:
-          type: boolean
-          title: Invalidate Cache
-          default: false
-        max_pages:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Max Pages
-        output_s3_path_prefix:
-          type: string
-          title: Output S3 Path Prefix
-          default: ''
-        output_s3_region:
-          type: string
-          title: Output S3 Region
-          default: ''
-        target_pages:
-          type: string
-          title: Target Pages
-          default: ''
-        webhook_url:
-          type: string
-          title: Webhook Url
-          default: ''
-        webhook_configurations:
-          type: string
-          title: Webhook Configurations
-          default: ''
-        job_timeout_in_seconds:
-          type: number
-          title: Job Timeout In Seconds
-        job_timeout_extra_time_per_page_in_seconds:
-          type: number
-          title: Job Timeout Extra Time Per Page In Seconds
-      type: object
-      title: Body_screenshot_api_v1_parsing_screenshot_post
-    ParsingJobMarkdownResult:
-      properties:
-        markdown:
-          type: string
-          title: Markdown
-          description: Full document content rendered as markdown
-        job_metadata:
-          title: Job Metadata
-          description: Job metadata including credit usage and page counts
-      type: object
-      required:
-      - markdown
-      - job_metadata
-      title: ParsingJobMarkdownResult
-      description: Parse job result in markdown format.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

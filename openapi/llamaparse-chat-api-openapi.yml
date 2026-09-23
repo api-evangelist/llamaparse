@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Llama Platform Agent Data Chat API
+  title: Llama Platform Chat API
   version: 0.1.0
 tags:
 - name: Chat
@@ -345,73 +345,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    StopEvent:
-      properties:
-        type:
-          type: string
-          const: stop
-          title: Type
-          default: stop
-        usage:
-          $ref: '#/components/schemas/Usage'
-        is_error:
-          type: boolean
-          title: Is Error
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      type: object
-      required:
-      - usage
-      - is_error
-      - error
-      title: StopEvent
-    ChatSessionSummary:
-      properties:
-        session_id:
-          type: string
-          title: Session Id
-          description: Unique session identifier.
-          examples:
-          - ses-abc123
-        generated_title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Generated Title
-          description: Auto-generated title derived from the first user message.
-          examples:
-          - What were the main findings in Q3?...
-        last_updated_at:
-          type: string
-          title: Last Updated At
-          description: ISO-format timestamp showing when the session was last updated.
-          examples:
-          - '2026-04-22T12:34:41.342245'
-        job_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/JobMetadata'
-          - type: 'null'
-          description: Token usage and status from the most recent run. Null if the session has not been run yet.
-        index_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Index Ids
-          description: Indexes this session is bound to. Null on unbound sessions.
-          examples:
-          - - idx-abc123
-            - idx-def456
-      type: object
-      required:
-      - session_id
-      - last_updated_at
-      title: ChatSessionSummary
-      description: Summary of a chat session, including its title and last run metadata.
     ToolResultEvent:
       properties:
         type:
@@ -437,20 +370,20 @@ components:
       - call_id
       - result
       title: ToolResultEvent
-    TextDeltaEvent:
+    ThinkingDeltaEvent:
       properties:
         type:
           type: string
-          const: text_delta
+          const: thinking_delta
           title: Type
-          default: text_delta
+          default: thinking_delta
         content:
           type: string
           title: Content
       type: object
       required:
       - content
-      title: TextDeltaEvent
+      title: ThinkingDeltaEvent
     ChatParams:
       properties:
         index_ids:
@@ -476,86 +409,6 @@ components:
       - prompt
       title: ChatParams
       description: Request body for running a chat turn against one or more indexes.
-    SessionCreate:
-      properties:
-        index_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-            maxItems: 10
-          - type: 'null'
-          title: Index Ids
-          description: Indexes this session will retrieve from. Once set and the first message has been sent, the source set is locked for the session's lifetime. Leave null to create an unbound session.
-          examples:
-          - - idx-abc123
-            - idx-def456
-      type: object
-      title: SessionCreate
-      description: Request body for creating a chat session.
-    UserInputEvent:
-      properties:
-        type:
-          type: string
-          const: user_input
-          title: Type
-          default: user_input
-        content:
-          type: string
-          title: Content
-      type: object
-      required:
-      - content
-      title: UserInputEvent
-    ToolCallEvent:
-      properties:
-        type:
-          type: string
-          const: tool_call
-          title: Type
-          default: tool_call
-        arguments:
-          additionalProperties: true
-          type: object
-          title: Arguments
-        name:
-          type: string
-          title: Name
-        call_id:
-          type: string
-          title: Call Id
-      type: object
-      required:
-      - arguments
-      - name
-      - call_id
-      title: ToolCallEvent
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     SessionDetail:
       properties:
         session_id:
@@ -626,6 +479,149 @@ components:
       - events
       title: SessionDetail
       description: Full chat session including its complete event history.
+    SessionList:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ChatSessionSummary'
+          type: array
+          title: Items
+          description: Chat sessions for the current page.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: Opaque token to retrieve the next page. Omitted when there are no further pages.
+      type: object
+      required:
+      - items
+      title: SessionList
+      description: Paginated list of chat sessions.
+    TextEvent:
+      properties:
+        type:
+          type: string
+          const: text
+          title: Type
+          default: text
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: TextEvent
+    ChatSessionSummary:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+          description: Unique session identifier.
+          examples:
+          - ses-abc123
+        generated_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Generated Title
+          description: Auto-generated title derived from the first user message.
+          examples:
+          - What were the main findings in Q3?...
+        last_updated_at:
+          type: string
+          title: Last Updated At
+          description: ISO-format timestamp showing when the session was last updated.
+          examples:
+          - '2026-04-22T12:34:41.342245'
+        job_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/JobMetadata'
+          - type: 'null'
+          description: Token usage and status from the most recent run. Null if the session has not been run yet.
+        index_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Index Ids
+          description: Indexes this session is bound to. Null on unbound sessions.
+          examples:
+          - - idx-abc123
+            - idx-def456
+      type: object
+      required:
+      - session_id
+      - last_updated_at
+      title: ChatSessionSummary
+      description: Summary of a chat session, including its title and last run metadata.
+    SessionCreate:
+      properties:
+        index_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+            maxItems: 10
+          - type: 'null'
+          title: Index Ids
+          description: Indexes this session will retrieve from. Once set and the first message has been sent, the source set is locked for the session's lifetime. Leave null to create an unbound session.
+          examples:
+          - - idx-abc123
+            - idx-def456
+      type: object
+      title: SessionCreate
+      description: Request body for creating a chat session.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ThinkingEvent:
+      properties:
+        type:
+          type: string
+          const: thinking
+          title: Type
+          default: thinking
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: ThinkingEvent
     Usage:
       properties:
         total_input_tokens:
@@ -648,20 +644,43 @@ components:
           default: 0.0
       type: object
       title: Usage
-    ThinkingDeltaEvent:
+    ToolCallEvent:
       properties:
         type:
           type: string
-          const: thinking_delta
+          const: tool_call
           title: Type
-          default: thinking_delta
-        content:
+          default: tool_call
+        arguments:
+          additionalProperties: true
+          type: object
+          title: Arguments
+        name:
           type: string
-          title: Content
+          title: Name
+        call_id:
+          type: string
+          title: Call Id
       type: object
       required:
-      - content
-      title: ThinkingDeltaEvent
+      - arguments
+      - name
+      - call_id
+      title: ToolCallEvent
+    ImageAttachmentRef:
+      properties:
+        source_id:
+          type: string
+          title: Source Id
+        attachment_name:
+          type: string
+          title: Attachment Name
+      type: object
+      required:
+      - source_id
+      - attachment_name
+      title: ImageAttachmentRef
+      description: Coordinates for lazily resolving a page screenshot presigned URL.
     JobMetadata:
       properties:
         total_input_tokens:
@@ -700,76 +719,57 @@ components:
           title: Export Config Ids
       type: object
       title: JobMetadata
-    ThinkingEvent:
+    TextDeltaEvent:
       properties:
         type:
           type: string
-          const: thinking
+          const: text_delta
           title: Type
-          default: thinking
+          default: text_delta
         content:
           type: string
           title: Content
       type: object
       required:
       - content
-      title: ThinkingEvent
-    SessionList:
+      title: TextDeltaEvent
+    UserInputEvent:
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ChatSessionSummary'
-          type: array
-          title: Items
-          description: Chat sessions for the current page.
-        next_page_token:
+        type:
+          type: string
+          const: user_input
+          title: Type
+          default: user_input
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: UserInputEvent
+    StopEvent:
+      properties:
+        type:
+          type: string
+          const: stop
+          title: Type
+          default: stop
+        usage:
+          $ref: '#/components/schemas/Usage'
+        is_error:
+          type: boolean
+          title: Is Error
+        error:
           anyOf:
           - type: string
           - type: 'null'
-          title: Next Page Token
-          description: Opaque token to retrieve the next page. Omitted when there are no further pages.
+          title: Error
       type: object
       required:
-      - items
-      title: SessionList
-      description: Paginated list of chat sessions.
-    ImageAttachmentRef:
-      properties:
-        source_id:
-          type: string
-          title: Source Id
-        attachment_name:
-          type: string
-          title: Attachment Name
-      type: object
-      required:
-      - source_id
-      - attachment_name
-      title: ImageAttachmentRef
-      description: Coordinates for lazily resolving a page screenshot presigned URL.
-    TextEvent:
-      properties:
-        type:
-          type: string
-          const: text
-          title: Type
-          default: text
-        content:
-          type: string
-          title: Content
-      type: object
-      required:
-      - content
-      title: TextEvent
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - usage
+      - is_error
+      - error
+      title: StopEvent
   securitySchemes:
     HTTPBearer:
       type: http
