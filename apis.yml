@@ -62,50 +62,12 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.23'
 apis:
-- aid: llamaparse:llamaparse-extract-api
-  name: LlamaParse Extract API
-  description: 'Structured data extraction API that pulls typed JSON output from unstructured documents
-    using developer-defined schemas. Supports cost-effective and agentic tiers; composable with Parse
-    to reduce per-page costs when re-extracting previously parsed documents.
-
-    '
-  humanURL: https://developers.llamaindex.ai/llamaparse/
-  baseURL: https://api.cloud.llamaindex.ai
-  tags:
-  - Data Extraction
-  - Structured Data
-  - JSON
-  - Documents
-  properties:
-  - type: Documentation
-    url: https://developers.llamaindex.ai/llamaparse/
-- aid: llamaparse:llamaparse-classify-api
-  name: LlamaParse Classify API
-  description: 'Document classification API that categorizes uploaded files by type or content. Available
-    in fast (1 credit/page) and multimodal (2 credits/page) modes; useful for pre-filtering before invoking
-    higher-cost parse or extract operations.
-
-    '
-  humanURL: https://developers.llamaindex.ai/llamaparse/
-  baseURL: https://api.cloud.llamaindex.ai
-  tags:
-  - Classification
-  - Documents
-  - Artificial Intelligence
-  tags_raw:
-  - Classification
-  - Documents
-  - AI
-  properties:
-  - type: Documentation
-    url: https://developers.llamaindex.ai/llamaparse/
 - aid: llamaparse:llamaparse-index-api
   name: LlamaCloud Index API
-  description: 'Managed vector index API for ingesting parsed documents into searchable LlamaCloud indexes.
-    Supports standard (1 credit/page), spreadsheet (2 credits/page), and multi-modal (2 credits/page)
-    indexing modes with real-time status monitoring.
-
-    '
+  description: >
+    Managed vector index API for ingesting parsed documents into searchable LlamaCloud indexes. Supports
+    standard (1 credit/page), spreadsheet (2 credits/page), and multi-modal (2 credits/page) indexing
+    modes with real-time status monitoring.
   humanURL: https://developers.llamaindex.ai/llamaparse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -227,11 +189,17 @@ apis:
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
 - aid: llamaparse:llamaparse-classify-api
   name: LlamaParse Classify API
-  description: The Classify API from LlamaParse — 3 operation(s) for classify.
-  humanURL: https://developers.llamaindex.ai/llamaparse/parse/
+  description: >
+    Document classification API that categorizes uploaded files by type or content. Available in fast
+    (1 credit/page) and multimodal (2 credits/page) modes; useful for pre-filtering before invoking higher-cost
+    parse or extract operations.
+  humanURL: https://developers.llamaindex.ai/llamaparse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
   - Classify
+  - Classification
+  - Documents
+  - Artificial Intelligence
   properties:
   - type: OpenAPI
     url: openapi/llamaparse-classify-api-openapi.yml
@@ -243,6 +211,12 @@ apis:
     url: https://developers.llamaindex.ai/llamaparse/parse/getting_started/
   - type: Tiers
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/llamaparse/
+  tags_raw:
+  - Classification
+  - Documents
+  - AI
 - aid: llamaparse:llamaparse-configurations-api
   name: LlamaParse Configurations API
   description: The Configurations API from LlamaParse — 2 operation(s) for configurations.
@@ -335,7 +309,8 @@ apis:
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
 - aid: llamaparse:llamaparse-embedding-model-configs-api
   name: LlamaParse Embedding Model Configs API
-  description: The Embedding Model Configs API from LlamaParse — 2 operation(s) for embedding model configs.
+  description: >-
+    The Embedding Model Configs API from LlamaParse — 2 operation(s) for embedding model configs.
   humanURL: https://developers.llamaindex.ai/llamaparse/parse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -353,11 +328,18 @@ apis:
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
 - aid: llamaparse:llamaparse-extract-api
   name: LlamaParse Extract API
-  description: The Extract API from LlamaParse — 5 operation(s) for extract.
-  humanURL: https://developers.llamaindex.ai/llamaparse/parse/
+  description: >
+    Structured data extraction API that pulls typed JSON output from unstructured documents using developer-defined
+    schemas. Supports cost-effective and agentic tiers; composable with Parse to reduce per-page costs
+    when re-extracting previously parsed documents.
+  humanURL: https://developers.llamaindex.ai/llamaparse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
   - Extract
+  - Data Extraction
+  - Structured Data
+  - JSON
+  - Documents
   properties:
   - type: OpenAPI
     url: openapi/llamaparse-extract-api-openapi.yml
@@ -369,6 +351,8 @@ apis:
     url: https://developers.llamaindex.ai/llamaparse/parse/getting_started/
   - type: Tiers
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/llamaparse/
 - aid: llamaparse:llamaparse-files-api
   name: LlamaParse Files API
   description: The Files API from LlamaParse — 4 operation(s) for files.
@@ -539,7 +523,8 @@ apis:
     url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
 - aid: llamaparse:llamaparse-pipeline-data-sources-api
   name: LlamaParse Pipeline Data Sources API
-  description: The Pipeline Data Sources API from LlamaParse — 4 operation(s) for pipeline data sources.
+  description: >-
+    The Pipeline Data Sources API from LlamaParse — 4 operation(s) for pipeline data sources.
   humanURL: https://developers.llamaindex.ai/llamaparse/parse/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -693,26 +678,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/llamaparse-usage-metrics-api-openapi.yml
-  - type: Documentation
-    url: https://developers.llamaindex.ai/llamaparse/parse/
-  - type: APIReference
-    url: https://developers.llamaindex.ai/llamaparse/parse/guides/api-reference/
-  - type: GettingStarted
-    url: https://developers.llamaindex.ai/llamaparse/parse/getting_started/
-  - type: Tiers
-    url: https://developers.llamaindex.ai/llamaparse/parse/guides/tiers/
-- aid: llamaparse:llamaparse-v2-api
-  name: LlamaParse V2 API
-  description: The V2 API from LlamaParse — 19 operation(s) for v2.
-  humanURL: https://developers.llamaindex.ai/llamaparse/parse/
-  baseURL: https://api.cloud.llamaindex.ai
-  tags:
-  - v2
-  tags_raw:
-  - V2
-  properties:
-  - type: OpenAPI
-    url: openapi/llamaparse-v2-api-openapi.yml
   - type: Documentation
     url: https://developers.llamaindex.ai/llamaparse/parse/
   - type: APIReference

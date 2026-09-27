@@ -539,81 +539,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    MetadataValue:
-      anyOf:
-      - $ref: '#/components/schemas/MetadataScalarValue'
-      - $ref: '#/components/schemas/MetadataListValue'
-    PresignedUrl:
-      properties:
-        url:
-          type: string
-          minLength: 1
-          format: uri
-          title: Url
-          description: A presigned URL for IO operations against a private file
-        expires_at:
-          type: string
-          format: date-time
-          title: Expires At
-          description: The time at which the presigned URL expires
-        form_fields:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Form Fields
-          description: Form fields for a presigned POST request
-      type: object
-      required:
-      - url
-      - expires_at
-      title: PresignedUrl
-      description: Schema for a presigned URL.
-    DirectoryFileBulkDeleteRequest:
-      properties:
-        directory_file_ids:
-          items:
-            type: string
-          type: array
-          maxItems: 100
-          minItems: 1
-          title: Directory File Ids
-          description: List of directory file IDs to delete (max 100).
-      type: object
-      required:
-      - directory_file_ids
-      title: DirectoryFileBulkDeleteRequest
-      description: API request schema for bulk deleting directory files.
-    MetadataDict:
-      additionalProperties:
-        $ref: '#/components/schemas/MetadataValue'
-      type: object
-    DirectoryFileQueryResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/DirectoryFileResponse'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: DirectoryFileQueryResponse
-      description: API query response schema for directory files.
     DirectoryFileUpdateRequest:
       properties:
         unique_id:
@@ -643,6 +568,10 @@ components:
       type: object
       title: DirectoryFileUpdateRequest
       description: API request schema for updating a directory file.
+    MetadataListValue:
+      items:
+        type: string
+      type: array
     ValidationError:
       properties:
         loc:
@@ -669,34 +598,6 @@ components:
       - msg
       - type
       title: ValidationError
-    DirectoryFileCreateRequest:
-      properties:
-        file_id:
-          type: string
-          title: File Id
-          description: File ID for the storage location (required).
-        unique_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Unique Id
-          description: Unique identifier for the file in the directory. If not provided, will use the file's external_file_id or name.
-        display_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Display Name
-          description: Display name for the file. If not provided, will use the file's name.
-        metadata:
-          anyOf:
-          - $ref: '#/components/schemas/MetadataDict'
-          - type: 'null'
-          description: User-defined metadata key-value pairs to associate with the file.
-      type: object
-      required:
-      - file_id
-      title: DirectoryFileCreateRequest
-      description: API request schema for creating a directory file.
     HTTPValidationError:
       properties:
         detail:
@@ -706,6 +607,29 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    MetadataValue:
+      anyOf:
+      - $ref: '#/components/schemas/MetadataScalarValue'
+      - $ref: '#/components/schemas/MetadataListValue'
+    DirectoryFileBulkDeleteRequest:
+      properties:
+        directory_file_ids:
+          items:
+            type: string
+          type: array
+          maxItems: 100
+          minItems: 1
+          title: Directory File Ids
+          description: List of directory file IDs to delete (max 100).
+      type: object
+      required:
+      - directory_file_ids
+      title: DirectoryFileBulkDeleteRequest
+      description: API request schema for bulk deleting directory files.
+    MetadataDict:
+      additionalProperties:
+        $ref: '#/components/schemas/MetadataValue'
+      type: object
     Body_upload_file_to_directory_api_v1_beta_directories__directory_id__files_upload_post:
       properties:
         upload_file:
@@ -739,13 +663,31 @@ components:
       required:
       - upload_file
       title: Body_upload_file_to_directory_api_v1_beta_directories__directory_id__files_upload_post
-    MetadataScalarValue:
-      anyOf:
-      - type: string
-      - type: integer
-      - type: number
-      - type: boolean
-      - type: 'null'
+    DirectoryFileQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DirectoryFileResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: DirectoryFileQueryResponse
+      description: API query response schema for directory files.
     DirectoryFileResponse:
       properties:
         id:
@@ -814,10 +756,68 @@ components:
       - display_name
       title: DirectoryFileResponse
       description: API response schema for a directory file.
-    MetadataListValue:
-      items:
-        type: string
-      type: array
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    MetadataScalarValue:
+      anyOf:
+      - type: string
+      - type: integer
+      - type: number
+      - type: boolean
+      - type: 'null'
+    DirectoryFileCreateRequest:
+      properties:
+        file_id:
+          type: string
+          title: File Id
+          description: File ID for the storage location (required).
+        unique_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unique Id
+          description: Unique identifier for the file in the directory. If not provided, will use the file's external_file_id or name.
+        display_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display Name
+          description: Display name for the file. If not provided, will use the file's name.
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataDict'
+          - type: 'null'
+          description: User-defined metadata key-value pairs to associate with the file.
+      type: object
+      required:
+      - file_id
+      title: DirectoryFileCreateRequest
+      description: API request schema for creating a directory file.
   securitySchemes:
     HTTPBearer:
       type: http

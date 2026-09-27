@@ -35,10 +35,11 @@
     "llamaparse-retrievers-api-openapi.yml",
     "llamaparse-sheets-api-openapi.yml",
     "llamaparse-split-api-openapi.yml",
-    "llamaparse-usage-metrics-api-openapi.yml",
-    "llamaparse-v2-api-openapi.yml"
+    "llamaparse-usage-metrics-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -76,8 +77,8 @@
     "llamaparse-llamacloud-openapi.yml: declared missing tag: Sheets",
     "llamaparse-llamacloud-openapi.yml: declared missing tag: Split",
     "llamaparse-llamacloud-openapi.yml: declared missing tag: Usage Metrics",
-    "llamaparse-llamacloud-openapi.yml: declared missing tag: V2",
-    "apis.yml register: already-registered"
+    "superseded outputs removed: llamaparse-v2-api-openapi.yml",
+    "apis.yml register: written (+0 apis, 33 total)"
   ],
   "skipped": [
     "llamaparse-agent-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",

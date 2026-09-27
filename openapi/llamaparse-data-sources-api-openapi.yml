@@ -229,12 +229,223 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    DataSource:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: The name of the data source.
+        source_type:
+          $ref: '#/components/schemas/ConfigurableDataSourceNames'
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata that will be present on all data loaded from the data source
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudS3DataSource'
+          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
+          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
+          - $ref: '#/components/schemas/CloudOneDriveDataSource'
+          - $ref: '#/components/schemas/CloudSharepointDataSource'
+          - $ref: '#/components/schemas/CloudSlackDataSource'
+          - $ref: '#/components/schemas/CloudNotionPageDataSource'
+          - $ref: '#/components/schemas/CloudConfluenceDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
+          - $ref: '#/components/schemas/CloudBoxDataSource'
+          title: DataSourceCreateComponent
+          description: Component that implements the data source
+        version_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/DataSourceReaderVersionMetadata'
+          - type: 'null'
+          description: Version metadata for the data source
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+      type: object
+      required:
+      - id
+      - name
+      - source_type
+      - component
+      - project_id
+      title: DataSource
+      description: Schema for a data source.
     BoxAuthMechanism:
       type: string
       enum:
       - developer_token
       - ccg
       title: BoxAuthMechanism
+    CloudAzStorageBlobDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        container_name:
+          type: string
+          title: Container Name
+          description: The name of the Azure Storage Blob container to read from.
+        account_url:
+          type: string
+          title: Account Url
+          description: The Azure Storage Blob account URL to use for authentication.
+        blob:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Blob
+          description: The blob name to read from.
+        prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Prefix
+          description: The prefix of the Azure Storage Blob objects to read from.
+        account_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Account Name
+          description: The Azure Storage Blob account name to use for authentication.
+        account_key:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Account Key
+          description: The Azure Storage Blob account key to use for authentication.
+        tenant_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tenant Id
+          description: The Azure AD tenant ID to use for authentication.
+        client_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Id
+          description: The Azure AD client ID to use for authentication.
+        client_secret:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Client Secret
+          description: The Azure AD client secret to use for authentication.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudAzStorageBlobDataSource
+      type: object
+      required:
+      - container_name
+      - account_url
+      title: CloudAzStorageBlobDataSource
+    DataSourceCreate:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The name of the data source.
+        source_type:
+          $ref: '#/components/schemas/ConfigurableDataSourceNames'
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata that will be present on all data loaded from the data source
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudS3DataSource'
+          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
+          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
+          - $ref: '#/components/schemas/CloudOneDriveDataSource'
+          - $ref: '#/components/schemas/CloudSharepointDataSource'
+          - $ref: '#/components/schemas/CloudSlackDataSource'
+          - $ref: '#/components/schemas/CloudNotionPageDataSource'
+          - $ref: '#/components/schemas/CloudConfluenceDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
+          - $ref: '#/components/schemas/CloudBoxDataSource'
+          title: DataSourceCreateComponent
+          description: Component that implements the data source
+      type: object
+      required:
+      - name
+      - source_type
+      - component
+      title: DataSourceCreate
+      description: Schema for creating a data source.
+    DataSourceReaderVersionMetadata:
+      properties:
+        reader_version:
+          anyOf:
+          - type: string
+            enum:
+            - '1.0'
+            - '2.0'
+            - '2.1'
+          - type: 'null'
+          title: Reader Version
+          description: The version of the reader to use for this data source.
+      type: object
+      title: DataSourceReaderVersionMetadata
     ConfigurableDataSourceNames:
       type: string
       enum:
@@ -250,32 +461,6 @@ components:
       - JIRA_V2
       - BOX
       title: ConfigurableDataSourceNames
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     CloudNotionPageDataSource:
       properties:
         supports_access_control:
@@ -308,63 +493,6 @@ components:
       required:
       - integration_token
       title: CloudNotionPageDataSource
-    CloudBoxDataSource:
-      properties:
-        supports_access_control:
-          type: boolean
-          title: Supports Access Control
-          default: false
-        folder_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Folder Id
-          description: The ID of the Box folder to read from.
-        authentication_mechanism:
-          $ref: '#/components/schemas/BoxAuthMechanism'
-          description: The type of authentication to use (Developer Token or CCG)
-        developer_token:
-          anyOf:
-          - type: string
-            format: password
-            writeOnly: true
-          - type: 'null'
-          title: Developer Token
-          description: Developer token for authentication if authentication_mechanism is 'developer_token'.
-        client_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Client Id
-          description: Box API key used for identifying the application the user is authenticating with
-        client_secret:
-          anyOf:
-          - type: string
-            format: password
-            writeOnly: true
-          - type: 'null'
-          title: Client Secret
-          description: Box API secret used for making auth requests.
-        user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: User Id
-          description: Box User ID, if provided authenticates as user.
-        enterprise_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Enterprise Id
-          description: Box Enterprise ID, if provided authenticates as service.
-        class_name:
-          type: string
-          title: Class Name
-          default: CloudBoxDataSource
-      type: object
-      required:
-      - authentication_mechanism
-      title: CloudBoxDataSource
     CloudSlackDataSource:
       properties:
         supports_access_control:
@@ -421,56 +549,6 @@ components:
       required:
       - slack_token
       title: CloudSlackDataSource
-    DataSourceUpdate:
-      properties:
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-          description: The name of the data source.
-        source_type:
-          $ref: '#/components/schemas/ConfigurableDataSourceNames'
-        custom_metadata:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: 'null'
-          title: Custom Metadata
-          description: Custom metadata that will be present on all data loaded from the data source
-        component:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - $ref: '#/components/schemas/CloudS3DataSource'
-          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
-          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
-          - $ref: '#/components/schemas/CloudOneDriveDataSource'
-          - $ref: '#/components/schemas/CloudSharepointDataSource'
-          - $ref: '#/components/schemas/CloudSlackDataSource'
-          - $ref: '#/components/schemas/CloudNotionPageDataSource'
-          - $ref: '#/components/schemas/CloudConfluenceDataSource'
-          - $ref: '#/components/schemas/CloudJiraDataSource'
-          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
-          - $ref: '#/components/schemas/CloudBoxDataSource'
-          - type: 'null'
-          title: DataSourceUpdateComponent
-          description: Component that implements the data source
-      type: object
-      required:
-      - source_type
-      title: DataSourceUpdate
-      description: Schema for updating a data source.
     CloudConfluenceDataSource:
       properties:
         supports_access_control:
@@ -544,6 +622,159 @@ components:
       - authentication_mechanism
       - server_url
       title: CloudConfluenceDataSource
+    CloudS3DataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        bucket:
+          type: string
+          title: Bucket
+          description: The name of the S3 bucket to read from.
+        prefix:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Prefix
+          description: The prefix of the S3 objects to read from.
+        regex_pattern:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Regex Pattern
+          description: The regex pattern to filter S3 objects. Must be a valid regex pattern.
+        aws_access_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Aws Access Id
+          description: The AWS access ID to use for authentication.
+        aws_access_secret:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Aws Access Secret
+          description: The AWS access secret to use for authentication.
+        s3_endpoint_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: S3 Endpoint Url
+          description: The S3 endpoint URL to use for authentication.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudS3DataSource
+      type: object
+      required:
+      - bucket
+      title: CloudS3DataSource
+    CloudBoxDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        folder_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Folder Id
+          description: The ID of the Box folder to read from.
+        authentication_mechanism:
+          $ref: '#/components/schemas/BoxAuthMechanism'
+          description: The type of authentication to use (Developer Token or CCG)
+        developer_token:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Developer Token
+          description: Developer token for authentication if authentication_mechanism is 'developer_token'.
+        client_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Id
+          description: Box API key used for identifying the application the user is authenticating with
+        client_secret:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Client Secret
+          description: Box API secret used for making auth requests.
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+          description: Box User ID, if provided authenticates as user.
+        enterprise_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Enterprise Id
+          description: Box Enterprise ID, if provided authenticates as service.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudBoxDataSource
+      type: object
+      required:
+      - authentication_mechanism
+      title: CloudBoxDataSource
+    CloudGoogleDriveDataSource:
+      properties:
+        supports_access_control:
+          type: boolean
+          title: Supports Access Control
+          default: false
+        folder_id:
+          type: string
+          title: Folder Id
+          description: The ID of the Google Drive folder to read from.
+        service_account_key:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+            description: A dictionary containing secret values
+          - type: 'null'
+          title: Service Account Key
+          description: The service account key JSON to use for authentication.
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudGoogleDriveDataSource
+      type: object
+      required:
+      - folder_id
+      title: CloudGoogleDriveDataSource
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    FailureHandlingConfig:
+      properties:
+        skip_list_failures:
+          type: boolean
+          title: Skip List Failures
+          description: Whether to skip failed batches/lists and continue processing
+          default: false
+      type: object
+      title: FailureHandlingConfig
+      description: Configuration for handling different types of failures during data source processing.
     CloudJiraDataSourceV2:
       properties:
         supports_access_control:
@@ -626,25 +857,32 @@ components:
       - query
       title: CloudJiraDataSourceV2
       description: Cloud Jira Data Source integrating JiraReaderV2.
-    FailureHandlingConfig:
+    ValidationError:
       properties:
-        skip_list_failures:
-          type: boolean
-          title: Skip List Failures
-          description: Whether to skip failed batches/lists and continue processing
-          default: false
-      type: object
-      title: FailureHandlingConfig
-      description: Configuration for handling different types of failures during data source processing.
-    HTTPValidationError:
-      properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Detail
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
-      title: HTTPValidationError
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     CloudSharepointDataSource:
       properties:
         supports_access_control:
@@ -791,6 +1029,56 @@ components:
       - client_secret
       - tenant_id
       title: CloudOneDriveDataSource
+    DataSourceUpdate:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: The name of the data source.
+        source_type:
+          $ref: '#/components/schemas/ConfigurableDataSourceNames'
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata that will be present on all data loaded from the data source
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudS3DataSource'
+          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
+          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
+          - $ref: '#/components/schemas/CloudOneDriveDataSource'
+          - $ref: '#/components/schemas/CloudSharepointDataSource'
+          - $ref: '#/components/schemas/CloudSlackDataSource'
+          - $ref: '#/components/schemas/CloudNotionPageDataSource'
+          - $ref: '#/components/schemas/CloudConfluenceDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSource'
+          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
+          - $ref: '#/components/schemas/CloudBoxDataSource'
+          - type: 'null'
+          title: DataSourceUpdateComponent
+          description: Component that implements the data source
+      type: object
+      required:
+      - source_type
+      title: DataSourceUpdate
+      description: Schema for updating a data source.
     CloudJiraDataSource:
       properties:
         supports_access_control:
@@ -841,294 +1129,6 @@ components:
       - query
       title: CloudJiraDataSource
       description: Cloud Jira Data Source integrating JiraReader.
-    DataSource:
-      properties:
-        id:
-          type: string
-          format: uuid
-          title: Id
-          description: Unique identifier
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation datetime
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Update datetime
-        name:
-          type: string
-          title: Name
-          description: The name of the data source.
-        source_type:
-          $ref: '#/components/schemas/ConfigurableDataSourceNames'
-        custom_metadata:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: 'null'
-          title: Custom Metadata
-          description: Custom metadata that will be present on all data loaded from the data source
-        component:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - $ref: '#/components/schemas/CloudS3DataSource'
-          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
-          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
-          - $ref: '#/components/schemas/CloudOneDriveDataSource'
-          - $ref: '#/components/schemas/CloudSharepointDataSource'
-          - $ref: '#/components/schemas/CloudSlackDataSource'
-          - $ref: '#/components/schemas/CloudNotionPageDataSource'
-          - $ref: '#/components/schemas/CloudConfluenceDataSource'
-          - $ref: '#/components/schemas/CloudJiraDataSource'
-          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
-          - $ref: '#/components/schemas/CloudBoxDataSource'
-          title: DataSourceCreateComponent
-          description: Component that implements the data source
-        version_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/DataSourceReaderVersionMetadata'
-          - type: 'null'
-          description: Version metadata for the data source
-        project_id:
-          type: string
-          format: uuid
-          title: Project Id
-      type: object
-      required:
-      - id
-      - name
-      - source_type
-      - component
-      - project_id
-      title: DataSource
-      description: Schema for a data source.
-    DataSourceCreate:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The name of the data source.
-        source_type:
-          $ref: '#/components/schemas/ConfigurableDataSourceNames'
-        custom_metadata:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: 'null'
-          title: Custom Metadata
-          description: Custom metadata that will be present on all data loaded from the data source
-        component:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - $ref: '#/components/schemas/CloudS3DataSource'
-          - $ref: '#/components/schemas/CloudAzStorageBlobDataSource'
-          - $ref: '#/components/schemas/CloudGoogleDriveDataSource'
-          - $ref: '#/components/schemas/CloudOneDriveDataSource'
-          - $ref: '#/components/schemas/CloudSharepointDataSource'
-          - $ref: '#/components/schemas/CloudSlackDataSource'
-          - $ref: '#/components/schemas/CloudNotionPageDataSource'
-          - $ref: '#/components/schemas/CloudConfluenceDataSource'
-          - $ref: '#/components/schemas/CloudJiraDataSource'
-          - $ref: '#/components/schemas/CloudJiraDataSourceV2'
-          - $ref: '#/components/schemas/CloudBoxDataSource'
-          title: DataSourceCreateComponent
-          description: Component that implements the data source
-      type: object
-      required:
-      - name
-      - source_type
-      - component
-      title: DataSourceCreate
-      description: Schema for creating a data source.
-    CloudGoogleDriveDataSource:
-      properties:
-        supports_access_control:
-          type: boolean
-          title: Supports Access Control
-          default: false
-        folder_id:
-          type: string
-          title: Folder Id
-          description: The ID of the Google Drive folder to read from.
-        service_account_key:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-            description: A dictionary containing secret values
-          - type: 'null'
-          title: Service Account Key
-          description: The service account key JSON to use for authentication.
-        class_name:
-          type: string
-          title: Class Name
-          default: CloudGoogleDriveDataSource
-      type: object
-      required:
-      - folder_id
-      title: CloudGoogleDriveDataSource
-    CloudAzStorageBlobDataSource:
-      properties:
-        supports_access_control:
-          type: boolean
-          title: Supports Access Control
-          default: false
-        container_name:
-          type: string
-          title: Container Name
-          description: The name of the Azure Storage Blob container to read from.
-        account_url:
-          type: string
-          title: Account Url
-          description: The Azure Storage Blob account URL to use for authentication.
-        blob:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Blob
-          description: The blob name to read from.
-        prefix:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Prefix
-          description: The prefix of the Azure Storage Blob objects to read from.
-        account_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Account Name
-          description: The Azure Storage Blob account name to use for authentication.
-        account_key:
-          anyOf:
-          - type: string
-            format: password
-            writeOnly: true
-          - type: 'null'
-          title: Account Key
-          description: The Azure Storage Blob account key to use for authentication.
-        tenant_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tenant Id
-          description: The Azure AD tenant ID to use for authentication.
-        client_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Client Id
-          description: The Azure AD client ID to use for authentication.
-        client_secret:
-          anyOf:
-          - type: string
-            format: password
-            writeOnly: true
-          - type: 'null'
-          title: Client Secret
-          description: The Azure AD client secret to use for authentication.
-        class_name:
-          type: string
-          title: Class Name
-          default: CloudAzStorageBlobDataSource
-      type: object
-      required:
-      - container_name
-      - account_url
-      title: CloudAzStorageBlobDataSource
-    DataSourceReaderVersionMetadata:
-      properties:
-        reader_version:
-          anyOf:
-          - type: string
-            enum:
-            - '1.0'
-            - '2.0'
-            - '2.1'
-          - type: 'null'
-          title: Reader Version
-          description: The version of the reader to use for this data source.
-      type: object
-      title: DataSourceReaderVersionMetadata
-    CloudS3DataSource:
-      properties:
-        supports_access_control:
-          type: boolean
-          title: Supports Access Control
-          default: false
-        bucket:
-          type: string
-          title: Bucket
-          description: The name of the S3 bucket to read from.
-        prefix:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Prefix
-          description: The prefix of the S3 objects to read from.
-        regex_pattern:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Regex Pattern
-          description: The regex pattern to filter S3 objects. Must be a valid regex pattern.
-        aws_access_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Aws Access Id
-          description: The AWS access ID to use for authentication.
-        aws_access_secret:
-          anyOf:
-          - type: string
-            format: password
-            writeOnly: true
-          - type: 'null'
-          title: Aws Access Secret
-          description: The AWS access secret to use for authentication.
-        s3_endpoint_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: S3 Endpoint Url
-          description: The S3 endpoint URL to use for authentication.
-        class_name:
-          type: string
-          title: Class Name
-          default: CloudS3DataSource
-      type: object
-      required:
-      - bucket
-      title: CloudS3DataSource
   securitySchemes:
     HTTPBearer:
       type: http

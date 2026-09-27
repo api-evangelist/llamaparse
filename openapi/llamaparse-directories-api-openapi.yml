@@ -317,24 +317,31 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    DirectoryUpdateRequest:
+    DirectoryQueryResponse:
       properties:
-        name:
+        items:
+          items:
+            $ref: '#/components/schemas/DirectoryResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
           anyOf:
           - type: string
-            minLength: 1
           - type: 'null'
-          title: Name
-          description: Updated name for the directory.
-        description:
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
           anyOf:
-          - type: string
+          - type: integer
           - type: 'null'
-          title: Description
-          description: Updated description for the directory.
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
       type: object
-      title: DirectoryUpdateRequest
-      description: API request schema for updating a directory.
+      required:
+      - items
+      title: DirectoryQueryResponse
+      description: API query response schema for directories.
     ValidationError:
       properties:
         loc:
@@ -361,15 +368,24 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
+    DirectoryUpdateRequest:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        name:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Name
+          description: Updated name for the directory.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Updated description for the directory.
       type: object
-      title: HTTPValidationError
+      title: DirectoryUpdateRequest
+      description: API request schema for updating a directory.
     DirectoryResponse:
       properties:
         id:
@@ -489,31 +505,15 @@ components:
       - name
       title: DirectoryCreateRequest
       description: API request schema for creating a directory.
-    DirectoryQueryResponse:
+    HTTPValidationError:
       properties:
-        items:
+        detail:
           items:
-            $ref: '#/components/schemas/DirectoryResponse'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+          title: Detail
       type: object
-      required:
-      - items
-      title: DirectoryQueryResponse
-      description: API query response schema for directories.
+      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

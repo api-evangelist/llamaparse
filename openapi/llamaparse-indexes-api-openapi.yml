@@ -293,6 +293,84 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    IndexProductEntry:
+      properties:
+        product_type:
+          type: string
+          title: Product Type
+          description: 'Product type. One of: parse, extract.'
+          examples:
+          - parse
+        product_config_id:
+          type: string
+          title: Product Config Id
+          description: ID of the product configuration.
+      type: object
+      required:
+      - product_type
+      - product_config_id
+      title: IndexProductEntry
+      description: 'A product configuration to include in an index''s sync.
+
+
+        Structurally mirrors ``directory_sync.SyncProductEntryRequest`` but is a
+
+        distinct class so the Index API surface stays SDK-gen-isolated from
+
+        directory-sync internals. Translation between the two happens in
+
+        ``index/api_utils.py``.'
+    IndexQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/IndexResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: IndexQueryResponse
+      description: Paginated list of indexes.
     IndexCreateRequest:
       properties:
         source_directory_id:
@@ -369,99 +447,12 @@ components:
         Omit ``products`` to use a default parse configuration (cost-effective
 
         tier). Pass it explicitly to control parsing or to include extraction.'
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     IndexMetadata:
       properties: {}
       additionalProperties: true
       type: object
       title: IndexMetadata
       description: Build state and diagnostic info about an index. Schema is open; only `status` of `ready` or `failed` is stable.
-    IndexProductEntry:
-      properties:
-        product_type:
-          type: string
-          title: Product Type
-          description: 'Product type. One of: parse, extract.'
-          examples:
-          - parse
-        product_config_id:
-          type: string
-          title: Product Config Id
-          description: ID of the product configuration.
-      type: object
-      required:
-      - product_type
-      - product_config_id
-      title: IndexProductEntry
-      description: 'A product configuration to include in an index''s sync.
-
-
-        Structurally mirrors ``directory_sync.SyncProductEntryRequest`` but is a
-
-        distinct class so the Index API surface stays SDK-gen-isolated from
-
-        directory-sync internals. Translation between the two happens in
-
-        ``index/api_utils.py``.'
-    IndexQueryResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/IndexResponse'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: IndexQueryResponse
-      description: Paginated list of indexes.
     IndexResponse:
       properties:
         id:
@@ -538,6 +529,15 @@ components:
       - export_config_id
       title: IndexResponse
       description: A searchable index over a directory of documents.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

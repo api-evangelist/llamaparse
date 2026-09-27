@@ -244,81 +244,6 @@ components:
       - items
       title: ProjectQueryResponse
       description: API query response schema for projects.
-    ProjectResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: The project's unique identifier.
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation datetime
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Update datetime
-        name:
-          type: string
-          title: Name
-          description: The project's display name.
-        organization_id:
-          type: string
-          title: Organization Id
-          description: The organization the project belongs to.
-        is_default:
-          type: boolean
-          title: Is Default
-          description: Whether this project is the default project for its organization.
-          default: false
-      type: object
-      required:
-      - id
-      - name
-      - organization_id
-      title: ProjectResponse
-      description: API response schema for a project.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     Project:
       properties:
         name:
@@ -362,6 +287,81 @@ components:
       - organization_id
       title: Project
       description: Schema for a project.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ProjectResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: The project's unique identifier.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: The project's display name.
+        organization_id:
+          type: string
+          title: Organization Id
+          description: The organization the project belongs to.
+        is_default:
+          type: boolean
+          title: Is Default
+          description: Whether this project is the default project for its organization.
+          default: false
+      type: object
+      required:
+      - id
+      - name
+      - organization_id
+      title: ProjectResponse
+      description: API response schema for a project.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http
