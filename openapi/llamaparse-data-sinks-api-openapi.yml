@@ -227,6 +227,46 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ConfigurableDataSinkNames:
+      type: string
+      enum:
+      - PINECONE
+      - POSTGRES
+      - QDRANT
+      - AZUREAI_SEARCH
+      - MONGODB_ATLAS
+      - MILVUS
+      - ASTRA_DB
+      title: ConfigurableDataSinkNames
+    DataSinkUpdate:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: The name of the data sink.
+        sink_type:
+          $ref: '#/components/schemas/ConfigurableDataSinkNames'
+        component:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - $ref: '#/components/schemas/CloudPineconeVectorStore'
+          - $ref: '#/components/schemas/CloudPostgresVectorStore'
+          - $ref: '#/components/schemas/CloudQdrantVectorStore'
+          - $ref: '#/components/schemas/CloudAzureAISearchVectorStore'
+          - $ref: '#/components/schemas/CloudMongoDBAtlasVectorSearch'
+          - $ref: '#/components/schemas/CloudMilvusVectorStore'
+          - $ref: '#/components/schemas/CloudAstraDBVectorStore'
+          - type: 'null'
+          title: DataSinkUpdateComponent
+          description: Component that implements the data sink
+      type: object
+      required:
+      - sink_type
+      title: DataSinkUpdate
+      description: Schema for updating a data sink.
     DataSinkCreate:
       properties:
         name:
@@ -255,6 +295,211 @@ components:
       - component
       title: DataSinkCreate
       description: Schema for creating a data sink.
+    CloudAstraDBVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          const: true
+          title: Supports Nested Metadata Filters
+          default: true
+        token:
+          type: string
+          format: password
+          title: Token
+          description: The Astra DB Application Token to use
+          writeOnly: true
+        api_endpoint:
+          type: string
+          title: Api Endpoint
+          description: The Astra DB JSON API endpoint for your database
+        collection_name:
+          type: string
+          title: Collection Name
+          description: Collection name to use. If not existing, it will be created
+        embedding_dimension:
+          type: integer
+          title: Embedding Dimension
+          description: Length of the embedding vectors in use
+        keyspace:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Keyspace
+          description: The keyspace to use. If not provided, 'default_keyspace'
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudAstraDBVectorStore
+      type: object
+      required:
+      - token
+      - api_endpoint
+      - collection_name
+      - embedding_dimension
+      title: CloudAstraDBVectorStore
+      description: "Cloud AstraDB Vector Store.\n\nThis class is used to store the configuration for an AstraDB vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    token (str): The Astra DB Application Token to use.\n    api_endpoint (str): The Astra DB JSON API endpoint for your database.\n    collection_name (str): Collection name to use. If not existing, it will be created.\n    embedding_dimension (int): Length of the embedding vectors in use.\n    keyspace (optional[str]): The keyspace to use. If not provided, 'default_keyspace'"
+    PGVectorHNSWSettings:
+      properties:
+        ef_construction:
+          type: integer
+          minimum: 1.0
+          title: Ef Construction
+          description: The number of edges to use during the construction phase.
+          default: 64
+        ef_search:
+          type: integer
+          minimum: 1.0
+          title: Ef Search
+          description: The number of edges to use during the search phase.
+          default: 40
+        m:
+          type: integer
+          minimum: 1.0
+          title: M
+          description: The number of bi-directional links created for each new element.
+          default: 16
+        vector_type:
+          $ref: '#/components/schemas/PGVectorVectorType'
+          description: The type of vector to use.
+          default: vector
+        distance_method:
+          $ref: '#/components/schemas/PGVectorDistanceMethod'
+          description: The distance method to use.
+          default: cosine
+      type: object
+      title: PGVectorHNSWSettings
+      description: HNSW settings for PGVector.
+    CloudMilvusVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          title: Supports Nested Metadata Filters
+          default: false
+        uri:
+          type: string
+          title: Uri
+        collection_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Collection Name
+        token:
+          anyOf:
+          - type: string
+            format: password
+            writeOnly: true
+          - type: 'null'
+          title: Token
+        embedding_dimension:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Embedding Dimension
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudMilvusVectorStore
+      type: object
+      required:
+      - uri
+      title: CloudMilvusVectorStore
+      description: Cloud Milvus Vector Store.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    PGVectorVectorType:
+      type: string
+      enum:
+      - vector
+      - half_vec
+      - bit
+      - sparse_vec
+      title: PGVectorVectorType
+      description: 'Vector storage formats for PGVector.
+
+        Docs:
+
+        https://github.com/pgvector/pgvector?tab=readme-ov-file#query-options'
+    CloudQdrantVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          const: true
+          title: Supports Nested Metadata Filters
+          default: true
+        collection_name:
+          type: string
+          title: Collection Name
+        url:
+          type: string
+          title: Url
+        api_key:
+          type: string
+          format: password
+          title: Api Key
+          writeOnly: true
+        max_retries:
+          type: integer
+          title: Max Retries
+          default: 3
+        client_kwargs:
+          additionalProperties: true
+          type: object
+          title: Client Kwargs
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudQdrantVectorStore
+      type: object
+      required:
+      - collection_name
+      - url
+      - api_key
+      title: CloudQdrantVectorStore
+      description: "Cloud Qdrant Vector Store.\n\nThis class is used to store the configuration for a Qdrant vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    collection_name (str): name of the Qdrant collection\n    url (str): url of the Qdrant instance\n    api_key (str): API key for authenticating with Qdrant\n    max_retries (int): maximum number of retries in case of a failure. Defaults to 3\n    client_kwargs (dict): additional kwargs to pass to the Qdrant client"
+    CloudPineconeVectorStore:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          const: true
+          title: Supports Nested Metadata Filters
+          default: true
+        api_key:
+          type: string
+          format: password
+          title: Api Key
+          description: The API key for authenticating with Pinecone
+          writeOnly: true
+        index_name:
+          type: string
+          title: Index Name
+        namespace:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Namespace
+        insert_kwargs:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Insert Kwargs
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudPineconeVectorStore
+      type: object
+      required:
+      - api_key
+      - index_name
+      title: CloudPineconeVectorStore
+      description: "Cloud Pinecone Vector Store.\n\nThis class is used to store the configuration for a Pinecone vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    api_key (str): API key for authenticating with Pinecone\n    index_name (str): name of the Pinecone index\n    namespace (optional[str]): namespace to use in the Pinecone index\n    insert_kwargs (optional[dict]): additional kwargs to pass during insertion"
     DataSink:
       properties:
         id:
@@ -308,115 +553,21 @@ components:
       - project_id
       title: DataSink
       description: Schema for a data sink.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    PGVectorHNSWSettings:
-      properties:
-        ef_construction:
-          type: integer
-          minimum: 1.0
-          title: Ef Construction
-          description: The number of edges to use during the construction phase.
-          default: 64
-        ef_search:
-          type: integer
-          minimum: 1.0
-          title: Ef Search
-          description: The number of edges to use during the search phase.
-          default: 40
-        m:
-          type: integer
-          minimum: 1.0
-          title: M
-          description: The number of bi-directional links created for each new element.
-          default: 16
-        vector_type:
-          $ref: '#/components/schemas/PGVectorVectorType'
-          description: The type of vector to use.
-          default: vector
-        distance_method:
-          $ref: '#/components/schemas/PGVectorDistanceMethod'
-          description: The distance method to use.
-          default: cosine
-      type: object
-      title: PGVectorHNSWSettings
-      description: HNSW settings for PGVector.
-    CloudMongoDBAtlasVectorSearch:
-      properties:
-        supports_nested_metadata_filters:
-          type: boolean
-          title: Supports Nested Metadata Filters
-          default: false
-        mongodb_uri:
-          type: string
-          format: password
-          title: Mongodb Uri
-          writeOnly: true
-        db_name:
-          type: string
-          title: Db Name
-        collection_name:
-          type: string
-          title: Collection Name
-        vector_index_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Vector Index Name
-        fulltext_index_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Fulltext Index Name
-        embedding_dimension:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Embedding Dimension
-        class_name:
-          type: string
-          title: Class Name
-          default: CloudMongoDBAtlasVectorSearch
-      type: object
-      required:
-      - mongodb_uri
-      - db_name
-      - collection_name
-      title: CloudMongoDBAtlasVectorSearch
-      description: "Cloud MongoDB Atlas Vector Store.\n\nThis class is used to store the configuration for a MongoDB Atlas vector store,\nso that it can be created and used in LlamaCloud.\n\nArgs:\n    mongodb_uri (str): URI for connecting to MongoDB Atlas\n    db_name (str): name of the MongoDB database\n    collection_name (str): name of the MongoDB collection\n    vector_index_name (str): name of the MongoDB Atlas vector index\n    fulltext_index_name (str): name of the MongoDB Atlas full-text index"
+    PGVectorDistanceMethod:
+      type: string
+      enum:
+      - l2
+      - ip
+      - cosine
+      - l1
+      - hamming
+      - jaccard
+      title: PGVectorDistanceMethod
+      description: 'Distance methods for PGVector.
+
+        Docs:
+
+        https://github.com/pgvector/pgvector?tab=readme-ov-file#query-options'
     CloudPostgresVectorStore:
       properties:
         supports_nested_metadata_filters:
@@ -479,6 +630,49 @@ components:
       - schema_name
       - embed_dim
       title: CloudPostgresVectorStore
+    CloudMongoDBAtlasVectorSearch:
+      properties:
+        supports_nested_metadata_filters:
+          type: boolean
+          title: Supports Nested Metadata Filters
+          default: false
+        mongodb_uri:
+          type: string
+          format: password
+          title: Mongodb Uri
+          writeOnly: true
+        db_name:
+          type: string
+          title: Db Name
+        collection_name:
+          type: string
+          title: Collection Name
+        vector_index_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Vector Index Name
+        fulltext_index_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fulltext Index Name
+        embedding_dimension:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Embedding Dimension
+        class_name:
+          type: string
+          title: Class Name
+          default: CloudMongoDBAtlasVectorSearch
+      type: object
+      required:
+      - mongodb_uri
+      - db_name
+      - collection_name
+      title: CloudMongoDBAtlasVectorSearch
+      description: "Cloud MongoDB Atlas Vector Store.\n\nThis class is used to store the configuration for a MongoDB Atlas vector store,\nso that it can be created and used in LlamaCloud.\n\nArgs:\n    mongodb_uri (str): URI for connecting to MongoDB Atlas\n    db_name (str): name of the MongoDB database\n    collection_name (str): name of the MongoDB collection\n    vector_index_name (str): name of the MongoDB Atlas vector index\n    fulltext_index_name (str): name of the MongoDB Atlas full-text index"
     CloudAzureAISearchVectorStore:
       properties:
         supports_nested_metadata_filters:
@@ -542,226 +736,32 @@ components:
       - search_service_endpoint
       title: CloudAzureAISearchVectorStore
       description: Cloud Azure AI Search Vector Store.
-    CloudMilvusVectorStore:
+    ValidationError:
       properties:
-        supports_nested_metadata_filters:
-          type: boolean
-          title: Supports Nested Metadata Filters
-          default: false
-        uri:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Uri
-        collection_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Collection Name
-        token:
-          anyOf:
-          - type: string
-            format: password
-            writeOnly: true
-          - type: 'null'
-          title: Token
-        embedding_dimension:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Embedding Dimension
-        class_name:
+          title: Message
+        type:
           type: string
-          title: Class Name
-          default: CloudMilvusVectorStore
-      type: object
-      required:
-      - uri
-      title: CloudMilvusVectorStore
-      description: Cloud Milvus Vector Store.
-    ConfigurableDataSinkNames:
-      type: string
-      enum:
-      - PINECONE
-      - POSTGRES
-      - QDRANT
-      - AZUREAI_SEARCH
-      - MONGODB_ATLAS
-      - MILVUS
-      - ASTRA_DB
-      title: ConfigurableDataSinkNames
-    CloudPineconeVectorStore:
-      properties:
-        supports_nested_metadata_filters:
-          type: boolean
-          const: true
-          title: Supports Nested Metadata Filters
-          default: true
-        api_key:
-          type: string
-          format: password
-          title: Api Key
-          description: The API key for authenticating with Pinecone
-          writeOnly: true
-        index_name:
-          type: string
-          title: Index Name
-        namespace:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Namespace
-        insert_kwargs:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Insert Kwargs
-        class_name:
-          type: string
-          title: Class Name
-          default: CloudPineconeVectorStore
-      type: object
-      required:
-      - api_key
-      - index_name
-      title: CloudPineconeVectorStore
-      description: "Cloud Pinecone Vector Store.\n\nThis class is used to store the configuration for a Pinecone vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    api_key (str): API key for authenticating with Pinecone\n    index_name (str): name of the Pinecone index\n    namespace (optional[str]): namespace to use in the Pinecone index\n    insert_kwargs (optional[dict]): additional kwargs to pass during insertion"
-    DataSinkUpdate:
-      properties:
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-          description: The name of the data sink.
-        sink_type:
-          $ref: '#/components/schemas/ConfigurableDataSinkNames'
-        component:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - $ref: '#/components/schemas/CloudPineconeVectorStore'
-          - $ref: '#/components/schemas/CloudPostgresVectorStore'
-          - $ref: '#/components/schemas/CloudQdrantVectorStore'
-          - $ref: '#/components/schemas/CloudAzureAISearchVectorStore'
-          - $ref: '#/components/schemas/CloudMongoDBAtlasVectorSearch'
-          - $ref: '#/components/schemas/CloudMilvusVectorStore'
-          - $ref: '#/components/schemas/CloudAstraDBVectorStore'
-          - type: 'null'
-          title: DataSinkUpdateComponent
-          description: Component that implements the data sink
-      type: object
-      required:
-      - sink_type
-      title: DataSinkUpdate
-      description: Schema for updating a data sink.
-    CloudQdrantVectorStore:
-      properties:
-        supports_nested_metadata_filters:
-          type: boolean
-          const: true
-          title: Supports Nested Metadata Filters
-          default: true
-        collection_name:
-          type: string
-          title: Collection Name
-        url:
-          type: string
-          title: Url
-        api_key:
-          type: string
-          format: password
-          title: Api Key
-          writeOnly: true
-        max_retries:
-          type: integer
-          title: Max Retries
-          default: 3
-        client_kwargs:
-          additionalProperties: true
+          title: Error Type
+        input:
+          title: Input
+        ctx:
           type: object
-          title: Client Kwargs
-        class_name:
-          type: string
-          title: Class Name
-          default: CloudQdrantVectorStore
+          title: Context
       type: object
       required:
-      - collection_name
-      - url
-      - api_key
-      title: CloudQdrantVectorStore
-      description: "Cloud Qdrant Vector Store.\n\nThis class is used to store the configuration for a Qdrant vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    collection_name (str): name of the Qdrant collection\n    url (str): url of the Qdrant instance\n    api_key (str): API key for authenticating with Qdrant\n    max_retries (int): maximum number of retries in case of a failure. Defaults to 3\n    client_kwargs (dict): additional kwargs to pass to the Qdrant client"
-    CloudAstraDBVectorStore:
-      properties:
-        supports_nested_metadata_filters:
-          type: boolean
-          const: true
-          title: Supports Nested Metadata Filters
-          default: true
-        token:
-          type: string
-          format: password
-          title: Token
-          description: The Astra DB Application Token to use
-          writeOnly: true
-        api_endpoint:
-          type: string
-          title: Api Endpoint
-          description: The Astra DB JSON API endpoint for your database
-        collection_name:
-          type: string
-          title: Collection Name
-          description: Collection name to use. If not existing, it will be created
-        embedding_dimension:
-          type: integer
-          title: Embedding Dimension
-          description: Length of the embedding vectors in use
-        keyspace:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Keyspace
-          description: The keyspace to use. If not provided, 'default_keyspace'
-        class_name:
-          type: string
-          title: Class Name
-          default: CloudAstraDBVectorStore
-      type: object
-      required:
-      - token
-      - api_endpoint
-      - collection_name
-      - embedding_dimension
-      title: CloudAstraDBVectorStore
-      description: "Cloud AstraDB Vector Store.\n\nThis class is used to store the configuration for an AstraDB vector store, so that it can be\ncreated and used in LlamaCloud.\n\nArgs:\n    token (str): The Astra DB Application Token to use.\n    api_endpoint (str): The Astra DB JSON API endpoint for your database.\n    collection_name (str): Collection name to use. If not existing, it will be created.\n    embedding_dimension (int): Length of the embedding vectors in use.\n    keyspace (optional[str]): The keyspace to use. If not provided, 'default_keyspace'"
-    PGVectorVectorType:
-      type: string
-      enum:
-      - vector
-      - half_vec
-      - bit
-      - sparse_vec
-      title: PGVectorVectorType
-      description: 'Vector storage formats for PGVector.
-
-        Docs:
-
-        https://github.com/pgvector/pgvector?tab=readme-ov-file#query-options'
-    PGVectorDistanceMethod:
-      type: string
-      enum:
-      - l2
-      - ip
-      - cosine
-      - l1
-      - hamming
-      - jaccard
-      title: PGVectorDistanceMethod
-      description: 'Distance methods for PGVector.
-
-        Docs:
-
-        https://github.com/pgvector/pgvector?tab=readme-ov-file#query-options'
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

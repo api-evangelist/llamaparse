@@ -225,64 +225,32 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    EmbeddingModelConfigCreate:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The name of the embedding model config.
-        embedding_config:
-          oneOf:
-          - $ref: '#/components/schemas/AzureOpenAIEmbeddingConfig'
-          - $ref: '#/components/schemas/CohereEmbeddingConfig'
-          - $ref: '#/components/schemas/GeminiEmbeddingConfig'
-          - $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
-          - $ref: '#/components/schemas/OpenAIEmbeddingConfig'
-          - $ref: '#/components/schemas/VertexAIEmbeddingConfig'
-          - $ref: '#/components/schemas/BedrockEmbeddingConfig'
-          title: Embedding Config
-          description: The embedding configuration for the embedding model config.
-          discriminator:
-            propertyName: type
-            mapping:
-              AZURE_EMBEDDING: '#/components/schemas/AzureOpenAIEmbeddingConfig'
-              BEDROCK_EMBEDDING: '#/components/schemas/BedrockEmbeddingConfig'
-              COHERE_EMBEDDING: '#/components/schemas/CohereEmbeddingConfig'
-              GEMINI_EMBEDDING: '#/components/schemas/GeminiEmbeddingConfig'
-              HUGGINGFACE_API_EMBEDDING: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
-              OPENAI_EMBEDDING: '#/components/schemas/OpenAIEmbeddingConfig'
-              VERTEXAI_EMBEDDING: '#/components/schemas/VertexAIEmbeddingConfig'
-      type: object
-      required:
-      - name
-      - embedding_config
-      title: EmbeddingModelConfigCreate
-    GeminiEmbeddingConfig:
+    VertexAIEmbeddingConfig:
       properties:
         type:
           type: string
-          const: GEMINI_EMBEDDING
+          const: VERTEXAI_EMBEDDING
           title: Type
           description: Type of the embedding model.
-          default: GEMINI_EMBEDDING
+          default: VERTEXAI_EMBEDDING
         component:
-          $ref: '#/components/schemas/GeminiEmbedding'
-          description: Configuration for the Gemini embedding model.
+          $ref: '#/components/schemas/VertexTextEmbedding'
+          description: Configuration for the VertexAI embedding model.
       type: object
-      title: GeminiEmbeddingConfig
-    CohereEmbeddingConfig:
+      title: VertexAIEmbeddingConfig
+    HuggingFaceInferenceAPIEmbeddingConfig:
       properties:
         type:
           type: string
-          const: COHERE_EMBEDDING
+          const: HUGGINGFACE_API_EMBEDDING
           title: Type
           description: Type of the embedding model.
-          default: COHERE_EMBEDDING
+          default: HUGGINGFACE_API_EMBEDDING
         component:
-          $ref: '#/components/schemas/CohereEmbedding'
-          description: Configuration for the Cohere embedding model.
+          $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbedding'
+          description: Configuration for the HuggingFace Inference API embedding model.
       type: object
-      title: CohereEmbeddingConfig
+      title: HuggingFaceInferenceAPIEmbeddingConfig
     VertexTextEmbedding:
       properties:
         model_name:
@@ -357,102 +325,72 @@ components:
       - private_key_id
       - private_key
       title: VertexTextEmbedding
-    EmbeddingModelConfigUpdate:
-      properties:
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-          description: The name of the embedding model config.
-        embedding_config:
-          anyOf:
-          - oneOf:
-            - $ref: '#/components/schemas/AzureOpenAIEmbeddingConfig'
-            - $ref: '#/components/schemas/CohereEmbeddingConfig'
-            - $ref: '#/components/schemas/GeminiEmbeddingConfig'
-            - $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
-            - $ref: '#/components/schemas/OpenAIEmbeddingConfig'
-            - $ref: '#/components/schemas/VertexAIEmbeddingConfig'
-            - $ref: '#/components/schemas/BedrockEmbeddingConfig'
-            discriminator:
-              propertyName: type
-              mapping:
-                AZURE_EMBEDDING: '#/components/schemas/AzureOpenAIEmbeddingConfig'
-                BEDROCK_EMBEDDING: '#/components/schemas/BedrockEmbeddingConfig'
-                COHERE_EMBEDDING: '#/components/schemas/CohereEmbeddingConfig'
-                GEMINI_EMBEDDING: '#/components/schemas/GeminiEmbeddingConfig'
-                HUGGINGFACE_API_EMBEDDING: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
-                OPENAI_EMBEDDING: '#/components/schemas/OpenAIEmbeddingConfig'
-                VERTEXAI_EMBEDDING: '#/components/schemas/VertexAIEmbeddingConfig'
-          - type: 'null'
-          title: Embedding Config
-          description: The embedding configuration for the embedding model config.
-      type: object
-      title: EmbeddingModelConfigUpdate
-    CohereEmbedding:
-      properties:
-        model_name:
-          type: string
-          title: Model Name
-          description: The modelId of the Cohere model to use.
-          default: embed-english-v3.0
-        embed_batch_size:
-          type: integer
-          maximum: 2048.0
-          exclusiveMinimum: 0.0
-          title: Embed Batch Size
-          description: The batch size for embedding calls.
-          default: 10
-        num_workers:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Num Workers
-          description: The number of workers to use for async embedding calls.
-        api_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Api Key
-          description: The Cohere API key.
-        truncate:
-          type: string
-          title: Truncate
-          description: Truncation type - START/ END/ NONE
-          default: END
-        input_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Input Type
-          description: Model Input type. If not provided, search_document and search_query are used when needed.
-        embedding_type:
-          type: string
-          title: Embedding Type
-          description: Embedding type. If not provided float embedding_type is used when needed.
-          default: float
-        class_name:
-          type: string
-          title: Class Name
-          default: CohereEmbedding
-      type: object
-      required:
-      - api_key
-      title: CohereEmbedding
-    HuggingFaceInferenceAPIEmbeddingConfig:
+    GeminiEmbeddingConfig:
       properties:
         type:
           type: string
-          const: HUGGINGFACE_API_EMBEDDING
+          const: GEMINI_EMBEDDING
           title: Type
           description: Type of the embedding model.
-          default: HUGGINGFACE_API_EMBEDDING
+          default: GEMINI_EMBEDDING
         component:
-          $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbedding'
-          description: Configuration for the HuggingFace Inference API embedding model.
+          $ref: '#/components/schemas/GeminiEmbedding'
+          description: Configuration for the Gemini embedding model.
       type: object
-      title: HuggingFaceInferenceAPIEmbeddingConfig
+      title: GeminiEmbeddingConfig
+    EmbeddingModelConfigCreate:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The name of the embedding model config.
+        embedding_config:
+          oneOf:
+          - $ref: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+          - $ref: '#/components/schemas/CohereEmbeddingConfig'
+          - $ref: '#/components/schemas/GeminiEmbeddingConfig'
+          - $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+          - $ref: '#/components/schemas/OpenAIEmbeddingConfig'
+          - $ref: '#/components/schemas/VertexAIEmbeddingConfig'
+          - $ref: '#/components/schemas/BedrockEmbeddingConfig'
+          title: Embedding Config
+          description: The embedding configuration for the embedding model config.
+          discriminator:
+            propertyName: type
+            mapping:
+              AZURE_EMBEDDING: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+              BEDROCK_EMBEDDING: '#/components/schemas/BedrockEmbeddingConfig'
+              COHERE_EMBEDDING: '#/components/schemas/CohereEmbeddingConfig'
+              GEMINI_EMBEDDING: '#/components/schemas/GeminiEmbeddingConfig'
+              HUGGINGFACE_API_EMBEDDING: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+              OPENAI_EMBEDDING: '#/components/schemas/OpenAIEmbeddingConfig'
+              VERTEXAI_EMBEDDING: '#/components/schemas/VertexAIEmbeddingConfig'
+      type: object
+      required:
+      - name
+      - embedding_config
+      title: EmbeddingModelConfigCreate
+    Pooling:
+      type: string
+      enum:
+      - cls
+      - mean
+      - last
+      title: Pooling
+      description: Enum of possible pooling choices with pooling behaviors.
+    BedrockEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: BEDROCK_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: BEDROCK_EMBEDDING
+        component:
+          $ref: '#/components/schemas/BedrockEmbedding'
+          description: Configuration for the Bedrock embedding model.
+      type: object
+      title: BedrockEmbeddingConfig
     EmbeddingModelConfig:
       properties:
         id:
@@ -511,6 +449,69 @@ components:
       - project_id
       title: EmbeddingModelConfig
       description: Schema for an embedding model config.
+    CohereEmbedding:
+      properties:
+        model_name:
+          type: string
+          title: Model Name
+          description: The modelId of the Cohere model to use.
+          default: embed-english-v3.0
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Key
+          description: The Cohere API key.
+        truncate:
+          type: string
+          title: Truncate
+          description: Truncation type - START/ END/ NONE
+          default: END
+        input_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Input Type
+          description: Model Input type. If not provided, search_document and search_query are used when needed.
+        embedding_type:
+          type: string
+          title: Embedding Type
+          description: Embedding type. If not provided float embedding_type is used when needed.
+          default: float
+        class_name:
+          type: string
+          title: Class Name
+          default: CohereEmbedding
+      type: object
+      required:
+      - api_key
+      title: CohereEmbedding
+    CohereEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: COHERE_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: COHERE_EMBEDDING
+        component:
+          $ref: '#/components/schemas/CohereEmbedding'
+          description: Configuration for the Cohere embedding model.
+      type: object
+      title: CohereEmbeddingConfig
     BedrockEmbedding:
       properties:
         model_name:
@@ -583,27 +584,6 @@ components:
           default: BedrockEmbedding
       type: object
       title: BedrockEmbedding
-    Pooling:
-      type: string
-      enum:
-      - cls
-      - mean
-      - last
-      title: Pooling
-      description: Enum of possible pooling choices with pooling behaviors.
-    VertexAIEmbeddingConfig:
-      properties:
-        type:
-          type: string
-          const: VERTEXAI_EMBEDDING
-          title: Type
-          description: Type of the embedding model.
-          default: VERTEXAI_EMBEDDING
-        component:
-          $ref: '#/components/schemas/VertexTextEmbedding'
-          description: Configuration for the VertexAI embedding model.
-      type: object
-      title: VertexAIEmbeddingConfig
     AzureOpenAIEmbeddingConfig:
       properties:
         type:
@@ -617,156 +597,6 @@ components:
           description: Configuration for the Azure OpenAI embedding model.
       type: object
       title: AzureOpenAIEmbeddingConfig
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    OpenAIEmbeddingConfig:
-      properties:
-        type:
-          type: string
-          const: OPENAI_EMBEDDING
-          title: Type
-          description: Type of the embedding model.
-          default: OPENAI_EMBEDDING
-        component:
-          $ref: '#/components/schemas/OpenAIEmbedding'
-          description: Configuration for the OpenAI embedding model.
-      type: object
-      title: OpenAIEmbeddingConfig
-    AzureOpenAIEmbedding:
-      properties:
-        model_name:
-          type: string
-          title: Model Name
-          description: The name of the OpenAI embedding model.
-          default: text-embedding-ada-002
-        embed_batch_size:
-          type: integer
-          maximum: 2048.0
-          exclusiveMinimum: 0.0
-          title: Embed Batch Size
-          description: The batch size for embedding calls.
-          default: 10
-        num_workers:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Num Workers
-          description: The number of workers to use for async embedding calls.
-        additional_kwargs:
-          additionalProperties: true
-          type: object
-          title: Additional Kwargs
-          description: Additional kwargs for the OpenAI API.
-        api_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Api Key
-          description: The OpenAI API key.
-        api_base:
-          type: string
-          title: Api Base
-          description: The base URL for Azure deployment.
-          default: ''
-        api_version:
-          type: string
-          title: Api Version
-          description: The version for Azure OpenAI API.
-          default: ''
-        max_retries:
-          type: integer
-          minimum: 0.0
-          title: Max Retries
-          description: Maximum number of retries.
-          default: 10
-        timeout:
-          type: number
-          minimum: 0.0
-          title: Timeout
-          description: Timeout for each request.
-          default: 60.0
-        default_headers:
-          anyOf:
-          - additionalProperties:
-              type: string
-            type: object
-          - type: 'null'
-          title: Default Headers
-          description: The default headers for API requests.
-        reuse_client:
-          type: boolean
-          title: Reuse Client
-          description: Reuse the OpenAI client between requests. When doing anything with large volumes of async API calls, setting this to false can improve stability.
-          default: true
-        dimensions:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Dimensions
-          description: The number of dimensions on the output embedding vectors. Works only with v3 embedding models.
-        azure_endpoint:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Azure Endpoint
-          description: The Azure endpoint to use.
-        azure_deployment:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Azure Deployment
-          description: The Azure deployment to use.
-        class_name:
-          type: string
-          title: Class Name
-          default: AzureOpenAIEmbedding
-      type: object
-      title: AzureOpenAIEmbedding
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    VertexEmbeddingMode:
-      type: string
-      enum:
-      - default
-      - classification
-      - clustering
-      - similarity
-      - retrieval
-      title: VertexEmbeddingMode
-      description: 'Copied from llama_index.embeddings.vertex.base.VertexEmbeddingMode
-
-        since importing llama_index.embeddings.vertex.base incurs a lot of memory usage.'
     GeminiEmbedding:
       properties:
         model_name:
@@ -911,6 +741,156 @@ components:
           default: HuggingFaceInferenceAPIEmbedding
       type: object
       title: HuggingFaceInferenceAPIEmbedding
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    VertexEmbeddingMode:
+      type: string
+      enum:
+      - default
+      - classification
+      - clustering
+      - similarity
+      - retrieval
+      title: VertexEmbeddingMode
+      description: 'Copied from llama_index.embeddings.vertex.base.VertexEmbeddingMode
+
+        since importing llama_index.embeddings.vertex.base incurs a lot of memory usage.'
+    AzureOpenAIEmbedding:
+      properties:
+        model_name:
+          type: string
+          title: Model Name
+          description: The name of the OpenAI embedding model.
+          default: text-embedding-ada-002
+        embed_batch_size:
+          type: integer
+          maximum: 2048.0
+          exclusiveMinimum: 0.0
+          title: Embed Batch Size
+          description: The batch size for embedding calls.
+          default: 10
+        num_workers:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Workers
+          description: The number of workers to use for async embedding calls.
+        additional_kwargs:
+          additionalProperties: true
+          type: object
+          title: Additional Kwargs
+          description: Additional kwargs for the OpenAI API.
+        api_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Api Key
+          description: The OpenAI API key.
+        api_base:
+          type: string
+          title: Api Base
+          description: The base URL for Azure deployment.
+          default: ''
+        api_version:
+          type: string
+          title: Api Version
+          description: The version for Azure OpenAI API.
+          default: ''
+        max_retries:
+          type: integer
+          minimum: 0.0
+          title: Max Retries
+          description: Maximum number of retries.
+          default: 10
+        timeout:
+          type: number
+          minimum: 0.0
+          title: Timeout
+          description: Timeout for each request.
+          default: 60.0
+        default_headers:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Default Headers
+          description: The default headers for API requests.
+        reuse_client:
+          type: boolean
+          title: Reuse Client
+          description: Reuse the OpenAI client between requests. When doing anything with large volumes of async API calls, setting this to false can improve stability.
+          default: true
+        dimensions:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Dimensions
+          description: The number of dimensions on the output embedding vectors. Works only with v3 embedding models.
+        azure_endpoint:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Endpoint
+          description: The Azure endpoint to use.
+        azure_deployment:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Azure Deployment
+          description: The Azure deployment to use.
+        class_name:
+          type: string
+          title: Class Name
+          default: AzureOpenAIEmbedding
+      type: object
+      title: AzureOpenAIEmbedding
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    OpenAIEmbeddingConfig:
+      properties:
+        type:
+          type: string
+          const: OPENAI_EMBEDDING
+          title: Type
+          description: Type of the embedding model.
+          default: OPENAI_EMBEDDING
+        component:
+          $ref: '#/components/schemas/OpenAIEmbedding'
+          description: Configuration for the OpenAI embedding model.
+      type: object
+      title: OpenAIEmbeddingConfig
     OpenAIEmbedding:
       properties:
         model_name:
@@ -993,19 +973,39 @@ components:
           default: OpenAIEmbedding
       type: object
       title: OpenAIEmbedding
-    BedrockEmbeddingConfig:
+    EmbeddingModelConfigUpdate:
       properties:
-        type:
-          type: string
-          const: BEDROCK_EMBEDDING
-          title: Type
-          description: Type of the embedding model.
-          default: BEDROCK_EMBEDDING
-        component:
-          $ref: '#/components/schemas/BedrockEmbedding'
-          description: Configuration for the Bedrock embedding model.
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: The name of the embedding model config.
+        embedding_config:
+          anyOf:
+          - oneOf:
+            - $ref: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+            - $ref: '#/components/schemas/CohereEmbeddingConfig'
+            - $ref: '#/components/schemas/GeminiEmbeddingConfig'
+            - $ref: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+            - $ref: '#/components/schemas/OpenAIEmbeddingConfig'
+            - $ref: '#/components/schemas/VertexAIEmbeddingConfig'
+            - $ref: '#/components/schemas/BedrockEmbeddingConfig'
+            discriminator:
+              propertyName: type
+              mapping:
+                AZURE_EMBEDDING: '#/components/schemas/AzureOpenAIEmbeddingConfig'
+                BEDROCK_EMBEDDING: '#/components/schemas/BedrockEmbeddingConfig'
+                COHERE_EMBEDDING: '#/components/schemas/CohereEmbeddingConfig'
+                GEMINI_EMBEDDING: '#/components/schemas/GeminiEmbeddingConfig'
+                HUGGINGFACE_API_EMBEDDING: '#/components/schemas/HuggingFaceInferenceAPIEmbeddingConfig'
+                OPENAI_EMBEDDING: '#/components/schemas/OpenAIEmbeddingConfig'
+                VERTEXAI_EMBEDDING: '#/components/schemas/VertexAIEmbeddingConfig'
+          - type: 'null'
+          title: Embedding Config
+          description: The embedding configuration for the embedding model config.
       type: object
-      title: BedrockEmbeddingConfig
+      title: EmbeddingModelConfigUpdate
   securitySchemes:
     HTTPBearer:
       type: http

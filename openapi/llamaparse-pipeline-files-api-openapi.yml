@@ -549,238 +549,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ManagedIngestionStatusResponse:
-      properties:
-        job_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Job Id
-          description: ID of the latest job.
-        deployment_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Deployment Date
-          description: Date of the deployment.
-        status:
-          $ref: '#/components/schemas/ManagedIngestionStatus'
-          description: Status of the ingestion.
-        error:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/IngestionErrorResponse'
-            type: array
-          - type: 'null'
-          title: Error
-          description: List of errors that occurred during ingestion.
-        effective_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Effective At
-          description: When the status is effective
-      type: object
-      required:
-      - status
-      title: ManagedIngestionStatusResponse
-    JobNameMapping:
-      type: string
-      enum:
-      - MANAGED_INGESTION
-      - DATA_SOURCE
-      - FILE_UPDATER
-      - PARSE
-      - TRANSFORM
-      - INGESTION
-      - METADATA_UPDATE
-      title: JobNameMapping
-      description: Enum for mapping original job names to readable names.
-    IngestionErrorResponse:
-      properties:
-        job_id:
-          type: string
-          format: uuid
-          title: Job Id
-          description: ID of the job that failed.
-        message:
-          type: string
-          title: Message
-          description: List of errors that occurred during ingestion.
-        step:
-          $ref: '#/components/schemas/JobNameMapping'
-          description: Name of the job that failed.
-      type: object
-      required:
-      - job_id
-      - message
-      - step
-      title: IngestionErrorResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    Body_import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put:
-      properties:
-        upload_file:
-          type: string
-          format: binary
-          title: Upload File
-      type: object
-      required:
-      - upload_file
-      title: Body_import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put
-    ManagedIngestionStatus:
-      type: string
-      enum:
-      - NOT_STARTED
-      - IN_PROGRESS
-      - SUCCESS
-      - ERROR
-      - PARTIAL_SUCCESS
-      - CANCELLED
-      title: ManagedIngestionStatus
-      description: Status of managed ingestion with partial Updates.
-    PaginatedListPipelineFilesResponse:
-      properties:
-        files:
-          items:
-            $ref: '#/components/schemas/PipelineFile'
-          type: array
-          title: Files
-          description: The files to list
-        limit:
-          type: integer
-          title: Limit
-          description: The limit of the files
-        offset:
-          type: integer
-          title: Offset
-          description: The offset of the files
-        total_count:
-          type: integer
-          title: Total Count
-          description: The total number of files
-      type: object
-      required:
-      - files
-      - limit
-      - offset
-      - total_count
-      title: PaginatedListPipelineFilesResponse
-      description: Paginated list of pipeline files.
-    FileCountByStatusResponse:
-      properties:
-        counts:
-          additionalProperties:
-            type: integer
-          type: object
-          title: Counts
-          description: The counts of files by status
-        total_count:
-          type: integer
-          title: Total Count
-          description: The total number of files
-        pipeline_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Pipeline Id
-          description: The ID of the pipeline that the files belong to
-        data_source_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Data Source Id
-          description: The ID of the data source that the files belong to
-        only_manually_uploaded:
-          type: boolean
-          title: Only Manually Uploaded
-          description: Whether to only count manually uploaded files
-          default: false
-      type: object
-      required:
-      - counts
-      - total_count
-      title: FileCountByStatusResponse
-    PipelineFileCreate:
-      properties:
-        file_id:
-          type: string
-          format: uuid
-          title: File Id
-          description: The ID of the file
-        custom_metadata:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: 'null'
-          title: Custom Metadata
-          description: Custom metadata for the file
-      type: object
-      required:
-      - file_id
-      title: PipelineFileCreate
-      description: Schema for creating a file that is associated with a pipeline.
-    PipelineFileUpdate:
-      properties:
-        custom_metadata:
-          anyOf:
-          - additionalProperties:
-              anyOf:
-              - additionalProperties: true
-                type: object
-              - items: {}
-                type: array
-              - type: string
-              - type: integer
-              - type: number
-              - type: boolean
-              - type: 'null'
-            type: object
-          - type: 'null'
-          title: Custom Metadata
-          description: Custom metadata for the file
-      type: object
-      title: PipelineFileUpdate
-      description: Request to update a pipeline file.
     PipelineFileResponse:
       properties:
         id:
@@ -935,15 +703,17 @@ components:
       - pipeline_id
       title: PipelineFileResponse
       description: Beta API response schema for a pipeline file.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+    ManagedIngestionStatus:
+      type: string
+      enum:
+      - NOT_STARTED
+      - IN_PROGRESS
+      - SUCCESS
+      - ERROR
+      - PARTIAL_SUCCESS
+      - CANCELLED
+      title: ManagedIngestionStatus
+      description: Status of managed ingestion with partial Updates.
     PipelineFileListResponse:
       properties:
         items:
@@ -969,6 +739,118 @@ components:
       - items
       title: PipelineFileListResponse
       description: Beta API query response schema for pipeline files.
+    FileCountByStatusResponse:
+      properties:
+        counts:
+          additionalProperties:
+            type: integer
+          type: object
+          title: Counts
+          description: The counts of files by status
+        total_count:
+          type: integer
+          title: Total Count
+          description: The total number of files
+        pipeline_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Pipeline Id
+          description: The ID of the pipeline that the files belong to
+        data_source_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+          description: The ID of the data source that the files belong to
+        only_manually_uploaded:
+          type: boolean
+          title: Only Manually Uploaded
+          description: Whether to only count manually uploaded files
+          default: false
+      type: object
+      required:
+      - counts
+      - total_count
+      title: FileCountByStatusResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ManagedIngestionStatusResponse:
+      properties:
+        job_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Job Id
+          description: ID of the latest job.
+        deployment_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Deployment Date
+          description: Date of the deployment.
+        status:
+          $ref: '#/components/schemas/ManagedIngestionStatus'
+          description: Status of the ingestion.
+        error:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/IngestionErrorResponse'
+            type: array
+          - type: 'null'
+          title: Error
+          description: List of errors that occurred during ingestion.
+        effective_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Effective At
+          description: When the status is effective
+      type: object
+      required:
+      - status
+      title: ManagedIngestionStatusResponse
+    PipelineFileCreate:
+      properties:
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata for the file
+      type: object
+      required:
+      - file_id
+      title: PipelineFileCreate
+      description: Schema for creating a file that is associated with a pipeline.
     PipelineFile:
       properties:
         id:
@@ -1146,6 +1028,124 @@ components:
       - pipeline_id
       title: PipelineFile
       description: A file associated with a pipeline.
+    Body_import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put:
+      properties:
+        upload_file:
+          type: string
+          format: binary
+          title: Upload File
+      type: object
+      required:
+      - upload_file
+      title: Body_import_pipeline_metadata_api_v1_pipelines__pipeline_id__metadata_put
+    PaginatedListPipelineFilesResponse:
+      properties:
+        files:
+          items:
+            $ref: '#/components/schemas/PipelineFile'
+          type: array
+          title: Files
+          description: The files to list
+        limit:
+          type: integer
+          title: Limit
+          description: The limit of the files
+        offset:
+          type: integer
+          title: Offset
+          description: The offset of the files
+        total_count:
+          type: integer
+          title: Total Count
+          description: The total number of files
+      type: object
+      required:
+      - files
+      - limit
+      - offset
+      - total_count
+      title: PaginatedListPipelineFilesResponse
+      description: Paginated list of pipeline files.
+    IngestionErrorResponse:
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          title: Job Id
+          description: ID of the job that failed.
+        message:
+          type: string
+          title: Message
+          description: List of errors that occurred during ingestion.
+        step:
+          $ref: '#/components/schemas/JobNameMapping'
+          description: Name of the job that failed.
+      type: object
+      required:
+      - job_id
+      - message
+      - step
+      title: IngestionErrorResponse
+    PipelineFileUpdate:
+      properties:
+        custom_metadata:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - additionalProperties: true
+                type: object
+              - items: {}
+                type: array
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+              - type: 'null'
+            type: object
+          - type: 'null'
+          title: Custom Metadata
+          description: Custom metadata for the file
+      type: object
+      title: PipelineFileUpdate
+      description: Request to update a pipeline file.
+    JobNameMapping:
+      type: string
+      enum:
+      - MANAGED_INGESTION
+      - DATA_SOURCE
+      - FILE_UPDATER
+      - PARSE
+      - TRANSFORM
+      - INGESTION
+      - METADATA_UPDATE
+      title: JobNameMapping
+      description: Enum for mapping original job names to readable names.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

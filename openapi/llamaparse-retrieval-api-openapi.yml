@@ -227,6 +227,181 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    MongoStaticFilters:
+      properties:
+        parsed_directory_file_id:
+          anyOf:
+          - $ref: '#/components/schemas/FilterType_str_'
+          - type: 'null'
+      type: object
+      title: MongoStaticFilters
+    FileGrepResult:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FileGrepMatch'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: FileGrepResult
+      description: Paginated grep results for a file.
+    FileFindEntry:
+      properties:
+        file_id:
+          type: string
+          title: File Id
+          description: ID of the file.
+        file_name:
+          type: string
+          title: File Name
+          description: Display name of the file.
+      type: object
+      required:
+      - file_id
+      - file_name
+      title: FileFindEntry
+      description: A file returned by find.
+    FileGrepParams:
+      properties:
+        page_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
+        page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
+        index_id:
+          type: string
+          title: Index Id
+          description: ID of the index the file belongs to.
+          examples:
+          - idx-abc123
+        file_id:
+          type: string
+          title: File Id
+          description: ID of the file to grep.
+        pattern:
+          type: string
+          title: Pattern
+          description: Regex pattern to search for.
+          examples:
+          - revenue|profit
+        context_chars:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Context Chars
+          description: Number of characters of context to include before and after the matched pattern in the content field of the response
+      type: object
+      required:
+      - index_id
+      - file_id
+      - pattern
+      title: FileGrepParams
+      description: Grep within a specific file's parsed content.
+    StaticFields:
+      properties:
+        parsed_directory_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parsed Directory File Id
+          description: ID of the parsed file.
+        page_range_start:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Range Start
+          description: First page number covered by this chunk.
+        page_range_end:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Range End
+          description: Last page number covered by this chunk.
+        chunk_start_char:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk Start Char
+          description: Start character offset of the chunk.
+        chunk_end_char:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk End Char
+          description: End character offset of the chunk.
+        chunk_index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk Index
+          description: Index of the chunk within the file.
+        chunk_token_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Chunk Token Count
+          description: Token count of the chunk.
+        attachments:
+          items:
+            $ref: '#/components/schemas/AttachmentRef'
+          type: array
+          title: Attachments
+          description: Attachments associated with the chunk
+      type: object
+      title: StaticFields
+      description: Built-in fields stored for every exported chunk.
+    RetrievalResult:
+      properties:
+        content:
+          type: string
+          title: Content
+          description: Text content of the retrieved chunk.
+        score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Score
+          description: Hybrid search relevance score.
+        rerank_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Rerank Score
+          description: Relevance score from the reranker, if reranking was applied.
+        metadata:
+          anyOf:
+          - $ref: '#/components/schemas/MetadataDict'
+          - type: 'null'
+          description: User-defined metadata associated with the chunk.
+        static_fields:
+          $ref: '#/components/schemas/StaticFields'
+      type: object
+      required:
+      - content
+      title: RetrievalResult
+      description: A single retrieval result.
     RerankConfig:
       properties:
         enabled:
@@ -245,10 +420,167 @@ components:
       type: object
       title: RerankConfig
       description: Reranking configuration to apply after hybrid search.
-    MetadataValue:
+    MetadataScalarValue:
       anyOf:
-      - $ref: '#/components/schemas/MetadataScalarValue'
-      - $ref: '#/components/schemas/MetadataListValue'
+      - type: string
+      - type: integer
+      - type: number
+      - type: boolean
+      - type: 'null'
+    FilterType_Union_str__int__bool__float__:
+      properties:
+        operator:
+          type: string
+          enum:
+          - eq
+          - ne
+          - gt
+          - lt
+          - gte
+          - lte
+          - in
+          - nin
+          title: Operator
+        value:
+          anyOf:
+          - type: string
+          - type: integer
+          - type: boolean
+          - type: number
+          - items:
+              anyOf:
+              - type: string
+              - type: integer
+              - type: boolean
+              - type: number
+            type: array
+          title: Value
+      type: object
+      required:
+      - operator
+      - value
+      title: FilterType[Union[str, int, bool, float]]
+    FileFindParams:
+      properties:
+        page_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page Size
+          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
+        page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Page Token
+          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
+        index_id:
+          type: string
+          title: Index Id
+          description: ID of the index to search within.
+          examples:
+          - idx-abc123
+        file_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name
+          description: Exact file name to match.
+        file_name_contains:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name Contains
+          description: Substring match on file name (case-insensitive).
+      type: object
+      required:
+      - index_id
+      title: FileFindParams
+      description: Search for files by name.
+    FilterType_str_:
+      properties:
+        operator:
+          type: string
+          enum:
+          - eq
+          - ne
+          - gt
+          - lt
+          - gte
+          - lte
+          - in
+          - nin
+          title: Operator
+        value:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          title: Value
+      type: object
+      required:
+      - operator
+      - value
+      title: FilterType[str]
+    FileReadParams:
+      properties:
+        index_id:
+          type: string
+          title: Index Id
+          description: ID of the index the file belongs to.
+          examples:
+          - idx-abc123
+        file_id:
+          type: string
+          title: File Id
+          description: ID of the file to read.
+        offset:
+          type: integer
+          title: Offset
+          description: Starting character offset.
+          default: 0
+        max_length:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Length
+          description: Maximum number of characters to read from the offset.
+      type: object
+      required:
+      - index_id
+      - file_id
+      title: FileReadParams
+      description: Read parsed content of a specific file.
+    FilterType_Union_int__float__:
+      properties:
+        operator:
+          type: string
+          enum:
+          - eq
+          - ne
+          - gt
+          - lt
+          - gte
+          - lte
+          - in
+          - nin
+          title: Operator
+        value:
+          anyOf:
+          - type: integer
+          - type: number
+          - items:
+              anyOf:
+              - type: integer
+              - type: number
+            type: array
+          title: Value
+      type: object
+      required:
+      - operator
+      - value
+      title: FilterType[Union[int, float]]
     RetrieveResult:
       properties:
         results:
@@ -335,325 +667,10 @@ components:
       - query
       title: RetrieveParams
       description: Hybrid retrieval request combining vector and full-text search.
-    FileGrepParams:
-      properties:
-        page_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Page Size
-          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
-        page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Page Token
-          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
-        index_id:
-          type: string
-          title: Index Id
-          description: ID of the index the file belongs to.
-          examples:
-          - idx-abc123
-        file_id:
-          type: string
-          title: File Id
-          description: ID of the file to grep.
-        pattern:
-          type: string
-          title: Pattern
-          description: Regex pattern to search for.
-          examples:
-          - revenue|profit
-        context_chars:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Context Chars
-          description: Number of characters of context to include before and after the matched pattern in the content field of the response
-      type: object
-      required:
-      - index_id
-      - file_id
-      - pattern
-      title: FileGrepParams
-      description: Grep within a specific file's parsed content.
-    MetadataScalarValue:
-      anyOf:
-      - type: string
-      - type: integer
-      - type: number
-      - type: boolean
-      - type: 'null'
-    FileFindEntry:
-      properties:
-        file_id:
-          type: string
-          title: File Id
-          description: ID of the file.
-        file_name:
-          type: string
-          title: File Name
-          description: Display name of the file.
-      type: object
-      required:
-      - file_id
-      - file_name
-      title: FileFindEntry
-      description: A file returned by find.
-    MongoStaticFilters:
-      properties:
-        parsed_directory_file_id:
-          anyOf:
-          - $ref: '#/components/schemas/FilterType_str_'
-          - type: 'null'
-      type: object
-      title: MongoStaticFilters
-    MetadataDict:
-      additionalProperties:
-        $ref: '#/components/schemas/MetadataValue'
-      type: object
-    StaticFields:
-      properties:
-        parsed_directory_file_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Parsed Directory File Id
-          description: ID of the parsed file.
-        page_range_start:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Page Range Start
-          description: First page number covered by this chunk.
-        page_range_end:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Page Range End
-          description: Last page number covered by this chunk.
-        chunk_start_char:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Chunk Start Char
-          description: Start character offset of the chunk.
-        chunk_end_char:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Chunk End Char
-          description: End character offset of the chunk.
-        chunk_index:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Chunk Index
-          description: Index of the chunk within the file.
-        chunk_token_count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Chunk Token Count
-          description: Token count of the chunk.
-        attachments:
-          items:
-            $ref: '#/components/schemas/AttachmentRef'
-          type: array
-          title: Attachments
-          description: Attachments associated with the chunk
-      type: object
-      title: StaticFields
-      description: Built-in fields stored for every exported chunk.
-    FileReadParams:
-      properties:
-        index_id:
-          type: string
-          title: Index Id
-          description: ID of the index the file belongs to.
-          examples:
-          - idx-abc123
-        file_id:
-          type: string
-          title: File Id
-          description: ID of the file to read.
-        offset:
-          type: integer
-          title: Offset
-          description: Starting character offset.
-          default: 0
-        max_length:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Max Length
-          description: Maximum number of characters to read from the offset.
-      type: object
-      required:
-      - index_id
-      - file_id
-      title: FileReadParams
-      description: Read parsed content of a specific file.
-    FileFindResult:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/FileFindEntry'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: FileFindResult
-      description: Paginated file find results.
-    FileFindParams:
-      properties:
-        page_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Page Size
-          description: The maximum number of items to return. The service may return fewer than this value. If unspecified, a default page size will be used. The maximum value is typically 1000; values above this will be coerced to the maximum.
-        page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Page Token
-          description: A page token, received from a previous list call. Provide this to retrieve the subsequent page.
-        index_id:
-          type: string
-          title: Index Id
-          description: ID of the index to search within.
-          examples:
-          - idx-abc123
-        file_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: File Name
-          description: Exact file name to match.
-        file_name_contains:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: File Name Contains
-          description: Substring match on file name (case-insensitive).
-      type: object
-      required:
-      - index_id
-      title: FileFindParams
-      description: Search for files by name.
-    FileReadResult:
-      properties:
-        content:
-          type: string
-          title: Content
-          description: Parsed text content of the file.
-      type: object
-      required:
-      - content
-      title: FileReadResult
-      description: File read result.
-    FilterType_str_:
-      properties:
-        operator:
-          type: string
-          enum:
-          - eq
-          - ne
-          - gt
-          - lt
-          - gte
-          - lte
-          - in
-          - nin
-          title: Operator
-        value:
-          anyOf:
-          - type: string
-          - items:
-              type: string
-            type: array
-          title: Value
-      type: object
-      required:
-      - operator
-      - value
-      title: FilterType[str]
-    FileGrepMatch:
-      properties:
-        start_char:
-          type: integer
-          title: Start Char
-          description: Start character offset of the match.
-        end_char:
-          type: integer
-          title: End Char
-          description: End character offset of the match.
-        content:
-          type: string
-          title: Content
-          description: Matched text content.
-      type: object
-      required:
-      - start_char
-      - end_char
-      - content
-      title: FileGrepMatch
-      description: A single grep match within a file.
-    RetrievalResult:
-      properties:
-        content:
-          type: string
-          title: Content
-          description: Text content of the retrieved chunk.
-        score:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Score
-          description: Hybrid search relevance score.
-        rerank_score:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Rerank Score
-          description: Relevance score from the reranker, if reranking was applied.
-        metadata:
-          anyOf:
-          - $ref: '#/components/schemas/MetadataDict'
-          - type: 'null'
-          description: User-defined metadata associated with the chunk.
-        static_fields:
-          $ref: '#/components/schemas/StaticFields'
-      type: object
-      required:
-      - content
-      title: RetrievalResult
-      description: A single retrieval result.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+    MetadataListValue:
+      items:
+        type: string
+      type: array
     AttachmentRef:
       properties:
         type:
@@ -675,72 +692,6 @@ components:
       - source_id
       title: AttachmentRef
       description: Reference to a file attachment, retrievable via ``GET /api/v1/beta/attachments/{attachment_name}?source_id=...``.
-    FilterType_Union_int__float__:
-      properties:
-        operator:
-          type: string
-          enum:
-          - eq
-          - ne
-          - gt
-          - lt
-          - gte
-          - lte
-          - in
-          - nin
-          title: Operator
-        value:
-          anyOf:
-          - type: integer
-          - type: number
-          - items:
-              anyOf:
-              - type: integer
-              - type: number
-            type: array
-          title: Value
-      type: object
-      required:
-      - operator
-      - value
-      title: FilterType[Union[int, float]]
-    FilterType_Union_str__int__bool__float__:
-      properties:
-        operator:
-          type: string
-          enum:
-          - eq
-          - ne
-          - gt
-          - lt
-          - gte
-          - lte
-          - in
-          - nin
-          title: Operator
-        value:
-          anyOf:
-          - type: string
-          - type: integer
-          - type: boolean
-          - type: number
-          - items:
-              anyOf:
-              - type: string
-              - type: integer
-              - type: boolean
-              - type: number
-            type: array
-          title: Value
-      type: object
-      required:
-      - operator
-      - value
-      title: FilterType[Union[str, int, bool, float]]
-    MetadataListValue:
-      items:
-        type: string
-      type: array
     ValidationError:
       properties:
         loc:
@@ -767,11 +718,11 @@ components:
       - msg
       - type
       title: ValidationError
-    FileGrepResult:
+    FileFindResult:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/FileGrepMatch'
+            $ref: '#/components/schemas/FileFindEntry'
           type: array
           title: Items
           description: The list of items.
@@ -790,8 +741,57 @@ components:
       type: object
       required:
       - items
-      title: FileGrepResult
-      description: Paginated grep results for a file.
+      title: FileFindResult
+      description: Paginated file find results.
+    FileReadResult:
+      properties:
+        content:
+          type: string
+          title: Content
+          description: Parsed text content of the file.
+      type: object
+      required:
+      - content
+      title: FileReadResult
+      description: File read result.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    FileGrepMatch:
+      properties:
+        start_char:
+          type: integer
+          title: Start Char
+          description: Start character offset of the match.
+        end_char:
+          type: integer
+          title: End Char
+          description: End character offset of the match.
+        content:
+          type: string
+          title: Content
+          description: Matched text content.
+      type: object
+      required:
+      - start_char
+      - end_char
+      - content
+      title: FileGrepMatch
+      description: A single grep match within a file.
+    MetadataValue:
+      anyOf:
+      - $ref: '#/components/schemas/MetadataScalarValue'
+      - $ref: '#/components/schemas/MetadataListValue'
+    MetadataDict:
+      additionalProperties:
+        $ref: '#/components/schemas/MetadataValue'
+      type: object
   securitySchemes:
     HTTPBearer:
       type: http

@@ -317,57 +317,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    DirectoryQueryResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/DirectoryResponse'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: DirectoryQueryResponse
-      description: API query response schema for directories.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     DirectoryUpdateRequest:
       properties:
         name:
@@ -386,6 +335,15 @@ components:
       type: object
       title: DirectoryUpdateRequest
       description: API request schema for updating a directory.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     DirectoryResponse:
       properties:
         id:
@@ -460,6 +418,31 @@ components:
       - name
       title: DirectoryResponse
       description: API response schema for a directory.
+    DirectoryQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DirectoryResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: DirectoryQueryResponse
+      description: API query response schema for directories.
     DirectoryCreateRequest:
       properties:
         name:
@@ -505,15 +488,32 @@ components:
       - name
       title: DirectoryCreateRequest
       description: API request schema for creating a directory.
-    HTTPValidationError:
+    ValidationError:
       properties:
-        detail:
+        loc:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Detail
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
-      title: HTTPValidationError
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

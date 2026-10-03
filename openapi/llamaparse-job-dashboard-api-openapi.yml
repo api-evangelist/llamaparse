@@ -142,32 +142,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     JobStateTransitions:
       properties:
         pending_at:
@@ -228,6 +202,40 @@ components:
         with the addition of pending_at. The frontend derives queue latency,
 
         processing time, etc. from these timestamps.'
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    JobDataPointResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/JobDataPoint'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: JobDataPointResponse
+      description: Paginated list of job data points.
     JobDataPoint:
       properties:
         id:
@@ -297,40 +305,32 @@ components:
           running_at: '2026-04-29T18:00:05Z'
         status: completed
         updated_at: '2026-04-29T18:01:00Z'
-    JobDataPointResponse:
+    ValidationError:
       properties:
-        items:
+        loc:
           items:
-            $ref: '#/components/schemas/JobDataPoint'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
       required:
-      - items
-      title: JobDataPointResponse
-      description: Paginated list of job data points.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

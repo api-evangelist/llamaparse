@@ -345,75 +345,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ToolResultEvent:
-      properties:
-        type:
-          type: string
-          const: tool_result
-          title: Type
-          default: tool_result
-        name:
-          type: string
-          title: Name
-        call_id:
-          type: string
-          title: Call Id
-        result:
-          title: Result
-        image_attachment:
-          anyOf:
-          - $ref: '#/components/schemas/ImageAttachmentRef'
-          - type: 'null'
-      type: object
-      required:
-      - name
-      - call_id
-      - result
-      title: ToolResultEvent
-    ChatSessionSummary:
-      properties:
-        session_id:
-          type: string
-          title: Session Id
-          description: Unique session identifier.
-          examples:
-          - ses-abc123
-        generated_title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Generated Title
-          description: Auto-generated title derived from the first user message.
-          examples:
-          - What were the main findings in Q3?...
-        last_updated_at:
-          type: string
-          title: Last Updated At
-          description: ISO-format timestamp showing when the session was last updated.
-          examples:
-          - '2026-04-22T12:34:41.342245'
-        job_metadata:
-          anyOf:
-          - $ref: '#/components/schemas/JobMetadata'
-          - type: 'null'
-          description: Token usage and status from the most recent run. Null if the session has not been run yet.
-        index_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Index Ids
-          description: Indexes this session is bound to. Null on unbound sessions.
-          examples:
-          - - idx-abc123
-            - idx-def456
-      type: object
-      required:
-      - session_id
-      - last_updated_at
-      title: ChatSessionSummary
-      description: Summary of a chat session, including its title and last run metadata.
     Usage:
       properties:
         total_input_tokens:
@@ -436,46 +367,6 @@ components:
           default: 0.0
       type: object
       title: Usage
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ThinkingDeltaEvent:
-      properties:
-        type:
-          type: string
-          const: thinking_delta
-          title: Type
-          default: thinking_delta
-        content:
-          type: string
-          title: Content
-      type: object
-      required:
-      - content
-      title: ThinkingDeltaEvent
     SessionDetail:
       properties:
         session_id:
@@ -546,39 +437,6 @@ components:
       - events
       title: SessionDetail
       description: Full chat session including its complete event history.
-    TextDeltaEvent:
-      properties:
-        type:
-          type: string
-          const: text_delta
-          title: Type
-          default: text_delta
-        content:
-          type: string
-          title: Content
-      type: object
-      required:
-      - content
-      title: TextDeltaEvent
-    SessionList:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ChatSessionSummary'
-          type: array
-          title: Items
-          description: Chat sessions for the current page.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: Opaque token to retrieve the next page. Omitted when there are no further pages.
-      type: object
-      required:
-      - items
-      title: SessionList
-      description: Paginated list of chat sessions.
     ThinkingEvent:
       properties:
         type:
@@ -593,43 +451,6 @@ components:
       required:
       - content
       title: ThinkingEvent
-    StopEvent:
-      properties:
-        type:
-          type: string
-          const: stop
-          title: Type
-          default: stop
-        usage:
-          $ref: '#/components/schemas/Usage'
-        is_error:
-          type: boolean
-          title: Is Error
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      type: object
-      required:
-      - usage
-      - is_error
-      - error
-      title: StopEvent
-    TextEvent:
-      properties:
-        type:
-          type: string
-          const: text
-          title: Type
-          default: text
-        content:
-          type: string
-          title: Content
-      type: object
-      required:
-      - content
-      title: TextEvent
     UserInputEvent:
       properties:
         type:
@@ -644,37 +465,6 @@ components:
       required:
       - content
       title: UserInputEvent
-    ImageAttachmentRef:
-      properties:
-        source_id:
-          type: string
-          title: Source Id
-        attachment_name:
-          type: string
-          title: Attachment Name
-      type: object
-      required:
-      - source_id
-      - attachment_name
-      title: ImageAttachmentRef
-      description: Coordinates for lazily resolving a page screenshot presigned URL.
-    SessionCreate:
-      properties:
-        index_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-            maxItems: 10
-          - type: 'null'
-          title: Index Ids
-          description: Indexes this session will retrieve from. Once set and the first message has been sent, the source set is locked for the session's lifetime. Leave null to create an unbound session.
-          examples:
-          - - idx-abc123
-            - idx-def456
-      type: object
-      title: SessionCreate
-      description: Request body for creating a chat session.
     JobMetadata:
       properties:
         total_input_tokens:
@@ -713,6 +503,133 @@ components:
           title: Export Config Ids
       type: object
       title: JobMetadata
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ImageAttachmentRef:
+      properties:
+        source_id:
+          type: string
+          title: Source Id
+        attachment_name:
+          type: string
+          title: Attachment Name
+      type: object
+      required:
+      - source_id
+      - attachment_name
+      title: ImageAttachmentRef
+      description: Coordinates for lazily resolving a page screenshot presigned URL.
+    TextDeltaEvent:
+      properties:
+        type:
+          type: string
+          const: text_delta
+          title: Type
+          default: text_delta
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: TextDeltaEvent
+    ChatSessionSummary:
+      properties:
+        session_id:
+          type: string
+          title: Session Id
+          description: Unique session identifier.
+          examples:
+          - ses-abc123
+        generated_title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Generated Title
+          description: Auto-generated title derived from the first user message.
+          examples:
+          - What were the main findings in Q3?...
+        last_updated_at:
+          type: string
+          title: Last Updated At
+          description: ISO-format timestamp showing when the session was last updated.
+          examples:
+          - '2026-04-22T12:34:41.342245'
+        job_metadata:
+          anyOf:
+          - $ref: '#/components/schemas/JobMetadata'
+          - type: 'null'
+          description: Token usage and status from the most recent run. Null if the session has not been run yet.
+        index_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Index Ids
+          description: Indexes this session is bound to. Null on unbound sessions.
+          examples:
+          - - idx-abc123
+            - idx-def456
+      type: object
+      required:
+      - session_id
+      - last_updated_at
+      title: ChatSessionSummary
+      description: Summary of a chat session, including its title and last run metadata.
+    ToolCallEvent:
+      properties:
+        type:
+          type: string
+          const: tool_call
+          title: Type
+          default: tool_call
+        arguments:
+          additionalProperties: true
+          type: object
+          title: Arguments
+        name:
+          type: string
+          title: Name
+        call_id:
+          type: string
+          title: Call Id
+      type: object
+      required:
+      - arguments
+      - name
+      - call_id
+      title: ToolCallEvent
+    StopEvent:
+      properties:
+        type:
+          type: string
+          const: stop
+          title: Type
+          default: stop
+        usage:
+          $ref: '#/components/schemas/Usage'
+        is_error:
+          type: boolean
+          title: Is Error
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - usage
+      - is_error
+      - error
+      title: StopEvent
     ChatParams:
       properties:
         index_ids:
@@ -738,38 +655,121 @@ components:
       - prompt
       title: ChatParams
       description: Request body for running a chat turn against one or more indexes.
-    ToolCallEvent:
+    ToolResultEvent:
       properties:
         type:
           type: string
-          const: tool_call
+          const: tool_result
           title: Type
-          default: tool_call
-        arguments:
-          additionalProperties: true
-          type: object
-          title: Arguments
+          default: tool_result
         name:
           type: string
           title: Name
         call_id:
           type: string
           title: Call Id
+        result:
+          title: Result
+        image_attachment:
+          anyOf:
+          - $ref: '#/components/schemas/ImageAttachmentRef'
+          - type: 'null'
       type: object
       required:
-      - arguments
       - name
       - call_id
-      title: ToolCallEvent
-    HTTPValidationError:
+      - result
+      title: ToolResultEvent
+    TextEvent:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        type:
+          type: string
+          const: text
+          title: Type
+          default: text
+        content:
+          type: string
+          title: Content
       type: object
-      title: HTTPValidationError
+      required:
+      - content
+      title: TextEvent
+    SessionList:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ChatSessionSummary'
+          type: array
+          title: Items
+          description: Chat sessions for the current page.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: Opaque token to retrieve the next page. Omitted when there are no further pages.
+      type: object
+      required:
+      - items
+      title: SessionList
+      description: Paginated list of chat sessions.
+    SessionCreate:
+      properties:
+        index_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+            maxItems: 10
+          - type: 'null'
+          title: Index Ids
+          description: Indexes this session will retrieve from. Once set and the first message has been sent, the source set is locked for the session's lifetime. Leave null to create an unbound session.
+          examples:
+          - - idx-abc123
+            - idx-def456
+      type: object
+      title: SessionCreate
+      description: Request body for creating a chat session.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ThinkingDeltaEvent:
+      properties:
+        type:
+          type: string
+          const: thinking_delta
+          title: Type
+          default: thinking_delta
+        content:
+          type: string
+          title: Content
+      type: object
+      required:
+      - content
+      title: ThinkingDeltaEvent
   securitySchemes:
     HTTPBearer:
       type: http

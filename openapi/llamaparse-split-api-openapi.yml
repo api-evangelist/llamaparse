@@ -231,144 +231,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    SplitCategory:
-      properties:
-        name:
-          type: string
-          maxLength: 200
-          minLength: 1
-          title: Name
-          description: Name of the category.
-        description:
-          anyOf:
-          - type: string
-            maxLength: 2000
-            minLength: 1
-          - type: 'null'
-          title: Description
-          description: Optional description of what content belongs in this category.
-      type: object
-      required:
-      - name
-      title: SplitCategory
-      description: Category definition for document splitting.
-    SplitCreateRequest:
-      properties:
-        document_input:
-          $ref: '#/components/schemas/SplitDocumentInput'
-          description: Document to be split.
-        configuration:
-          anyOf:
-          - $ref: '#/components/schemas/SplitConfiguration'
-          - type: 'null'
-          description: Inline split configuration.
-        configuration_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Configuration Id
-          description: Saved split configuration ID.
-      type: object
-      required:
-      - document_input
-      title: SplitCreateRequest
-      description: Beta create request — accepts legacy document_input and flat formats.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    SplitDocumentInput:
-      properties:
-        type:
-          type: string
-          title: Type
-          description: 'Type of document input. Valid values are: file_id'
-        value:
-          type: string
-          title: Value
-          description: Document identifier.
-      type: object
-      required:
-      - type
-      - value
-      title: SplitDocumentInput
-      description: Document input specification for beta API.
-    SplitResultResponse:
-      properties:
-        segments:
-          items:
-            $ref: '#/components/schemas/SplitSegmentResponse'
-          type: array
-          title: Segments
-          description: List of document segments.
-      type: object
-      required:
-      - segments
-      title: SplitResultResponse
-      description: Result of a completed split job.
-    SplitSegmentResponse:
-      properties:
-        category:
-          type: string
-          title: Category
-          description: Category name this split belongs to.
-        pages:
-          items:
-            type: integer
-          type: array
-          title: Pages
-          description: 1-indexed page numbers in this split.
-        confidence_category:
-          type: string
-          title: Confidence Category
-          description: 'Categorical confidence level. Valid values are: high, medium, low.'
-      type: object
-      required:
-      - category
-      - pages
-      - confidence_category
-      title: SplitSegmentResponse
-      description: A segment of the split document.
-    SplitConfiguration:
-      properties:
-        categories:
-          items:
-            $ref: '#/components/schemas/SplitCategory'
-          type: array
-          maxItems: 50
-          minItems: 1
-          title: Categories
-          description: Categories to split documents into.
-        splitting_strategy:
-          $ref: '#/components/schemas/SplitStrategy'
-          description: Strategy for splitting documents.
-      type: object
-      required:
-      - categories
-      title: SplitConfiguration
-      description: Split configuration with categories and splitting strategy.
     SplitJobResponse:
       properties:
         id:
@@ -437,20 +299,27 @@ components:
       - status
       title: SplitJobResponse
       description: Beta response — uses nested document_input object.
-    SplitStrategy:
+    SplitCreateRequest:
       properties:
-        allow_uncategorized:
-          type: string
-          enum:
-          - include
-          - forbid
-          - omit
-          title: Allow Uncategorized
-          description: 'Controls handling of pages that don''t match any category. ''include'': pages can be grouped as ''uncategorized'' and included in results. ''forbid'': all pages must be assigned to a defined category. ''omit'': pages can be classified as ''uncategorized'' but are excluded from results.'
-          default: include
+        document_input:
+          $ref: '#/components/schemas/SplitDocumentInput'
+          description: Document to be split.
+        configuration:
+          anyOf:
+          - $ref: '#/components/schemas/SplitConfiguration'
+          - type: 'null'
+          description: Inline split configuration.
+        configuration_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Configuration Id
+          description: Saved split configuration ID.
       type: object
-      title: SplitStrategy
-      description: Configuration for how to split the document.
+      required:
+      - document_input
+      title: SplitCreateRequest
+      description: Beta create request — accepts legacy document_input and flat formats.
     HTTPValidationError:
       properties:
         detail:
@@ -460,6 +329,45 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    SplitSegmentResponse:
+      properties:
+        category:
+          type: string
+          title: Category
+          description: Category name this split belongs to.
+        pages:
+          items:
+            type: integer
+          type: array
+          title: Pages
+          description: 1-indexed page numbers in this split.
+        confidence_category:
+          type: string
+          title: Confidence Category
+          description: 'Categorical confidence level. Valid values are: high, medium, low.'
+      type: object
+      required:
+      - category
+      - pages
+      - confidence_category
+      title: SplitSegmentResponse
+      description: A segment of the split document.
+    SplitDocumentInput:
+      properties:
+        type:
+          type: string
+          title: Type
+          description: 'Type of document input. Valid values are: file_id'
+        value:
+          type: string
+          title: Value
+          description: Document identifier.
+      type: object
+      required:
+      - type
+      - value
+      title: SplitDocumentInput
+      description: Document input specification for beta API.
     SplitJobQueryResponse:
       properties:
         items:
@@ -485,6 +393,98 @@ components:
       - items
       title: SplitJobQueryResponse
       description: Beta paginated list of split jobs.
+    SplitCategory:
+      properties:
+        name:
+          type: string
+          maxLength: 200
+          minLength: 1
+          title: Name
+          description: Name of the category.
+        description:
+          anyOf:
+          - type: string
+            maxLength: 2000
+            minLength: 1
+          - type: 'null'
+          title: Description
+          description: Optional description of what content belongs in this category.
+      type: object
+      required:
+      - name
+      title: SplitCategory
+      description: Category definition for document splitting.
+    SplitConfiguration:
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/SplitCategory'
+          type: array
+          maxItems: 50
+          minItems: 1
+          title: Categories
+          description: Categories to split documents into.
+        splitting_strategy:
+          $ref: '#/components/schemas/SplitStrategy'
+          description: Strategy for splitting documents.
+      type: object
+      required:
+      - categories
+      title: SplitConfiguration
+      description: Split configuration with categories and splitting strategy.
+    SplitStrategy:
+      properties:
+        allow_uncategorized:
+          type: string
+          enum:
+          - include
+          - forbid
+          - omit
+          title: Allow Uncategorized
+          description: 'Controls handling of pages that don''t match any category. ''include'': pages can be grouped as ''uncategorized'' and included in results. ''forbid'': all pages must be assigned to a defined category. ''omit'': pages can be classified as ''uncategorized'' but are excluded from results.'
+          default: include
+      type: object
+      title: SplitStrategy
+      description: Configuration for how to split the document.
+    SplitResultResponse:
+      properties:
+        segments:
+          items:
+            $ref: '#/components/schemas/SplitSegmentResponse'
+          type: array
+          title: Segments
+          description: List of document segments.
+      type: object
+      required:
+      - segments
+      title: SplitResultResponse
+      description: Result of a completed split job.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

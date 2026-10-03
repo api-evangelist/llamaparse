@@ -189,36 +189,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    PageScreenshotMetadata:
-      properties:
-        page_index:
-          type: integer
-          minimum: 0.0
-          title: Page Index
-          description: The index of the page for which the screenshot is taken (0-indexed)
-        file_id:
-          type: string
-          format: uuid
-          title: File Id
-          description: The ID of the file that the page screenshot was taken from
-        image_size:
-          type: integer
-          minimum: 0.0
-          title: Image Size
-          description: The size of the image in bytes
-        metadata:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Metadata
-          description: Metadata for the screenshot
-      type: object
-      required:
-      - page_index
-      - file_id
-      - image_size
-      title: PageScreenshotMetadata
     PresignedUrl:
       properties:
         url:
@@ -281,6 +251,36 @@ components:
       - msg
       - type
       title: ValidationError
+    PageScreenshotMetadata:
+      properties:
+        page_index:
+          type: integer
+          minimum: 0.0
+          title: Page Index
+          description: The index of the page for which the screenshot is taken (0-indexed)
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file that the page screenshot was taken from
+        image_size:
+          type: integer
+          minimum: 0.0
+          title: Image Size
+          description: The size of the image in bytes
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+          description: Metadata for the screenshot
+      type: object
+      required:
+      - page_index
+      - file_id
+      - image_size
+      title: PageScreenshotMetadata
   securitySchemes:
     HTTPBearer:
       type: http
