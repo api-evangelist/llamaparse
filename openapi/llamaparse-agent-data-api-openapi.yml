@@ -399,49 +399,28 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    PaginatedResponse_AgentData_:
+    AggregateGroup:
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/AgentData'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
+        group_key:
+          additionalProperties: true
+          type: object
+          title: Group Key
+        count:
           anyOf:
           - type: integer
           - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+          title: Count
+        first_item:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: First Item
       type: object
       required:
-      - items
-      title: PaginatedResponse[AgentData]
-    AgentDataCreate:
-      properties:
-        deployment_name:
-          type: string
-          title: Deployment Name
-        collection:
-          type: string
-          title: Collection
-          default: default
-        data:
-          additionalProperties: true
-          type: object
-          title: Data
-      type: object
-      required:
-      - deployment_name
-      - data
-      title: AgentDataCreate
-      description: API request model for creating agent data
+      - group_key
+      title: AggregateGroup
+      description: API Result for a single group in the aggregate response
     FilterOperation:
       properties:
         eq:
@@ -523,20 +502,11 @@ components:
       type: object
       title: FilterOperation
       description: API request model for a filter comparison operation.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    PaginatedResponse_AggregateGroup_:
+    PaginatedResponse_AgentData_:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/AggregateGroup'
+            $ref: '#/components/schemas/AgentData'
           type: array
           title: Items
           description: The list of items.
@@ -555,7 +525,7 @@ components:
       type: object
       required:
       - items
-      title: PaginatedResponse[AggregateGroup]
+      title: PaginatedResponse[AgentData]
     AgentDataUpdate:
       properties:
         data:
@@ -567,47 +537,6 @@ components:
       - data
       title: AgentDataUpdate
       description: API request model for updating agent data
-    AgentData:
-      properties:
-        id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Id
-        deployment_name:
-          type: string
-          title: Deployment Name
-        project_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Project Id
-        collection:
-          type: string
-          title: Collection
-          default: default
-        data:
-          additionalProperties: true
-          type: object
-          title: Data
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-      type: object
-      required:
-      - deployment_name
-      - data
-      title: AgentData
-      description: API Result for a single agent data item
     DeleteRequest:
       properties:
         deployment_name:
@@ -632,38 +561,6 @@ components:
       - deployment_name
       title: DeleteRequest
       description: API request body for bulk deleting agent data by query
-    DeleteResponse:
-      properties:
-        deleted_count:
-          type: integer
-          title: Deleted Count
-      type: object
-      required:
-      - deleted_count
-      title: DeleteResponse
-      description: API response for bulk delete operation
-    AggregateGroup:
-      properties:
-        group_key:
-          additionalProperties: true
-          type: object
-          title: Group Key
-        count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Count
-        first_item:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: First Item
-      type: object
-      required:
-      - group_key
-      title: AggregateGroup
-      description: API Result for a single group in the aggregate response
     AggregateRequest:
       properties:
         page_size:
@@ -737,32 +634,15 @@ components:
       - deployment_name
       title: AggregateRequest
       description: API request body for aggregating agent data
-    ValidationError:
+    HTTPValidationError:
       properties:
-        loc:
+        detail:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
+          title: Detail
       type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      title: HTTPValidationError
     SearchRequest:
       properties:
         page_size:
@@ -819,6 +699,126 @@ components:
       - deployment_name
       title: SearchRequest
       description: API request body for searching agent data
+    AgentData:
+      properties:
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        deployment_name:
+          type: string
+          title: Deployment Name
+        project_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Project Id
+        collection:
+          type: string
+          title: Collection
+          default: default
+        data:
+          additionalProperties: true
+          type: object
+          title: Data
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+      type: object
+      required:
+      - deployment_name
+      - data
+      title: AgentData
+      description: API Result for a single agent data item
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    DeleteResponse:
+      properties:
+        deleted_count:
+          type: integer
+          title: Deleted Count
+      type: object
+      required:
+      - deleted_count
+      title: DeleteResponse
+      description: API response for bulk delete operation
+    PaginatedResponse_AggregateGroup_:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AggregateGroup'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: PaginatedResponse[AggregateGroup]
+    AgentDataCreate:
+      properties:
+        deployment_name:
+          type: string
+          title: Deployment Name
+        collection:
+          type: string
+          title: Collection
+          default: default
+        data:
+          additionalProperties: true
+          type: object
+          title: Data
+      type: object
+      required:
+      - deployment_name
+      - data
+      title: AgentDataCreate
+      description: API request model for creating agent data
   securitySchemes:
     HTTPBearer:
       type: http

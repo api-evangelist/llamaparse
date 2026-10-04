@@ -159,6 +159,31 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    UsageMetricQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/UsageMetric'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: UsageMetricQueryResponse
+      description: Paginated response containing usage metrics.
     UsageMetric:
       properties:
         id:
@@ -243,15 +268,6 @@ components:
       - event_aggregation_type
       title: UsageMetric
       description: API boundary representation of a usage metric.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -278,31 +294,15 @@ components:
       - msg
       - type
       title: ValidationError
-    UsageMetricQueryResponse:
+    HTTPValidationError:
       properties:
-        items:
+        detail:
           items:
-            $ref: '#/components/schemas/UsageMetric'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+          title: Detail
       type: object
-      required:
-      - items
-      title: UsageMetricQueryResponse
-      description: Paginated response containing usage metrics.
+      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

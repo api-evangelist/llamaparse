@@ -317,33 +317,51 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    DirectoryUpdateRequest:
+    DirectoryCreateRequest:
       properties:
         name:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
+          type: string
+          minLength: 1
           title: Name
-          description: Updated name for the directory.
+          description: Human-readable name for the directory.
         description:
           anyOf:
           - type: string
           - type: 'null'
           title: Description
-          description: Updated description for the directory.
+          description: Optional description shown to users.
+        type:
+          type: string
+          enum:
+          - user
+          - ephemeral
+          title: Type
+          description: Directory type. Use 'ephemeral' for batch processing with automatic cleanup.
+          default: user
+          examples:
+          - user
+          - ephemeral
+        expires_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Expires At
+          description: When this directory expires. Required for ephemeral directories.
+          examples:
+          - '2026-05-10T00:00:00Z'
+        system_metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: System Metadata
+          description: Reserved system-managed metadata.
       type: object
-      title: DirectoryUpdateRequest
-      description: API request schema for updating a directory.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      required:
+      - name
+      title: DirectoryCreateRequest
+      description: API request schema for creating a directory.
     DirectoryResponse:
       properties:
         id:
@@ -418,6 +436,15 @@ components:
       - name
       title: DirectoryResponse
       description: API response schema for a directory.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     DirectoryQueryResponse:
       properties:
         items:
@@ -443,51 +470,6 @@ components:
       - items
       title: DirectoryQueryResponse
       description: API query response schema for directories.
-    DirectoryCreateRequest:
-      properties:
-        name:
-          type: string
-          minLength: 1
-          title: Name
-          description: Human-readable name for the directory.
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-          description: Optional description shown to users.
-        type:
-          type: string
-          enum:
-          - user
-          - ephemeral
-          title: Type
-          description: Directory type. Use 'ephemeral' for batch processing with automatic cleanup.
-          default: user
-          examples:
-          - user
-          - ephemeral
-        expires_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Expires At
-          description: When this directory expires. Required for ephemeral directories.
-          examples:
-          - '2026-05-10T00:00:00Z'
-        system_metadata:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: System Metadata
-          description: Reserved system-managed metadata.
-      type: object
-      required:
-      - name
-      title: DirectoryCreateRequest
-      description: API request schema for creating a directory.
     ValidationError:
       properties:
         loc:
@@ -514,6 +496,24 @@ components:
       - msg
       - type
       title: ValidationError
+    DirectoryUpdateRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Name
+          description: Updated name for the directory.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Updated description for the directory.
+      type: object
+      title: DirectoryUpdateRequest
+      description: API request schema for updating a directory.
   securitySchemes:
     HTTPBearer:
       type: http

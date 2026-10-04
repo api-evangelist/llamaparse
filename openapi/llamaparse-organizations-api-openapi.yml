@@ -197,52 +197,6 @@ components:
       - items
       title: OrganizationQueryResponse
       description: API query response schema for organizations.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ParsePlanLevel:
-      type: string
-      enum:
-      - DEFAULT
-      - PREMIUM
-      title: ParsePlanLevel
-      description: Enum for the Parse plan level.
-    OrganizationResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: The organization's unique identifier.
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation datetime
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Update datetime
-        name:
-          type: string
-          title: Name
-          description: The organization's display name.
-      type: object
-      required:
-      - id
-      - name
-      title: OrganizationResponse
-      description: API response schema for an organization.
     Organization:
       properties:
         id:
@@ -293,6 +247,52 @@ components:
       - name
       title: Organization
       description: Schema for an organization.
+    OrganizationResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: The organization's unique identifier.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: The organization's display name.
+      type: object
+      required:
+      - id
+      - name
+      title: OrganizationResponse
+      description: API response schema for an organization.
+    ParsePlanLevel:
+      type: string
+      enum:
+      - DEFAULT
+      - PREMIUM
+      title: ParsePlanLevel
+      description: Enum for the Parse plan level.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:

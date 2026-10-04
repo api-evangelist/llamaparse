@@ -293,12 +293,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    IndexMetadata:
-      properties: {}
-      additionalProperties: true
-      type: object
-      title: IndexMetadata
-      description: Build state and diagnostic info about an index. Schema is open; only `status` of `ready` or `failed` is stable.
     IndexQueryResponse:
       properties:
         items:
@@ -324,6 +318,47 @@ components:
       - items
       title: IndexQueryResponse
       description: Paginated list of indexes.
+    IndexMetadata:
+      properties: {}
+      additionalProperties: true
+      type: object
+      title: IndexMetadata
+      description: Build state and diagnostic info about an index. Schema is open; only `status` of `ready` or `failed` is stable.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     IndexCreateRequest:
       properties:
         source_directory_id:
@@ -400,6 +435,33 @@ components:
         Omit ``products`` to use a default parse configuration (cost-effective
 
         tier). Pass it explicitly to control parsing or to include extraction.'
+    IndexProductEntry:
+      properties:
+        product_type:
+          type: string
+          title: Product Type
+          description: 'Product type. One of: parse, extract.'
+          examples:
+          - parse
+        product_config_id:
+          type: string
+          title: Product Config Id
+          description: ID of the product configuration.
+      type: object
+      required:
+      - product_type
+      - product_config_id
+      title: IndexProductEntry
+      description: 'A product configuration to include in an index''s sync.
+
+
+        Structurally mirrors ``directory_sync.SyncProductEntryRequest`` but is a
+
+        distinct class so the Index API surface stays SDK-gen-isolated from
+
+        directory-sync internals. Translation between the two happens in
+
+        ``index/api_utils.py``.'
     IndexResponse:
       properties:
         id:
@@ -476,68 +538,6 @@ components:
       - export_config_id
       title: IndexResponse
       description: A searchable index over a directory of documents.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    IndexProductEntry:
-      properties:
-        product_type:
-          type: string
-          title: Product Type
-          description: 'Product type. One of: parse, extract.'
-          examples:
-          - parse
-        product_config_id:
-          type: string
-          title: Product Config Id
-          description: ID of the product configuration.
-      type: object
-      required:
-      - product_type
-      - product_config_id
-      title: IndexProductEntry
-      description: 'A product configuration to include in an index''s sync.
-
-
-        Structurally mirrors ``directory_sync.SyncProductEntryRequest`` but is a
-
-        distinct class so the Index API surface stays SDK-gen-isolated from
-
-        directory-sync internals. Translation between the two happens in
-
-        ``index/api_utils.py``.'
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

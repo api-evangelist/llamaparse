@@ -219,80 +219,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ProjectQueryResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ProjectResponse'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: ProjectQueryResponse
-      description: API query response schema for projects.
-    ProjectResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: The project's unique identifier.
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation datetime
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Update datetime
-        name:
-          type: string
-          title: Name
-          description: The project's display name.
-        organization_id:
-          type: string
-          title: Organization Id
-          description: The organization the project belongs to.
-        is_default:
-          type: boolean
-          title: Is Default
-          description: Whether this project is the default project for its organization.
-          default: false
-      type: object
-      required:
-      - id
-      - name
-      - organization_id
-      title: ProjectResponse
-      description: API response schema for a project.
     Project:
       properties:
         name:
@@ -336,6 +262,40 @@ components:
       - organization_id
       title: Project
       description: Schema for a project.
+    ProjectQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ProjectResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: ProjectQueryResponse
+      description: API query response schema for projects.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -362,6 +322,46 @@ components:
       - msg
       - type
       title: ValidationError
+    ProjectResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: The project's unique identifier.
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: The project's display name.
+        organization_id:
+          type: string
+          title: Organization Id
+          description: The organization the project belongs to.
+        is_default:
+          type: boolean
+          title: Is Default
+          description: Whether this project is the default project for its organization.
+          default: false
+      type: object
+      required:
+      - id
+      - name
+      - organization_id
+      title: ProjectResponse
+      description: API response schema for a project.
   securitySchemes:
     HTTPBearer:
       type: http

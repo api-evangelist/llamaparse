@@ -447,6 +447,52 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    FileFilter:
+      properties:
+        project_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Project Id
+          description: Filter by project ID
+        file_ids:
+          anyOf:
+          - items:
+              type: string
+              format: uuid
+            type: array
+          - type: 'null'
+          title: File Ids
+          description: Filter by specific file IDs
+        file_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: File Name
+          description: Filter by file name
+        data_source_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Data Source Id
+          description: Filter by data source ID
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: Filter by external file ID
+        only_manually_uploaded:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Only Manually Uploaded
+          description: Filter only manually uploaded files (data_source_id is null)
+      type: object
+      title: FileFilter
+      description: Filter parameters for file queries.
     FileQueryRequest:
       properties:
         page_size:
@@ -475,31 +521,15 @@ components:
       type: object
       title: FileQueryRequest
       description: Request schema for querying files with pagination and filtering.
-    FileQueryResponseV2:
+    HTTPValidationError:
       properties:
-        items:
+        detail:
           items:
-            $ref: '#/components/schemas/FileV2'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+          title: Detail
       type: object
-      required:
-      - items
-      title: FileQueryResponseV2
-      description: Paginated list of files.
+      title: HTTPValidationError
     FileV2:
       properties:
         id:
@@ -575,83 +605,6 @@ components:
       - project_id
       title: FileV2
       description: An uploaded file.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Body_upload_file_api_v1_beta_files_post:
-      properties:
-        purpose:
-          type: string
-          title: Purpose
-          description: 'The intended purpose of the file. Valid values: ''user_data'', ''parse'', ''extract'', ''split'', ''classify'', ''sheet'', ''agent_app''. This determines the storage and retention policy for the file.'
-        file:
-          type: string
-          format: binary
-          title: File
-          description: The file to upload
-        external_file_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: External File Id
-          description: The ID of the file in the external system
-      type: object
-      required:
-      - purpose
-      - file
-      title: Body_upload_file_api_v1_beta_files_post
-    FileFilter:
-      properties:
-        project_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Project Id
-          description: Filter by project ID
-        file_ids:
-          anyOf:
-          - items:
-              type: string
-              format: uuid
-            type: array
-          - type: 'null'
-          title: File Ids
-          description: Filter by specific file IDs
-        file_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: File Name
-          description: Filter by file name
-        data_source_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Data Source Id
-          description: Filter by data source ID
-        external_file_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: External File Id
-          description: Filter by external file ID
-        only_manually_uploaded:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Only Manually Uploaded
-          description: Filter only manually uploaded files (data_source_id is null)
-      type: object
-      title: FileFilter
-      description: Filter parameters for file queries.
     PresignedUrl:
       properties:
         url:
@@ -679,6 +632,31 @@ components:
       - expires_at
       title: PresignedUrl
       description: Schema for a presigned URL.
+    FileQueryResponseV2:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FileV2'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: FileQueryResponseV2
+      description: Paginated list of files.
     ValidationError:
       properties:
         loc:
@@ -705,6 +683,28 @@ components:
       - msg
       - type
       title: ValidationError
+    Body_upload_file_api_v1_beta_files_post:
+      properties:
+        purpose:
+          type: string
+          title: Purpose
+          description: 'The intended purpose of the file. Valid values: ''user_data'', ''parse'', ''extract'', ''split'', ''classify'', ''sheet'', ''agent_app''. This determines the storage and retention policy for the file.'
+        file:
+          type: string
+          format: binary
+          title: File
+          description: The file to upload
+        external_file_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: External File Id
+          description: The ID of the file in the external system
+      type: object
+      required:
+      - purpose
+      - file
+      title: Body_upload_file_api_v1_beta_files_post
   securitySchemes:
     HTTPBearer:
       type: http
