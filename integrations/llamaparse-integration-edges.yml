@@ -1,0 +1,24 @@
+edges:
+- partner_name: LlamaIndex
+  partner: llamaindex
+  partner_match: framework
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-llama-parse
+  coverage_role:
+  - document-parser
+  framework_signals:
+    packages:
+    - llama-index-readers-llama-parse
+    roles:
+    - document-parser
+    vendor_domain: llamaindex.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- https://github.com/run-llama/llama_index/tree/main/llama-index-integrations
