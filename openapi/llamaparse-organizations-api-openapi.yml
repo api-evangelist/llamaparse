@@ -172,31 +172,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    OrganizationQueryResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/OrganizationResponse'
-          type: array
-          title: Items
-          description: The list of items.
-        next_page_token:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Page Token
-          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
-        total_size:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Total Size
-          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
-      type: object
-      required:
-      - items
-      title: OrganizationQueryResponse
-      description: API query response schema for organizations.
     Organization:
       properties:
         id:
@@ -247,6 +222,57 @@ components:
       - name
       title: Organization
       description: Schema for an organization.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    OrganizationQueryResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/OrganizationResponse'
+          type: array
+          title: Items
+          description: The list of items.
+        next_page_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Page Token
+          description: A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+        total_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Size
+          description: The total number of items available. This is only populated when specifically requested. The value may be an estimate and can be used for display purposes only.
+      type: object
+      required:
+      - items
+      title: OrganizationQueryResponse
+      description: API query response schema for organizations.
     OrganizationResponse:
       properties:
         id:
@@ -277,13 +303,6 @@ components:
       - name
       title: OrganizationResponse
       description: API response schema for an organization.
-    ParsePlanLevel:
-      type: string
-      enum:
-      - DEFAULT
-      - PREMIUM
-      title: ParsePlanLevel
-      description: Enum for the Parse plan level.
     HTTPValidationError:
       properties:
         detail:
@@ -293,32 +312,13 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+    ParsePlanLevel:
+      type: string
+      enum:
+      - DEFAULT
+      - PREMIUM
+      title: ParsePlanLevel
+      description: Enum for the Parse plan level.
   securitySchemes:
     HTTPBearer:
       type: http

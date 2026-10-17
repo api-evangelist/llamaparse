@@ -318,21 +318,109 @@ components:
       - items
       title: IndexQueryResponse
       description: Paginated list of indexes.
-    IndexMetadata:
-      properties: {}
-      additionalProperties: true
-      type: object
-      title: IndexMetadata
-      description: Build state and diagnostic info about an index. Schema is open; only `status` of `ready` or `failed` is stable.
-    HTTPValidationError:
+    IndexResponse:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        id:
+          anyOf:
+          - type: string
+          - type: string
+            format: uuid
+          title: Id
+          description: Unique identifier
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+          description: Creation datetime
+        updated_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Updated At
+          description: Update datetime
+        name:
+          type: string
+          title: Name
+          description: Index name.
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Index description.
+        project_id:
+          type: string
+          title: Project Id
+          description: Project this index belongs to.
+        source_directory_id:
+          type: string
+          title: Source Directory Id
+          description: ID of the source directory.
+        sync_config_id:
+          type: string
+          title: Sync Config Id
+          description: ID of the sync configuration.
+        export_config_id:
+          type: string
+          title: Export Config Id
+          description: ID of the export configuration.
+        last_synced_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Synced At
+          description: Last sync time.
+        last_exported_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Exported At
+          description: Last export time.
+        metadata:
+          $ref: '#/components/schemas/IndexMetadata'
+          description: Build state and diagnostic info.
       type: object
-      title: HTTPValidationError
+      required:
+      - id
+      - name
+      - project_id
+      - source_directory_id
+      - sync_config_id
+      - export_config_id
+      title: IndexResponse
+      description: A searchable index over a directory of documents.
+    IndexProductEntry:
+      properties:
+        product_type:
+          type: string
+          title: Product Type
+          description: 'Product type. One of: parse, extract.'
+          examples:
+          - parse
+        product_config_id:
+          type: string
+          title: Product Config Id
+          description: ID of the product configuration.
+      type: object
+      required:
+      - product_type
+      - product_config_id
+      title: IndexProductEntry
+      description: 'A product configuration to include in an index''s sync.
+
+
+        Structurally mirrors ``directory_sync.SyncProductEntryRequest`` but is a
+
+        distinct class so the Index API surface stays SDK-gen-isolated from
+
+        directory-sync internals. Translation between the two happens in
+
+        ``index/api_utils.py``.'
     ValidationError:
       properties:
         loc:
@@ -435,109 +523,21 @@ components:
         Omit ``products`` to use a default parse configuration (cost-effective
 
         tier). Pass it explicitly to control parsing or to include extraction.'
-    IndexProductEntry:
+    HTTPValidationError:
       properties:
-        product_type:
-          type: string
-          title: Product Type
-          description: 'Product type. One of: parse, extract.'
-          examples:
-          - parse
-        product_config_id:
-          type: string
-          title: Product Config Id
-          description: ID of the product configuration.
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - product_type
-      - product_config_id
-      title: IndexProductEntry
-      description: 'A product configuration to include in an index''s sync.
-
-
-        Structurally mirrors ``directory_sync.SyncProductEntryRequest`` but is a
-
-        distinct class so the Index API surface stays SDK-gen-isolated from
-
-        directory-sync internals. Translation between the two happens in
-
-        ``index/api_utils.py``.'
-    IndexResponse:
-      properties:
-        id:
-          anyOf:
-          - type: string
-          - type: string
-            format: uuid
-          title: Id
-          description: Unique identifier
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-          description: Creation datetime
-        updated_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Updated At
-          description: Update datetime
-        name:
-          type: string
-          title: Name
-          description: Index name.
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-          description: Index description.
-        project_id:
-          type: string
-          title: Project Id
-          description: Project this index belongs to.
-        source_directory_id:
-          type: string
-          title: Source Directory Id
-          description: ID of the source directory.
-        sync_config_id:
-          type: string
-          title: Sync Config Id
-          description: ID of the sync configuration.
-        export_config_id:
-          type: string
-          title: Export Config Id
-          description: ID of the export configuration.
-        last_synced_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Last Synced At
-          description: Last sync time.
-        last_exported_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Last Exported At
-          description: Last export time.
-        metadata:
-          $ref: '#/components/schemas/IndexMetadata'
-          description: Build state and diagnostic info.
+      title: HTTPValidationError
+    IndexMetadata:
+      properties: {}
+      additionalProperties: true
       type: object
-      required:
-      - id
-      - name
-      - project_id
-      - source_directory_id
-      - sync_config_id
-      - export_config_id
-      title: IndexResponse
-      description: A searchable index over a directory of documents.
+      title: IndexMetadata
+      description: Build state and diagnostic info about an index. Schema is open; only `status` of `ready` or `failed` is stable.
   securitySchemes:
     HTTPBearer:
       type: http

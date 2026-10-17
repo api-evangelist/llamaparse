@@ -398,135 +398,19 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
+    SpreadsheetJobParameters:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    PresignedUrl:
-      properties:
-        url:
-          type: string
-          minLength: 1
-          format: uri
-          title: Url
-          description: A presigned URL for IO operations against a private file
-        expires_at:
-          type: string
-          format: date-time
-          title: Expires At
-          description: The time at which the presigned URL expires
-        form_fields:
+        webhook_configurations:
           anyOf:
-          - additionalProperties:
-              type: string
-            type: object
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
           - type: 'null'
-          title: Form Fields
-          description: Form fields for a presigned POST request
+          title: Webhook Configurations
+          description: Webhook configurations for job status notifications.
       type: object
-      required:
-      - url
-      - expires_at
-      title: PresignedUrl
-      description: Schema for a presigned URL.
-    WorksheetMetadata:
-      properties:
-        sheet_name:
-          type: string
-          title: Sheet Name
-          description: Name of the worksheet
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-          description: Generated title for the worksheet
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-          description: Generated description of the worksheet
-      type: object
-      required:
-      - sheet_name
-      title: WorksheetMetadata
-      description: Metadata about a worksheet in a spreadsheet
-    SpreadsheetResultType:
-      type: string
-      enum:
-      - table
-      - extra
-      - cell_metadata
-      title: SpreadsheetResultType
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ExtractedRegionSummary:
-      properties:
-        region_id:
-          type: string
-          title: Region Id
-          description: Unique identifier for this region within the file
-        sheet_name:
-          type: string
-          title: Sheet Name
-          description: Worksheet name where region was found
-        location:
-          type: string
-          title: Location
-          description: Location of the region in the spreadsheet
-        region_type:
-          type: string
-          title: Region Type
-          description: Type of the extracted region
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-          description: Generated title for the region
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-          description: Generated description for the region
-      type: object
-      required:
-      - sheet_name
-      - location
-      - region_type
-      title: ExtractedRegionSummary
-      description: A summary of a single extracted region from a spreadsheet
+      title: SpreadsheetJobParameters
+      description: Job-time parameters returned on a spreadsheet job response.
     WebhookConfiguration:
       properties:
         webhook_url:
@@ -593,6 +477,288 @@ components:
       type: object
       title: WebhookConfiguration
       description: Configuration for a single outbound webhook endpoint.
+    ExtractedRegionSummary:
+      properties:
+        region_id:
+          type: string
+          title: Region Id
+          description: Unique identifier for this region within the file
+        sheet_name:
+          type: string
+          title: Sheet Name
+          description: Worksheet name where region was found
+        location:
+          type: string
+          title: Location
+          description: Location of the region in the spreadsheet
+        region_type:
+          type: string
+          title: Region Type
+          description: Type of the extracted region
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+          description: Generated title for the region
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Generated description for the region
+      type: object
+      required:
+      - sheet_name
+      - location
+      - region_type
+      title: ExtractedRegionSummary
+      description: A summary of a single extracted region from a spreadsheet
+    SpreadsheetJobCreate:
+      properties:
+        configuration_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Configuration Id
+          description: Saved configuration ID
+          examples:
+          - cfg-11111111-2222-3333-4444-555555555555
+        configuration:
+          anyOf:
+          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          - type: 'null'
+          description: Inline configuration
+        webhook_configurations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/WebhookConfiguration'
+            type: array
+          - type: 'null'
+          title: Webhook Configurations
+          description: Outbound webhook endpoints to notify on job status changes
+        config:
+          anyOf:
+          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          - type: 'null'
+          description: 'Deprecated: use `configuration` instead.'
+          deprecated: true
+        file_id:
+          type: string
+          format: uuid
+          title: File Id
+          description: The ID of the file to parse
+      type: object
+      required:
+      - file_id
+      title: SpreadsheetJobCreate
+      description: 'Request to create a spreadsheet parsing job.
+
+
+        Provide at most one of `configuration` (inline) or `configuration_id`
+
+        (saved preset). If neither is provided, a default inline configuration is
+
+        used.'
+    SpreadsheetResultType:
+      type: string
+      enum:
+      - table
+      - extra
+      - cell_metadata
+      title: SpreadsheetResultType
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PresignedUrl:
+      properties:
+        url:
+          type: string
+          minLength: 1
+          format: uri
+          title: Url
+          description: A presigned URL for IO operations against a private file
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          description: The time at which the presigned URL expires
+        form_fields:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Form Fields
+          description: Form fields for a presigned POST request
+      type: object
+      required:
+      - url
+      - expires_at
+      title: PresignedUrl
+      description: Schema for a presigned URL.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    WorksheetMetadata:
+      properties:
+        sheet_name:
+          type: string
+          title: Sheet Name
+          description: Name of the worksheet
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+          description: Generated title for the worksheet
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+          description: Generated description of the worksheet
+      type: object
+      required:
+      - sheet_name
+      title: WorksheetMetadata
+      description: Metadata about a worksheet in a spreadsheet
+    SpreadsheetJob:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: The ID of the job
+        user_id:
+          type: string
+          title: User Id
+          description: The ID of the user
+        project_id:
+          type: string
+          format: uuid
+          title: Project Id
+          description: The ID of the project
+        configuration:
+          $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          description: Configuration applied to the parsing job (inline or resolved from a saved preset).
+        config:
+          anyOf:
+          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
+          - type: 'null'
+          description: 'Deprecated: use `configuration` instead.'
+          deprecated: true
+        status:
+          type: string
+          enum:
+          - PENDING
+          - SUCCESS
+          - ERROR
+          - PARTIAL_SUCCESS
+          - CANCELLED
+          title: Status
+          description: The status of the parsing job
+        parameters:
+          $ref: '#/components/schemas/SpreadsheetJobParameters'
+          description: Job-time parameters such as webhook configurations.
+        configuration_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Configuration Id
+          description: The saved product configuration ID used at create time, if any.
+        metadata_state_transitions:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata State Transitions
+          description: Per-status entry timestamps. Returned only when requested via `?expand=metadata_state_transitions`.
+        created_at:
+          type: string
+          title: Created At
+          description: When the job was created
+        updated_at:
+          type: string
+          title: Updated At
+          description: When the job was last updated
+        success:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Success
+          description: Whether the job completed successfully
+        regions:
+          items:
+            $ref: '#/components/schemas/ExtractedRegionSummary'
+          type: array
+          title: Regions
+          description: All extracted regions (populated when job is complete)
+        worksheet_metadata:
+          items:
+            $ref: '#/components/schemas/WorksheetMetadata'
+          type: array
+          title: Worksheet Metadata
+          description: Metadata for each processed worksheet (populated when job is complete)
+        errors:
+          items:
+            type: string
+          type: array
+          title: Errors
+          description: Any errors encountered
+        file_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: File Id
+          description: The ID of the input file
+        file:
+          anyOf:
+          - $ref: '#/components/schemas/File'
+          - type: 'null'
+          description: '[DEPRECATED] The file that was parsed. Use file_id instead.'
+          deprecated: true
+      type: object
+      required:
+      - id
+      - user_id
+      - project_id
+      - configuration
+      - status
+      - created_at
+      - updated_at
+      - file_id
+      title: SpreadsheetJob
+      description: A spreadsheet parsing job.
     File:
       properties:
         id:
@@ -713,113 +879,6 @@ components:
       - project_id
       title: File
       description: Schema for a file.
-    SpreadsheetJob:
-      properties:
-        id:
-          type: string
-          title: Id
-          description: The ID of the job
-        user_id:
-          type: string
-          title: User Id
-          description: The ID of the user
-        project_id:
-          type: string
-          format: uuid
-          title: Project Id
-          description: The ID of the project
-        configuration:
-          $ref: '#/components/schemas/SpreadsheetParsingConfig'
-          description: Configuration applied to the parsing job (inline or resolved from a saved preset).
-        config:
-          anyOf:
-          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
-          - type: 'null'
-          description: 'Deprecated: use `configuration` instead.'
-          deprecated: true
-        status:
-          type: string
-          enum:
-          - PENDING
-          - SUCCESS
-          - ERROR
-          - PARTIAL_SUCCESS
-          - CANCELLED
-          title: Status
-          description: The status of the parsing job
-        parameters:
-          $ref: '#/components/schemas/SpreadsheetJobParameters'
-          description: Job-time parameters such as webhook configurations.
-        configuration_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Configuration Id
-          description: The saved product configuration ID used at create time, if any.
-        metadata_state_transitions:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Metadata State Transitions
-          description: Per-status entry timestamps. Returned only when requested via `?expand=metadata_state_transitions`.
-        created_at:
-          type: string
-          title: Created At
-          description: When the job was created
-        updated_at:
-          type: string
-          title: Updated At
-          description: When the job was last updated
-        success:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Success
-          description: Whether the job completed successfully
-        regions:
-          items:
-            $ref: '#/components/schemas/ExtractedRegionSummary'
-          type: array
-          title: Regions
-          description: All extracted regions (populated when job is complete)
-        worksheet_metadata:
-          items:
-            $ref: '#/components/schemas/WorksheetMetadata'
-          type: array
-          title: Worksheet Metadata
-          description: Metadata for each processed worksheet (populated when job is complete)
-        errors:
-          items:
-            type: string
-          type: array
-          title: Errors
-          description: Any errors encountered
-        file_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: File Id
-          description: The ID of the input file
-        file:
-          anyOf:
-          - $ref: '#/components/schemas/File'
-          - type: 'null'
-          description: '[DEPRECATED] The file that was parsed. Use file_id instead.'
-          deprecated: true
-      type: object
-      required:
-      - id
-      - user_id
-      - project_id
-      - configuration
-      - status
-      - created_at
-      - updated_at
-      - file_id
-      title: SpreadsheetJob
-      description: A spreadsheet parsing job.
     SpreadsheetParsingConfig:
       properties:
         sheet_names:
@@ -897,65 +956,6 @@ components:
       required:
       - items
       title: PaginatedResponse[SpreadsheetJob]
-    SpreadsheetJobParameters:
-      properties:
-        webhook_configurations:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/WebhookConfiguration'
-            type: array
-          - type: 'null'
-          title: Webhook Configurations
-          description: Webhook configurations for job status notifications.
-      type: object
-      title: SpreadsheetJobParameters
-      description: Job-time parameters returned on a spreadsheet job response.
-    SpreadsheetJobCreate:
-      properties:
-        configuration_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Configuration Id
-          description: Saved configuration ID
-          examples:
-          - cfg-11111111-2222-3333-4444-555555555555
-        configuration:
-          anyOf:
-          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
-          - type: 'null'
-          description: Inline configuration
-        webhook_configurations:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/WebhookConfiguration'
-            type: array
-          - type: 'null'
-          title: Webhook Configurations
-          description: Outbound webhook endpoints to notify on job status changes
-        config:
-          anyOf:
-          - $ref: '#/components/schemas/SpreadsheetParsingConfig'
-          - type: 'null'
-          description: 'Deprecated: use `configuration` instead.'
-          deprecated: true
-        file_id:
-          type: string
-          format: uuid
-          title: File Id
-          description: The ID of the file to parse
-      type: object
-      required:
-      - file_id
-      title: SpreadsheetJobCreate
-      description: 'Request to create a spreadsheet parsing job.
-
-
-        Provide at most one of `configuration` (inline) or `configuration_id`
-
-        (saved preset). If neither is provided, a default inline configuration is
-
-        used.'
   securitySchemes:
     HTTPBearer:
       type: http
